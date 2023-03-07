@@ -1,0 +1,13 @@
+# GITHUB ACTION METADATA
+# https://docs.github.com/actions/creating-actions/metadata-syntax-for-github-actions
+
+---
+name: rice
+author: '@flex-development'
+description: Repository infrastructure as code
+runs:
+  main: dist/main.mjs
+  using: node16
+branding:
+  color: blue
+  icon: settings
