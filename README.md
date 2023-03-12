@@ -1,5 +1,6 @@
 # :rice: rice-action
 
+[![codecov](https://codecov.io/gh/flex-development/rice-action/branch/main/graph/badge.svg?token=rtL6IuEtDK)](https://codecov.io/gh/flex-development/rice-action)
 [![module type: esm](https://img.shields.io/badge/module%20type-esm-brightgreen)](https://github.com/voxpelli/badges-cjs-esm)
 [![license](https://img.shields.io/github/license/flex-development/rice-action.svg)](LICENSE.md)
 [![conventional commits](https://img.shields.io/badge/-conventional%20commits-fe5196?logo=conventional-commits&logoColor=ffffff)](https://conventionalcommits.org/)
