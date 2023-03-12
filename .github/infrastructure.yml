@@ -43,8 +43,6 @@ branches:
       restrictions: null
 # https://docs.github.com/rest/deployments/environments#create-or-update-an-environment
 environments:
-  - environment_name: gpr
-  - environment_name: npm
   - environment_name: production
 # https://docs.github.com/rest/issues/labels#create-a-label
 labels:
