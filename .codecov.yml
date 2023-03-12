@@ -97,3 +97,4 @@ ignore:
 profiling:
   critical_files_paths:
     - src/models/manager.ts
+    - src/run.ts

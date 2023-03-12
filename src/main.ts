@@ -3,4 +3,6 @@
  * @module rice-action/main
  */
 
-export {}
+import run from './run'
+
+void (await run())

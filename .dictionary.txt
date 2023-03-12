@@ -26,8 +26,8 @@ nvmrc
 pathe
 preid
 shfmt
-syncer
 tscu
+unmocked
 unstub
 vates
 yarnrc

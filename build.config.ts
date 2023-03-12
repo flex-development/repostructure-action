@@ -6,6 +6,7 @@
 
 import { defineBuildConfig, type Config } from '@flex-development/mkbuild'
 import pkg from './package.json' assert { type: 'json' }
+import tsconfig from './tsconfig.json' assert { type: 'json' }
 
 /**
  * Build configuration options.
@@ -14,6 +15,7 @@ import pkg from './package.json' assert { type: 'json' }
  */
 const config: Config = defineBuildConfig({
   bundle: true,
+  conditions: tsconfig.compilerOptions.customConditions,
   platform: 'node',
   source: 'src/main.ts',
   sourcemap: true,
