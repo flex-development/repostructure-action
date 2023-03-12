@@ -89,6 +89,11 @@ ignore:
   - '**/__mocks__/**'
   - '**/__tests__/**'
   - '**/index.ts'
+  - src/enums/
+  - src/interfaces/
+  - src/main.ts
+  - src/types/
 
 profiling:
-  critical_files_paths: []
+  critical_files_paths:
+    - src/models/manager.ts

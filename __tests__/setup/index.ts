@@ -3,6 +3,7 @@
  * @module tests/setup
  */
 
+import './before-each'
 import './chai'
 import './faker'
 import './matchers'

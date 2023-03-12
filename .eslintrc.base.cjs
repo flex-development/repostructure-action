@@ -424,7 +424,13 @@ const config = {
         'jsdoc/check-tag-names': [
           1,
           {
-            definedTags: ['experimental', 'next', 'visibleName'],
+            definedTags: [
+              'experimental',
+              'maximum',
+              'minimum',
+              'next',
+              'visibleName'
+            ],
             jsxTags: false
           }
         ],
@@ -815,8 +821,9 @@ const config = {
       }
     },
     {
-      files: '**/__mocks__/*.ts',
+      files: '**/__mocks__/**/*.ts',
       rules: {
+        '@typescript-eslint/no-unused-vars': 0,
         '@typescript-eslint/require-await': 0
       }
     },
@@ -1181,9 +1188,17 @@ const config = {
           name: 'namepath-defining',
           required: ['type']
         },
+        maximum: {
+          name: 'text',
+          required: ['name']
+        },
         member: {
           name: 'namepath-defining',
           required: ['name', 'type']
+        },
+        minimum: {
+          name: 'text',
+          required: ['name']
         },
         next: {
           name: 'namepath-defining',
