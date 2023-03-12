@@ -17,6 +17,7 @@ Repository infrastructure as code
 - [When should I use this?](#when-should-i-use-this)
 - [Use](#use)
 - [API](#api)
+  - [Inputs](#inputs)
 - [Types](#types)
 - [Contribute](#contribute)
 
@@ -51,7 +52,19 @@ The following setting groups are supported:
 
 ## API
 
-**TODO**: api documentation.
+### Inputs
+
+#### `config`
+
+Location of repository infrastructure configuration file.
+
+> **Default**: `.github/infrastructure.yml`
+
+#### `token`
+
+Personal access token (PAT) used to authenticate GitHub API requests.
+
+> **Default**: `${{ github.token }}`
 
 ## Types
 
