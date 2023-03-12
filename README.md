@@ -38,7 +38,16 @@ The following setting groups are supported:
 
 ## Use
 
-**TODO**: usage example.
+```yaml
+- uses: flex-development/rice-action@<VERSION>
+  with:
+    # Location of repository infrastructure configuration file
+    # default: .github/infrastructure.yml
+    config: .github/infrastructure.yml
+    # Personal access token (PAT) used to authenticate GitHub API requests
+    # default: ${{ github.token }}
+    token: ${{ secrets.PAT_REPO }}
+```
 
 ## API
 
