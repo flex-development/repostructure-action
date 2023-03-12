@@ -1,6 +1,12 @@
 # Repository Infrastructure Management
 #
-# Update repository infrastructure.
+# Update repository infrastructure on push or workflow dispatch when the infrastructure config file
+# (or this workflow) is updated. The user triggering the workflow run (`github.actor`) must be a
+# repository admin.
+#
+# Note: The permissions of `github.actor` are checked because workflow re-runs will reuse the
+# privileges of `github.actor` even if the actor initiating the re-run (`github.triggering_actor`)
+# has different privileges.
 #
 # References:
 #
@@ -41,11 +47,11 @@ jobs:
         name: Print environment variables and event payload
         uses: hmarr/debug-action@v2.1.0
       - id: check-actor-permission
-        name: Check permission of triggering actor ${{ github.triggering_actor }}
+        name: Check @${{ github.actor }} permission level
         uses: actions-cool/check-user-permission@v2.2.0
         with:
           require: admin
-          username: ${{ github.triggering_actor }}
+          username: ${{ github.actor }}
       - id: checkout
         name: Checkout ${{ github.ref_name }}
         uses: actions/checkout@v3.3.0
