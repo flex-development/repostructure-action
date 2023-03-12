@@ -2,7 +2,7 @@
 # https://docs.github.com/actions/creating-actions/metadata-syntax-for-github-actions
 
 ---
-name: rice
+name: rice-action
 author: '@flex-development'
 description: Repository infrastructure as code
 inputs:
