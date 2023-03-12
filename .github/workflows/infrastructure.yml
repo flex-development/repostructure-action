@@ -1,10 +1,10 @@
 # Repository Infrastructure Management
 #
-# Update repository infrastructure on push or workflow dispatch when the infrastructure config file
-# (or this workflow) is updated. The user triggering the workflow run (`github.actor`) must be a
-# repository admin.
+# Update repository infrastructure on `push` or `workflow_dispatch` when the infrastructure config
+# file (or this workflow) is updated. The user triggering the workflow run (`github.actor`) must be
+# a repository admin.
 #
-# Note: The permissions of `github.actor` are checked because workflow re-runs will reuse the
+# Note: The permissions of `github.actor` is checked because workflow re-runs will reuse the
 # privileges of `github.actor` even if the actor initiating the re-run (`github.triggering_actor`)
 # has different privileges.
 #

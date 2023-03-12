@@ -16,6 +16,8 @@ Repository infrastructure as code
 - [What is this?](#what-is-this)
 - [When should I use this?](#when-should-i-use-this)
 - [Use](#use)
+- [Scenarios](#scenarios)
+  - [Admin-only infrastructure updates](#admin-only-infrastructure-updates)
 - [API](#api)
   - [Inputs](#inputs)
 - [Types](#types)
@@ -48,6 +50,60 @@ The following setting groups are supported:
     # Personal access token (PAT) used to authenticate GitHub API requests
     # default: ${{ github.token }}
     token: ${{ secrets.PAT_REPO }}
+```
+
+## Scenarios
+
+### Admin-only infrastructure updates
+
+Update repository infrastructure on `push` or `workflow_dispatch` when the infrastructure config file (or workflow) is
+updated. The user triggering the workflow run (`github.actor`) must be a repository admin.
+
+See [`.github/workflows/infrastructure.yml`](.github/workflows/infrastructure.yml) for more details.
+
+```yaml
+---
+name: infrastructure
+on:
+  create:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - .github/infrastructure.yml
+      - .github/workflows/infrastructure.yml
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      - id: debug
+        name: Print environment variables and event payload
+        uses: hmarr/debug-action@v2.1.0
+      - id: check-actor-permission
+        name: Check permission of actor ${{ github.actor }}
+        uses: actions-cool/check-user-permission@v2.2.0
+        with:
+          require: admin
+          username: ${{ github.actor }}
+      - id: checkout
+        name: Checkout ${{ github.ref_name }}
+        uses: actions/checkout@v3.3.0
+        with:
+          persist-credentials: false
+          ref: ${{ github.ref_name }}
+      - id: update
+        if: steps.check-actor-permission.outputs.require-result == 'true'
+        name: Update repository infrastructure
+        uses: flex-development/rice-action@<VERSION>
+        with:
+          token: ${{ secrets.PAT_REPO }}
 ```
 
 ## API
