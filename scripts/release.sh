@@ -6,7 +6,7 @@
 # 2. run tests
 # 3. build project
 # 4. run postbuild typecheck
-# 5. get new package version
+# 5. get new action version
 # 6. get release branch name
 # 7. switch to release branch
 # 8. stage changes
@@ -28,4 +28,4 @@ git switch -c $RELEASE_BRANCH
 git add .
 git commit -s -m "release: $(jq .tagPrefix package.json -r)$VERSION"
 git push origin -u --no-verify $RELEASE_BRANCH
-gh pr create --web
+gh pr create --assignee @me --label scope:release --web
