@@ -26,7 +26,15 @@ GitHub Action for managing repository infrastructure.
 
 ## When should I use this?
 
-**TODO**: use cases.
+This action can be used to manage repository infrastructure.
+
+The following setting groups are supported:
+
+- [Branch protection][1]
+- [Deployment environments][2]
+- [Labels][3]
+- [Repositories][4]
+- [Team repository permissions][5]
 
 ## Use
 
@@ -38,10 +46,15 @@ GitHub Action for managing repository infrastructure.
 
 ## Types
 
-This package is fully typed with [TypeScript][1].
+This action is fully typed with [TypeScript][6].
 
 ## Contribute
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-[1]: https://www.typescriptlang.org
+[1]: https://docs.github.com/rest/branches/branch-protection#update-branch-protection
+[2]: https://docs.github.com/rest/deployments/environments#create-or-update-an-environment
+[3]: https://docs.github.com/rest/issues/labels
+[4]: https://docs.github.com/rest/repos/repos#update-a-repository
+[5]: https://docs.github.com/rest/teams/teams#add-or-update-team-repository-permissions
+[6]: https://www.typescriptlang.org/
