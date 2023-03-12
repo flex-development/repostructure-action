@@ -1,6 +1,6 @@
 /**
  * @file Test Fixtures - teams
- * @module fixtures/settings/teams
+ * @module fixtures/config/teams
  */
 
 import { Permission } from '#src/enums'

@@ -1,6 +1,6 @@
 /**
  * @file Test Fixtures - labels
- * @module fixtures/settings/labels
+ * @module fixtures/config/labels
  */
 
 import type { Label } from '#src/interfaces'

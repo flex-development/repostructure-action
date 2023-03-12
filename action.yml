@@ -6,8 +6,8 @@ name: rice
 author: '@flex-development'
 description: Repository infrastructure as code
 inputs:
-  settings:
-    default: .github/settings.yml
+  config:
+    default: .github/infrastructure.yml
     description: Location of repository infrastructure configuration file
     required: false
   token:

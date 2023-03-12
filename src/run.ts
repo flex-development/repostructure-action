@@ -3,7 +3,7 @@
  * @module rice-action/run
  */
 
-import type { Settings } from '#src/interfaces'
+import type { Config } from '#src/interfaces'
 import Manager from '#src/models/manager'
 import * as core from '@actions/core'
 import * as github from '@actions/github'
@@ -23,13 +23,13 @@ async function run(): Promise<void> {
   /**
    * Repository infrastructure settings object.
    *
-   * @var {Settings} settings
+   * @var {Config} settings
    */
-  let settings!: Settings
+  let settings!: Config
 
   // try parsing settings file
   try {
-    settings = yaml.parse(fs.readFileSync(core.getInput('settings'), 'utf8'), {
+    settings = yaml.parse(fs.readFileSync(core.getInput('config'), 'utf8'), {
       logLevel: 'error',
       prettyErrors: true,
       sortMapEntries: true,

@@ -3,7 +3,7 @@
  * @module rice-action/tests/functional/run
  */
 
-import settings from '#fixtures/settings'
+import settings from '#fixtures/config'
 import Manager from '#src/models/manager'
 import mockGithubAPI from '#tests/utils/mock-github-api'
 import * as core from '@actions/core'
@@ -16,7 +16,7 @@ vi.mock('yaml')
 describe('functional:run', () => {
   it('should set action failure if error parsing settings file', async () => {
     // Arrange
-    vi.stubEnv('INPUT_SETTINGS', 'settings.yml')
+    vi.stubEnv('INPUT_CONFIG', 'infrastructure.yml')
 
     // Act
     await testSubject()
@@ -29,7 +29,7 @@ describe('functional:run', () => {
   it('should set action failure if error updating infrastructure', async () => {
     // Arrange
     const token: string = 'ghp_' + faker.string.alphanumeric({ length: 36 })
-    vi.stubEnv('INPUT_SETTINGS', '.github/settings.yml')
+    vi.stubEnv('INPUT_CONFIG', '.github/infrastructure.yml')
     vi.stubEnv('INPUT_TOKEN', token)
 
     // Act
@@ -42,7 +42,7 @@ describe('functional:run', () => {
 
   it('should update infrastructure', async () => {
     // Arrange
-    vi.stubEnv('INPUT_SETTINGS', '.github/settings.yml')
+    vi.stubEnv('INPUT_CONFIG', '.github/infrastructure.yml')
     vi.stubEnv('INPUT_TOKEN', process.env.GITHUB_TOKEN!)
     const updateBranches = vi.spyOn(Manager.prototype, 'updateBranches')
     const updateEnvironments = vi.spyOn(Manager.prototype, 'updateEnvironments')

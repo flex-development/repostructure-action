@@ -1,6 +1,6 @@
 /**
  * @file Test Fixtures - environments
- * @module fixtures/settings/environments
+ * @module fixtures/config/environments
  */
 
 import type { Environment } from '#src/interfaces'

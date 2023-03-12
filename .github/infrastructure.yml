@@ -21,7 +21,6 @@ branches:
         required_approving_review_count: 1
       required_status_checks:
         checks:
-          - context: DCO
           - context: add-to-project
           - context: auto-merge
           - context: build
@@ -39,7 +38,7 @@ branches:
           - context: typescript (~4.9.0)
         strict: true
       restrictions: null
-# https://docs.github.com/rest/deployments/environments
+# https://docs.github.com/rest/deployments/environments#create-or-update-an-environment
 environments:
   - environment_name: gpr
   - environment_name: npm

@@ -19863,7 +19863,7 @@ import fs from "node:fs";
 async function run() {
   let settings;
   try {
-    settings = yaml.parse(fs.readFileSync(core.getInput("settings"), "utf8"), {
+    settings = yaml.parse(fs.readFileSync(core.getInput("config"), "utf8"), {
       logLevel: "error",
       prettyErrors: true,
       sortMapEntries: true,

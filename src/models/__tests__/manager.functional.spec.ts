@@ -3,13 +3,13 @@
  * @module rice-action/models/tests/functional/Manager
  */
 
+import branches from '#fixtures/config/branches'
+import environments from '#fixtures/config/environments'
+import labels from '#fixtures/config/labels'
+import repository from '#fixtures/config/repository'
+import teams from '#fixtures/config/teams'
+import topics from '#fixtures/config/topics'
 import octokit from '#fixtures/octokit'
-import branches from '#fixtures/settings/branches'
-import environments from '#fixtures/settings/environments'
-import labels from '#fixtures/settings/labels'
-import repository from '#fixtures/settings/repository'
-import teams from '#fixtures/settings/teams'
-import topics from '#fixtures/settings/topics'
 import { Endpoint } from '#src/enums'
 import type { Label, Repository } from '#src/interfaces'
 import type { Spy } from '#tests/interfaces'

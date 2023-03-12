@@ -1,6 +1,6 @@
 /**
  * @file Test Fixtures - repository
- * @module fixtures/settings/repository
+ * @module fixtures/config/repository
  */
 
 import type { Repository } from '#src/interfaces'

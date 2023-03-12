@@ -1,9 +1,9 @@
 /**
- * @file Test Fixtures - settings
- * @module fixtures/settings
+ * @file Test Fixtures - config
+ * @module fixtures/config
  */
 
-import type { Settings } from '#src/interfaces'
+import type { Config } from '#src/interfaces'
 import branches from './branches'
 import environments from './environments'
 import labels from './labels'
@@ -16,4 +16,4 @@ export default {
   labels,
   repository,
   teams
-} as Required<Settings>
+} as Required<Config>

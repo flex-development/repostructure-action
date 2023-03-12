@@ -1,6 +1,6 @@
 /**
- * @file Interfaces - Settings
- * @module rice-action/interfaces/Settings
+ * @file Interfaces - Config
+ * @module rice-action/interfaces/Config
  */
 
 import type Branch from './branch'
@@ -12,7 +12,7 @@ import type Team from './team'
 /**
  * Object representing repository infrastructure settings.
  */
-interface Settings {
+interface Config {
   [key: string]: Branch[] | Environment[] | Label[] | Repository | Team[]
 
   /**
@@ -59,4 +59,4 @@ interface Settings {
   teams?: Team[]
 }
 
-export type { Settings as default }
+export type { Config as default }

@@ -1,16 +1,16 @@
 /**
- * @file Type Tests - Settings
- * @module rice-action/interfaces/tests/unit-d/Settings
+ * @file Type Tests - Config
+ * @module rice-action/interfaces/tests/unit-d/Config
  */
 
 import type Branch from '../branch'
+import type TestSubject from '../config'
 import type Environment from '../environment'
 import type Label from '../label'
 import type Repository from '../repository'
-import type TestSubject from '../settings'
 import type Team from '../team'
 
-describe('unit-d:interfaces/Settings', () => {
+describe('unit-d:interfaces/Config', () => {
   it('should match [branches?: Branch[]]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('branches')

@@ -1,6 +1,6 @@
 /**
  * @file Test Fixtures - topics
- * @module fixtures/settings/repository/topics
+ * @module fixtures/config/repository/topics
  */
 
 export default [

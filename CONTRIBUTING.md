@@ -100,7 +100,7 @@ Follow the steps below to setup your local development environment:
 | `CODECOV_TOKEN`         |
 | `GITHUB_REPOSITORY`     |
 | `GITHUB_TOKEN`          |
-| `INPUT_SETTINGS`        |
+| `INPUT_CONFIG`          |
 | `INPUT_TOKEN`           |
 | `NODE_NO_WARNINGS`      |
 | `PAT_BOT`               |

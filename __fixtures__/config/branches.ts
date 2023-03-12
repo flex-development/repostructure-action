@@ -1,6 +1,6 @@
 /**
  * @file Test Fixtures - branches
- * @module fixtures/settings/branches
+ * @module fixtures/config/branches
  */
 
 import type { Branch } from '#src/interfaces'

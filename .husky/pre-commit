@@ -6,4 +6,7 @@
 #
 # - https://github.com/okonet/lint-staged#command-line-flags
 
+yarn build
+yarn check:types:build
+git add dist/** --verbose
 cross-env LINT_STAGED=1 lint-staged --config=.lintstagedrc.json --relative --verbose
