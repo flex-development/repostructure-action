@@ -3,6 +3,7 @@
 [![infrastructure](https://github.com/flex-development/rice-action/actions/workflows/infrastructure.yml/badge.svg)](https://github.com/flex-development/rice-action/actions/workflows/infrastructure.yml)
 [![codecov](https://codecov.io/gh/flex-development/rice-action/branch/main/graph/badge.svg?token=rtL6IuEtDK)](https://codecov.io/gh/flex-development/rice-action)
 [![module type: esm](https://img.shields.io/badge/module%20type-esm-brightgreen)](https://github.com/voxpelli/badges-cjs-esm)
+[![sponsor](https://img.shields.io/badge/sponsor-flex--development-blue.svg?logo=github)](https://github.com/sponsors/flex-development)
 [![license](https://img.shields.io/github/license/flex-development/rice-action.svg)](LICENSE.md)
 [![conventional commits](https://img.shields.io/badge/-conventional%20commits-fe5196?logo=conventional-commits&logoColor=ffffff)](https://conventionalcommits.org/)
 [![typescript](https://img.shields.io/badge/-typescript-3178c6?logo=typescript&logoColor=ffffff)](https://typescriptlang.org/)
