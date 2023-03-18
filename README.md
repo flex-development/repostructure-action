@@ -1,5 +1,6 @@
 # :rice: rice-action
 
+[![github release](https://img.shields.io/github/release/flex-development/rice-action.svg?logo=github)](https://github.com/flex-development/rice-action/releases/latest)
 [![github marketplace](https://img.shields.io/badge/marketplace-rice--action-blue?logo=github)](https://github.com/marketplace/actions/rice-action)
 [![infrastructure](https://github.com/flex-development/rice-action/actions/workflows/infrastructure.yml/badge.svg)](https://github.com/flex-development/rice-action/actions/workflows/infrastructure.yml)
 [![codecov](https://codecov.io/gh/flex-development/rice-action/branch/main/graph/badge.svg?token=rtL6IuEtDK)](https://codecov.io/gh/flex-development/rice-action)
