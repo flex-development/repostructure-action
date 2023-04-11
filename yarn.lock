@@ -1728,14 +1728,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/sourcemap-codec@npm:1.4.14, @jridgewell/sourcemap-codec@npm:^1.4.10":
+"@jridgewell/sourcemap-codec@npm:1.4.14":
   version: 1.4.14
   resolution: "@jridgewell/sourcemap-codec@npm:1.4.14"
   checksum: 2147ea75c966fed8a7d9ed6679b7e8c380fa790a9bea5a64f4ec1c26d24e44b461aa60fc3b228cea03a46708d9d1bcf19508035bf27ad5e8f63d0998ed1d1117
   languageName: node
   linkType: hard
 
-"@jridgewell/sourcemap-codec@npm:^1.4.13":
+"@jridgewell/sourcemap-codec@npm:^1.4.10, @jridgewell/sourcemap-codec@npm:^1.4.13":
   version: 1.4.15
   resolution: "@jridgewell/sourcemap-codec@npm:1.4.15"
   checksum: b71b5eeb0af50fb1dbdf18e88aa5cf755baa30723f0d5fd2ac069f861d0c73b12b968321314e4db86d5a4d5d89a292211f68ba94767c620fee35247a94c05890
@@ -6633,19 +6633,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mlly@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "mlly@npm:1.1.1"
-  dependencies:
-    acorn: "npm:^8.8.2"
-    pathe: "npm:^1.1.0"
-    pkg-types: "npm:^1.0.1"
-    ufo: "npm:^1.1.0"
-  checksum: 4ebffcf61a8381de0693ebaf741e11a353d5804774a45237328d4c88b42fc455b3d8d799e9f10b0420d4cf1435cae496b6f43f58b7188b502550666a52cffacc
-  languageName: node
-  linkType: hard
-
-"mlly@npm:^1.2.0":
+"mlly@npm:^1.1.1, mlly@npm:^1.2.0":
   version: 1.2.0
   resolution: "mlly@npm:1.2.0"
   dependencies:
@@ -7309,7 +7297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pkg-types@npm:^1.0.1, pkg-types@npm:^1.0.2":
+"pkg-types@npm:^1.0.2":
   version: 1.0.2
   resolution: "pkg-types@npm:1.0.2"
   dependencies:
@@ -8818,7 +8806,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ufo@npm:^1.1.0, ufo@npm:^1.1.1":
+"ufo@npm:^1.1.1":
   version: 1.1.1
   resolution: "ufo@npm:1.1.1"
   checksum: 46c7403f2ef32569a8de94e5c90a68233f448127c14f25a392aab8d7793662439498432fe88fd351c46b91c19186ce49f53c3c1327eec757f722927e0477d7b2
