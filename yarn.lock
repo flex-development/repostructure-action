@@ -1257,7 +1257,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:5.58.0"
     "@typescript-eslint/parser": "npm:5.58.0"
     "@vates/toggle-scripts": "npm:1.0.0"
-    "@vitest/coverage-c8": "npm:0.29.7"
+    "@vitest/coverage-c8": "npm:0.30.1"
     "@vitest/ui": "npm:0.29.8"
     add-stream: "npm:1.0.0"
     chai: "npm:4.3.7"
@@ -2420,16 +2420,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-c8@npm:0.29.7":
-  version: 0.29.7
-  resolution: "@vitest/coverage-c8@npm:0.29.7"
+"@vitest/coverage-c8@npm:0.30.1":
+  version: 0.30.1
+  resolution: "@vitest/coverage-c8@npm:0.30.1"
   dependencies:
     c8: "npm:^7.13.0"
     picocolors: "npm:^1.0.0"
-    std-env: "npm:^3.3.1"
+    std-env: "npm:^3.3.2"
   peerDependencies:
-    vitest: ">=0.29.0 <1"
-  checksum: 998a5dfc3e653790ed4e25ea65435d55269f34bada291b4e2a8c38857081c4f5888f46442c8a0fab0c107dfd711a103f24519c8fdf51d8502364d52620828955
+    vitest: ">=0.30.0 <1"
+  checksum: 1d1a3848942d16393cecb4c9034398895637c6f2051524aed605cb430df65159743b3f9fe1251bb9a79bd42c095b56200e09eb2c59058394f6537c04a203209b
   languageName: node
   linkType: hard
 
@@ -8115,7 +8115,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"std-env@npm:^3.3.1":
+"std-env@npm:^3.3.1, std-env@npm:^3.3.2":
   version: 3.3.2
   resolution: "std-env@npm:3.3.2"
   checksum: 383486453a3b34c9db54c3aab112e066f32c6afda55c89362fe56576a82564d60526578040f7fe3ff6173f18c426597cbf1be69be9de83f56b984533aa2c2599
