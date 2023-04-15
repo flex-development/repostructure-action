@@ -1,6 +1,6 @@
 # :rice: rice-action
 
-[![github release](https://img.shields.io/github/release/flex-development/rice-action.svg?logo=github)](https://github.com/flex-development/rice-action/releases/latest)
+[![github release](https://img.shields.io/github/v/release/flex-development/rice-action.svg?include_prereleases&sort=semver)](https://github.com/flex-development/rice-action/releases/latest)
 [![github marketplace](https://img.shields.io/badge/marketplace-rice--action-blue?logo=github)](https://github.com/marketplace/actions/rice-action)
 [![infrastructure](https://github.com/flex-development/rice-action/actions/workflows/infrastructure.yml/badge.svg)](https://github.com/flex-development/rice-action/actions/workflows/infrastructure.yml)
 [![codecov](https://codecov.io/gh/flex-development/rice-action/branch/main/graph/badge.svg?token=rtL6IuEtDK)](https://codecov.io/gh/flex-development/rice-action)
@@ -68,9 +68,6 @@ See [`.github/workflows/infrastructure.yml`](.github/workflows/infrastructure.ym
 ---
 name: infrastructure
 on:
-  create:
-    branches:
-      - main
   push:
     branches:
       - main
@@ -80,8 +77,8 @@ on:
       - .github/workflows/infrastructure.yml
   workflow_dispatch:
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   infrastructure:
     runs-on: ubuntu-latest
@@ -90,17 +87,17 @@ jobs:
         name: Print environment variables and event payload
         uses: hmarr/debug-action@v2.1.0
       - id: check-actor-permission
-        name: Check permission of actor ${{ github.actor }}
+        name: Check @${{ github.actor }} permission level
         uses: actions-cool/check-user-permission@v2.2.0
         with:
           require: admin
           username: ${{ github.actor }}
       - id: checkout
         name: Checkout ${{ github.ref_name }}
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v3.5.2
         with:
           persist-credentials: false
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.ref }}
       - id: update
         if: steps.check-actor-permission.outputs.require-result == 'true'
         name: Update repository infrastructure

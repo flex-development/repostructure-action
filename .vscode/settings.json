@@ -2,6 +2,16 @@
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
+  "[github-actions-workflow]": {
+    "editor.rulers": [
+      {
+        "color": "var(--vscode-editorRuler-foreground)",
+        "column": 100
+      }
+    ],
+    "editor.wordWrapColumn": 100,
+    "rewrap.wrappingColumn": 100
+  },
   "[handlebars]": {
     "editor.defaultFormatter": "Greenbyte.handlebars-preview",
     "editor.rulers": [
@@ -37,7 +47,11 @@
     "editor.wordWrapColumn": 120,
     "rewrap.wrappingColumn": 120
   },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.rulers": [
       {
         "color": "var(--vscode-editorRuler-foreground)",
@@ -118,6 +132,7 @@
   "debug.showBreakpointsInOverviewRuler": true,
   "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": false,
+  "dotenv.enableAutocloaking": false,
   "editor.acceptSuggestionOnEnter": "smart",
   "editor.autoClosingBrackets": "always",
   "editor.bracketPairColorization.enabled": true,
@@ -304,7 +319,7 @@
   ],
   "vsicons.associations.files": [
     {
-      "extensions": [".commitlintrc.*"],
+      "extensions": [".commitlintrc.cts"],
       "format": "svg",
       "icon": "commitlint"
     },

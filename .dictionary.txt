@@ -3,7 +3,6 @@ bdougie
 cefc
 codecov
 commitlintrc
-dawidd
 dedupe
 dessant
 dohm
@@ -11,14 +10,12 @@ fbca
 ggshield
 gpgsign
 hmarr
-hompepage
 iife
 infile
 keyid
 larsgw
 lcov
 lintstagedrc
-micnncim
 mkbuild
 mlly
 nocheck

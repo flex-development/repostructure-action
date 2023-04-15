@@ -25,8 +25,11 @@ branches:
           - context: auto-merge
           - context: build
           - context: codecov/changes
+            app_id: 254
           - context: codecov/patch
+            app_id: 254
           - context: codecov/project
+            app_id: 254
           - context: commitlint
           - context: dependabot-auto
           - context: format
@@ -36,14 +39,14 @@ branches:
           - context: test (16)
           - context: test (18)
           - context: test (19)
-          - context: typescript (5.1.0-dev.20230301)
-          - context: typescript (latest)
-          - context: typescript (~4.9.0)
+          - context: typescript
         strict: true
       restrictions: null
 # https://docs.github.com/rest/deployments/environments#create-or-update-an-environment
 environments:
-  - environment_name: production
+  - environment_name: gpr
+  - environment_name: npm
+  - environment_name: release
 # https://docs.github.com/rest/issues/labels#create-a-label
 labels:
   - name: flag:breaking-change
@@ -155,7 +158,7 @@ repository:
   archived: false
   automated_security_fixes: true
   default_branch: main
-  delete_branch_on_merge: false
+  delete_branch_on_merge: true
   description: Repository infrastructure as code for GitHub Actions
   has_issues: true
   has_projects: true
