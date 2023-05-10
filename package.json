@@ -156,7 +156,7 @@
     "vitest": "0.30.1",
     "vitest-github-actions-reporter": "0.10.0",
     "yaml": "2.3.0-4",
-    "yaml-eslint-parser": "1.2.0"
+    "yaml-eslint-parser": "1.2.2"
   },
   "bundleDependencies": [
     "@actions/core",
