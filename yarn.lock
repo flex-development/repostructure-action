@@ -1251,7 +1251,7 @@ __metadata:
     "@flex-development/tsconfig-utils": "npm:1.1.2"
     "@flex-development/tutils": "npm:6.0.0-alpha.10"
     "@graphql-eslint/eslint-plugin": "npm:3.18.0"
-    "@octokit/types": "npm:9.2.0"
+    "@octokit/types": "npm:9.2.1"
     "@types/chai": "npm:4.3.4"
     "@types/chai-string": "npm:1.4.2"
     "@types/conventional-changelog": "npm:3.1.1"
@@ -1904,10 +1904,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/openapi-types@npm:^17.1.0":
-  version: 17.1.0
-  resolution: "@octokit/openapi-types@npm:17.1.0"
-  checksum: 80e8bbeb6c33bd49cc3fac83c6008bd9771a47eba6be6a0a76d503d6a7a56f04ecbf4480450f64142d51a281c1b9552f1ddcb5ae31cfdbcb87eb02f1357f2c20
+"@octokit/openapi-types@npm:^17.1.1":
+  version: 17.1.1
+  resolution: "@octokit/openapi-types@npm:17.1.1"
+  checksum: 17c7992dc7cb04a1903b27057ffc234725c8b72e4fcfeedc7ca6125a1b549e361d62aff12861b4d24a0d064fb9c9efa8e534ed0acd66f378dcdb7b23f28e570d
   languageName: node
   linkType: hard
 
@@ -1959,12 +1959,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/types@npm:9.2.0":
-  version: 9.2.0
-  resolution: "@octokit/types@npm:9.2.0"
+"@octokit/types@npm:9.2.1":
+  version: 9.2.1
+  resolution: "@octokit/types@npm:9.2.1"
   dependencies:
-    "@octokit/openapi-types": "npm:^17.1.0"
-  checksum: fd2bd3171717202c958c1553dd88af3343b81c8d77fe6a1b8157b72aff03c5f3061f2cbd93a2eaffe6396fcdc97ca7f72786466856e02a60e262d4ad3fbe1c3a
+    "@octokit/openapi-types": "npm:^17.1.1"
+  checksum: dc13c05e7831a170865df70c846136fbec528094ac9ecb611eb046544f1e5848bf35fcb3da2700eccf8181d689025b48b1d54bb8e7c655a5e6f9a1c109ff68fc
   languageName: node
   linkType: hard
 
