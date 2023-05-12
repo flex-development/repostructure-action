@@ -1323,7 +1323,7 @@ __metadata:
     vite-tsconfig-paths: "npm:4.2.0"
     vitest: "npm:0.30.1"
     vitest-github-actions-reporter: "npm:0.10.0"
-    yaml: "npm:2.3.0-4"
+    yaml: "npm:2.3.0-5"
     yaml-eslint-parser: "npm:1.2.2"
   languageName: unknown
   linkType: soft
@@ -9391,10 +9391,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:2.3.0-4":
-  version: 2.3.0-4
-  resolution: "yaml@npm:2.3.0-4"
-  checksum: 0cd8d0033cd326cd2f25b3f0a5fd8e4f14788b71586bdf1b34896e7f18b41ab5c53254e4cdf6e93e5eb717e2feaee1afed47e92d3f0f61211d3e44e98115777b
+"yaml@npm:2.3.0-5":
+  version: 2.3.0-5
+  resolution: "yaml@npm:2.3.0-5"
+  checksum: ca9069d1f832447fcfc83a469c193460dbe2636cd9ef3aba1f5111318c305ce587931152c5311a70c0b995685b161c8ab95a9a9ad62232abe2d5a7d4b58acb4a
   languageName: node
   linkType: hard
 
