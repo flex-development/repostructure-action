@@ -1,6 +1,6 @@
 /**
- * @file Test Environment Interfaces - Spy
- * @module tests/interfaces/Spy
+ * @file Test Environment Interfaces - Mock
+ * @module tests/interfaces/Mock
  */
 
 import type { Fn } from '@flex-development/tutils'

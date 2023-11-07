@@ -50,13 +50,6 @@ body:
       description: Version of action being used
     validations:
       required: true
-  - id: version-node
-    type: input
-    attributes:
-      label: Node.js version
-      description: Output of `node --version`
-    validations:
-      required: true
   - id: runner
     type: dropdown
     attributes:
@@ -66,9 +59,13 @@ body:
       options:
         - macos-11
         - macos-12
-        - macos-12-xl
+        - macos-12-large
+        - macos-13
+        - macos-13-large
+        - macos-13-xlarge
         - macos-latest
-        - macos-latest-xl
+        - macos-latest-large
+        - macos-latest-xlarge
         - other
         - ubuntu-20.04
         - ubuntu-22.04

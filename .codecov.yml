@@ -4,19 +4,38 @@
 ---
 codecov:
   notify:
-    after_n_builds: 3
+    after_n_builds: 1
     wait_for_ci: true
   require_ci_to_pass: true
 
 comment:
-  after_n_builds: 3
+  after_n_builds: 1
   behavior: default
-  layout: header,diff,flags,tree,footer
+  layout: header,diff,flags,components,tree,footer
   require_base: false
   require_changes: false
   require_head: true
   show_carryforward_flags: true
   show_critical_paths: true
+
+component_management:
+  default_rules:
+    statuses:
+      - type: project
+        target: 100%
+  individual_components:
+    - component_id: commands
+      name: commands
+      paths:
+        - src/commands/*.ts
+    - component_id: providers
+      name: providers
+      paths:
+        - src/providers/*.ts
+    - component_id: queries
+      name: queries
+      paths:
+        - src/queries/*.ts
 
 coverage:
   precision: 2
@@ -65,15 +84,7 @@ coverage:
         threshold: 0%
 
 flags:
-  node19:
-    carryforward: false
-    paths:
-      - src/
-  node18:
-    carryforward: false
-    paths:
-      - src/
-  node16:
+  node20:
     carryforward: false
     paths:
       - src/
@@ -85,12 +96,7 @@ ignore:
   - '**/__mocks__/**'
   - '**/__tests__/**'
   - '**/index.ts'
-  - src/enums/
-  - src/interfaces/
   - src/main.ts
-  - src/types/
 
 profiling:
-  critical_files_paths:
-    - src/models/manager.ts
-    - src/run.ts
+  critical_files_paths: []

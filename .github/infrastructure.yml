@@ -1,6 +1,6 @@
 # REPOSITORY INFRASTRUCTURE SETTINGS
+# https://github.com/flex-development/repostructure-action
 ---
-# https://docs.github.com/rest/branches/branch-protection#update-branch-protection
 branches:
   - name: main
     protection:
@@ -23,31 +23,33 @@ branches:
         checks:
           - context: add-to-project
           - context: auto-merge
+          - context: auto-review
           - context: build
+          - context: changelog
           - context: codecov/changes
             app_id: 254
           - context: codecov/patch
             app_id: 254
           - context: codecov/project
             app_id: 254
+          - context: codecov/project/commands
+            app_id: 254
+          - context: codecov/project/providers
+            app_id: 254
+          - context: codecov/project/queries
+            app_id: 254
           - context: commitlint
-          - context: dependabot-auto
+          - context: dependabot-rebuild
           - context: format
           - context: gitguardian
           - context: lint
           - context: spelling
-          - context: test (16)
-          - context: test (18)
-          - context: test (19)
-          - context: typescript
+          - context: test (20)
+          - context: typescript (5.2.2)
         strict: true
       restrictions: null
-# https://docs.github.com/rest/deployments/environments#create-or-update-an-environment
 environments:
-  - environment_name: gpr
-  - environment_name: npm
   - environment_name: release
-# https://docs.github.com/rest/issues/labels#create-a-label
 labels:
   - name: flag:breaking-change
     description: contains changes that require major version bump
@@ -69,6 +71,9 @@ labels:
     color: 74cefc
   - name: scope:dependencies
     description: dependency updates
+    color: 74cefc
+  - name: scope:patches
+    description: patches
     color: 74cefc
   - name: scope:release
     description: action release
@@ -148,7 +153,6 @@ labels:
   - name: type:task
     description: project tasks
     color: 0052cc
-# https://docs.github.com/rest/repos/repos#update-a-repository
 repository:
   allow_auto_merge: true
   allow_merge_commit: false
@@ -163,12 +167,10 @@ repository:
   has_issues: true
   has_projects: true
   has_wiki: false
-  homepage: https://github.com/flex-development/rice-action
+  homepage: https://github.com/flex-development/repostructure-action
   is_template: false
   private: false
   security_and_analysis:
-    advanced_security:
-      status: disabled
     secret_scanning:
       status: enabled
     secret_scanning_push_protection:
@@ -187,7 +189,3 @@ repository:
   visibility: public
   vulnerability_alerts: true
   web_commit_signoff_required: true
-# https://docs.github.com/rest/teams/teams#add-or-update-team-repository-permissions
-teams:
-  - team_slug: dependabot-review
-    permission: triage

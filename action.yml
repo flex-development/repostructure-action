@@ -1,14 +1,18 @@
-# GITHUB ACTION METADATA
+# ACTION METADATA
 # https://docs.github.com/actions/creating-actions/metadata-syntax-for-github-actions
 
 ---
-name: rice-action
+name: repostructure-action
 author: '@flex-development'
 description: Repository infrastructure as code
 inputs:
+  api:
+    default: ${{ github.api_url }}
+    description: Base URL of GitHub API
+    required: false
   config:
     default: .github/infrastructure.yml
-    description: Location of repository infrastructure configuration file
+    description: Location of infrastructure configuration file relative to github.workspace
     required: false
   token:
     default: ${{ github.token }}
@@ -16,7 +20,7 @@ inputs:
     required: false
 runs:
   main: dist/main.mjs
-  using: node16
+  using: node20
 branding:
   color: blue
   icon: settings

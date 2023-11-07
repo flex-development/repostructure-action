@@ -2,10 +2,10 @@
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "allowCompoundWords": true,
   "caseSensitive": false,
-  "dictionaries": ["@flex-development/rice-action"],
+  "dictionaries": ["@flex-development/repostructure-action"],
   "dictionaryDefinitions": [
     {
-      "name": "@flex-development/rice-action",
+      "name": "@flex-development/repostructure-action",
       "path": "./.dictionary.txt"
     }
   ],
@@ -14,19 +14,20 @@
   "flagWords": [],
   "ignorePaths": [
     "**/*.log",
+    "**/*.patch",
     "**/*.snap",
     "**/.*ignore",
     "**/.gitconfig",
     "**/CHANGELOG.md",
     "**/LICENSE.md",
     "**/RELEASE_NOTES.md",
+    "**/scratch.*",
     ".cspell.json",
     ".dictionary.txt",
     ".git/",
     ".husky/_/",
     ".vscode/settings.json",
     ".yarn/",
-    "__fixtures__/api.github.com/",
     "dist/",
     "patches/",
     "yarn.lock"
