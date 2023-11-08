@@ -3,7 +3,7 @@
  * @module repostructure/labels/types/tests/unit-d/Label
  */
 
-import type { ReadonlyKeys } from '@flex-development/tutils'
+import type { Nullable, ReadonlyKeys } from '@flex-development/tutils'
 import type TestSubject from '../label'
 
 describe('unit-d:labels/types/Label', () => {
@@ -14,11 +14,11 @@ describe('unit-d:labels/types/Label', () => {
     expectTypeOf<TestSubject>().toHaveProperty('color').toEqualTypeOf<string>()
   })
 
-  it('should match [readonly description: string]', () => {
+  it('should match [readonly description: Nullable<string>]', () => {
     expectTypeOf<RK>().extract<'description'>().toBeString()
     expectTypeOf<TestSubject>()
       .toHaveProperty('description')
-      .toEqualTypeOf<string>()
+      .toEqualTypeOf<Nullable<string>>()
   })
 
   it('should match [readonly id: string]', () => {

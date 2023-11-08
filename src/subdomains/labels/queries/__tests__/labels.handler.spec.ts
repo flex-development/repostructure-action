@@ -5,13 +5,12 @@
 
 import API_URL from '#fixtures/api-url.fixture'
 import LABELS from '#fixtures/labels.fixture'
+import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
 import type { Label } from '#src/labels/types'
-import * as github from '@actions/github'
 import { at, type Nullable } from '@flex-development/tutils'
 import { Test, TestingModule } from '@nestjs/testing'
-import { Octokit } from '@octokit/core'
 import { http, HttpResponse, type GraphQLJsonRequestBody } from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import TestSubject from '../labels.handler'
@@ -78,20 +77,7 @@ describe('unit:labels/queries/LabelsQueryHandler', () => {
     )
 
     ref = await Test.createTestingModule({
-      providers: [
-        TestSubject,
-        {
-          provide: Octokit,
-          useValue: github.getOctokit(import.meta.env.INPUT_TOKEN, {
-            baseUrl: import.meta.env.INPUT_API,
-            request: {
-              fetch: async (info: RequestInfo, opts: RequestInit) => {
-                return fetch(info, opts)
-              }
-            }
-          })
-        }
-      ]
+      providers: [OctokitProvider, TestSubject]
     }).compile()
 
     subject = ref.get(TestSubject)

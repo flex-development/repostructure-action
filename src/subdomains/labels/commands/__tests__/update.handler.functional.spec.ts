@@ -1,22 +1,23 @@
 /**
- * @file Functional Tests - DeleteLabelHandler
- * @module repostructure/labels/commands/tests/functional/DeleteLabelHandler
+ * @file Functional Tests - UpdateLabelHandler
+ * @module repostructure/labels/commands/tests/functional/UpdateLabelHandler
  */
 
 import API_URL from '#fixtures/api-url.fixture'
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
+import LABELS from '#fixtures/labels.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Config } from '#src/config'
-import { get, type Optional } from '@flex-development/tutils'
+import { at, get, merge, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
 import { http, HttpResponse, type GraphQLJsonRequestBody } from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
-import DeleteLabelCommand from '../delete.command'
-import TestSubject from '../delete.handler'
+import UpdateLabelCommand from '../update.command'
+import TestSubject from '../update.handler'
 
-describe('functional:labels/commands/DeleteLabelHandler', () => {
+describe('functional:labels/commands/UpdateLabelHandler', () => {
   let octokit: Octokit
   let ref: TestingModule
   let server: SetupServer
@@ -31,13 +32,22 @@ describe('functional:labels/commands/DeleteLabelHandler', () => {
   })
 
   beforeAll(async () => {
-    type Body = GraphQLJsonRequestBody<{ input: DeleteLabelCommand }>
+    type Body = GraphQLJsonRequestBody<{ input: UpdateLabelCommand }>
     type Params = Record<string, never>
 
     server = setupServer(
-      http.post<Params, Body>(API_URL, async () => {
+      http.post<Params, Body>(API_URL, async opts => {
+        const { variables } = await opts.request.json()
+
         return HttpResponse.json({
-          data: { payload: { clientMutationId: CLIENT_MUTATION_ID } }
+          data: {
+            payload: {
+              label: merge(
+                LABELS.find(label => label.id === variables!.input.id)!,
+                variables!.input
+              )
+            }
+          }
         })
       })
     )
@@ -64,10 +74,9 @@ describe('functional:labels/commands/DeleteLabelHandler', () => {
   })
 
   describe('#execute', () => {
-    it('should delete repository label', async () => {
+    it('should update repository label', async () => {
       // Arrange
-      const id: string = faker.string.nanoid()
-      const command: DeleteLabelCommand = new DeleteLabelCommand({ id })
+      const command: UpdateLabelCommand = new UpdateLabelCommand(at(LABELS, 0))
 
       // Act
       vi.spyOn(octokit, 'graphql')

@@ -3,6 +3,8 @@
  * @module repostructure/labels/types/Label
  */
 
+import type { Nullable } from '@flex-development/tutils'
+
 /**
  * Repository label object.
  *
@@ -17,7 +19,7 @@ type Label = {
   /**
    * Label description.
    */
-  readonly description: string
+  readonly description: Nullable<string>
 
   /**
    * Node ID of label.

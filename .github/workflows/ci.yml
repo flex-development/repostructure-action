@@ -288,8 +288,6 @@ jobs:
       - commitlint
       - gitguardian
       - preflight
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

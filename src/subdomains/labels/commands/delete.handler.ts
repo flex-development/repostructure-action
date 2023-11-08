@@ -1,6 +1,6 @@
 /**
  * @file Commands - DeleteLabelHandler
- * @module repostructure/commands/DeleteLabelHandler
+ * @module repostructure/labels/commands/DeleteLabelHandler
  */
 
 import type { Config } from '#src/config'
@@ -69,7 +69,7 @@ class DeleteLabelHandler implements ICommandHandler<DeleteLabelCommand, void> {
    */
   public async execute(command: DeleteLabelCommand): Promise<void> {
     return void (await this.octokit.graphql({
-      input: { clientMutationId: this.config.get('id'), id: command.id },
+      input: { ...command, clientMutationId: this.config.get('id') },
       query: this.operation
     }))
   }
