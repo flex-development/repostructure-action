@@ -102,8 +102,10 @@ const config: UserConfigExport = defineConfig((): UserConfig => {
         clean: true,
         cleanOnRerun: true,
         exclude: [
-          '**/__mocks__/**',
-          '**/__tests__/**',
+          '**/__mocks__/',
+          '**/__tests__/',
+          '**/interfaces/',
+          '**/types/',
           '**/index.ts',
           'src/main.ts'
         ],

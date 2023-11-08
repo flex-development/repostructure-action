@@ -31,7 +31,7 @@
     "paths": {
       "#fixtures/*": ["__fixtures__/*"],
       "#pkg": ["package.json"],
-      "#src/*": ["src/*"],
+      "#src/*": ["src/subdomains/*", "src/*"],
       "#tests/*": ["__tests__/*"]
     },
     "preserveConstEnums": true,

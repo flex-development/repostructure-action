@@ -1,6 +1,6 @@
 /**
  * @file Main
- * @module repostructure-action/main
+ * @module repostructure/main
  */
 
 export {}

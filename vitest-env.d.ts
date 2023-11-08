@@ -6,8 +6,6 @@ interface ImportMetaEnv {
   readonly DEV: '1' | import('@flex-development/tutils').EmptyString
   readonly GITHUB_TOKEN: string
   readonly INPUT_API: string
-  readonly INPUT_OWNER: string
-  readonly INPUT_REPO: string
   readonly INPUT_TOKEN: string
   readonly INPUT_WORKSPACE: string
   readonly LINT_STAGED?: import('@flex-development/tutils').Stringify<0 | 1>

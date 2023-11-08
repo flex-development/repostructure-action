@@ -24,18 +24,10 @@ component_management:
       - type: project
         target: 100%
   individual_components:
-    - component_id: commands
-      name: commands
+    - component_id: labels
+      name: labels
       paths:
-        - src/commands/*.ts
-    - component_id: providers
-      name: providers
-      paths:
-        - src/providers/*.ts
-    - component_id: queries
-      name: queries
-      paths:
-        - src/queries/*.ts
+        - src/subdomains/labels/**/*.ts
 
 coverage:
   precision: 2
@@ -93,8 +85,10 @@ github_checks:
   annotations: true
 
 ignore:
-  - '**/__mocks__/**'
-  - '**/__tests__/**'
+  - '**/__mocks__/'
+  - '**/__tests__/'
+  - '**/interfaces/'
+  - '**/types/'
   - '**/index.ts'
   - src/main.ts
 

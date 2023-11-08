@@ -3,4 +3,11 @@
  * @module fixtures/input-api
  */
 
-export default 'https://api.github.com'
+/**
+ * Base URL of GitHub API.
+ *
+ * @const {string} INPUT_API
+ */
+const INPUT_API: string = 'https://api.github.com'
+
+export default INPUT_API

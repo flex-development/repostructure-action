@@ -23,6 +23,7 @@ const config: UserConfig = {
         'chore',
         'commands',
         'inputs',
+        'labels',
         'octokit',
         'queries',
         'runner'
