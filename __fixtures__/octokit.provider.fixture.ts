@@ -18,11 +18,13 @@ const OctokitProvider: ValueProvider<Octokit> = {
   provide: Octokit,
   useValue: github.getOctokit(INPUT_TOKEN, {
     baseUrl: INPUT_API,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28',
+      accept: 'application/vnd.github+json'
+    },
     previews: ['bane'],
     request: {
-      fetch: async (info: RequestInfo, opts: RequestInit) => {
-        return fetch(info, opts)
-      }
+      fetch: async (info: RequestInfo, opts: RequestInit) => fetch(info, opts)
     }
   })
 }

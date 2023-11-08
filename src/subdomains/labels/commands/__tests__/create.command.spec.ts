@@ -1,20 +1,20 @@
 /**
- * @file Unit Tests - UpdateLabelCommand
- * @module repostructure/labels/commands/tests/unit/UpdateLabelCommand
+ * @file Unit Tests - CreateLabelCommand
+ * @module repostructure/labels/commands/tests/unit/CreateLabelCommand
  */
 
 import LABELS from '#fixtures/labels.fixture'
 import type { Label } from '#src/labels/types'
 import { at } from '@flex-development/tutils'
-import TestSubject from '../update.command'
+import TestSubject from '../create.command'
 
-describe('unit:labels/commands/UpdateLabelCommand', () => {
+describe('unit:labels/commands/CreateLabelCommand', () => {
   describe('constructor', () => {
     let label: Label
     let subject: TestSubject
 
     beforeAll(() => {
-      subject = new TestSubject(label = at(LABELS, -1))
+      subject = new TestSubject(label = at(LABELS, 0))
     })
 
     it('should set #color', () => {
@@ -23,10 +23,6 @@ describe('unit:labels/commands/UpdateLabelCommand', () => {
 
     it('should set #description', () => {
       expect(subject).to.have.property('description', label.description)
-    })
-
-    it('should set #id', () => {
-      expect(subject).to.have.property('id', label.id)
     })
 
     it('should set #name', () => {
