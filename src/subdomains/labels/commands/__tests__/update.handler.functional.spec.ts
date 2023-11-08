@@ -3,10 +3,10 @@
  * @module repostructure/labels/commands/tests/functional/UpdateLabelHandler
  */
 
-import API_URL from '#fixtures/api-url.fixture'
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import LABELS from '#fixtures/labels.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
+import GRAPHQL_URL from '#fixtures/url-graphql.fixture'
 import type { Config } from '#src/config'
 import { at, get, merge, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
@@ -36,7 +36,7 @@ describe('functional:labels/commands/UpdateLabelHandler', () => {
     type Params = Record<string, never>
 
     server = setupServer(
-      http.post<Params, Body>(API_URL, async opts => {
+      http.post<Params, Body>(GRAPHQL_URL, async opts => {
         const { variables } = await opts.request.json()
 
         return HttpResponse.json({

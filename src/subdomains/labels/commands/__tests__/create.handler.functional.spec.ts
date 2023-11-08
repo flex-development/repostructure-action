@@ -3,15 +3,14 @@
  * @module repostructure/labels/commands/tests/functional/CreateLabelHandler
  */
 
-import INPUT_API from '#fixtures/input-api.fixture'
 import LABELS from '#fixtures/labels.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
+import CREATE_LABEL_URL from '#fixtures/url-create-label.fixture'
 import type { Config } from '#src/config'
 import type { Label } from '#src/labels/types'
-import pathe from '@flex-development/pathe'
-import { at, get, join, type Omit } from '@flex-development/tutils'
+import { at, get, type Omit } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
@@ -21,7 +20,6 @@ import CreateLabelCommand from '../create.command'
 import TestSubject from '../create.handler'
 
 describe('functional:labels/commands/CreateLabelHandler', () => {
-  let endpoint: string
   let octokit: Octokit
   let ref: TestingModule
   let server: SetupServer
@@ -39,10 +37,8 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
     type Body = Omit<Label, 'id'>
     type Params = Record<string, never>
 
-    endpoint = join([INPUT_API, 'repos', OWNER, REPO, 'labels'], pathe.sep)
-
     server = setupServer(
-      http.post<Params, Body>(endpoint, async opts => {
+      http.post<Params, Body>(CREATE_LABEL_URL, async opts => {
         return HttpResponse.json({
           ...(await opts.request.json()),
           node_id: faker.string.nanoid()

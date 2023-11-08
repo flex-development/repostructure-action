@@ -3,11 +3,11 @@
  * @module repostructure/labels/queries/tests/unit/LabelsQueryHandler
  */
 
-import API_URL from '#fixtures/api-url.fixture'
 import LABELS from '#fixtures/labels.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
+import GRAPHQL_URL from '#fixtures/url-graphql.fixture'
 import type { Label } from '#src/labels/types'
 import { at, type Nullable } from '@flex-development/tutils'
 import { Test, TestingModule } from '@nestjs/testing'
@@ -34,7 +34,7 @@ describe('unit:labels/queries/LabelsQueryHandler', () => {
     type Params = Record<string, never>
 
     server = setupServer(
-      http.post<Params, Body>(API_URL, async opts => {
+      http.post<Params, Body>(GRAPHQL_URL, async opts => {
         const { variables } = await opts.request.json()
 
         /**

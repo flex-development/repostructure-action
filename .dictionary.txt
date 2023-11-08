@@ -28,6 +28,7 @@ repostructure
 shfmt
 tscu
 unstub
+upserted
 vates
 vitest
 xlarge
