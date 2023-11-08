@@ -73,9 +73,6 @@ describe('unit:labels/queries/LabelsQueryHandler', () => {
 
         return HttpResponse.json({
           data: { payload: { labels: { nodes, pageInfo: { endCursor } } } }
-        }, {
-          status: 200,
-          statusText: 'OK'
         })
       })
     )
