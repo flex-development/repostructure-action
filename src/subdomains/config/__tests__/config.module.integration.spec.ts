@@ -17,7 +17,7 @@ describe('unit:config/ConfigModule', () => {
   })
 
   describe('.forRoot', () => {
-    it('should export ConfigService', async () => {
+    it('should provide ConfigService', async () => {
       // Arrange
       const ref: TestingModuleBuilder = Test.createTestingModule({
         imports: [TestSubject.forRoot()]
