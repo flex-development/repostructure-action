@@ -29,6 +29,13 @@ interface Inputs {
    * @default github.token
    */
   token: string
+
+  /**
+   * Absolute path to current working directory.
+   *
+   * @default github.workspace
+   */
+  workspace: string
 }
 
 export type { Inputs as default }

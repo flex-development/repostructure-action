@@ -3,6 +3,7 @@
  * @module repostructure/config/interfaces/Config
  */
 
+import type { Infrastructure } from '#src/types'
 import type { Omit } from '@flex-development/tutils'
 import type Inputs from './inputs.interface'
 
@@ -11,13 +12,20 @@ import type Inputs from './inputs.interface'
  *
  * @see {@linkcode Inputs}
  *
- * @extends {Omit<Inputs,'config'>}
+ * @extends {Omit<Inputs,'config'|'workspace'>}
  */
-interface Config extends Omit<Inputs, 'config'> {
+interface Config extends Omit<Inputs, 'config' | 'workspace'> {
   /**
    * GraphQL mutation id.
    */
   id: string
+
+  /**
+   * Repository infrastructure.
+   *
+   * @see {@linkcode Infrastructure}
+   */
+  infrastructure: Infrastructure
 
   /**
    * Repository owner.

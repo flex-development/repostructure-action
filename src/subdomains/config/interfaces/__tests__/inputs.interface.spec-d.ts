@@ -17,4 +17,10 @@ describe('unit-d:config/interfaces/Inputs', () => {
   it('should match [token: string]', () => {
     expectTypeOf<TestSubject>().toHaveProperty('token').toEqualTypeOf<string>()
   })
+
+  it('should match [workspace: string]', () => {
+    expectTypeOf<TestSubject>()
+      .toHaveProperty('workspace')
+      .toEqualTypeOf<string>()
+  })
 })

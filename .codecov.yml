@@ -24,6 +24,10 @@ component_management:
       - type: project
         target: 100%
   individual_components:
+    - component_id: config
+      name: config
+      paths:
+        - src/subdomains/config/**/*.ts
     - component_id: labels
       name: labels
       paths:
@@ -93,4 +97,5 @@ ignore:
   - src/main.ts
 
 profiling:
-  critical_files_paths: []
+  critical_files_paths:
+    - src/subdomains/config/config.module.ts

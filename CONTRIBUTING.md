@@ -110,6 +110,7 @@ Follow the steps below to setup your local development environment:
 | `INPUT_API`         |
 | `INPUT_CONFIG`      |
 | `INPUT_TOKEN`       |
+| `INPUT_WORKSPACE`   |
 | `NODE_NO_WARNINGS`  |
 | `ZSH_DOTENV_FILE`   |
 
