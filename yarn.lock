@@ -1929,21 +1929,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/types@npm:12.2.0":
+"@octokit/types@npm:12.2.0, @octokit/types@npm:^12.0.0, @octokit/types@npm:^12.1.1":
   version: 12.2.0
   resolution: "@octokit/types@npm:12.2.0"
   dependencies:
     "@octokit/openapi-types": "npm:^19.0.2"
   checksum: 9f8924ea8fd0bd3ad8560cca5cba6de559559674be1c89ab3342abea9d8ee474f8d471da68d2159db57ae2ff60427f64bfb11ac2f9a1f2f38525e9c1d0dc48dc
-  languageName: node
-  linkType: hard
-
-"@octokit/types@npm:^12.0.0, @octokit/types@npm:^12.1.1":
-  version: 12.1.1
-  resolution: "@octokit/types@npm:12.1.1"
-  dependencies:
-    "@octokit/openapi-types": "npm:^19.0.2"
-  checksum: 5c7c658708d2b87212fa02841ab05e7f177726595c0ff86a71a5ca5b634d6aab0c41bee2930d13dcd87e5a82cacb41d033ce8d85886641b329bb740bee6f4a23
   languageName: node
   linkType: hard
 
