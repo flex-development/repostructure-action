@@ -3,16 +3,20 @@
  * @module repostructure/labels/commands/tests/functional/UpdateLabelHandler
  */
 
+import ApiUrl from '#fixtures/api-url.fixture'
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import LABELS from '#fixtures/labels.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import GRAPHQL_URL from '#fixtures/url-graphql.fixture'
-import type { Config } from '#src/config'
 import { at, get, merge, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
-import { http, HttpResponse, type GraphQLJsonRequestBody } from 'msw'
+import {
+  http,
+  HttpResponse,
+  type GraphQLJsonRequestBody,
+  type PathParams
+} from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import UpdateLabelCommand from '../update.command'
 import TestSubject from '../update.handler'
@@ -33,10 +37,9 @@ describe('functional:labels/commands/UpdateLabelHandler', () => {
 
   beforeAll(async () => {
     type Body = GraphQLJsonRequestBody<{ input: UpdateLabelCommand }>
-    type Params = Record<string, never>
 
     server = setupServer(
-      http.post<Params, Body>(GRAPHQL_URL, async opts => {
+      http.post<PathParams, Body>(ApiUrl.GRAPHQL, async opts => {
         const { variables } = await opts.request.json()
 
         return HttpResponse.json({
@@ -58,11 +61,7 @@ describe('functional:labels/commands/UpdateLabelHandler', () => {
         TestSubject,
         {
           provide: ConfigService,
-          useValue: {
-            get: vi.fn((key: keyof Config): string => {
-              return key === 'id' ? CLIENT_MUTATION_ID : ''
-            })
-          }
+          useValue: new ConfigService({ id: CLIENT_MUTATION_ID })
         }
       ]
     }).compile()

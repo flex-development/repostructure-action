@@ -215,6 +215,12 @@
   "javascript.suggest.paths": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.validate.enable": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["**/infrastructure.json"],
+      "url": "./.schema.json"
+    }
+  ],
   "markdown.extension.toc.slugifyMode": "github",
   "markdown.extension.toc.updateOnSave": false,
   "markdownlint.ignore": ".markdownlintignore",
@@ -381,6 +387,7 @@
   "xml.format.splitAttributesIndentSize": 0,
   "yaml.schemas": {
     "https://json.schemastore.org/github-issue-config": ".github/ISSUE_TEMPLATE/config.yml",
-    "https://json.schemastore.org/github-workflow": ".github/workflows/*.yml"
+    "https://json.schemastore.org/github-workflow": ".github/workflows/*.yml",
+    "./.schema.json": "**/infrastructure.yml"
   }
 }

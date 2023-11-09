@@ -3,15 +3,19 @@
  * @module repostructure/labels/commands/tests/functional/DeleteLabelHandler
  */
 
+import ApiUrl from '#fixtures/api-url.fixture'
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import GRAPHQL_URL from '#fixtures/url-graphql.fixture'
-import type { Config } from '#src/config'
 import { get, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
-import { http, HttpResponse, type GraphQLJsonRequestBody } from 'msw'
+import {
+  http,
+  HttpResponse,
+  type GraphQLJsonRequestBody,
+  type PathParams
+} from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import DeleteLabelCommand from '../delete.command'
 import TestSubject from '../delete.handler'
@@ -32,12 +36,13 @@ describe('functional:labels/commands/DeleteLabelHandler', () => {
 
   beforeAll(async () => {
     type Body = GraphQLJsonRequestBody<{ input: DeleteLabelCommand }>
-    type Params = Record<string, never>
 
     server = setupServer(
-      http.post<Params, Body>(GRAPHQL_URL, async () => {
+      http.post<PathParams, Body>(ApiUrl.GRAPHQL, async () => {
         return HttpResponse.json({
-          data: { payload: { clientMutationId: CLIENT_MUTATION_ID } }
+          data: {
+            payload: { clientMutationId: CLIENT_MUTATION_ID }
+          }
         })
       })
     )
@@ -48,11 +53,7 @@ describe('functional:labels/commands/DeleteLabelHandler', () => {
         TestSubject,
         {
           provide: ConfigService,
-          useValue: {
-            get: vi.fn((key: keyof Config): string => {
-              return key === 'id' ? CLIENT_MUTATION_ID : ''
-            })
-          }
+          useValue: new ConfigService({ id: CLIENT_MUTATION_ID })
         }
       ]
     }).compile()

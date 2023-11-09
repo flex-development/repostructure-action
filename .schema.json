@@ -1,0 +1,36 @@
+{
+  "$defs": {
+    "Label": {
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "description": "label color",
+          "type": "string"
+        },
+        "description": {
+          "description": "label description",
+          "type": ["null", "string"]
+        },
+        "name": {
+          "description": "label name",
+          "type": "string"
+        }
+      },
+      "required": ["color", "name"],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/flex-development/repostructure-action/blob/main/.schema.json",
+  "description": "Repository infrastructure configuration",
+  "properties": {
+    "labels": {
+      "default": [],
+      "description": "repository labels",
+      "items": { "$ref": "#/$defs/Label" },
+      "type": "array"
+    }
+  },
+  "required": [],
+  "title": "repostructure",
+  "type": "object"
+}

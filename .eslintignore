@@ -28,5 +28,6 @@ yarn.lock
 !.grease*.*
 !.lintstagedrc.json
 !.markdownlint.jsonc
+!.schema.json
 !.vscode/
 !.yarnrc.yml

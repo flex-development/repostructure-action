@@ -3,14 +3,12 @@
  * @module repostructure/labels/commands/tests/functional/ManageLabelsHandler
  */
 
+import ApiUrl from '#fixtures/api-url.fixture'
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import LABELS from '#fixtures/labels.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
-import CREATE_LABEL_URL from '#fixtures/url-create-label.fixture'
-import GRAPHQL_URL from '#fixtures/url-graphql.fixture'
-import type { Config } from '#src/config'
 import { LabelsQueryHandler } from '#src/labels/queries'
 import type { Spy } from '#tests/interfaces'
 import {
@@ -23,10 +21,16 @@ import {
 import { ConfigService } from '@nestjs/config'
 import { CqrsModule } from '@nestjs/cqrs'
 import { Test, TestingModule } from '@nestjs/testing'
-import { http, HttpResponse, type GraphQLJsonRequestBody as GQLBody } from 'msw'
+import {
+  http,
+  HttpResponse,
+  type GraphQLJsonRequestBody as GQLBody,
+  type PathParams
+} from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import CreateLabelCommand from '../create.command'
 import CreateLabelHandler from '../create.handler'
+import type DeleteLabelCommand from '../delete.command'
 import DeleteLabelHandler from '../delete.handler'
 import ManageLabelsCommand from '../manage.command'
 import TestSubject from '../manage.handler'
@@ -48,51 +52,52 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
   })
 
   beforeAll(async () => {
-    type Params = Record<string, never>
-
     index = 14
 
     server = setupServer(
-      http.post<Params, GQLBody<ObjectPlain>>(GRAPHQL_URL, async opts => {
-        const { query, variables } = await opts.request.json()
+      http.post<PathParams, GQLBody<ObjectPlain>>(ApiUrl.GRAPHQL,
+        async opts => {
+          const { query, variables } = await opts.request.json()
 
-        /**
-         * Response data payload.
-         *
-         * @var {ObjectPlain} payload
-         */
-        let payload!: ObjectPlain
+          /**
+           * Mock response data.
+           *
+           * @var {ObjectPlain} payload
+           */
+          let payload!: ObjectPlain
 
-        // get response data payload
-        switch (true) {
-          case includes(query, 'updateLabel'):
-            payload = {
-              label: merge(
-                LABELS.find(label => label.id === get(variables, 'input.id'))!,
-                <UpdateLabelCommand>variables!.input
-              )
-            }
-            break
-          case query.startsWith('query'):
-            payload = {
-              labels: {
-                nodes: LABELS.slice(index * 0.5),
-                pageInfo: { endCursor: null }
+          // get response data
+          switch (true) {
+            case includes(query, 'updateLabel'):
+              payload = {
+                label: merge(
+                  LABELS.find(label =>
+                    label.id === get(variables, 'inputs.id')
+                  )!,
+                  <DeleteLabelCommand | UpdateLabelCommand>variables!.input
+                )
               }
-            }
-            break
-          default:
-            payload = { clientMutationId: CLIENT_MUTATION_ID }
-            break
-        }
+              break
+            case query.startsWith('query'):
+              payload = {
+                labels: {
+                  nodes: LABELS.slice(index * 0.5),
+                  pageInfo: { endCursor: null }
+                }
+              }
+              break
+            default:
+              payload = { clientMutationId: CLIENT_MUTATION_ID }
+              break
+          }
 
-        return HttpResponse.json({ data: { payload } })
-      }),
-      http.post<Params, ObjectPlain>(CREATE_LABEL_URL, async opts => {
-        return HttpResponse.json(defaults({
-          ...(await opts.request.json()),
+          return HttpResponse.json({ data: { payload } })
+        }),
+      http.post<PathParams, ObjectPlain>(ApiUrl.CREATE_LABEL, async opts => {
+        return HttpResponse.json(defaults(await opts.request.json(), {
+          description: null,
           node_id: faker.string.nanoid()
-        }, { description: null }))
+        }))
       })
     )
 
@@ -107,20 +112,11 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
         UpdateLabelHandler,
         {
           provide: ConfigService,
-          useValue: {
-            get: vi.fn((key: keyof Config): string => {
-              switch (key) {
-                case 'id':
-                  return CLIENT_MUTATION_ID
-                case 'owner':
-                  return OWNER
-                case 'repo':
-                  return REPO
-                default:
-                  return ''
-              }
-            })
-          }
+          useValue: new ConfigService({
+            id: CLIENT_MUTATION_ID,
+            owner: OWNER,
+            repo: REPO
+          })
         }
       ]
     }).compile()

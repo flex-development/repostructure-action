@@ -3,18 +3,16 @@
  * @module repostructure/labels/commands/tests/functional/CreateLabelHandler
  */
 
+import ApiUrl from '#fixtures/api-url.fixture'
 import LABELS from '#fixtures/labels.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
-import CREATE_LABEL_URL from '#fixtures/url-create-label.fixture'
-import type { Config } from '#src/config'
-import type { Label } from '#src/labels/types'
-import { at, get, type Omit } from '@flex-development/tutils'
+import { at, defaults, get, type Writable } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
-import { http, HttpResponse } from 'msw'
+import { http, HttpResponse, type PathParams } from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import CreateLabelCommand from '../create.command'
 import TestSubject from '../create.handler'
@@ -34,15 +32,14 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
   })
 
   beforeAll(async () => {
-    type Body = Omit<Label, 'id'>
-    type Params = Record<string, never>
+    type Body = Writable<CreateLabelCommand & Record<'owner' | 'repo', string>>
 
     server = setupServer(
-      http.post<Params, Body>(CREATE_LABEL_URL, async opts => {
-        return HttpResponse.json({
-          ...(await opts.request.json()),
+      http.post<PathParams, Body>(ApiUrl.CREATE_LABEL, async opts => {
+        return HttpResponse.json(defaults(await opts.request.json(), {
+          description: null,
           node_id: faker.string.nanoid()
-        })
+        }))
       })
     )
 
@@ -52,11 +49,7 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
         TestSubject,
         {
           provide: ConfigService,
-          useValue: {
-            get: vi.fn((key: keyof Config): string => {
-              return key === 'owner' ? OWNER : key === 'repo' ? REPO : ''
-            })
-          }
+          useValue: new ConfigService({ owner: OWNER, repo: REPO })
         }
       ]
     }).compile()

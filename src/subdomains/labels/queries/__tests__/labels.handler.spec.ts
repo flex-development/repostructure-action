@@ -3,15 +3,20 @@
  * @module repostructure/labels/queries/tests/unit/LabelsQueryHandler
  */
 
+import ApiUrl from '#fixtures/api-url.fixture'
 import LABELS from '#fixtures/labels.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
-import GRAPHQL_URL from '#fixtures/url-graphql.fixture'
 import type { Label } from '#src/labels/types'
 import { at, type Nullable } from '@flex-development/tutils'
 import { Test, TestingModule } from '@nestjs/testing'
-import { http, HttpResponse, type GraphQLJsonRequestBody } from 'msw'
+import {
+  http,
+  HttpResponse,
+  type GraphQLJsonRequestBody,
+  type PathParams
+} from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import TestSubject from '../labels.handler'
 import LabelsQuery from '../labels.query'
@@ -31,10 +36,9 @@ describe('unit:labels/queries/LabelsQueryHandler', () => {
 
   beforeAll(async () => {
     type Body = GraphQLJsonRequestBody<{ cursor: string }>
-    type Params = Record<string, never>
 
     server = setupServer(
-      http.post<Params, Body>(GRAPHQL_URL, async opts => {
+      http.post<PathParams, Body>(ApiUrl.GRAPHQL, async opts => {
         const { variables } = await opts.request.json()
 
         /**
