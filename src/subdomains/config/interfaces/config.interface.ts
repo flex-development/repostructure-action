@@ -8,7 +8,7 @@ import type { Omit } from '@flex-development/tutils'
 import type Inputs from './inputs.interface'
 
 /**
- * Infrastructure configuration object.
+ * Configuration object.
  *
  * @see {@linkcode Inputs}
  *
@@ -26,6 +26,11 @@ interface Config extends Omit<Inputs, 'config' | 'workspace'> {
    * @see {@linkcode Infrastructure}
    */
   infrastructure: Infrastructure
+
+  /**
+   * Node ID of repository.
+   */
+  node_id: string
 
   /**
    * Repository owner.

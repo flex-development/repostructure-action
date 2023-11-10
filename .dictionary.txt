@@ -24,6 +24,7 @@ nocheck
 nvmrc
 pathe
 preid
+r_kgdojgp30w
 repostructure
 shfmt
 tscu

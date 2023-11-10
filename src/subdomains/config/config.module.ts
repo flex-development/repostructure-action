@@ -13,9 +13,11 @@ import * as pathe from '@flex-development/pathe'
 import {
   defaults,
   fallback,
+  get,
   isNull,
   join,
   sift,
+  template,
   type EmptyString,
   type Partial
 } from '@flex-development/tutils'
@@ -129,6 +131,8 @@ class ConfigModule extends ConfigBaseModule {
   /**
    * Get a configuration object.
    *
+   * @see {@linkcode Config}
+   *
    * @public
    * @static
    * @async
@@ -136,6 +140,26 @@ class ConfigModule extends ConfigBaseModule {
    * @return {Promise<Config>} Configuration object
    */
   public static async load(): Promise<Config> {
+    const { owner, repo } = github.context.repo
+
+    /**
+     * Base URL of GitHub API.
+     *
+     * @const {string} api
+     */
+    const api: string = core.getInput('api', { required: true })
+
+    /**
+     * Repository data response.
+     *
+     * @const {Response} info
+     */
+    const info: Response = await fetch(template('{api}/repos/{owner}/{repo}', {
+      api,
+      owner,
+      repo
+    }))
+
     /**
      * Absolute path to current working directory.
      *
@@ -151,11 +175,12 @@ class ConfigModule extends ConfigBaseModule {
     const file: string = core.getInput('config', { required: true })
 
     return {
-      api: core.getInput('api', { required: true }),
+      api,
       id: join([pkg.name, pkg.version], pathe.sep),
       infrastructure: await ConfigModule.infrastructure(file, workspace),
-      owner: github.context.repo.owner,
-      repo: github.context.repo.repo,
+      node_id: get(await info.json(), 'node_id'),
+      owner,
+      repo,
       token: core.getInput('token', { required: true })
     }
   }

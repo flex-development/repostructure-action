@@ -16,8 +16,8 @@ import REPO from './repo.fixture'
  */
 const ApiUrl = {
   BASE: INPUT_API,
-  CREATE_LABEL: join(['repos', OWNER, REPO, 'labels'], pathe.sep),
-  GRAPHQL: 'graphql'
+  GRAPHQL: 'graphql',
+  REPO: join(['repos', OWNER, REPO], pathe.sep)
 }
 
 // add base api url to endpoints

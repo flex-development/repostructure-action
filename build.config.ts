@@ -26,7 +26,8 @@ const config: Config = defineBuildConfig({
     '@nestjs/platform-express',
     '@nestjs/websockets',
     'class-transformer',
-    'class-validator'
+    'class-validator',
+    'node-fetch'
   ],
   platform: 'node',
   plugins: [

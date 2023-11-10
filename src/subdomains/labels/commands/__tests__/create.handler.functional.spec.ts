@@ -4,15 +4,19 @@
  */
 
 import ApiUrl from '#fixtures/api-url.fixture'
+import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import LABELS from '#fixtures/labels.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import OWNER from '#fixtures/owner.fixture'
-import REPO from '#fixtures/repo.fixture'
-import { at, defaults, get, type Writable } from '@flex-development/tutils'
+import { at, get, pick, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
-import { http, HttpResponse, type PathParams } from 'msw'
+import {
+  HttpResponse,
+  http,
+  type GraphQLJsonRequestBody,
+  type PathParams
+} from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import CreateLabelCommand from '../create.command'
 import TestSubject from '../create.handler'
@@ -32,14 +36,22 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
   })
 
   beforeAll(async () => {
-    type Body = Writable<CreateLabelCommand & Record<'owner' | 'repo', string>>
+    type Body = GraphQLJsonRequestBody<{ input: CreateLabelCommand }>
 
     server = setupServer(
-      http.post<PathParams, Body>(ApiUrl.CREATE_LABEL, async opts => {
-        return HttpResponse.json(defaults(await opts.request.json(), {
-          description: null,
-          node_id: faker.string.nanoid()
-        }))
+      http.post<PathParams, Body>(ApiUrl.GRAPHQL, async opts => {
+        const { variables } = await opts.request.json()
+
+        return HttpResponse.json({
+          data: {
+            payload: {
+              label: {
+                ...pick(variables!.input, ['color', 'description', 'name']),
+                id: faker.string.nanoid()
+              }
+            }
+          }
+        })
       })
     )
 
@@ -49,7 +61,10 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
         TestSubject,
         {
           provide: ConfigService,
-          useValue: new ConfigService({ owner: OWNER, repo: REPO })
+          useValue: new ConfigService({
+            id: CLIENT_MUTATION_ID,
+            node_id: faker.string.nanoid()
+          })
         }
       ]
     }).compile()
@@ -63,19 +78,19 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
   describe('#execute', () => {
     it('should create repository label', async () => {
       // Arrange
+      const clientMutationId: string = CLIENT_MUTATION_ID
       const command: CreateLabelCommand = new CreateLabelCommand(at(LABELS, 0))
-      const endpoint: string = get(subject, 'endpoint')
+      const repositoryId: string = expect.any(String)
 
       // Act
-      vi.spyOn(octokit, 'request')
+      vi.spyOn(octokit, 'graphql')
       await subject.execute(command)
 
       // Expect
-      expect(vi.mocked(octokit.request)).toHaveBeenCalledOnce()
-      expect(vi.mocked(octokit.request)).toHaveBeenCalledWith(endpoint, {
-        ...command,
-        owner: OWNER,
-        repo: REPO
+      expect(vi.mocked(octokit.graphql)).toHaveBeenCalledOnce()
+      expect(vi.mocked(octokit.graphql)).toHaveBeenCalledWith({
+        input: { ...command, clientMutationId, repositoryId },
+        query: get(subject, 'operation', <Optional<string>>undefined)
       })
     })
   })

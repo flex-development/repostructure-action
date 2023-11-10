@@ -5,10 +5,11 @@
 
 import type { Config } from '#src/config'
 import type { Label } from '#src/labels/types'
-import { fallback, isNull, shake } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { CommandHandler, type ICommandHandler } from '@nestjs/cqrs'
 import { Octokit } from '@octokit/core'
+import * as graphql from 'graphql'
+import gql from 'graphql-tag'
 import CreateLabelCommand from './create.command'
 
 /**
@@ -23,16 +24,16 @@ import CreateLabelCommand from './create.command'
 @CommandHandler(CreateLabelCommand)
 class CreateLabelHandler implements ICommandHandler<CreateLabelCommand, Label> {
   /**
-   * REST API endpoint.
+   * GraphQL mutation.
    *
-   * @see https://docs.github.com/rest/issues/labels#create-a-label
+   * @see https://docs.github.com/graphql/reference/mutations#createlabel
    *
    * @protected
    * @readonly
    * @instance
-   * @member {'POST /repos/{owner}/{repo}/labels'} endpoint
+   * @member {string} operation
    */
-  protected readonly endpoint: 'POST /repos/{owner}/{repo}/labels'
+  protected readonly operation: string
 
   /**
    * Create a new label creation command handler.
@@ -48,7 +49,18 @@ class CreateLabelHandler implements ICommandHandler<CreateLabelCommand, Label> {
     protected readonly octokit: Octokit,
     protected readonly config: ConfigService<Config, true>
   ) {
-    this.endpoint = 'POST /repos/{owner}/{repo}/labels'
+    this.operation = graphql.print(gql`
+      mutation ($input: CreateLabelInput!) {
+        payload: createLabel(input: $input) {
+          label {
+            color
+            description
+            id
+            name
+           }
+        }
+      }
+    `)
   }
 
   /**
@@ -65,21 +77,17 @@ class CreateLabelHandler implements ICommandHandler<CreateLabelCommand, Label> {
    */
   public async execute(command: CreateLabelCommand): Promise<Label> {
     const {
-      data: {
-        color,
-        description,
-        name,
-        node_id: id
-      }
-    } = await this.octokit.request(this.endpoint, shake({
-      color: command.color,
-      description: fallback(command.description, undefined, isNull),
-      name: command.name,
-      owner: this.config.get<string>('owner'),
-      repo: this.config.get<string>('repo')
-    }))
+      payload
+    } = await this.octokit.graphql<{ payload: { label: Label } }>({
+      input: {
+        ...command,
+        clientMutationId: this.config.get<string>('id'),
+        repositoryId: this.config.get<string>('node_id')
+      },
+      query: this.operation
+    })
 
-    return { color, description, id, name }
+    return payload.label
   }
 }
 

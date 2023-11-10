@@ -24,6 +24,12 @@ describe('unit-d:config/interfaces/Config', () => {
       .toEqualTypeOf<Infrastructure>()
   })
 
+  it('should match [node_id: string]', () => {
+    expectTypeOf<TestSubject>()
+      .toHaveProperty('node_id')
+      .toEqualTypeOf<string>()
+  })
+
   it('should match [owner: string]', () => {
     expectTypeOf<TestSubject>().toHaveProperty('owner').toEqualTypeOf<string>()
   })

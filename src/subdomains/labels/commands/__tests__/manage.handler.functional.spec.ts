@@ -24,7 +24,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 import {
   http,
   HttpResponse,
-  type GraphQLJsonRequestBody as GQLBody,
+  type GraphQLJsonRequestBody,
   type PathParams
 } from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
@@ -52,52 +52,52 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
   })
 
   beforeAll(async () => {
+    type Body = GraphQLJsonRequestBody<ObjectPlain>
     index = 14
 
     server = setupServer(
-      http.post<PathParams, GQLBody<ObjectPlain>>(ApiUrl.GRAPHQL,
-        async opts => {
-          const { query, variables } = await opts.request.json()
+      http.post<PathParams, Body>(ApiUrl.GRAPHQL, async opts => {
+        const { query, variables } = await opts.request.json()
 
-          /**
-           * Mock response data.
-           *
-           * @var {ObjectPlain} payload
-           */
-          let payload!: ObjectPlain
+        /**
+         * Mock response data.
+         *
+         * @var {ObjectPlain} payload
+         */
+        let payload!: ObjectPlain
 
-          // get response data
-          switch (true) {
-            case includes(query, 'updateLabel'):
-              payload = {
-                label: merge(
-                  LABELS.find(label =>
-                    label.id === get(variables, 'inputs.id')
-                  )!,
-                  <DeleteLabelCommand | UpdateLabelCommand>variables!.input
-                )
+        // get response data
+        switch (true) {
+          case includes(query, 'createLabel'):
+            payload = {
+              label: defaults(<ObjectPlain>variables!.input, {
+                description: null,
+                node_id: faker.string.nanoid()
+              })
+            }
+            break
+          case includes(query, 'updateLabel'):
+            payload = {
+              label: merge(
+                LABELS.find(label => label.id === get(variables, 'inputs.id'))!,
+                <DeleteLabelCommand | UpdateLabelCommand>variables!.input
+              )
+            }
+            break
+          case query.startsWith('query'):
+            payload = {
+              labels: {
+                nodes: LABELS.slice(index * 0.5),
+                pageInfo: { endCursor: null }
               }
-              break
-            case query.startsWith('query'):
-              payload = {
-                labels: {
-                  nodes: LABELS.slice(index * 0.5),
-                  pageInfo: { endCursor: null }
-                }
-              }
-              break
-            default:
-              payload = { clientMutationId: CLIENT_MUTATION_ID }
-              break
-          }
+            }
+            break
+          default:
+            payload = { clientMutationId: CLIENT_MUTATION_ID }
+            break
+        }
 
-          return HttpResponse.json({ data: { payload } })
-        }),
-      http.post<PathParams, ObjectPlain>(ApiUrl.CREATE_LABEL, async opts => {
-        return HttpResponse.json(defaults(await opts.request.json(), {
-          description: null,
-          node_id: faker.string.nanoid()
-        }))
+        return HttpResponse.json({ data: { payload } })
       })
     )
 
