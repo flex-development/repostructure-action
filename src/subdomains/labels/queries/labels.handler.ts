@@ -4,6 +4,7 @@
  */
 
 import type { Label } from '#src/labels/types'
+import type { PayloadObject } from '#src/types'
 import { isNull, type Nullable } from '@flex-development/tutils'
 import { QueryHandler, type IQueryHandler } from '@nestjs/cqrs'
 import { Octokit } from '@octokit/core'
@@ -44,7 +45,7 @@ class LabelsQueryHandler implements IQueryHandler<LabelsQuery, Label[]> {
    */
   constructor(protected readonly octokit: Octokit) {
     this.operation = graphql.print(gql`
-      query ($cursor: String, $owner: String!, $repo: String!) {
+      query Labels($cursor: String, $owner: String!, $repo: String!) {
         payload: repository(name: $repo, owner: $owner) {
           labels(
             after: $cursor,
@@ -95,7 +96,7 @@ class LabelsQueryHandler implements IQueryHandler<LabelsQuery, Label[]> {
 
     // get repository labels
     while (!isNull(cursor)) {
-      const { payload }: { payload: Payload } = await this.octokit.graphql({
+      const { payload }: PayloadObject<Payload> = await this.octokit.graphql({
         cursor,
         owner: query.owner,
         query: this.operation,

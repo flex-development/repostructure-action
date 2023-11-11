@@ -3,7 +3,7 @@
  * @module repostructure/labels/commands/tests/unit/CreateLabelCommand
  */
 
-import LABELS from '#fixtures/labels.fixture'
+import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import type { Label } from '#src/labels/types'
 import { at } from '@flex-development/tutils'
 import TestSubject from '../create.command'
@@ -14,7 +14,7 @@ describe('unit:labels/commands/CreateLabelCommand', () => {
     let subject: TestSubject
 
     beforeAll(() => {
-      subject = new TestSubject(label = at(LABELS, 0))
+      subject = new TestSubject(label = at(data.data.payload.labels.nodes, 0))
     })
 
     it('should set #color', () => {

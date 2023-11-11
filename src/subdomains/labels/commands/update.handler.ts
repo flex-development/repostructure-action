@@ -5,6 +5,7 @@
 
 import type { Config } from '#src/config'
 import type { Label } from '#src/labels/types'
+import type { PayloadObject } from '#src/types'
 import { ConfigService } from '@nestjs/config'
 import { CommandHandler, type ICommandHandler } from '@nestjs/cqrs'
 import { Octokit } from '@octokit/core'
@@ -50,7 +51,7 @@ class UpdateLabelHandler implements ICommandHandler<UpdateLabelCommand, Label> {
     protected readonly config: ConfigService<Config, true>
   ) {
     this.operation = graphql.print(gql`
-      mutation ($input: UpdateLabelInput!) {
+      mutation UpdateLabel($input: UpdateLabelInput!) {
         payload: updateLabel(input: $input) {
           label {
             color
@@ -78,7 +79,7 @@ class UpdateLabelHandler implements ICommandHandler<UpdateLabelCommand, Label> {
   public async execute(command: UpdateLabelCommand): Promise<Label> {
     const {
       payload
-    } = await this.octokit.graphql<{ payload: { label: Label } }>({
+    } = await this.octokit.graphql<PayloadObject<{ label: Label }>>({
       input: { ...command, clientMutationId: this.config.get<string>('id') },
       query: this.operation
     })

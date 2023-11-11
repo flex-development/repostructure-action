@@ -3,8 +3,8 @@
  * @module repostructure/labels/tests/integration/LabelsModule
  */
 
+import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import INPUT_CONFIG from '#fixtures/input-config.fixture'
-import LABELS from '#fixtures/labels.fixture'
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
 import { ConfigModule } from '#src/config'
@@ -20,7 +20,7 @@ import {
 } from '#src/labels/commands'
 import { LabelsQuery, LabelsQueryHandler } from '#src/labels/queries'
 import type { Label } from '#src/labels/types'
-import OctokitModule from '#src/octokit.module'
+import { OctokitModule } from '#src/octokit'
 import type { Spy } from '#tests/interfaces'
 import env from '#tests/setup/env'
 import { at } from '@flex-development/tutils'
@@ -96,7 +96,10 @@ describe('integration:labels/LabelsModule', () => {
       ['CreateLabelCommand', new CreateLabelCommand({ color: '', name: '' })],
       ['DeleteLabelCommand', new DeleteLabelCommand({ id: '' })],
       ['ManageLabelsCommand', new ManageLabelsCommand([])],
-      ['UpdateLabelCommand', new UpdateLabelCommand(at(LABELS, 0))]
+      [
+        'UpdateLabelCommand',
+        new UpdateLabelCommand(at(data.data.payload.labels.nodes, 0))
+      ]
     ])('%s', (key, command) => {
       it('should execute command', async () => {
         // Arrange

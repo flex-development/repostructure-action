@@ -3,42 +3,18 @@
  * @module repostructure/config/tests/unit/ConfigModule
  */
 
-import ApiUrl from '#fixtures/api-url.fixture'
+import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import INPUT_CONFIG from '#fixtures/input-config.fixture'
-import NODE_ID from '#fixtures/node-id.fixture'
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
 import env from '#tests/setup/env'
 import type { NodeError } from '@flex-development/errnode'
 import pathe from '@flex-development/pathe'
-import type { EmptyObject } from '@flex-development/tutils'
-import { HttpResponse, http, type PathParams } from 'msw'
-import { setupServer, type SetupServer } from 'msw/node'
 import { fileURLToPath } from 'node:url'
 import TestSubject from '../config.module'
 
 describe('unit:config/ConfigModule', () => {
-  let server: SetupServer
-
-  afterAll(() => {
-    server.close()
-  })
-
-  afterEach(() => {
-    server.resetHandlers()
-  })
-
-  beforeAll(async () => {
-    server = setupServer(
-      http.get<PathParams, EmptyObject>(ApiUrl.REPO, () => {
-        return HttpResponse.json({ node_id: NODE_ID })
-      })
-    )
-
-    server.listen()
-  })
-
   beforeEach(() => {
     env((): void => {
       return void vi.stubEnv('INPUT_CONFIG', INPUT_CONFIG)
@@ -86,7 +62,7 @@ describe('unit:config/ConfigModule', () => {
         api: import.meta.env.INPUT_API,
         id: CLIENT_MUTATION_ID,
         infrastructure: expect.any(Object),
-        node_id: expect.any(String),
+        node_id: data.data.payload.id,
         owner: OWNER,
         repo: REPO,
         token: import.meta.env.INPUT_TOKEN

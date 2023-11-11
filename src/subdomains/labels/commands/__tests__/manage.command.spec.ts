@@ -3,7 +3,7 @@
  * @module repostructure/labels/commands/tests/unit/ManageLabelsCommand
  */
 
-import LABELS from '#fixtures/labels.fixture'
+import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import { select } from '@flex-development/tutils'
 import CreateLabelCommand from '../create.command'
 import TestSubject from '../manage.command'
@@ -14,7 +14,8 @@ describe('unit:labels/commands/ManageLabelsCommand', () => {
     let subject: TestSubject
 
     beforeAll(() => {
-      labels = select(LABELS, null, label => new CreateLabelCommand(label))
+      labels = data.data.payload.labels.nodes
+      labels = select(labels, null, label => new CreateLabelCommand(label))
       subject = new TestSubject(labels)
     })
 

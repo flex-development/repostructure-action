@@ -30,6 +30,7 @@ on:
     paths:
       - .github/infrastructure.yml
       - .github/workflows/infrastructure.yml
+      - dist/main.mjs
   workflow_dispatch:
 concurrency:
   cancel-in-progress: true

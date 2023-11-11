@@ -1,6 +1,6 @@
 /**
  * @file OctokitModule
- * @module repostructure/OctokitModule
+ * @module repostructure/octokit/OctokitModule
  */
 
 import type { Config } from '#src/config'
@@ -39,26 +39,7 @@ import { Octokit } from '@octokit/core'
           },
           // https://docs.github.com/graphql/overview/schema-previews
           previews: ['bane'],
-          request: {
-            /**
-             * Execute a HTTP request.
-             *
-             * @see {@linkcode RequestInfo}
-             * @see {@linkcode RequestInit}
-             * @see {@linkcode Response}
-             * @see https://developer.mozilla.org/docs/Web/API/fetch
-             *
-             * @param {RequestInfo} info - Request info
-             * @param {RequestInit} opts - Request options
-             * @return {Promise<Response>} HTTP response
-             */
-            async fetch(
-              info: RequestInfo,
-              opts: RequestInit
-            ): Promise<Response> {
-              return fetch(info, opts)
-            }
-          }
+          request: { fetch }
         })
       }
     }

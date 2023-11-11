@@ -1344,6 +1344,7 @@ __metadata:
     "@nestjs/cqrs": "npm:10.2.6"
     "@nestjs/testing": "npm:10.2.8"
     "@octokit/core": "npm:5.0.1"
+    "@octokit/graphql": "npm:7.0.2"
     "@octokit/graphql-schema": "npm:14.40.1"
     "@octokit/types": "npm:12.2.0"
     "@types/chai": "npm:4.3.9"
@@ -1865,7 +1866,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/graphql@npm:^7.0.0":
+"@octokit/graphql@npm:7.0.2, @octokit/graphql@npm:^7.0.0":
   version: 7.0.2
   resolution: "@octokit/graphql@npm:7.0.2"
   dependencies:
@@ -1917,15 +1918,15 @@ __metadata:
   linkType: hard
 
 "@octokit/request@npm:^8.0.1, @octokit/request@npm:^8.0.2":
-  version: 8.1.4
-  resolution: "@octokit/request@npm:8.1.4"
+  version: 8.1.5
+  resolution: "@octokit/request@npm:8.1.5"
   dependencies:
     "@octokit/endpoint": "npm:^9.0.0"
     "@octokit/request-error": "npm:^5.0.0"
     "@octokit/types": "npm:^12.0.0"
     is-plain-object: "npm:^5.0.0"
     universal-user-agent: "npm:^6.0.0"
-  checksum: a51470f47009b078a29e80be62e522083a82a0eae0e0a1f2fd85e220b84274d6c44f3c43d594fc29d5901b0597873dc95222d38c8697574314bd0dfcad9915f6
+  checksum: 52c26a686f0824491e40e689733c1118f341355a5877e8c3d5cf71fe6afc167a44f679cbf121c291a7e02ef7c8e32abec170423031930f1c11fdb6f5a32d0c59
   languageName: node
   linkType: hard
 

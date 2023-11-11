@@ -4,7 +4,7 @@
  */
 
 import pkg from '#pkg' assert { type: 'json' }
-import type { Infrastructure } from '#src/types'
+import type { Infrastructure, PayloadObject } from '#src/types'
 import * as core from '@actions/core'
 import * as github from '@actions/github'
 import { ERR_UNKNOWN_FILE_EXTENSION } from '@flex-development/errnode'
@@ -13,16 +13,17 @@ import * as pathe from '@flex-development/pathe'
 import {
   defaults,
   fallback,
-  get,
   isNull,
   join,
   sift,
-  template,
   type EmptyString,
   type Partial
 } from '@flex-development/tutils'
 import { Module, type DynamicModule } from '@nestjs/common'
 import { ConfigModule as ConfigBaseModule } from '@nestjs/config'
+import { graphql as request } from '@octokit/graphql'
+import * as graphql from 'graphql'
+import gql from 'graphql-tag'
 import json5 from 'json5'
 import * as yaml from 'yaml'
 import type { Config } from './interfaces'
@@ -150,15 +151,31 @@ class ConfigModule extends ConfigBaseModule {
     const api: string = core.getInput('api', { required: true })
 
     /**
-     * Repository data response.
+     * Personal access token (PAT) used to authenticate GitHub API requests.
      *
-     * @const {Response} info
+     * @const {string} token
      */
-    const info: Response = await fetch(template('{api}/repos/{owner}/{repo}', {
-      api,
+    const token: string = core.getInput('token', { required: true })
+
+    /**
+     * Repository data.
+     *
+     * @const {PayloadObject<{ id: string }>} repository
+     */
+    const repository: PayloadObject<{ id: string }> = await request({
+      baseUrl: api,
+      headers: { authorization: join(['token', token], ' ') },
       owner,
-      repo
-    }))
+      query: graphql.print(gql`
+        query GetRepository($owner: String!, $repo: String!) {
+          payload: repository(name: $repo, owner: $owner) {
+            id
+          }
+        }
+      `),
+      repo,
+      request: { fetch }
+    })
 
     /**
      * Absolute path to current working directory.
@@ -178,7 +195,7 @@ class ConfigModule extends ConfigBaseModule {
       api,
       id: join([pkg.name, pkg.version], pathe.sep),
       infrastructure: await ConfigModule.infrastructure(file, workspace),
-      node_id: get(await info.json(), 'node_id'),
+      node_id: repository.payload.id,
       owner,
       repo,
       token: core.getInput('token', { required: true })

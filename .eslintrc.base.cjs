@@ -831,6 +831,7 @@ const config = {
         faker: fs.existsSync('node_modules/@faker-js/faker'),
         it: true,
         pf: fs.existsSync('node_modules/pretty-format'),
+        server: fs.existsSync('node_modules/msw'),
         suite: true,
         test: true,
         vi: true,

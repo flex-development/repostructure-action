@@ -1,5 +1,5 @@
 /**
- * @file Test Setup Files - Environment
+ * @file Test Setup - Environment
  * @module tests/setup/env
  */
 

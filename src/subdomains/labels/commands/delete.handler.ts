@@ -48,7 +48,7 @@ class DeleteLabelHandler implements ICommandHandler<DeleteLabelCommand, void> {
     protected readonly config: ConfigService<Config, true>
   ) {
     this.operation = graphql.print(gql`
-      mutation ($input: DeleteLabelInput!) {
+      mutation DeleteLabel($input: DeleteLabelInput!) {
         payload: deleteLabel(input: $input) {
           clientMutationId
         }
