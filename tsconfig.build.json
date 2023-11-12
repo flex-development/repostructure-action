@@ -8,5 +8,9 @@
   },
   "exclude": ["**/__mocks__", "**/__tests__"],
   "extends": "./tsconfig.json",
+  "files": [
+    "./typings/@octokit/core/index.d.ts",
+    "./typings/@octokit/plugin-paginate-graphql/index.d.ts"
+  ],
   "include": ["./dist/*", "./src/*"]
 }

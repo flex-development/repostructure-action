@@ -27,7 +27,7 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
           provide: ConfigService,
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
-            node_id: data.data.payload.id
+            node_id: data.data.repository.id
           })
         }
       ]
@@ -41,7 +41,7 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
     let params: CreateLabelCommand
 
     beforeAll(() => {
-      params = at(data.data.payload.labels.nodes, 0)
+      params = at(data.data.repository.labels.nodes, 0)
     })
 
     it('should create repository label', async () => {

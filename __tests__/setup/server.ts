@@ -11,18 +11,14 @@ import type {
   UpdateLabelCommand
 } from '#src/labels/commands'
 import type { Label } from '#src/labels/types'
-import type { PayloadObject } from '#src/types'
-import type { MutationVariables, QueryVariables } from '#tests/types'
+import type {
+  GQLPayload,
+  MutationVariables,
+  QueryVariables
+} from '#tests/types'
 import gqh from '#tests/utils/gqh'
-import {
-  at,
-  isNull,
-  merge,
-  pick,
-  select,
-  type Omit
-} from '@flex-development/tutils'
-import { HttpResponse } from 'msw'
+import GQLResponse from '#tests/utils/gql-response'
+import { merge, pick, type Omit } from '@flex-development/tutils'
 import { setupServer, type SetupServer } from 'msw/node'
 
 /**
@@ -35,10 +31,10 @@ import { setupServer, type SetupServer } from 'msw/node'
  */
 const server: SetupServer = setupServer(
   gqh.mutation<
-    PayloadObject<{ label: Label }>,
+    GQLPayload<'label', Label>,
     MutationVariables<CreateLabelCommand>
   >('CreateLabel', ({ variables: { input } }) => {
-    return HttpResponse.json({
+    return GQLResponse.json({
       data: {
         payload: {
           label: <Label>{
@@ -50,20 +46,20 @@ const server: SetupServer = setupServer(
     })
   }),
   gqh.mutation<
-    PayloadObject<{ clientMutationId: string }>,
+    GQLPayload<'clientMutationId', string>,
     MutationVariables<DeleteLabelCommand>
   >('DeleteLabel', () => {
-    return HttpResponse.json({
+    return GQLResponse.json({
       data: { payload: { clientMutationId: CLIENT_MUTATION_ID } }
     })
   }),
   gqh.mutation<
-    PayloadObject<{ label: Label }>,
+    GQLPayload<'label', Label>,
     MutationVariables<UpdateLabelCommand>
   >('UpdateLabel', ({ variables: { input } }) => {
-    const { nodes } = data.data.payload.labels
+    const { nodes } = data.data.repository.labels
 
-    return HttpResponse.json({
+    return GQLResponse.json({
       data: {
         payload: {
           label: <Label>merge(nodes.find(({ id }) => id === input.id)!, input)
@@ -72,47 +68,18 @@ const server: SetupServer = setupServer(
     })
   }),
   gqh.query<
-    PayloadObject<{ id: string }>,
+    GQLPayload<'id', string>,
     Omit<QueryVariables, 'cursor'>
   >('GetRepository', () => {
-    return HttpResponse.json({
-      data: { payload: pick(data.data.payload, ['id']) }
+    return GQLResponse.json({
+      data: { payload: pick(data.data.repository, ['id']) }
     })
   }),
   gqh.query<
-    PayloadObject<{ labels: { nodes: Label[] } }>,
+    GQLPayload<'labels', Label[]>,
     QueryVariables
-  >('Labels', ({ variables: { cursor } }) => {
-    const { edges, nodes } = data.data.payload.labels
-
-    /**
-     * Index of current edge.
-     *
-     * @var {number} i
-     */
-    let i: number = select(edges, null, e => e.cursor).indexOf(cursor ?? '')
-
-    /**
-     * Index of next edge.
-     *
-     * @var {number} j
-     */
-    const j: number = (i < 0 ? ++i : i) + 10
-
-    return HttpResponse.json({
-      data: {
-        payload: {
-          labels: {
-            nodes: isNull(cursor) ? [] : nodes.slice(i, j),
-            pageInfo: {
-              endCursor: isNull(cursor)
-                ? cursor
-                : at(edges, j)?.cursor ?? null
-            }
-          }
-        }
-      }
-    })
+  >('Labels', ({ variables }) => {
+    return GQLResponse.paginate({ ...variables, key: 'labels' })
   })
 )
 

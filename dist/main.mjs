@@ -18994,21 +18994,21 @@ var require_Reflect = __commonJS({
             return ownKeys;
           if (ownKeys.length <= 0)
             return parentKeys;
-          var set = new _Set();
+          var set2 = new _Set();
           var keys = [];
           for (var _i = 0, ownKeys_1 = ownKeys; _i < ownKeys_1.length; _i++) {
             var key2 = ownKeys_1[_i];
-            var hasKey = set.has(key2);
+            var hasKey = set2.has(key2);
             if (!hasKey) {
-              set.add(key2);
+              set2.add(key2);
               keys.push(key2);
             }
           }
           for (var _a7 = 0, parentKeys_1 = parentKeys; _a7 < parentKeys_1.length; _a7++) {
             var key2 = parentKeys_1[_a7];
-            var hasKey = set.has(key2);
+            var hasKey = set2.has(key2);
             if (!hasKey) {
-              set.add(key2);
+              set2.add(key2);
               keys.push(key2);
             }
           }
@@ -20466,8 +20466,8 @@ var require_shared_utils = __commonJS({
     exports.isSymbol = exports.isEmpty = exports.isNil = exports.isConstructor = exports.isNumber = exports.isString = exports.isFunction = exports.stripEndSlash = exports.normalizePath = exports.addLeadingSlash = exports.isPlainObject = exports.isObject = exports.isUndefined = void 0;
     var isUndefined5 = (obj) => typeof obj === "undefined";
     exports.isUndefined = isUndefined5;
-    var isObject5 = (fn) => !(0, exports.isNil)(fn) && typeof fn === "object";
-    exports.isObject = isObject5;
+    var isObject6 = (fn) => !(0, exports.isNil)(fn) && typeof fn === "object";
+    exports.isObject = isObject6;
     var isPlainObject3 = (fn) => {
       if (!(0, exports.isObject)(fn)) {
         return false;
@@ -24311,13 +24311,13 @@ var require_iterate = __commonJS({
        * Equivalent to passing the Iterator to `new Set()`
        */
       toSet() {
-        const set = /* @__PURE__ */ new Set();
+        const set2 = /* @__PURE__ */ new Set();
         while (true) {
           const { value, done } = this.next();
           if (done) {
-            return set;
+            return set2;
           }
-          set.add(value);
+          set2.add(value);
         }
       }
       /**
@@ -36385,13 +36385,13 @@ var require_iterate2 = __commonJS({
        * Equivalent to passing the Iterator to `new Set()`
        */
       toSet() {
-        const set = /* @__PURE__ */ new Set();
+        const set2 = /* @__PURE__ */ new Set();
         while (true) {
           const { value, done } = this.next();
           if (done) {
-            return set;
+            return set2;
           }
-          set.add(value);
+          set2.add(value);
         }
       }
       /**
@@ -36489,8 +36489,8 @@ var require_base_exception_filter_context = __commonJS({
         })).toArray();
       }
       getFilterInstance(filter, contextId = constants_2.STATIC_CONTEXT, inquirerId) {
-        const isObject5 = filter.catch;
-        if (isObject5) {
+        const isObject6 = filter.catch;
+        if (isObject6) {
           return filter;
         }
         const instanceWrapper = this.getInstanceByMetatype(filter);
@@ -36929,8 +36929,8 @@ var require_guards_context_creator = __commonJS({
         return (0, iterare_1.iterate)(metadata).filter((guard) => guard && (guard.name || guard.canActivate)).map((guard) => this.getGuardInstance(guard, contextId, inquirerId)).filter((guard) => guard && (0, shared_utils_1.isFunction)(guard.canActivate)).toArray();
       }
       getGuardInstance(metatype, contextId = constants_2.STATIC_CONTEXT, inquirerId) {
-        const isObject5 = metatype.canActivate;
-        if (isObject5) {
+        const isObject6 = metatype.canActivate;
+        if (isObject6) {
           return metatype;
         }
         const instanceWrapper = this.getInstanceByMetatype(metatype);
@@ -37052,8 +37052,8 @@ var require_interceptors_context_creator = __commonJS({
         return (0, iterare_1.iterate)(metadata).filter((interceptor) => interceptor && (interceptor.name || interceptor.intercept)).map((interceptor) => this.getInterceptorInstance(interceptor, contextId, inquirerId)).filter((interceptor) => interceptor && (0, shared_utils_1.isFunction)(interceptor.intercept)).toArray();
       }
       getInterceptorInstance(metatype, contextId = constants_2.STATIC_CONTEXT, inquirerId) {
-        const isObject5 = metatype.intercept;
-        if (isObject5) {
+        const isObject6 = metatype.intercept;
+        if (isObject6) {
           return metatype;
         }
         const instanceWrapper = this.getInstanceByMetatype(metatype);
@@ -37182,8 +37182,8 @@ var require_pipes_context_creator = __commonJS({
         return (0, iterare_1.iterate)(metadata).filter((pipe) => pipe && (pipe.name || pipe.transform)).map((pipe) => this.getPipeInstance(pipe, contextId, inquirerId)).filter((pipe) => pipe && pipe.transform && (0, shared_utils_1.isFunction)(pipe.transform)).toArray();
       }
       getPipeInstance(pipe, contextId = constants_2.STATIC_CONTEXT, inquirerId) {
-        const isObject5 = pipe.transform;
-        if (isObject5) {
+        const isObject6 = pipe.transform;
+        if (isObject6) {
           return pipe;
         }
         const instanceWrapper = this.getInstanceByMetatype(pipe);
@@ -45264,11 +45264,11 @@ var require_isKey = __commonJS({
 // node_modules/@nestjs/config/node_modules/lodash/isObject.js
 var require_isObject = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/isObject.js"(exports, module) {
-    function isObject5(value) {
+    function isObject6(value) {
       var type = typeof value;
       return value != null && (type == "object" || type == "function");
     }
-    module.exports = isObject5;
+    module.exports = isObject6;
   }
 });
 
@@ -45276,13 +45276,13 @@ var require_isObject = __commonJS({
 var require_isFunction2 = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/isFunction.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var asyncTag = "[object AsyncFunction]";
     var funcTag = "[object Function]";
     var genTag = "[object GeneratorFunction]";
     var proxyTag = "[object Proxy]";
     function isFunction4(value) {
-      if (!isObject5(value)) {
+      if (!isObject6(value)) {
         return false;
       }
       var tag = baseGetTag(value);
@@ -45343,7 +45343,7 @@ var require_baseIsNative = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/_baseIsNative.js"(exports, module) {
     var isFunction4 = require_isFunction2();
     var isMasked = require_isMasked();
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var toSource = require_toSource();
     var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
     var reIsHostCtor = /^\[object .+?Constructor\]$/;
@@ -45355,7 +45355,7 @@ var require_baseIsNative = __commonJS({
       "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
     );
     function baseIsNative(value) {
-      if (!isObject5(value) || isMasked(value)) {
+      if (!isObject6(value) || isMasked(value)) {
         return false;
       }
       var pattern = isFunction4(value) ? reIsNative : reIsHostCtor;
@@ -45918,11 +45918,11 @@ var require_baseGet = __commonJS({
 var require_get = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/get.js"(exports, module) {
     var baseGet = require_baseGet();
-    function get(object, path, defaultValue) {
+    function get2(object, path, defaultValue) {
       var result = object == null ? void 0 : baseGet(object, path);
       return result === void 0 ? defaultValue : result;
     }
-    module.exports = get;
+    module.exports = get2;
   }
 });
 
@@ -46093,10 +46093,10 @@ var require_baseSet = __commonJS({
     var assignValue = require_assignValue();
     var castPath = require_castPath();
     var isIndex = require_isIndex();
-    var isObject5 = require_isObject();
+    var isObject6 = require_isObject();
     var toKey = require_toKey();
     function baseSet(object, path, value, customizer) {
-      if (!isObject5(object)) {
+      if (!isObject6(object)) {
         return object;
       }
       path = castPath(path, object);
@@ -46110,7 +46110,7 @@ var require_baseSet = __commonJS({
           var objValue = nested[key2];
           newValue = customizer ? customizer(objValue, key2, nested) : void 0;
           if (newValue === void 0) {
-            newValue = isObject5(objValue) ? objValue : isIndex(path[index + 1]) ? [] : {};
+            newValue = isObject6(objValue) ? objValue : isIndex(path[index + 1]) ? [] : {};
           }
         }
         assignValue(nested, key2, newValue);
@@ -46126,10 +46126,10 @@ var require_baseSet = __commonJS({
 var require_set = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/set.js"(exports, module) {
     var baseSet = require_baseSet();
-    function set(object, path, value) {
+    function set2(object, path, value) {
       return object == null ? object : baseSet(object, path, value);
     }
-    module.exports = set;
+    module.exports = set2;
   }
 });
 
@@ -75289,18 +75289,18 @@ var require_set2 = __commonJS({
       }
       static from(schema, iterable, ctx) {
         const { replacer } = ctx;
-        const set2 = new this(schema);
+        const set3 = new this(schema);
         if (iterable && Symbol.iterator in Object(iterable))
           for (let value of iterable) {
             if (typeof replacer === "function")
               value = replacer.call(iterable, value, value);
-            set2.items.push(Pair.createPair(value, null, ctx));
+            set3.items.push(Pair.createPair(value, null, ctx));
           }
-        return set2;
+        return set3;
       }
     };
     YAMLSet.tag = "tag:yaml.org,2002:set";
-    var set = {
+    var set2 = {
       collection: "map",
       identify: (value) => value instanceof Set,
       nodeClass: YAMLSet,
@@ -75319,7 +75319,7 @@ var require_set2 = __commonJS({
       }
     };
     exports.YAMLSet = YAMLSet;
-    exports.set = set;
+    exports.set = set2;
   }
 });
 
@@ -75425,7 +75425,7 @@ var require_schema3 = __commonJS({
     var int = require_int2();
     var omap = require_omap();
     var pairs = require_pairs2();
-    var set = require_set2();
+    var set2 = require_set2();
     var timestamp = require_timestamp2();
     var schema = [
       map.map,
@@ -75444,7 +75444,7 @@ var require_schema3 = __commonJS({
       binary.binary,
       omap.omap,
       pairs.pairs,
-      set.set,
+      set2.set,
       timestamp.intTime,
       timestamp.floatTime,
       timestamp.timestamp
@@ -75470,7 +75470,7 @@ var require_tags = __commonJS({
     var omap = require_omap();
     var pairs = require_pairs2();
     var schema$2 = require_schema3();
-    var set = require_set2();
+    var set2 = require_set2();
     var timestamp = require_timestamp2();
     var schemas = /* @__PURE__ */ new Map([
       ["core", schema.schema],
@@ -75495,14 +75495,14 @@ var require_tags = __commonJS({
       omap: omap.omap,
       pairs: pairs.pairs,
       seq: seq.seq,
-      set: set.set,
+      set: set2.set,
       timestamp: timestamp.timestamp
     };
     var coreKnownTags = {
       "tag:yaml.org,2002:binary": binary.binary,
       "tag:yaml.org,2002:omap": omap.omap,
       "tag:yaml.org,2002:pairs": pairs.pairs,
-      "tag:yaml.org,2002:set": set.set,
+      "tag:yaml.org,2002:set": set2.set,
       "tag:yaml.org,2002:timestamp": timestamp.timestamp
     };
     function getTags(customTags, schemaName) {
@@ -86968,6 +86968,7 @@ var LabelsQueryHandler = class LabelsQueryHandler2 {
             }
             pageInfo {
               endCursor
+              hasNextPage
             }
           }
         }
@@ -86987,19 +86988,8 @@ var LabelsQueryHandler = class LabelsQueryHandler2 {
    * @return {Promise<Label[]>} Repository labels array
    */
   async execute(query) {
-    let cursor = "";
-    let labels = [];
-    while (!is_null_default4(cursor)) {
-      const { payload } = await this.octokit.graphql({
-        cursor,
-        owner: query.owner,
-        query: this.operation,
-        repo: query.repo
-      });
-      labels = [...labels, ...payload.labels.nodes];
-      cursor = payload.labels.pageInfo.endCursor;
-    }
-    return labels;
+    const { payload } = await this.octokit.graphql.paginate(this.operation, query);
+    return payload.labels.nodes;
   }
 };
 LabelsQueryHandler = __decorate7([
@@ -87273,6 +87263,185 @@ var core2 = __toESM(require_core(), 1);
 var github2 = __toESM(require_github(), 1);
 var import_common3 = __toESM(require_common(), 1);
 var import_config7 = __toESM(require_config2(), 1);
+
+// node_modules/@octokit/plugin-paginate-graphql/dist-src/errors.js
+var generateMessage = (path, cursorValue) => `The cursor at "${path.join(
+  ","
+)}" did not change its value "${cursorValue}" after a page transition. Please make sure your that your query is set up correctly.`;
+var MissingCursorChange = class extends Error {
+  constructor(pageInfo, cursorValue) {
+    super(generateMessage(pageInfo.pathInQuery, cursorValue));
+    this.pageInfo = pageInfo;
+    this.cursorValue = cursorValue;
+    this.name = "MissingCursorChangeError";
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+};
+var MissingPageInfo = class extends Error {
+  constructor(response) {
+    super(
+      `No pageInfo property found in response. Please make sure to specify the pageInfo in your query. Response-Data: ${JSON.stringify(
+        response,
+        null,
+        2
+      )}`
+    );
+    this.response = response;
+    this.name = "MissingPageInfo";
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+};
+
+// node_modules/@octokit/plugin-paginate-graphql/dist-src/object-helpers.js
+var isObject5 = (value) => Object.prototype.toString.call(value) === "[object Object]";
+function findPaginatedResourcePath(responseData) {
+  const paginatedResourcePath = deepFindPathToProperty(
+    responseData,
+    "pageInfo"
+  );
+  if (paginatedResourcePath.length === 0) {
+    throw new MissingPageInfo(responseData);
+  }
+  return paginatedResourcePath;
+}
+var deepFindPathToProperty = (object, searchProp, path = []) => {
+  for (const key2 of Object.keys(object)) {
+    const currentPath = [...path, key2];
+    const currentValue = object[key2];
+    if (currentValue.hasOwnProperty(searchProp)) {
+      return currentPath;
+    }
+    if (isObject5(currentValue)) {
+      const result = deepFindPathToProperty(
+        currentValue,
+        searchProp,
+        currentPath
+      );
+      if (result.length > 0) {
+        return result;
+      }
+    }
+  }
+  return [];
+};
+var get = (object, path) => {
+  return path.reduce((current, nextProperty) => current[nextProperty], object);
+};
+var set = (object, path, mutator) => {
+  const lastProperty = path[path.length - 1];
+  const parentPath = [...path].slice(0, -1);
+  const parent = get(object, parentPath);
+  if (typeof mutator === "function") {
+    parent[lastProperty] = mutator(parent[lastProperty]);
+  } else {
+    parent[lastProperty] = mutator;
+  }
+};
+
+// node_modules/@octokit/plugin-paginate-graphql/dist-src/extract-page-info.js
+var extractPageInfos = (responseData) => {
+  const pageInfoPath = findPaginatedResourcePath(responseData);
+  return {
+    pathInQuery: pageInfoPath,
+    pageInfo: get(responseData, [...pageInfoPath, "pageInfo"])
+  };
+};
+
+// node_modules/@octokit/plugin-paginate-graphql/dist-src/page-info.js
+var isForwardSearch = (givenPageInfo) => {
+  return givenPageInfo.hasOwnProperty("hasNextPage");
+};
+var getCursorFrom = (pageInfo) => isForwardSearch(pageInfo) ? pageInfo.endCursor : pageInfo.startCursor;
+var hasAnotherPage = (pageInfo) => isForwardSearch(pageInfo) ? pageInfo.hasNextPage : pageInfo.hasPreviousPage;
+
+// node_modules/@octokit/plugin-paginate-graphql/dist-src/iterator.js
+var createIterator = (octokit) => {
+  return (query, initialParameters = {}) => {
+    let nextPageExists = true;
+    let parameters = { ...initialParameters };
+    return {
+      [Symbol.asyncIterator]: () => ({
+        async next() {
+          if (!nextPageExists)
+            return { done: true, value: {} };
+          const response = await octokit.graphql(
+            query,
+            parameters
+          );
+          const pageInfoContext = extractPageInfos(response);
+          const nextCursorValue = getCursorFrom(pageInfoContext.pageInfo);
+          nextPageExists = hasAnotherPage(pageInfoContext.pageInfo);
+          if (nextPageExists && nextCursorValue === parameters.cursor) {
+            throw new MissingCursorChange(pageInfoContext, nextCursorValue);
+          }
+          parameters = {
+            ...parameters,
+            cursor: nextCursorValue
+          };
+          return { done: false, value: response };
+        }
+      })
+    };
+  };
+};
+
+// node_modules/@octokit/plugin-paginate-graphql/dist-src/merge-responses.js
+var mergeResponses = (response1, response2) => {
+  if (Object.keys(response1).length === 0) {
+    return Object.assign(response1, response2);
+  }
+  const path = findPaginatedResourcePath(response1);
+  const nodesPath = [...path, "nodes"];
+  const newNodes = get(response2, nodesPath);
+  if (newNodes) {
+    set(response1, nodesPath, (values) => {
+      return [...values, ...newNodes];
+    });
+  }
+  const edgesPath = [...path, "edges"];
+  const newEdges = get(response2, edgesPath);
+  if (newEdges) {
+    set(response1, edgesPath, (values) => {
+      return [...values, ...newEdges];
+    });
+  }
+  const pageInfoPath = [...path, "pageInfo"];
+  set(response1, pageInfoPath, get(response2, pageInfoPath));
+  return response1;
+};
+
+// node_modules/@octokit/plugin-paginate-graphql/dist-src/paginate.js
+var createPaginate = (octokit) => {
+  const iterator2 = createIterator(octokit);
+  return async (query, initialParameters = {}) => {
+    let mergedResponse = {};
+    for await (const response of iterator2(
+      query,
+      initialParameters
+    )) {
+      mergedResponse = mergeResponses(mergedResponse, response);
+    }
+    return mergedResponse;
+  };
+};
+
+// node_modules/@octokit/plugin-paginate-graphql/dist-src/index.js
+function paginateGraphql(octokit) {
+  octokit.graphql;
+  return {
+    graphql: Object.assign(octokit.graphql, {
+      paginate: Object.assign(createPaginate(octokit), {
+        iterator: createIterator(octokit)
+      })
+    })
+  };
+}
+
+// src/subdomains/octokit/octokit.module.ts
 var __decorate11 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -87309,7 +87478,7 @@ OctokitModule = __decorate11([
             // https://docs.github.com/graphql/overview/schema-previews
             previews: ["bane"],
             request: { fetch }
-          });
+          }, paginateGraphql);
         }
       }
     ]

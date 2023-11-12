@@ -12,7 +12,7 @@ type QueryVariables = {
   /**
    * Pagination cursor.
    */
-  cursor: Nullable<string>
+  cursor?: Nullable<string>
 
   /**
    * Repository owner.

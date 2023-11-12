@@ -14,7 +14,7 @@ describe('unit:labels/commands/ManageLabelsCommand', () => {
     let subject: TestSubject
 
     beforeAll(() => {
-      labels = data.data.payload.labels.nodes
+      labels = data.data.repository.labels.nodes
       labels = select(labels, null, label => new CreateLabelCommand(label))
       subject = new TestSubject(labels)
     })

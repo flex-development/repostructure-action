@@ -4,3 +4,4 @@
  */
 
 export { default as OctokitModule } from './octokit.module'
+export type * from './types'

@@ -1,304 +1,205 @@
 {
   "data": {
-    "payload": {
+    "repository": {
       "id": "R_kgDOJGP30w",
       "labels": {
         "edges": [
           {
             "cursor": "MQ",
             "node": {
-              "color": "fbca04",
-              "description": "contains changes that require major version bump",
-              "id": "LA_kwDOJGP3088AAAABN_3hjg",
-              "name": "flag:breaking-change"
+              "id": "LA_kwDOJGP3088AAAABN_3hjg"
             }
           },
           {
             "cursor": "Mg",
             "node": {
-              "color": "fbca04",
-              "description": "issue, pull request, or discussion already exists",
-              "id": "LA_kwDOJGP3088AAAABN_3hlg",
-              "name": "flag:duplicate"
+              "id": "LA_kwDOJGP3088AAAABN_3hlg"
             }
           },
           {
             "cursor": "Mw",
             "node": {
-              "color": "fbca04",
-              "description": "discussion required before implementation",
-              "id": "LA_kwDOJGP3088AAAABN_3hmw",
-              "name": "flag:needs-discussion"
+              "id": "LA_kwDOJGP3088AAAABN_3hmw"
             }
           },
           {
             "cursor": "NA",
             "node": {
-              "color": "fbca04",
-              "description": "missing documentation or needs existing documentation update",
-              "id": "LA_kwDOJGP3088AAAABN_3hoQ",
-              "name": "flag:needs-docs"
+              "id": "LA_kwDOJGP3088AAAABN_3hoQ"
             }
           },
           {
             "cursor": "NQ",
             "node": {
-              "color": "fbca04",
-              "description": "code improvements required before being merged",
-              "id": "LA_kwDOJGP3088AAAABN_3hqQ",
-              "name": "flag:needs-refactor"
+              "id": "LA_kwDOJGP3088AAAABN_3hqQ"
             }
           },
           {
             "cursor": "Ng",
             "node": {
-              "color": "74cefc",
-              "description": "github action",
-              "id": "LA_kwDOJGP3088AAAABOBL-2w",
-              "name": "scope:action"
+              "id": "LA_kwDOJGP3088AAAABOBL-2w"
             }
           },
           {
             "cursor": "Nw",
             "node": {
-              "color": "74cefc",
-              "description": "dependency updates",
-              "id": "LA_kwDOJGP3088AAAABN_3ouw",
-              "name": "scope:dependencies"
-            }
-          },
-          {
-            "cursor": "OA",
-            "node": {
-              "color": "74cefc",
-              "description": "action release",
-              "id": "LA_kwDOJGP3088AAAABN_3htg",
-              "name": "scope:release"
+              "id": "LA_kwDOJGP3088AAAABN_3ouw"
             }
           },
           {
             "cursor": "OQ",
             "node": {
-              "color": "74cefc",
-              "description": "testing",
-              "id": "LA_kwDOJGP3088AAAABN_3oqw",
-              "name": "scope:tests"
+              "id": "LA_kwDOJGP3088AAAABN_3htg"
             }
           },
           {
             "cursor": "MTA",
             "node": {
-              "color": "e7034b",
-              "description": "needs clarification or more information from author",
-              "id": "LA_kwDOJGP3088AAAABN_3orw",
-              "name": "status:awaiting-answers"
+              "id": "LA_kwDOJGP3088AAAABN_3oqw"
             }
           },
           {
             "cursor": "MTE",
             "node": {
-              "color": "e7034b",
-              "description": "blocked by other work tracked in different issue",
-              "id": "LA_kwDOJGP3088AAAABN_3hxQ",
-              "name": "status:blocked"
+              "id": "LA_kwDOJGP3088AAAABN_3orw"
             }
           },
           {
             "cursor": "MTI",
             "node": {
-              "color": "e7034b",
-              "description": "bug report cannot be reproduced",
-              "id": "LA_kwDOJGP3088AAAABN_3hyA",
-              "name": "status:cannot-reproduce"
+              "id": "LA_kwDOJGP3088AAAABcUec2w"
             }
           },
           {
             "cursor": "MTM",
             "node": {
-              "color": "e7034b",
-              "description": "fixed, but not released",
-              "id": "LA_kwDOJGP3088AAAABN_3h1g",
-              "name": "status:fixed"
+              "id": "LA_kwDOJGP3088AAAABcUec5A"
             }
           },
           {
             "cursor": "MTQ",
             "node": {
-              "color": "e7034b",
-              "description": "extra attention is needed",
-              "id": "LA_kwDOJGP3088AAAABN_3h4w",
-              "name": "status:help-wanted"
+              "id": "LA_kwDOJGP3088AAAABcUec_Q"
             }
           },
           {
             "cursor": "MTU",
             "node": {
-              "color": "e7034b",
-              "description": "changes that won't be implemented",
-              "id": "LA_kwDOJGP3088AAAABN_3h-A",
-              "name": "status:icebox"
+              "id": "LA_kwDOJGP3088AAAABcUedBw"
             }
           },
           {
             "cursor": "MTY",
             "node": {
-              "color": "e7034b",
-              "description": "no action to be taken or missing information",
-              "id": "LA_kwDOJGP3088AAAABN_3h_w",
-              "name": "status:invalid"
+              "id": "LA_kwDOJGP3088AAAABcUedCg"
             }
           },
           {
             "cursor": "MTc",
             "node": {
-              "color": "e7034b",
-              "description": "merged, but not released",
-              "id": "LA_kwDOJGP3088AAAABN_3osw",
-              "name": "status:merged"
+              "id": "LA_kwDOJGP3088AAAABcUedDg"
             }
           },
           {
             "cursor": "MTg",
             "node": {
-              "color": "e7034b",
-              "description": "needs further assessment",
-              "id": "LA_kwDOJGP3088AAAABN_3iDA",
-              "name": "status:needs-triage"
+              "id": "LA_kwDOJGP3088AAAABcUedFA"
             }
           },
           {
             "cursor": "MTk",
             "node": {
-              "color": "e7034b",
-              "description": "merged and prereleased",
-              "id": "LA_kwDOJGP3088AAAABN_3orA",
-              "name": "status:prereleased"
+              "id": "LA_kwDOJGP3088AAAABcUedHQ"
             }
           },
           {
             "cursor": "MjA",
             "node": {
-              "color": "e7034b",
-              "description": "merged and released",
-              "id": "LA_kwDOJGP3088AAAABN_3iEw",
-              "name": "status:released"
+              "id": "LA_kwDOJGP3088AAAABcUedKQ"
             }
           },
           {
             "cursor": "MjE",
             "node": {
-              "color": "e7034b",
-              "description": "superseded by different issue, pull request, or discussion",
-              "id": "LA_kwDOJGP3088AAAABN_3iHQ",
-              "name": "status:stale"
+              "id": "LA_kwDOJGP3088AAAABcUedPA"
             }
           },
           {
             "cursor": "MjI",
             "node": {
-              "color": "e7034b",
-              "description": "bug confirmed",
-              "id": "LA_kwDOJGP3088AAAABN_3ouA",
-              "name": "status:triaged"
+              "id": "LA_kwDOJGP3088AAAABcUedTA"
             }
           },
           {
             "cursor": "MjM",
             "node": {
-              "color": "e7034b",
-              "description": "work in progress",
-              "id": "LA_kwDOJGP3088AAAABN_3iKg",
-              "name": "status:wip"
+              "id": "LA_kwDOJGP3088AAAABcUedYg"
             }
           },
           {
             "cursor": "MjQ",
             "node": {
-              "color": "0052cc",
-              "description": "changes to the build system or external dependencies",
-              "id": "LA_kwDOJGP3088AAAABN_3iNw",
-              "name": "type:build"
+              "id": "LA_kwDOJGP3088AAAABcUedbg"
             }
           },
           {
             "cursor": "MjU",
             "node": {
-              "color": "0052cc",
-              "description": "housekeeping / changes that don't impact external users",
-              "id": "LA_kwDOJGP3088AAAABN_3iPQ",
-              "name": "type:chore"
+              "id": "LA_kwDOJGP3088AAAABcUeddQ"
             }
           },
           {
             "cursor": "MjY",
             "node": {
-              "color": "0052cc",
-              "description": "ci/cd configuration",
-              "id": "LA_kwDOJGP3088AAAABN_3orQ",
-              "name": "type:ci"
+              "id": "LA_kwDOJGP3088AAAABcUeddw"
             }
           },
           {
             "cursor": "Mjc",
             "node": {
-              "color": "0052cc",
-              "description": "documentation improvements",
-              "id": "LA_kwDOJGP3088AAAABN_3iUQ",
-              "name": "type:docs"
+              "id": "LA_kwDOJGP3088AAAABcUedeA"
             }
           },
           {
             "cursor": "Mjg",
             "node": {
-              "color": "0052cc",
-              "description": "new features and improvements",
-              "id": "LA_kwDOJGP3088AAAABN_3iWQ",
-              "name": "type:feat"
+              "id": "LA_kwDOJGP3088AAAABcUedfA"
             }
           },
           {
             "cursor": "Mjk",
             "node": {
-              "color": "0052cc",
-              "description": "bug reports and fixes",
-              "id": "LA_kwDOJGP3088AAAABN_3iXA",
-              "name": "type:fix"
+              "id": "LA_kwDOJGP3088AAAABcUedgQ"
             }
           },
           {
             "cursor": "MzA",
             "node": {
-              "color": "0052cc",
-              "description": "performance updates",
-              "id": "LA_kwDOJGP3088AAAABN_3iYg",
-              "name": "type:perf"
+              "id": "LA_kwDOJGP3088AAAABcUediQ"
             }
           },
           {
             "cursor": "MzE",
             "node": {
-              "color": "0052cc",
-              "description": "questions",
-              "id": "LA_kwDOJGP3088AAAABN_3iZw",
-              "name": "type:question"
+              "id": "LA_kwDOJGP3088AAAABcUedmg"
             }
           },
           {
             "cursor": "MzI",
             "node": {
-              "color": "0052cc",
-              "description": "code improvements",
-              "id": "LA_kwDOJGP3088AAAABN_3iaQ",
-              "name": "type:refactor"
+              "id": "LA_kwDOJGP3088AAAABcUedpg"
             }
           },
           {
             "cursor": "MzM",
             "node": {
-              "color": "0052cc",
-              "description": "project tasks",
-              "id": "LA_kwDOJGP3088AAAABN_3org",
-              "name": "type:task"
+              "id": "LA_kwDOJGP3088AAAABcUedqw"
+            }
+          },
+          {
+            "cursor": "MzQ",
+            "node": {
+              "id": "LA_kwDOJGP3088AAAABcUedrA"
             }
           }
         ],
@@ -366,145 +267,142 @@
           {
             "color": "e7034b",
             "description": "blocked by other work tracked in different issue",
-            "id": "LA_kwDOJGP3088AAAABN_3hxQ",
+            "id": "LA_kwDOJGP3088AAAABcUec2w",
             "name": "status:blocked"
           },
           {
             "color": "e7034b",
             "description": "bug report cannot be reproduced",
-            "id": "LA_kwDOJGP3088AAAABN_3hyA",
+            "id": "LA_kwDOJGP3088AAAABcUec5A",
             "name": "status:cannot-reproduce"
           },
           {
             "color": "e7034b",
             "description": "fixed, but not released",
-            "id": "LA_kwDOJGP3088AAAABN_3h1g",
+            "id": "LA_kwDOJGP3088AAAABcUec_Q",
             "name": "status:fixed"
           },
           {
             "color": "e7034b",
             "description": "extra attention is needed",
-            "id": "LA_kwDOJGP3088AAAABN_3h4w",
+            "id": "LA_kwDOJGP3088AAAABcUedBw",
             "name": "status:help-wanted"
           },
           {
             "color": "e7034b",
             "description": "changes that won't be implemented",
-            "id": "LA_kwDOJGP3088AAAABN_3h-A",
+            "id": "LA_kwDOJGP3088AAAABcUedCg",
             "name": "status:icebox"
           },
           {
             "color": "e7034b",
             "description": "no action to be taken or missing information",
-            "id": "LA_kwDOJGP3088AAAABN_3h_w",
+            "id": "LA_kwDOJGP3088AAAABcUedDg",
             "name": "status:invalid"
           },
           {
             "color": "e7034b",
             "description": "merged, but not released",
-            "id": "LA_kwDOJGP3088AAAABN_3osw",
+            "id": "LA_kwDOJGP3088AAAABcUedFA",
             "name": "status:merged"
           },
           {
             "color": "e7034b",
             "description": "needs further assessment",
-            "id": "LA_kwDOJGP3088AAAABN_3iDA",
+            "id": "LA_kwDOJGP3088AAAABcUedHQ",
             "name": "status:needs-triage"
           },
           {
             "color": "e7034b",
             "description": "merged and prereleased",
-            "id": "LA_kwDOJGP3088AAAABN_3orA",
+            "id": "LA_kwDOJGP3088AAAABcUedKQ",
             "name": "status:prereleased"
           },
           {
             "color": "e7034b",
             "description": "merged and released",
-            "id": "LA_kwDOJGP3088AAAABN_3iEw",
+            "id": "LA_kwDOJGP3088AAAABcUedPA",
             "name": "status:released"
           },
           {
             "color": "e7034b",
             "description": "superseded by different issue, pull request, or discussion",
-            "id": "LA_kwDOJGP3088AAAABN_3iHQ",
+            "id": "LA_kwDOJGP3088AAAABcUedTA",
             "name": "status:stale"
           },
           {
             "color": "e7034b",
             "description": "bug confirmed",
-            "id": "LA_kwDOJGP3088AAAABN_3ouA",
+            "id": "LA_kwDOJGP3088AAAABcUedYg",
             "name": "status:triaged"
           },
           {
             "color": "e7034b",
             "description": "work in progress",
-            "id": "LA_kwDOJGP3088AAAABN_3iKg",
+            "id": "LA_kwDOJGP3088AAAABcUedbg",
             "name": "status:wip"
           },
           {
             "color": "0052cc",
             "description": "changes to the build system or external dependencies",
-            "id": "LA_kwDOJGP3088AAAABN_3iNw",
+            "id": "LA_kwDOJGP3088AAAABcUeddQ",
             "name": "type:build"
           },
           {
             "color": "0052cc",
             "description": "housekeeping / changes that don't impact external users",
-            "id": "LA_kwDOJGP3088AAAABN_3iPQ",
+            "id": "LA_kwDOJGP3088AAAABcUeddw",
             "name": "type:chore"
           },
           {
             "color": "0052cc",
             "description": "ci/cd configuration",
-            "id": "LA_kwDOJGP3088AAAABN_3orQ",
+            "id": "LA_kwDOJGP3088AAAABcUedeA",
             "name": "type:ci"
           },
           {
             "color": "0052cc",
             "description": "documentation improvements",
-            "id": "LA_kwDOJGP3088AAAABN_3iUQ",
+            "id": "LA_kwDOJGP3088AAAABcUedfA",
             "name": "type:docs"
           },
           {
             "color": "0052cc",
             "description": "new features and improvements",
-            "id": "LA_kwDOJGP3088AAAABN_3iWQ",
+            "id": "LA_kwDOJGP3088AAAABcUedgQ",
             "name": "type:feat"
           },
           {
             "color": "0052cc",
             "description": "bug reports and fixes",
-            "id": "LA_kwDOJGP3088AAAABN_3iXA",
+            "id": "LA_kwDOJGP3088AAAABcUediQ",
             "name": "type:fix"
           },
           {
             "color": "0052cc",
             "description": "performance updates",
-            "id": "LA_kwDOJGP3088AAAABN_3iYg",
+            "id": "LA_kwDOJGP3088AAAABcUedmg",
             "name": "type:perf"
           },
           {
             "color": "0052cc",
             "description": "questions",
-            "id": "LA_kwDOJGP3088AAAABN_3iZw",
+            "id": "LA_kwDOJGP3088AAAABcUedpg",
             "name": "type:question"
           },
           {
             "color": "0052cc",
             "description": "code improvements",
-            "id": "LA_kwDOJGP3088AAAABN_3iaQ",
+            "id": "LA_kwDOJGP3088AAAABcUedqw",
             "name": "type:refactor"
           },
           {
             "color": "0052cc",
             "description": "project tasks",
-            "id": "LA_kwDOJGP3088AAAABN_3org",
+            "id": "LA_kwDOJGP3088AAAABcUedrA",
             "name": "type:task"
           }
-        ],
-        "pageInfo": {
-          "endCursor": "MzM"
-        }
+        ]
       }
     }
   }

@@ -294,8 +294,6 @@
   "typescript.suggest.jsdoc.generateReturns": true,
   "typescript.suggest.paths": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.tsserver.enableTracing": true,
-  "typescript.tsserver.log": "verbose",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.validate.enable": true,
   "versionlens.npm.dependencyProperties": [
