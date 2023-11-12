@@ -28,7 +28,7 @@ describe('unit:labels/queries/LabelsQueryHandler', () => {
     let labels: Label[]
 
     beforeAll(() => {
-      labels = data.data.payload.labels.nodes
+      labels = data.data.repository.labels.nodes
     })
 
     it('should return repository labels array', async () => {

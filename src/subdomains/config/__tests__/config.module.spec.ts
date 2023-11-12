@@ -62,7 +62,7 @@ describe('unit:config/ConfigModule', () => {
         api: import.meta.env.INPUT_API,
         id: CLIENT_MUTATION_ID,
         infrastructure: expect.any(Object),
-        node_id: data.data.payload.id,
+        node_id: data.data.repository.id,
         owner: OWNER,
         repo: REPO,
         token: import.meta.env.INPUT_TOKEN

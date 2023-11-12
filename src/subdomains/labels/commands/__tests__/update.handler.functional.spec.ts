@@ -38,7 +38,7 @@ describe('functional:labels/commands/UpdateLabelHandler', () => {
     let params: UpdateLabelCommand
 
     beforeAll(() => {
-      params = at(data.data.payload.labels.nodes, 0)
+      params = at(data.data.repository.labels.nodes, 0)
     })
 
     it('should update repository label', async () => {

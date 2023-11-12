@@ -40,7 +40,7 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
           provide: ConfigService,
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
-            node_id: data.data.payload.id,
+            node_id: data.data.repository.id,
             owner: OWNER,
             repo: REPO
           })
@@ -75,7 +75,7 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
         }
       ]
 
-      nodes = data.data.payload.labels.nodes
+      nodes = data.data.repository.labels.nodes
       current = nodes.slice(0, index)
     })
 

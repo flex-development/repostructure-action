@@ -5,7 +5,7 @@
 
 import type { Config } from '#src/config'
 import type { Label } from '#src/labels/types'
-import type { PayloadObject } from '#src/types'
+import type { PayloadObject } from '#src/octokit'
 import { ConfigService } from '@nestjs/config'
 import { CommandHandler, type ICommandHandler } from '@nestjs/cqrs'
 import { Octokit } from '@octokit/core'

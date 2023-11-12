@@ -9,6 +9,7 @@ import * as github from '@actions/github'
 import { Global, Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { Octokit } from '@octokit/core'
+import { paginateGraphql } from '@octokit/plugin-paginate-graphql'
 
 /**
  * Octokit module.
@@ -40,7 +41,7 @@ import { Octokit } from '@octokit/core'
           // https://docs.github.com/graphql/overview/schema-previews
           previews: ['bane'],
           request: { fetch }
-        })
+        }, paginateGraphql)
       }
     }
   ]

@@ -14,7 +14,8 @@ describe('unit:labels/commands/CreateLabelCommand', () => {
     let subject: TestSubject
 
     beforeAll(() => {
-      subject = new TestSubject(label = at(data.data.payload.labels.nodes, 0))
+      const { nodes } = data.data.repository.labels
+      subject = new TestSubject(label = at(nodes, 0))
     })
 
     it('should set #color', () => {

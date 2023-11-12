@@ -98,7 +98,7 @@ describe('integration:labels/LabelsModule', () => {
       ['ManageLabelsCommand', new ManageLabelsCommand([])],
       [
         'UpdateLabelCommand',
-        new UpdateLabelCommand(at(data.data.payload.labels.nodes, 0))
+        new UpdateLabelCommand(at(data.data.repository.labels.nodes, 0))
       ]
     ])('%s', (key, command) => {
       it('should execute command', async () => {

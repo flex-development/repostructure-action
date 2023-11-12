@@ -4,7 +4,7 @@
  */
 
 import pkg from '#pkg' assert { type: 'json' }
-import type { Infrastructure, PayloadObject } from '#src/types'
+import type { Infrastructure } from '#src/types'
 import * as core from '@actions/core'
 import * as github from '@actions/github'
 import { ERR_UNKNOWN_FILE_EXTENSION } from '@flex-development/errnode'
@@ -160,9 +160,9 @@ class ConfigModule extends ConfigBaseModule {
     /**
      * Repository data.
      *
-     * @const {PayloadObject<{ id: string }>} repository
+     * @const {{ payload: { id: string } }} repository
      */
-    const repository: PayloadObject<{ id: string }> = await request({
+    const repository: { payload: { id: string } } = await request({
       baseUrl: api,
       headers: { authorization: join(['token', token], ' ') },
       owner,

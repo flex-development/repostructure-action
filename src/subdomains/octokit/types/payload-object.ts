@@ -1,18 +1,19 @@
 /**
  * @file Type Definitions - PayloadObject
- * @module repostructure/types/PayloadObject
+ * @module repostructure/octokit/types/PayloadObject
  */
 
 import type { ObjectCurly, ObjectPlain } from '@flex-development/tutils'
 
 /**
- * Response payload object.
+ * GraphQL payload object.
  *
- * @template P - Response payload
+ * @template K - Payload data name
+ * @template T - Payload data type
  */
 type PayloadObject<T extends ObjectCurly = ObjectPlain> = {
   /**
-   * Response payload.
+   * Payload data.
    */
   payload: T
 }

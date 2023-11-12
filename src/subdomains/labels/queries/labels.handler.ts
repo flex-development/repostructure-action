@@ -4,11 +4,8 @@
  */
 
 import type { Label } from '#src/labels/types'
-import type { PayloadObject } from '#src/types'
-import { isNull, type Nullable } from '@flex-development/tutils'
 import { QueryHandler, type IQueryHandler } from '@nestjs/cqrs'
 import { Octokit } from '@octokit/core'
-import type { Repository as Payload } from '@octokit/graphql-schema'
 import * as graphql from 'graphql'
 import gql from 'graphql-tag'
 import LabelsQuery from './labels.query'
@@ -60,6 +57,7 @@ class LabelsQueryHandler implements IQueryHandler<LabelsQuery, Label[]> {
             }
             pageInfo {
               endCursor
+              hasNextPage
             }
           }
         }
@@ -80,34 +78,14 @@ class LabelsQueryHandler implements IQueryHandler<LabelsQuery, Label[]> {
    * @return {Promise<Label[]>} Repository labels array
    */
   public async execute(query: LabelsQuery): Promise<Label[]> {
-    /**
-     * Pagination cursor.
-     *
-     * @var {Nullable<string>} cursor
-     */
-    let cursor: Nullable<string> = ''
+    const {
+      payload
+    } = await this.octokit.graphql.paginate<'labels', Label>(
+      this.operation,
+      query
+    )
 
-    /**
-     * Repository labels.
-     *
-     * @var {Label[]} labels
-     */
-    let labels: Label[] = []
-
-    // get repository labels
-    while (!isNull(cursor)) {
-      const { payload }: PayloadObject<Payload> = await this.octokit.graphql({
-        cursor,
-        owner: query.owner,
-        query: this.operation,
-        repo: query.repo
-      })
-
-      labels = [...labels, ...<Label[]>payload.labels!.nodes!]
-      cursor = payload.labels!.pageInfo.endCursor!
-    }
-
-    return labels
+    return payload.labels.nodes
   }
 }
 
