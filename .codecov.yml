@@ -32,6 +32,10 @@ component_management:
       name: labels
       paths:
         - src/subdomains/labels/**/*.ts
+    - component_id: octokit
+      name: octokit
+      paths:
+        - src/subdomains/octokit/**/*.ts
 
 coverage:
   precision: 2
