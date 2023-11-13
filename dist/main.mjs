@@ -86884,8 +86884,8 @@ var manage_command_default = ManageLabelsCommand;
 // src/subdomains/labels/queries/labels.handler.ts
 var import_cqrs3 = __toESM(require_cqrs(), 1);
 
-// src/subdomains/labels/queries/labels.query.ts
-var LabelsQuery = class {
+// src/queries/repository.query.ts
+var RepositoryQuery = class {
   /**
    * Repository owner.
    *
@@ -86903,14 +86903,19 @@ var LabelsQuery = class {
    */
   repo;
   /**
-   * Create a new repository labels query.
+   * Create a new repository query.
    *
-   * @param {LabelsQuery} params - Query parameters
+   * @param {RepositoryQuery} params - Query parameters
    */
   constructor(params) {
     this.owner = params.owner;
     this.repo = params.repo;
   }
+};
+var repository_query_default = RepositoryQuery;
+
+// src/subdomains/labels/queries/labels.query.ts
+var LabelsQuery = class extends repository_query_default {
 };
 var labels_query_default = LabelsQuery;
 

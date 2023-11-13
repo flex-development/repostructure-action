@@ -1,13 +1,13 @@
 /**
- * @file Unit Tests - LabelsQuery
- * @module repostructure/labels/queries/tests/unit/LabelsQuery
+ * @file Unit Tests - RepositoryQuery
+ * @module repostructure/queries/tests/unit/RepositoryQuery
  */
 
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
-import TestSubject from '../labels.query'
+import TestSubject from '../repository.query'
 
-describe('unit:labels/queries/LabelsQuery', () => {
+describe('unit:queries/RepositoryQuery', () => {
   describe('constructor', () => {
     let subject: TestSubject
 

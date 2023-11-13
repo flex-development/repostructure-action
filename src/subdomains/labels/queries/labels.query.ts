@@ -3,39 +3,16 @@
  * @module repostructure/labels/queries/LabelsQuery
  */
 
+import { RepositoryQuery } from '#src/queries'
+
 /**
  * Repository labels query.
  *
+ * @see {@linkcode RepositoryQuery}
+ *
  * @class
+ * @extends {RepositoryQuery}
  */
-class LabelsQuery {
-  /**
-   * Repository owner.
-   *
-   * @public
-   * @instance
-   * @member {string} owner
-   */
-  public owner: string
-
-  /**
-   * Repository name.
-   *
-   * @public
-   * @instance
-   * @member {string} repo
-   */
-  public repo: string
-
-  /**
-   * Create a new repository labels query.
-   *
-   * @param {LabelsQuery} params - Query parameters
-   */
-  constructor(params: LabelsQuery) {
-    this.owner = params.owner
-    this.repo = params.repo
-  }
-}
+class LabelsQuery extends RepositoryQuery {}
 
 export default LabelsQuery

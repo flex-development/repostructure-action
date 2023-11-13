@@ -36,6 +36,10 @@ component_management:
       name: octokit
       paths:
         - src/subdomains/octokit/**/*.ts
+    - component_id: queries
+      name: queries
+      paths:
+        - src/queries/*.ts
 
 coverage:
   precision: 2

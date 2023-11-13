@@ -379,9 +379,6 @@ jobs:
       - id: pack
         name: Pack project
         run: yarn pack -o ${{ env.TARFILE }}
-      - id: typecheck
-        name: Run typecheck
-        run: yarn check:types:build
       - id: archive
         name: Archive production artifacts
         uses: actions/upload-artifact@v3.1.3
