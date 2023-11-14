@@ -2,6 +2,22 @@
   "data": {
     "repository": {
       "id": "R_kgDOJGP30w",
+      "branchProtectionRules": {
+        "edges": [
+          {
+            "cursor": "Y3Vyc29yOnYyOpHOAhaUpA==",
+            "node": {
+              "id": "BPR_kwDOJGP3084CFpSk"
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "BPR_kwDOJGP3084CFpSk",
+            "pattern": "main"
+          }
+        ]
+      },
       "environments": {
         "edges": [
           {

@@ -5,13 +5,12 @@
 
 import root from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
-import type { Environment } from '#src/environments'
-import type {
-  CreateLabelCommand as CreateLabelInput,
-  Label,
-  UpdateLabelCommand as UpdateLabelInput
-} from '#src/labels'
-import type { User } from '#src/users'
+import type Branch from '#src/branches/types/branch'
+import type Environment from '#src/environments/types/environment'
+import type CreateLabelInput from '#src/labels/commands/create.command'
+import type UpdateLabelInput from '#src/labels/commands/update.command'
+import type Label from '#src/labels/types/label'
+import type User from '#src/users/types/user'
 import connection from '#tests/utils/connection'
 import gqh from '#tests/utils/gqh'
 import {
@@ -24,6 +23,7 @@ import {
 } from '@flex-development/tutils'
 import type { Connection } from '@octokit/graphql'
 import type {
+  RepositoryBranchProtectionRulesArgs as BranchesArgs,
   RepositoryEnvironmentsArgs as EnvironmentsArgs,
   RepositoryLabelsArgs as LabelsArgs,
   QueryUserArgs
@@ -96,6 +96,15 @@ const server: SetupServer = setupServer(
          * @see https://docs.github.com/graphql/reference/objects#repository
          */
         repository: {
+          /**
+           * Mock repository `branchProtectionRules` query resolver.
+           *
+           * @param {BranchesArgs} args - Query arguments
+           * @return {Connection<Branch>} Protected branch connection object
+           */
+          branchProtectionRules(args: BranchesArgs): Connection<Branch> {
+            return connection('branchProtectionRules', args.after)
+          },
           /**
            * Mock repository `environments` query resolver.
            *

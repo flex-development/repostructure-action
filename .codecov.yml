@@ -24,6 +24,10 @@ component_management:
       - type: project
         target: 100%
   individual_components:
+    - component_id: branches
+      name: branches
+      paths:
+        - src/subdomains/branches/**/*.ts
     - component_id: config
       name: config
       paths:
@@ -114,6 +118,6 @@ ignore:
 
 profiling:
   critical_files_paths:
-    - src/octokit.module.ts
     - src/runner.module.ts
     - src/subdomains/config/config.module.ts
+    - src/subdomains/octokit/octokit.module.ts

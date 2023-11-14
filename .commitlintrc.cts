@@ -20,6 +20,7 @@ const config: UserConfig = {
       'always',
       scopes([
         'action',
+        'branches',
         'chore',
         'commands',
         'environments',
