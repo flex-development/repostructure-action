@@ -8,7 +8,7 @@ import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import OWNER from '#fixtures/owner.fixture'
 import REPO from '#fixtures/repo.fixture'
-import { LabelsQueryHandler } from '#src/labels/queries'
+import { LabelsHandler } from '#src/labels/queries'
 import type { Label } from '#src/labels/types'
 import type { Spy } from '#tests/interfaces'
 import { ConfigService } from '@nestjs/config'
@@ -32,7 +32,7 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
       providers: [
         CreateLabelHandler,
         DeleteLabelHandler,
-        LabelsQueryHandler,
+        LabelsHandler,
         OctokitProvider,
         TestSubject,
         UpdateLabelHandler,
@@ -56,7 +56,7 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
     let current: CreateLabelCommand[]
     let create: Spy<CreateLabelHandler['execute']>
     let incoming: CreateLabelCommand[]
-    let list: Spy<LabelsQueryHandler['execute']>
+    let list: Spy<LabelsHandler['execute']>
     let nodes: Label[]
     let remove: Spy<DeleteLabelHandler['execute']>
     let update: Spy<UpdateLabelHandler['execute']>
@@ -81,12 +81,12 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
 
     beforeEach(() => {
       create = vi.spyOn(CreateLabelHandler.prototype, 'execute')
-      list = vi.spyOn(LabelsQueryHandler.prototype, 'execute')
+      list = vi.spyOn(LabelsHandler.prototype, 'execute')
       remove = vi.spyOn(DeleteLabelHandler.prototype, 'execute')
       update = vi.spyOn(UpdateLabelHandler.prototype, 'execute')
 
       create = create.mockName('CreateLabelHandler#execute')
-      list = list.mockName('LabelsQueryHandler#execute')
+      list = list.mockName('LabelsHandler#execute')
       remove = remove.mockName('DeleteLabelHandler#execute')
       update = update.mockName('UpdateLabelHandler#execute')
     })

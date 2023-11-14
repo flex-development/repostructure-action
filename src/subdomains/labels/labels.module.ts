@@ -10,7 +10,7 @@ import {
   ManageLabelsHandler,
   UpdateLabelHandler
 } from './commands'
-import { LabelsQueryHandler } from './queries'
+import { LabelsHandler } from './queries'
 
 /**
  * Repository labels module.
@@ -21,7 +21,7 @@ import { LabelsQueryHandler } from './queries'
   providers: [
     CreateLabelHandler,
     DeleteLabelHandler,
-    LabelsQueryHandler,
+    LabelsHandler,
     ManageLabelsHandler,
     UpdateLabelHandler
   ]

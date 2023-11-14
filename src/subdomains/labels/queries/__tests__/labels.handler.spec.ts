@@ -1,6 +1,6 @@
 /**
- * @file Unit Tests - LabelsQueryHandler
- * @module repostructure/labels/queries/tests/unit/LabelsQueryHandler
+ * @file Unit Tests - LabelsHandler
+ * @module repostructure/labels/queries/tests/unit/LabelsHandler
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
@@ -12,7 +12,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 import TestSubject from '../labels.handler'
 import LabelsQuery from '../labels.query'
 
-describe('unit:labels/queries/LabelsQueryHandler', () => {
+describe('unit:labels/queries/LabelsHandler', () => {
   let ref: TestingModule
   let subject: TestSubject
 

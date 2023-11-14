@@ -18,7 +18,7 @@ import {
   UpdateLabelCommand,
   UpdateLabelHandler
 } from '#src/labels/commands'
-import { LabelsQuery, LabelsQueryHandler } from '#src/labels/queries'
+import { LabelsHandler, LabelsQuery } from '#src/labels/queries'
 import type { Label } from '#src/labels/types'
 import { OctokitModule } from '#src/octokit'
 import type { Spy } from '#tests/interfaces'
@@ -31,7 +31,7 @@ import TestSubject from '../labels.module'
 describe('integration:labels/LabelsModule', () => {
   let commands: CommandBus
   let create: Spy<CreateLabelHandler['execute']>
-  let list: Spy<LabelsQueryHandler['execute']>
+  let list: Spy<LabelsHandler['execute']>
   let manage: Spy<ManageLabelsHandler['execute']>
   let queries: QueryBus
   let ref: TestingModule
@@ -59,7 +59,7 @@ describe('integration:labels/LabelsModule', () => {
 
   beforeEach(() => {
     create = vi.spyOn(CreateLabelHandler.prototype, 'execute')
-    list = vi.spyOn(LabelsQueryHandler.prototype, 'execute')
+    list = vi.spyOn(LabelsHandler.prototype, 'execute')
     manage = vi.spyOn(ManageLabelsHandler.prototype, 'execute')
     remove = vi.spyOn(DeleteLabelHandler.prototype, 'execute')
     update = vi.spyOn(UpdateLabelHandler.prototype, 'execute')
@@ -71,7 +71,7 @@ describe('integration:labels/LabelsModule', () => {
     update = update.mockImplementation(async () => (<Label>{}))
 
     create = create.mockName('CreateLabelHandler#execute')
-    list = list.mockName('LabelsQueryHandler#execute')
+    list = list.mockName('LabelsHandler#execute')
     manage = manage.mockName('ManageLabelsHandler#execute')
     remove = remove.mockName('DeleteLabelHandler#execute')
     update = update.mockName('UpdateLabelHandler#execute')

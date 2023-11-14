@@ -1,6 +1,6 @@
 /**
- * @file Queries - LabelsQueryHandler
- * @module repostructure/labels/queries/LabelsQueryHandler
+ * @file Queries - LabelsHandler
+ * @module repostructure/labels/queries/LabelsHandler
  */
 
 import type { Label } from '#src/labels/types'
@@ -20,7 +20,7 @@ import LabelsQuery from './labels.query'
  * @implements {IQueryHandler<LabelsQuery, Label[]>}
  */
 @QueryHandler(LabelsQuery)
-class LabelsQueryHandler implements IQueryHandler<LabelsQuery, Label[]> {
+class LabelsHandler implements IQueryHandler<LabelsQuery, Label[]> {
   /**
    * GraphQL query.
    *
@@ -90,4 +90,4 @@ class LabelsQueryHandler implements IQueryHandler<LabelsQuery, Label[]> {
   }
 }
 
-export default LabelsQueryHandler
+export default LabelsHandler
