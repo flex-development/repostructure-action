@@ -15,7 +15,9 @@ describe('unit:labels/commands/UpdateLabelCommand', () => {
 
     beforeAll(() => {
       const { nodes } = data.data.repository.labels
-      subject = new TestSubject(label = at(nodes, -1))
+
+      label = at(nodes, -1)
+      subject = new TestSubject({ ...label, color: '#' + label.color })
     })
 
     it('should set #color', () => {

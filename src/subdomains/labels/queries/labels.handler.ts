@@ -44,6 +44,7 @@ class LabelsQueryHandler implements IQueryHandler<LabelsQuery, Label[]> {
     this.operation = graphql.print(gql`
       query Labels($cursor: String, $owner: String!, $repo: String!) {
         payload: repository(name: $repo, owner: $owner) {
+          id
           labels(
             after: $cursor,
             first: 100,

@@ -50,7 +50,7 @@ class CreateLabelCommand {
    * @param {CreateLabelCommand} params - Command parameters
    */
   constructor(params: CreateLabelCommand) {
-    this.color = params.color
+    this.color = params.color.replace(/^#/, '')
     this.description = params.description
     this.name = params.name
   }

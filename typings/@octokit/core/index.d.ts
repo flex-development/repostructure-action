@@ -1,16 +1,16 @@
 declare module '@octokit/core' {
-  import type { Octokit as OctokitBase } from '@octokit/core/dist-types'
+  import type * as core from '@octokit/core/dist-types'
   import type { GraphQLPaginate } from '@octokit/plugin-paginate-graphql'
 
   /**
    * Octokit client.
    *
-   * @see {@linkcode OctokitBase}
+   * @see {@linkcode core.Octokit}
    *
    * @class
-   * @extends {OctokitBase}
+   * @extends {core.Octokit}
    */
-  export class Octokit extends OctokitBase {
+  export class Octokit extends core.Octokit {
     /**
      * GraphQL plugin.
      *

@@ -86416,7 +86416,7 @@ var ConfigModule = ConfigModule_1 = class ConfigModule2 extends import_config.Co
       headers: { authorization: join_default2(["token", token2], " ") },
       owner,
       query: print(lib_default`
-        query GetRepository($owner: String!, $repo: String!) {
+        query Repository($owner: String!, $repo: String!) {
           payload: repository(name: $repo, owner: $owner) {
             id
           }
@@ -86479,7 +86479,7 @@ var CreateLabelCommand = class {
    * @param {CreateLabelCommand} params - Command parameters
    */
   constructor(params) {
-    this.color = params.color;
+    this.color = params.color.replace(/^#/, "");
     this.description = params.description;
     this.name = params.name;
   }
@@ -86935,7 +86935,7 @@ var __metadata6 = function(k, v) {
     return Reflect.metadata(k, v);
 };
 var _a3;
-var LabelsQueryHandler = class LabelsQueryHandler2 {
+var LabelsHandler = class LabelsHandler2 {
   octokit;
   /**
    * GraphQL query.
@@ -86960,6 +86960,7 @@ var LabelsQueryHandler = class LabelsQueryHandler2 {
     this.operation = print(lib_default`
       query Labels($cursor: String, $owner: String!, $repo: String!) {
         payload: repository(name: $repo, owner: $owner) {
+          id
           labels(
             after: $cursor,
             first: 100,
@@ -86997,11 +86998,11 @@ var LabelsQueryHandler = class LabelsQueryHandler2 {
     return payload.labels.nodes;
   }
 };
-LabelsQueryHandler = __decorate7([
+LabelsHandler = __decorate7([
   (0, import_cqrs3.QueryHandler)(labels_query_default),
   __metadata6("design:paramtypes", [typeof (_a3 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a3 : Object])
-], LabelsQueryHandler);
-var labels_handler_default = LabelsQueryHandler;
+], LabelsHandler);
+var labels_handler_default = LabelsHandler;
 
 // src/subdomains/labels/commands/manage.handler.ts
 var import_config5 = __toESM(require_config2(), 1);
@@ -87016,7 +87017,7 @@ var UpdateLabelCommand = class {
    * @public
    * @readonly
    * @instance
-   * @member {Optional<string>?} color
+   * @member {Nilable<string>?} color
    */
   color;
   /**
@@ -87043,7 +87044,7 @@ var UpdateLabelCommand = class {
    * @public
    * @readonly
    * @instance
-   * @member {Optional<string>?} name
+   * @member {Nilable<string>?} name
    */
   name;
   /**
@@ -87052,7 +87053,7 @@ var UpdateLabelCommand = class {
    * @param {UpdateLabelCommand} params - Command parameters
    */
   constructor(params) {
-    this.color = params.color;
+    this.color = params.color?.replace(/^#/, "");
     this.description = params.description;
     this.id = params.id;
     this.name = params.name;
