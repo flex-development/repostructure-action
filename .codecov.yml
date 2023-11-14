@@ -28,6 +28,10 @@ component_management:
       name: config
       paths:
         - src/subdomains/config/**/*.ts
+    - component_id: environments
+      name: environments
+      paths:
+        - src/subdomains/environments/**/*.ts
     - component_id: labels
       name: labels
       paths:

@@ -22,6 +22,7 @@ const config: UserConfig = {
         'action',
         'chore',
         'commands',
+        'environments',
         'inputs',
         'labels',
         'octokit',

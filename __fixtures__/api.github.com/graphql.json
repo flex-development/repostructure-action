@@ -2,6 +2,42 @@
   "data": {
     "repository": {
       "id": "R_kgDOJGP30w",
+      "environments": {
+        "edges": [
+          {
+            "cursor": "Y3Vyc29yOnYyOpKjZ3ByzkF9DhQ=",
+            "node": {
+              "id": "EN_kwDOJGP3085BfQ4U"
+            }
+          },
+          {
+            "cursor": "Y3Vyc29yOnYyOpKjbnBtzkF9Dhk=",
+            "node": {
+              "id": "EN_kwDOJGP3085BfQ4Z"
+            }
+          },
+          {
+            "cursor": "Y3Vyc29yOnYyOpKncmVsZWFzZc46U9Jb",
+            "node": {
+              "id": "EN_kwDOJGP30846U9Jb"
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "EN_kwDOJGP3085BfQ4U",
+            "name": "gpr"
+          },
+          {
+            "id": "EN_kwDOJGP3085BfQ4Z",
+            "name": "npm"
+          },
+          {
+            "id": "EN_kwDOJGP30846U9Jb",
+            "name": "release"
+          }
+        ]
+      },
       "labels": {
         "edges": [
           {

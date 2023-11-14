@@ -5,6 +5,7 @@
 
 import root from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
+import type { Environment } from '#src/environments'
 import type {
   CreateLabelCommand as CreateLabelInput,
   Label,
@@ -23,8 +24,9 @@ import {
 } from '@flex-development/tutils'
 import type { Connection } from '@octokit/graphql'
 import type {
-  QueryUserArgs,
-  RepositoryLabelsArgs
+  RepositoryEnvironmentsArgs as EnvironmentsArgs,
+  RepositoryLabelsArgs as LabelsArgs,
+  QueryUserArgs
 } from '@octokit/graphql-schema'
 import {
   GraphQLError,
@@ -95,6 +97,15 @@ const server: SetupServer = setupServer(
          */
         repository: {
           /**
+           * Mock repository `environments` query resolver.
+           *
+           * @param {EnvironmentsArgs} args - Query arguments
+           * @return {Connection<Environment>} Environment connection object
+           */
+          environments(args: EnvironmentsArgs): Connection<Environment> {
+            return connection('environments', args.after, 1)
+          },
+          /**
            * Node ID of repository.
            *
            * @const {string} id
@@ -103,10 +114,10 @@ const server: SetupServer = setupServer(
           /**
            * Mock repository `labels` query resolver.
            *
-           * @param {RepositoryLabelsArgs} args - Query arguments
+           * @param {LabelsArgs} args - Query arguments
            * @return {Connection<Label>} Label connection object
            */
-          labels(args: RepositoryLabelsArgs): Connection<Label> {
+          labels(args: LabelsArgs): Connection<Label> {
             return connection('labels', args.after)
           }
         },
