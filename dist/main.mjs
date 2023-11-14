@@ -86416,7 +86416,7 @@ var ConfigModule = ConfigModule_1 = class ConfigModule2 extends import_config.Co
       headers: { authorization: join_default2(["token", token2], " ") },
       owner,
       query: print(lib_default`
-        query GetRepository($owner: String!, $repo: String!) {
+        query Repository($owner: String!, $repo: String!) {
           payload: repository(name: $repo, owner: $owner) {
             id
           }
@@ -86479,7 +86479,7 @@ var CreateLabelCommand = class {
    * @param {CreateLabelCommand} params - Command parameters
    */
   constructor(params) {
-    this.color = params.color;
+    this.color = params.color.replace(/^#/, "");
     this.description = params.description;
     this.name = params.name;
   }
@@ -86960,6 +86960,7 @@ var LabelsQueryHandler = class LabelsQueryHandler2 {
     this.operation = print(lib_default`
       query Labels($cursor: String, $owner: String!, $repo: String!) {
         payload: repository(name: $repo, owner: $owner) {
+          id
           labels(
             after: $cursor,
             first: 100,
@@ -87016,7 +87017,7 @@ var UpdateLabelCommand = class {
    * @public
    * @readonly
    * @instance
-   * @member {Optional<string>?} color
+   * @member {Nilable<string>?} color
    */
   color;
   /**
@@ -87043,7 +87044,7 @@ var UpdateLabelCommand = class {
    * @public
    * @readonly
    * @instance
-   * @member {Optional<string>?} name
+   * @member {Nilable<string>?} name
    */
   name;
   /**
@@ -87052,7 +87053,7 @@ var UpdateLabelCommand = class {
    * @param {UpdateLabelCommand} params - Command parameters
    */
   constructor(params) {
-    this.color = params.color;
+    this.color = params.color?.replace(/^#/, "");
     this.description = params.description;
     this.id = params.id;
     this.name = params.name;
