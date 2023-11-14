@@ -167,7 +167,7 @@ class ConfigModule extends ConfigBaseModule {
       headers: { authorization: join(['token', token], ' ') },
       owner,
       query: graphql.print(gql`
-        query GetRepository($owner: String!, $repo: String!) {
+        query Repository($owner: String!, $repo: String!) {
           payload: repository(name: $repo, owner: $owner) {
             id
           }

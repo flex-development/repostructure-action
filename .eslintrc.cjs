@@ -10,7 +10,15 @@
  */
 const config = {
   extends: ['./.eslintrc.base.cjs'],
-  overrides: [...require('./.eslintrc.base.cjs').overrides],
+  overrides: [
+    ...require('./.eslintrc.base.cjs').overrides,
+    {
+      files: 'github.schema.gql',
+      parser: '@graphql-eslint/eslint-plugin',
+      plugins: ['@graphql-eslint'],
+      rules: {}
+    }
+  ],
   root: true
 }
 

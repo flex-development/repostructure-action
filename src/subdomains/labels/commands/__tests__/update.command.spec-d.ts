@@ -3,17 +3,17 @@
  * @module repostructure/labels/commands/tests/unit-d/UpdateLabelCommand
  */
 
-import type { Nilable, Optional, ReadonlyKeys } from '@flex-development/tutils'
+import type { Nilable, ReadonlyKeys } from '@flex-development/tutils'
 import type TestSubject from '../update.command'
 
 describe('unit-d:labels/commands/UpdateLabelCommand', () => {
   type RK = ReadonlyKeys<TestSubject>
 
-  it('should match [readonly color?: Optional<string>]', () => {
+  it('should match [readonly color?: Nilable<string>]', () => {
     expectTypeOf<RK>().extract<'color'>().toBeString()
     expectTypeOf<TestSubject>()
       .toHaveProperty('color')
-      .toEqualTypeOf<Optional<string>>()
+      .toEqualTypeOf<Nilable<string>>()
   })
 
   it('should match [readonly description?: Nilable<string>]', () => {
@@ -28,10 +28,10 @@ describe('unit-d:labels/commands/UpdateLabelCommand', () => {
     expectTypeOf<TestSubject>().toHaveProperty('id').toEqualTypeOf<string>()
   })
 
-  it('should match [readonly name?: Optional<string>]', () => {
+  it('should match [readonly name?: Nilable<string>]', () => {
     expectTypeOf<RK>().extract<'name'>().toBeString()
     expectTypeOf<TestSubject>()
       .toHaveProperty('name')
-      .toEqualTypeOf<Optional<string>>()
+      .toEqualTypeOf<Nilable<string>>()
   })
 })

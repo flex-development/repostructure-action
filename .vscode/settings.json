@@ -154,6 +154,8 @@
     "extensions": [
       "cjs",
       "cts",
+      "gql",
+      "graphql",
       "js",
       "json",
       "json5",
@@ -171,8 +173,8 @@
     "overrideConfigFile": ".eslintrc.cjs"
   },
   "eslint.validate": [
-    "graphql",
     "github-actions-workflow",
+    "graphql",
     "javascript",
     "json",
     "json5",

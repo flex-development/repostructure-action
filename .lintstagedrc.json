@@ -1,7 +1,8 @@
 {
-  "*": ["dprint check", "cspell lint --color --no-progress --relative $@"],
-  "**/*.{cjs,cts,gql,js,json,json5,jsonc,jsx,md,mjs,mts,ts,tsx,yaml,yml}": [
-    "eslint --exit-on-fatal-error"
+  "*": [
+    "dprint check",
+    "eslint --exit-on-fatal-error",
+    "cspell lint --color --no-progress --relative $@"
   ],
   "**/*.{cts,mts,ts}": "vitest run --changed --typecheck",
   "**/yarn.lock": "yarn dedupe --check",

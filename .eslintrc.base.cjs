@@ -59,6 +59,7 @@ const config = {
         'promise',
         'unicorn'
       ],
+      processor: '@graphql-eslint/graphql',
       rules: {
         '@typescript-eslint/adjacent-overload-signatures': 2,
         '@typescript-eslint/array-type': [
@@ -794,6 +795,7 @@ const config = {
       files: '**/*.d.+(cts|mts|ts)',
       rules: {
         '@typescript-eslint/ban-types': 0,
+        '@typescript-eslint/prefer-function-type': 0,
         '@typescript-eslint/triple-slash-reference': 0,
         'jsdoc/no-undefined-types': 0,
         'jsdoc/require-file-overview': 0,
@@ -1182,12 +1184,6 @@ const config = {
       }
     },
     {
-      files: ['docker*.yml', '**/*.md/*.+(yaml|yml)'],
-      rules: {
-        'yml/sort-keys': 0
-      }
-    },
-    {
       files: ['.github/workflows/*.yml', '.yarnrc.yml', 'docker*.yml'],
       rules: {
         'yml/key-name-casing': 0
@@ -1215,6 +1211,35 @@ const config = {
               'branding'
             ],
             pathPattern: '^$'
+          }
+        ]
+      }
+    },
+    {
+      files: ['docker*.yml', '**/*.md/*.+(yaml|yml)'],
+      rules: {
+        'yml/sort-keys': 0
+      }
+    },
+    {
+      extends: ['plugin:@graphql-eslint/operations-all'],
+      files: 'src/**/*.+(gql|graphql)',
+      parser: '@graphql-eslint/eslint-plugin',
+      plugins: ['@graphql-eslint'],
+      rules: {
+        '@graphql-eslint/alphabetize': [
+          2,
+          {
+            arguments: ['Field', 'Directive'],
+            definitions: true,
+            fields: [
+              'InputObjectTypeDefinition',
+              'InterfaceTypeDefinition',
+              'ObjectTypeDefinition'
+            ],
+            selections: ['OperationDefinition', 'FragmentDefinition'],
+            values: true,
+            variables: true
           }
         ]
       }

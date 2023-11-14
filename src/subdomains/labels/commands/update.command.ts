@@ -3,7 +3,7 @@
  * @module repostructure/labels/commands/UpdateLabelCommand
  */
 
-import type { Nilable, Optional } from '@flex-development/tutils'
+import type { Nilable } from '@flex-development/tutils'
 
 /**
  * Label update command.
@@ -20,9 +20,9 @@ class UpdateLabelCommand {
    * @public
    * @readonly
    * @instance
-   * @member {Optional<string>?} color
+   * @member {Nilable<string>?} color
    */
-  public readonly color?: Optional<string>
+  public readonly color?: Nilable<string>
 
   /**
    * A brief description of the label, such as its purpose.
@@ -50,9 +50,9 @@ class UpdateLabelCommand {
    * @public
    * @readonly
    * @instance
-   * @member {Optional<string>?} name
+   * @member {Nilable<string>?} name
    */
-  public readonly name?: Optional<string>
+  public readonly name?: Nilable<string>
 
   /**
    * Create a new label update command.
@@ -60,7 +60,7 @@ class UpdateLabelCommand {
    * @param {UpdateLabelCommand} params - Command parameters
    */
   constructor(params: UpdateLabelCommand) {
-    this.color = params.color
+    this.color = params.color?.replace(/^#/, '')
     this.description = params.description
     this.id = params.id
     this.name = params.name

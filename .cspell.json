@@ -30,6 +30,7 @@
     ".yarn/",
     "__fixtures__/api.github.com/",
     "dist/",
+    "github.schema.gql",
     "patches/",
     "yarn.lock"
   ],

@@ -25,6 +25,7 @@ yarn.lock
 !.cspell.json
 !.dprint.*
 !.github/
+!.graphqlrc.yml
 !.grease*.*
 !.lintstagedrc.json
 !.markdownlint.jsonc
