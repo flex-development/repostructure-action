@@ -26,7 +26,8 @@ const config: UserConfig = {
         'labels',
         'octokit',
         'queries',
-        'runner'
+        'runner',
+        'users'
       ])
     ]
   }

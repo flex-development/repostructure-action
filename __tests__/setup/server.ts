@@ -10,6 +10,7 @@ import type {
   Label,
   UpdateLabelCommand as UpdateLabelInput
 } from '#src/labels'
+import type { User } from '#src/users'
 import connection from '#tests/utils/connection'
 import gqh from '#tests/utils/gqh'
 import {
@@ -21,7 +22,10 @@ import {
   type Optional
 } from '@flex-development/tutils'
 import type { Connection } from '@octokit/graphql'
-import type { RepositoryLabelsArgs } from '@octokit/graphql-schema'
+import type {
+  QueryUserArgs,
+  RepositoryLabelsArgs
+} from '@octokit/graphql-schema'
 import {
   GraphQLError,
   graphql as executeGraphql,
@@ -143,6 +147,42 @@ const server: SetupServer = setupServer(
           }
 
           return { label: <Label>assign(node, args.input) }
+        },
+        /**
+         * Mock `user` query resolver.
+         *
+         * @see https://docs.github.com/graphql/reference/queries#user
+         *
+         * @param {QueryUserArgs} args - Query arguments
+         * @return {User} User object
+         * @throws {GraphQLError} If user is not found
+         */
+        user(args: QueryUserArgs): User {
+          /**
+           * User with username {@linkcode args.login}, if any.
+           *
+           * @const {Optional<User>} user
+           */
+          const user: Optional<User> = root.data.users.find(user => {
+            return user.login === args.login
+          })
+
+          // throw if user was not found
+          if (!user) {
+            /**
+             * Error message.
+             *
+             * @const {string} message
+             */
+            const message: string =
+              `Could not resolve to a User with the login of ${args.login}`
+
+            throw new GraphQLError(message, {
+              extensions: { type: 'NOT_FOUND' }
+            })
+          }
+
+          return user
         }
       },
       schema,

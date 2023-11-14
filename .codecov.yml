@@ -40,6 +40,10 @@ component_management:
       name: queries
       paths:
         - src/queries/*.ts
+    - component_id: users
+      name: users
+      paths:
+        - src/subdomains/users/**/*.ts
 
 coverage:
   precision: 2
