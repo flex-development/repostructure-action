@@ -24,6 +24,10 @@ component_management:
       - type: project
         target: 100%
   individual_components:
+    - component_id: apps
+      name: apps
+      paths:
+        - src/subdomains/apps/**/*.ts
     - component_id: branches
       name: branches
       paths:

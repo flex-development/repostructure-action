@@ -12,14 +12,18 @@ import type UpdateLabelInput from '#src/labels/commands/update.command'
 import type Label from '#src/labels/types/label'
 import type User from '#src/users/types/user'
 import connection from '#tests/utils/connection'
-import gqh from '#tests/utils/gqh'
+import * as mlly from '@flex-development/mlly'
+import pathe from '@flex-development/pathe'
 import {
   assign,
   includes,
   pick,
   select,
   shake,
-  type Optional
+  template,
+  type EmptyObject,
+  type Optional,
+  type TemplateData
 } from '@flex-development/tutils'
 import type { Connection } from '@octokit/graphql'
 import type {
@@ -28,14 +32,29 @@ import type {
   RepositoryLabelsArgs as LabelsArgs,
   QueryUserArgs
 } from '@octokit/graphql-schema'
+import type { Endpoints } from '@octokit/types'
 import {
   GraphQLError,
   graphql as executeGraphql,
   type ExecutionResult
 } from 'graphql'
-import { HttpResponse } from 'msw'
+import { HttpResponse, graphql, http } from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import schema from './graphql/schema'
+
+/**
+ * Get a relative path to a fixture file.
+ *
+ * @param {string} fmt - Fixture path template
+ * @param {TemplateData} data - Fixture path template data
+ * @return {string} Relative path to fixture
+ */
+const fixture = (fmt: string, data: TemplateData): string => {
+  return template(
+    pathe.join('__fixtures__', 'api.github.com', pathe.addExt(fmt, '.json')),
+    data
+  )
+}
 
 /**
  * Mock server.
@@ -46,7 +65,32 @@ import schema from './graphql/schema'
  * @const {SetupServer} server
  */
 const server: SetupServer = setupServer(
-  gqh.operation<ExecutionResult>(async ({
+  http.get<
+    Endpoints['GET /apps/{app_slug}']['parameters'],
+    EmptyObject,
+    Endpoints['GET /apps/{app_slug}']['response']['data']
+  >(/\/apps\/(?<app_slug>[\w-]+)$/, async ({ params }) => {
+    /**
+     * Relative path to app data fixture.
+     *
+     * @const {string} data
+     */
+    const data: string = fixture('apps/{app_slug}', params)
+
+    // return error response if app was not found
+    if (!mlly.isFile(data)) {
+      return HttpResponse.json({
+        documentation_url: 'https://docs.github.com/rest/apps/apps#get-an-app',
+        message: 'Not Found'
+      }, {
+        status: 404,
+        statusText: 'Not Found'
+      })
+    }
+
+    return HttpResponse.json(await import(data, { assert: { type: 'json' } }))
+  }),
+  graphql.link(/\/graphql$/).operation<ExecutionResult>(async ({
     operationName,
     query,
     variables
