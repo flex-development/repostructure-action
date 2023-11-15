@@ -267,7 +267,7 @@ const server: SetupServer = setupServer(
              * @const {string} message
              */
             const message: string =
-              `Could not resolve to a User with the login of ${args.login}`
+              `Could not resolve to a User with the login of '${args.login}'`
 
             throw new GraphQLError(message, {
               extensions: { type: 'NOT_FOUND' }

@@ -49,7 +49,10 @@ declare module '@octokit/graphql' {
    * @param {string} options.query - GraphQL operation
    * @return {Promise<{ payload: T }>} Payload object
    */
-  export const graphql: <T>(
+  const graphql: <T>(
     options: RequestParameters & { query: string }
   ) => Promise<{ payload: T }>
+
+  export { GraphqlResponseError } from '@octokit/graphql/dist-types/error'
+  export { graphql }
 }
