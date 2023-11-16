@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - TeamHandler
- * @module repostructure/teams/queries/tests/unit-d/TeamHandler
+ * @module teams/queries/tests/unit-d/TeamHandler
  */
 
 import type { Team } from '#src/teams/types'

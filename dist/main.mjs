@@ -86760,7 +86760,7 @@ var create_handler_default = CreateLabelHandler;
 // src/subdomains/labels/commands/delete.command.ts
 var DeleteLabelCommand = class {
   /**
-   * Node ID of label to update.
+   * Node ID of label to delete.
    *
    * @public
    * @readonly

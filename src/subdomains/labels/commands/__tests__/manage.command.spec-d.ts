@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - ManageLabelsCommand
- * @module repostructure/labels/commands/tests/unit-d/ManageLabelsCommand
+ * @module labels/commands/tests/unit-d/ManageLabelsCommand
  */
 
 import type { ReadonlyKeys } from '@flex-development/tutils'

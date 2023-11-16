@@ -1,6 +1,6 @@
 /**
  * @file Unit Tests - TeamsQuery
- * @module repostructure/teams/queries/tests/unit/TeamsQuery
+ * @module teams/queries/tests/unit/TeamsQuery
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }

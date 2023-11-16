@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - Label
- * @module repostructure/labels/types/tests/unit-d/Label
+ * @module labels/types/tests/unit-d/Label
  */
 
 import type { Nullable, ReadonlyKeys } from '@flex-development/tutils'

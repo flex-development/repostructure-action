@@ -1,6 +1,6 @@
 /**
  * @file Unit Tests - ConfigModule
- * @module repostructure/config/tests/unit/ConfigModule
+ * @module config/tests/unit/ConfigModule
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }

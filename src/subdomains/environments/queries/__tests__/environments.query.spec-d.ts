@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - EnvironmentsQuery
- * @module repostructure/environments/queries/tests/unit-d/EnvironmentsQuery
+ * @module environments/queries/tests/unit-d/EnvironmentsQuery
  */
 
 import type { RepositoryQuery } from '#src/queries'

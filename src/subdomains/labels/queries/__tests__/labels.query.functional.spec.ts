@@ -1,6 +1,6 @@
 /**
  * @file Functional Tests - LabelsQuery
- * @module repostructure/labels/queries/tests/functional/LabelsQuery
+ * @module labels/queries/tests/functional/LabelsQuery
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }

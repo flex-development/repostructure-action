@@ -10,7 +10,7 @@
  */
 class DeleteLabelCommand {
   /**
-   * Node ID of label to update.
+   * Node ID of label to delete.
    *
    * @public
    * @readonly

@@ -1,6 +1,6 @@
 /**
  * @file Unit Tests - UsersQuery
- * @module repostructure/users/queries/tests/unit/UsersQuery
+ * @module users/queries/tests/unit/UsersQuery
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }

@@ -1,6 +1,6 @@
 /**
  * @file Integration Tests - OctokitModule
- * @module repostructure/octokit/tests/integration/OctokitModule
+ * @module octokit/tests/integration/OctokitModule
  */
 
 import INPUT_CONFIG from '#fixtures/input-config.fixture'

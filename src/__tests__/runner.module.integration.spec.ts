@@ -1,6 +1,6 @@
 /**
  * @file Integration Tests - RunnerModule
- * @module repostructure/tests/integration/RunnerModule
+ * @module tests/integration/RunnerModule
  */
 
 import INPUT_CONFIG from '#fixtures/input-config.fixture'

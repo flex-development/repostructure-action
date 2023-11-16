@@ -1,6 +1,6 @@
 /**
  * @file Unit Tests - EnvironmentsHandler
- * @module repostructure/environments/queries/tests/unit/EnvironmentsHandler
+ * @module environments/queries/tests/unit/EnvironmentsHandler
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }

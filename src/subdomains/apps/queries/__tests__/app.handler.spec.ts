@@ -1,6 +1,6 @@
 /**
  * @file Unit Tests - AppHandler
- * @module repostructure/apps/queries/tests/unit/AppHandler
+ * @module apps/queries/tests/unit/AppHandler
  */
 
 import app from '#fixtures/api.github.com/apps/github-actions.json'

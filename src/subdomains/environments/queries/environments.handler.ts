@@ -11,7 +11,7 @@ import gql from 'graphql-tag'
 import EnvironmentsQuery from './environments.query'
 
 /**
- * Repository environments query handler.
+ * Environments query handler.
  *
  * @see {@linkcode Environment}
  * @see {@linkcode EnvironmentsQuery}
@@ -35,7 +35,7 @@ class EnvironmentsHandler
   protected readonly operation: string
 
   /**
-   * Create a new repository environments query handler.
+   * Create a new environments query handler.
    *
    * @see {@linkcode Octokit}
    *
@@ -66,7 +66,7 @@ class EnvironmentsHandler
   }
 
   /**
-   * Execute a repository environments query.
+   * Execute an environments query.
    *
    * @see {@linkcode Environment}
    * @see {@linkcode EnvironmentsQuery}
@@ -75,7 +75,7 @@ class EnvironmentsHandler
    * @async
    *
    * @param {EnvironmentsQuery} query - Query to execute
-   * @return {Promise<Environment[]>} Repository environments array
+   * @return {Promise<Environment[]>} Environments array
    */
   public async execute(query: EnvironmentsQuery): Promise<Environment[]> {
     const {

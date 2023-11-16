@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - User
- * @module repostructure/users/types/tests/unit-d/User
+ * @module users/types/tests/unit-d/User
  */
 
 import type { ReadonlyKeys } from '@flex-development/tutils'

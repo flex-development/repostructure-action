@@ -1,6 +1,6 @@
 /**
  * @file Unit Tests - LabelsHandler
- * @module repostructure/labels/queries/tests/unit/LabelsHandler
+ * @module labels/queries/tests/unit/LabelsHandler
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }

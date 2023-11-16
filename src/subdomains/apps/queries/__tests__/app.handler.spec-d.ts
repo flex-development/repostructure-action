@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - AppHandler
- * @module repostructure/apps/queries/tests/unit-d/AppHandler
+ * @module apps/queries/tests/unit-d/AppHandler
  */
 
 import type { App } from '#src/apps/types'

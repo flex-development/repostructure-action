@@ -1,6 +1,6 @@
 /**
  * @file Functional Tests - ConfigModule
- * @module repostructure/config/tests/functional/ConfigModule
+ * @module config/tests/functional/ConfigModule
  */
 
 import * as mlly from '@flex-development/mlly'

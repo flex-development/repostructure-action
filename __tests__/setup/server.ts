@@ -128,6 +128,16 @@ const server: SetupServer = setupServer(
           }
         },
         /**
+         * Mock `deleteEnvironment` mutation resolver.
+         *
+         * @see https://docs.github.com/graphql/reference/mutations#deleteenvironment
+         *
+         * @return {{ clientMutationId: string }} Client mutation id object
+         */
+        deleteEnvironment(): { clientMutationId: string } {
+          return { clientMutationId: CLIENT_MUTATION_ID }
+        },
+        /**
          * Mock `deleteLabel` mutation resolver.
          *
          * @see https://docs.github.com/graphql/reference/mutations#deletelabel

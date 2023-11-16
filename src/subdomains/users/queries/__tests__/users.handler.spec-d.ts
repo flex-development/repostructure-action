@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - UsersHandler
- * @module repostructure/users/queries/tests/unit-d/UsersHandler
+ * @module users/queries/tests/unit-d/UsersHandler
  */
 
 import type { User } from '#src/users/types'

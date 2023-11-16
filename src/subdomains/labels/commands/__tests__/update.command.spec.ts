@@ -1,6 +1,6 @@
 /**
  * @file Unit Tests - UpdateLabelCommand
- * @module repostructure/labels/commands/tests/unit/UpdateLabelCommand
+ * @module labels/commands/tests/unit/UpdateLabelCommand
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }

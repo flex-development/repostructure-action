@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - BranchesHandler
- * @module repostructure/branches/queries/tests/unit-d/BranchesHandler
+ * @module branches/queries/tests/unit-d/BranchesHandler
  */
 
 import type { Branch } from '#src/branches/types'

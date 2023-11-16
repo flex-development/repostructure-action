@@ -1,6 +1,6 @@
 /**
- * @file Functional Tests - DeleteLabelHandler
- * @module labels/commands/tests/functional/DeleteLabelHandler
+ * @file Functional Tests - DeleteEnvironmentHandler
+ * @module environments/commands/tests/functional/DeleteEnvironmentHandler
  */
 
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
@@ -9,10 +9,10 @@ import { get, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { Test, TestingModule } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
-import DeleteLabelCommand from '../delete.command'
+import DeleteEnvironmentCommand from '../delete.command'
 import TestSubject from '../delete.handler'
 
-describe('functional:labels/commands/DeleteLabelHandler', () => {
+describe('functional:environments/commands/DeleteEnvironmentHandler', () => {
   let octokit: Octokit
   let ref: TestingModule
   let subject: TestSubject
@@ -34,10 +34,11 @@ describe('functional:labels/commands/DeleteLabelHandler', () => {
   })
 
   describe('#execute', () => {
-    it('should delete repository label', async () => {
+    it('should delete environment', async () => {
       // Arrange
-      const id: string = faker.string.nanoid()
-      const command: DeleteLabelCommand = new DeleteLabelCommand({ id })
+      const command: DeleteEnvironmentCommand = new DeleteEnvironmentCommand({
+        id: faker.string.nanoid()
+      })
 
       // Act
       vi.spyOn(octokit, 'graphql')

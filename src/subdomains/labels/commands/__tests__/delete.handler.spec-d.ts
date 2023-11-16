@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - DeleteLabelHandler
- * @module repostructure/labels/commands/tests/unit-d/DeleteLabelHandler
+ * @module labels/commands/tests/unit-d/DeleteLabelHandler
  */
 
 import type { ICommandHandler } from '@nestjs/cqrs'

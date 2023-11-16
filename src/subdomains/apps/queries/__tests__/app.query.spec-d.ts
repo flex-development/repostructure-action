@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - AppQuery
- * @module repostructure/apps/queries/tests/unit-d/AppQuery
+ * @module apps/queries/tests/unit-d/AppQuery
  */
 
 import type TestSubject from '../app.query'

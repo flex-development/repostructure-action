@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - Environment
- * @module repostructure/environments/types/tests/unit-d/Environment
+ * @module environments/types/tests/unit-d/Environment
  */
 
 import type { ReadonlyKeys } from '@flex-development/tutils'

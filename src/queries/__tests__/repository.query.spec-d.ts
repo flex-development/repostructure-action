@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - RepositoryQuery
- * @module repostructure/queries/tests/unit-d/RepositoryQuery
+ * @module queries/tests/unit-d/RepositoryQuery
  */
 
 import type TestSubject from '../repository.query'

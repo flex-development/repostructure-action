@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - TeamQuery
- * @module repostructure/teams/queries/tests/unit-d/TeamQuery
+ * @module teams/queries/tests/unit-d/TeamQuery
  */
 
 import type TestSubject from '../team.query'

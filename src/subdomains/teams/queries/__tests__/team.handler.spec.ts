@@ -1,13 +1,17 @@
 /**
  * @file Unit Tests - TeamHandler
- * @module repostructure/teams/queries/tests/unit/TeamHandler
+ * @module teams/queries/tests/unit/TeamHandler
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Team } from '#src/teams/types'
-import { at, regexp, type Nullable,
-  type ObjectPlain } from '@flex-development/tutils'
+import {
+  at,
+  regexp,
+  type Nullable,
+  type ObjectPlain
+} from '@flex-development/tutils'
 import { Test, TestingModule } from '@nestjs/testing'
 import { GraphqlResponseError } from '@octokit/graphql'
 import TestSubject from '../team.handler'

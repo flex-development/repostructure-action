@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - Inputs
- * @module repostructure/config/interfaces/tests/unit-d/Inputs
+ * @module config/interfaces/tests/unit-d/Inputs
  */
 
 import type TestSubject from '../inputs.interface'

@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - LabelsQuery
- * @module repostructure/labels/queries/tests/unit-d/LabelsQuery
+ * @module labels/queries/tests/unit-d/LabelsQuery
  */
 
 import type { RepositoryQuery } from '#src/queries'

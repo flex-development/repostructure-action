@@ -1,6 +1,6 @@
 /**
  * @file Integration Tests - ConfigModule
- * @module repostructure/config/tests/integration/ConfigModule
+ * @module config/tests/integration/ConfigModule
  */
 
 import INPUT_CONFIG from '#fixtures/input-config.fixture'

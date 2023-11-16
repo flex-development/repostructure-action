@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - CreateLabelCommand
- * @module repostructure/labels/commands/tests/unit-d/CreateLabelCommand
+ * @module labels/commands/tests/unit-d/CreateLabelCommand
  */
 
 import type { Nilable, ReadonlyKeys } from '@flex-development/tutils'

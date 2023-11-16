@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - Team
- * @module repostructure/teams/types/tests/unit-d/Team
+ * @module teams/types/tests/unit-d/Team
  */
 
 import type { ReadonlyKeys } from '@flex-development/tutils'

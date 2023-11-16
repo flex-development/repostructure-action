@@ -1,11 +1,11 @@
 /**
- * @file Unit Tests - DeleteLabelCommand
- * @module labels/commands/tests/unit/DeleteLabelCommand
+ * @file Unit Tests - DeleteEnvironmentCommand
+ * @module environments/commands/tests/unit/DeleteEnvironmentCommand
  */
 
 import TestSubject from '../delete.command'
 
-describe('unit:labels/commands/DeleteLabelCommand', () => {
+describe('unit:environments/commands/DeleteEnvironmentCommand', () => {
   describe('constructor', () => {
     let subject: TestSubject
 

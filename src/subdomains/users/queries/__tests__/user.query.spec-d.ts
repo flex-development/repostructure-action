@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - UserQuery
- * @module repostructure/users/queries/tests/unit-d/UserQuery
+ * @module users/queries/tests/unit-d/UserQuery
  */
 
 import type TestSubject from '../user.query'

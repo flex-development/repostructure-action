@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - BranchesQuery
- * @module repostructure/branches/queries/tests/unit-d/BranchesQuery
+ * @module branches/queries/tests/unit-d/BranchesQuery
  */
 
 import type { RepositoryQuery } from '#src/queries'

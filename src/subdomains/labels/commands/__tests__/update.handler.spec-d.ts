@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - UpdateLabelHandler
- * @module repostructure/labels/commands/tests/unit-d/UpdateLabelHandler
+ * @module labels/commands/tests/unit-d/UpdateLabelHandler
  */
 
 import type { Label } from '#src/labels/types'

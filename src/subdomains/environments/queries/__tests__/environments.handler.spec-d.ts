@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - EnvironmentsHandler
- * @module repostructure/environments/queries/tests/unit-d/EnvironmentsHandler
+ * @module environments/queries/tests/unit-d/EnvironmentsHandler
  */
 
 import type { Environment } from '#src/environments/types'

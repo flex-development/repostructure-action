@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - LabelsHandler
- * @module repostructure/labels/queries/tests/unit-d/LabelsHandler
+ * @module labels/queries/tests/unit-d/LabelsHandler
  */
 
 import type { Label } from '#src/labels/types'

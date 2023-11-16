@@ -6,7 +6,7 @@
 import { RepositoryQuery } from '#src/queries'
 
 /**
- * Repository environments query.
+ * Environments query.
  *
  * @class
  * @extends {RepositoryQuery}

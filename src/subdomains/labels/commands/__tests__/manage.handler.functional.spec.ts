@@ -1,6 +1,6 @@
 /**
  * @file Functional Tests - ManageLabelsHandler
- * @module repostructure/labels/commands/tests/functional/ManageLabelsHandler
+ * @module labels/commands/tests/functional/ManageLabelsHandler
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }

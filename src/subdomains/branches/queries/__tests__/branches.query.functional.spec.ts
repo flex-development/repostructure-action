@@ -1,6 +1,6 @@
 /**
  * @file Functional Tests - BranchesQuery
- * @module repostructure/branches/queries/tests/functional/BranchesQuery
+ * @module branches/queries/tests/functional/BranchesQuery
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }

@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - Config
- * @module repostructure/config/interfaces/tests/unit-d/Config
+ * @module config/interfaces/tests/unit-d/Config
  */
 
 import type { Infrastructure } from '#src/types'

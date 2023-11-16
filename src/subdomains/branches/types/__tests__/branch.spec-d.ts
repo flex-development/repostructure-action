@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - Branch
- * @module repostructure/branches/types/tests/unit-d/Branch
+ * @module branches/types/tests/unit-d/Branch
  */
 
 import type { ReadonlyKeys } from '@flex-development/tutils'

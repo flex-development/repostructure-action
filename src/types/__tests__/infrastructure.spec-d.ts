@@ -1,6 +1,6 @@
 /**
  * @file Type Tests - Infrastructure
- * @module repostructure/types/tests/unit-d/Infrastructure
+ * @module types/tests/unit-d/Infrastructure
  */
 
 import type { CreateLabelCommand } from '#src/labels'
