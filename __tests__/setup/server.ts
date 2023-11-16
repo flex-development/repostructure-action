@@ -33,7 +33,8 @@ import type {
   RepositoryEnvironmentsArgs as EnvironmentsArgs,
   RepositoryLabelsArgs as LabelsArgs,
   QueryUserArgs,
-  OrganizationTeamArgs as TeamArgs
+  OrganizationTeamArgs as TeamArgs,
+  UpdateEnvironmentInput
 } from '@octokit/graphql-schema'
 import type { Endpoints } from '@octokit/types'
 import {
@@ -106,7 +107,7 @@ const server: SetupServer = setupServer(
          *
          * @see https://docs.github.com/graphql/reference/mutations#createlabel
          *
-         * @param {Record<'input', CreateLabelInput>} args - Mutation arguments
+         * @param {Record<'input', CreateLabelInput>} args - Mutation args
          * @return {{ label: Label }} Object containing new label
          * @throws {GraphQLError} If label name is not unique
          */
@@ -217,12 +218,52 @@ const server: SetupServer = setupServer(
           }
         },
         /**
+         * Mock `updateEnvironment` mutation resolver.
+         *
+         * @see https://docs.github.com/graphql/reference/mutations#updateenvironment
+         *
+         * @param {Record<'input', UpdateEnvironmentInput>} args - Mutation args
+         * @return {{ environment: Environment }} Updated environment object
+         * @throws {GraphQLError} If environment to update is not found
+         */
+        updateEnvironment(
+          args: Record<'input', UpdateEnvironmentInput>
+        ): { environment: Environment } {
+          const { nodes } = root.data.repository.environments
+
+          /**
+           * Environment to update.
+           *
+           * @const {Optional<Environment>} node
+           */
+          const node: Optional<Environment> = nodes.find(({ id }) => {
+            return id === args.input.environmentId
+          })
+
+          // throw if environment was not found
+          if (!node) {
+            /**
+             * Error message.
+             *
+             * @const {string} message
+             */
+            const message: string =
+              `Could not resolve to a node with the global id of ${args.input.environmentId}`
+
+            throw new GraphQLError(message, {
+              extensions: { type: 'NOT_FOUND' }
+            })
+          }
+
+          return { environment: node }
+        },
+        /**
          * Mock `updateLabel` mutation resolver.
          *
          * @see https://docs.github.com/graphql/reference/mutations#updatelabel
          *
-         * @param {Record<'input', UpdateLabelInput>} args - Mutation arguments
-         * @return {{ label: Label }} Object containing updated label
+         * @param {Record<'input', UpdateLabelInput>} args - Mutation args
+         * @return {{ label: Label }} Updated label object
          * @throws {GraphQLError} If label to update is not found
          */
         updateLabel(args: Record<'input', UpdateLabelInput>): { label: Label } {

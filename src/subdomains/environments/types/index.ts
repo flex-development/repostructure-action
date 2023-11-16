@@ -4,3 +4,4 @@
  */
 
 export type { default as Environment } from './environment'
+export type { default as Reviewers } from './reviewers'

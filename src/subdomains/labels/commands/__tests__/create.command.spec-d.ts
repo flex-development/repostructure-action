@@ -14,7 +14,7 @@ describe('unit-d:labels/commands/CreateLabelCommand', () => {
     expectTypeOf<TestSubject>().toHaveProperty('color').toEqualTypeOf<string>()
   })
 
-  it('should match [readonly description?: Nilable<string>]', () => {
+  it('should match [readonly description?: Nullable<string>]', () => {
     expectTypeOf<RK>().extract<'description'>().toBeString()
     expectTypeOf<TestSubject>()
       .toHaveProperty('description')

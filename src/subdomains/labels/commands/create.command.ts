@@ -3,7 +3,7 @@
  * @module repostructure/labels/commands/CreateLabelCommand
  */
 
-import type { Nilable } from '@flex-development/tutils'
+import { get, type Nullable } from '@flex-development/tutils'
 
 /**
  * Label creation command.
@@ -30,9 +30,9 @@ class CreateLabelCommand {
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<string>?} description
+   * @member {Nullable<string>?} description
    */
-  public readonly description?: Nilable<string>
+  public readonly description?: Nullable<string>
 
   /**
    * Label name.
@@ -51,7 +51,7 @@ class CreateLabelCommand {
    */
   constructor(params: CreateLabelCommand) {
     this.color = params.color.replace(/^#/, '')
-    this.description = params.description
+    this.description = get(params, 'description', null)
     this.name = params.name
   }
 }

@@ -9,14 +9,14 @@ import type TestSubject from '../update.command'
 describe('unit-d:labels/commands/UpdateLabelCommand', () => {
   type RK = ReadonlyKeys<TestSubject>
 
-  it('should match [readonly color?: Nilable<string>]', () => {
+  it('should match [readonly color?: Nullable<string>]', () => {
     expectTypeOf<RK>().extract<'color'>().toBeString()
     expectTypeOf<TestSubject>()
       .toHaveProperty('color')
       .toEqualTypeOf<Nilable<string>>()
   })
 
-  it('should match [readonly description?: Nilable<string>]', () => {
+  it('should match [readonly description?: Nullable<string>]', () => {
     expectTypeOf<RK>().extract<'description'>().toBeString()
     expectTypeOf<TestSubject>()
       .toHaveProperty('description')
@@ -28,7 +28,7 @@ describe('unit-d:labels/commands/UpdateLabelCommand', () => {
     expectTypeOf<TestSubject>().toHaveProperty('id').toEqualTypeOf<string>()
   })
 
-  it('should match [readonly name?: Nilable<string>]', () => {
+  it('should match [readonly name?: Nullable<string>]', () => {
     expectTypeOf<RK>().extract<'name'>().toBeString()
     expectTypeOf<TestSubject>()
       .toHaveProperty('name')

@@ -3,7 +3,7 @@
  * @module repostructure/labels/commands/UpdateLabelCommand
  */
 
-import type { Nilable } from '@flex-development/tutils'
+import { get, type Nullable } from '@flex-development/tutils'
 
 /**
  * Label update command.
@@ -17,22 +17,26 @@ class UpdateLabelCommand {
    * A `6` character hex code, without the leading #, identifying the updated
    * color of the label.
    *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nilable<string>?} color
-   */
-  public readonly color?: Nilable<string>
-
-  /**
-   * A brief description of the label, such as its purpose.
+   * @default null
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<string>?} description
+   * @member {Nullable<string>?} color
    */
-  public readonly description?: Nilable<string>
+  public readonly color?: Nullable<string>
+
+  /**
+   * A brief description of the label, such as its purpose.
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<string>?} description
+   */
+  public readonly description?: Nullable<string>
 
   /**
    * Node ID of label to update.
@@ -47,12 +51,14 @@ class UpdateLabelCommand {
   /**
    * New label name.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<string>?} name
+   * @member {Nullable<string>?} name
    */
-  public readonly name?: Nilable<string>
+  public readonly name?: Nullable<string>
 
   /**
    * Create a new label update command.
@@ -60,10 +66,12 @@ class UpdateLabelCommand {
    * @param {UpdateLabelCommand} params - Command parameters
    */
   constructor(params: UpdateLabelCommand) {
-    this.color = params.color?.replace(/^#/, '')
-    this.description = params.description
+    this.color = get(params, 'color', null)
+    this.description = get(params, 'description', null)
     this.id = params.id
-    this.name = params.name
+    this.name = get(params, 'name', null)
+
+    this.color && (this.color = this.color.replace(/^#/, ''))
   }
 }
 

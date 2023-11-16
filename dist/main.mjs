@@ -20490,16 +20490,16 @@ var require_shared_utils = __commonJS({
     exports.isFunction = isFunction4;
     var isString5 = (val) => typeof val === "string";
     exports.isString = isString5;
-    var isNumber = (val) => typeof val === "number";
-    exports.isNumber = isNumber;
+    var isNumber2 = (val) => typeof val === "number";
+    exports.isNumber = isNumber2;
     var isConstructor = (val) => val === "constructor";
     exports.isConstructor = isConstructor;
     var isNil = (val) => (0, exports.isUndefined)(val) || val === null;
     exports.isNil = isNil;
     var isEmpty = (array) => !(array && array.length > 0);
     exports.isEmpty = isEmpty;
-    var isSymbol = (val) => typeof val === "symbol";
-    exports.isSymbol = isSymbol;
+    var isSymbol2 = (val) => typeof val === "symbol";
+    exports.isSymbol = isSymbol2;
   }
 });
 
@@ -45233,10 +45233,10 @@ var require_isSymbol = __commonJS({
     var baseGetTag = require_baseGetTag();
     var isObjectLike4 = require_isObjectLike();
     var symbolTag = "[object Symbol]";
-    function isSymbol(value) {
+    function isSymbol2(value) {
       return typeof value == "symbol" || isObjectLike4(value) && baseGetTag(value) == symbolTag;
     }
-    module.exports = isSymbol;
+    module.exports = isSymbol2;
   }
 });
 
@@ -45244,7 +45244,7 @@ var require_isSymbol = __commonJS({
 var require_isKey = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/_isKey.js"(exports, module) {
     var isArray4 = require_isArray();
-    var isSymbol = require_isSymbol();
+    var isSymbol2 = require_isSymbol();
     var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
     var reIsPlainProp = /^\w*$/;
     function isKey(value, object) {
@@ -45252,7 +45252,7 @@ var require_isKey = __commonJS({
         return false;
       }
       var type = typeof value;
-      if (type == "number" || type == "symbol" || type == "boolean" || value == null || isSymbol(value)) {
+      if (type == "number" || type == "symbol" || type == "boolean" || value == null || isSymbol2(value)) {
         return true;
       }
       return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object(object);
@@ -45832,7 +45832,7 @@ var require_baseToString = __commonJS({
     var Symbol2 = require_Symbol();
     var arrayMap = require_arrayMap();
     var isArray4 = require_isArray();
-    var isSymbol = require_isSymbol();
+    var isSymbol2 = require_isSymbol();
     var INFINITY = 1 / 0;
     var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
     var symbolToString = symbolProto ? symbolProto.toString : void 0;
@@ -45843,7 +45843,7 @@ var require_baseToString = __commonJS({
       if (isArray4(value)) {
         return arrayMap(value, baseToString) + "";
       }
-      if (isSymbol(value)) {
+      if (isSymbol2(value)) {
         return symbolToString ? symbolToString.call(value) : "";
       }
       var result = value + "";
@@ -45884,10 +45884,10 @@ var require_castPath = __commonJS({
 // node_modules/@nestjs/config/node_modules/lodash/_toKey.js
 var require_toKey = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/_toKey.js"(exports, module) {
-    var isSymbol = require_isSymbol();
+    var isSymbol2 = require_isSymbol();
     var INFINITY = 1 / 0;
     function toKey(value) {
-      if (typeof value == "string" || isSymbol(value)) {
+      if (typeof value == "string" || isSymbol2(value)) {
         return value;
       }
       var result = value + "";
@@ -45918,11 +45918,11 @@ var require_baseGet = __commonJS({
 var require_get = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/get.js"(exports, module) {
     var baseGet = require_baseGet();
-    function get2(object, path, defaultValue) {
+    function get3(object, path, defaultValue) {
       var result = object == null ? void 0 : baseGet(object, path);
       return result === void 0 ? defaultValue : result;
     }
-    module.exports = get2;
+    module.exports = get3;
   }
 });
 
@@ -73339,7 +73339,7 @@ var require_foldFlowLines = __commonJS({
         else
           end = lineWidth - indentAtStart;
       }
-      let split = void 0;
+      let split2 = void 0;
       let prev = void 0;
       let overflow = false;
       let i = -1;
@@ -73372,18 +73372,18 @@ var require_foldFlowLines = __commonJS({
           if (mode === FOLD_BLOCK)
             i = consumeMoreIndentedLines(text, i);
           end = i + endStep;
-          split = void 0;
+          split2 = void 0;
         } else {
           if (ch === " " && prev && prev !== " " && prev !== "\n" && prev !== "	") {
             const next = text[i + 1];
             if (next && next !== " " && next !== "\n" && next !== "	")
-              split = i;
+              split2 = i;
           }
           if (i >= end) {
-            if (split) {
-              folds.push(split);
-              end = split + endStep;
-              split = void 0;
+            if (split2) {
+              folds.push(split2);
+              end = split2 + endStep;
+              split2 = void 0;
             } else if (mode === FOLD_QUOTED) {
               while (prev === " " || prev === "	") {
                 prev = ch;
@@ -73396,7 +73396,7 @@ var require_foldFlowLines = __commonJS({
               folds.push(j);
               escapedFolds[j] = true;
               end = j + endStep;
-              split = void 0;
+              split2 = void 0;
             } else {
               overflow = true;
             }
@@ -76824,13 +76824,13 @@ var require_resolve_block_scalar = __commonJS({
       return { mode, indent: indent2, chomp, comment, length };
     }
     function splitLines(source2) {
-      const split = source2.split(/\n( *)/);
-      const first = split[0];
+      const split2 = source2.split(/\n( *)/);
+      const first = split2[0];
       const m = first.match(/^( *)/);
       const line0 = m?.[1] ? [m[1], first.slice(m[1].length)] : ["", first];
       const lines = [line0];
-      for (let i = 1; i < split.length; i += 2)
-        lines.push([split[i], split[i + 1]]);
+      for (let i = 1; i < split2.length; i += 2)
+        lines.push([split2[i], split2[i + 1]]);
       return lines;
     }
     exports.resolveBlockScalar = resolveBlockScalar;
@@ -81182,6 +81182,10 @@ var assignWith = (customizer, base, ...source2) => reduce(source2, (acc, src) =>
 var isString4 = (value) => typeof value == "string";
 var is_string_default4 = isString4;
 
+// node_modules/@flex-development/tutils/dist/utils/trim.mjs
+var trim3 = (str) => str.trim();
+var trim_default3 = trim3;
+
 // node_modules/@flex-development/tutils/dist/utils/is-array.mjs
 var isArray3 = (value) => Array.isArray(value);
 var is_array_default3 = isArray3;
@@ -81213,6 +81217,14 @@ var is_date_default = isDate;
 // node_modules/@flex-development/tutils/dist/utils/is-map.mjs
 var isMap = (value) => is_object_default2(value) && value.constructor === Map;
 var is_map_default = isMap;
+
+// node_modules/@flex-development/tutils/dist/utils/is-number.mjs
+var isNumber = (value) => typeof value == "number";
+var is_number_default = isNumber;
+
+// node_modules/@flex-development/tutils/dist/utils/is-symbol.mjs
+var isSymbol = (value) => typeof value == "symbol";
+var is_symbol_default = isSymbol;
 
 // node_modules/@flex-development/tutils/dist/utils/is-reg-exp.mjs
 var isRegExp = (value) => is_object_default2(value) && value.constructor === RegExp;
@@ -81269,6 +81281,33 @@ var is_uint8_clamped_array_default = isUint8ClampedArray;
 // node_modules/@flex-development/tutils/dist/utils/is-typed-array.mjs
 var isTypedArray = (value) => is_big_int64_array_default(value) || is_big_uint64_array_default(value) || is_float32_array_default(value) || is_float64_array_default(value) || is_int8_array_default(value) || is_int16_array_default(value) || is_int32_array_default(value) || is_uint8_array_default(value) || is_uint8_clamped_array_default(value) || is_uint16_array_default(value) || is_uint32_array_default(value);
 var is_typed_array_default = isTypedArray;
+
+// node_modules/@flex-development/tutils/dist/utils/is-nan.mjs
+var isNaN3 = (value) => is_number_default(value) && value !== +value;
+var is_nan_default2 = isNaN3;
+
+// node_modules/@flex-development/tutils/dist/utils/is-numeric.mjs
+var isNumeric = (value) => is_string_default4(value) && is_number_default(value = +value) && !is_nan_default2(value);
+var is_numeric_default = isNumeric;
+
+// node_modules/@flex-development/tutils/dist/utils/split.mjs
+var split = (str, separator, limit) => cast_default4(is_nil_default3(str) ? [] : str.split(separator, limit ?? void 0));
+var split_default = split;
+
+// node_modules/@flex-development/tutils/dist/utils/get.mjs
+var get = (target, path, fallback2) => {
+  let ret = is_symbol_default(path) ? void 0 : target;
+  if (has_own_default2(target, path) || is_symbol_default(path))
+    ret = target[cast_default4(path)];
+  else
+    for (const key2 of select2(split_default(path.toString(), /[.[\]]/g), null, trim_default3)) {
+      if (is_nil_default3(ret))
+        break;
+      ret = is_numeric_default(key2) && (is_array_default3(ret) || is_string_default4(ret)) ? at_default3(cast_default4(ret), +key2) : cast_default4(ret)[key2];
+    }
+  return cast_default4(fallback_default(ret, fallback2));
+};
+var get_default = get;
 
 // node_modules/@flex-development/tutils/dist/utils/join.mjs
 var join2 = (arr, separator, mapper) => cast_default4(select2(arr, null, cast_default4(mapper)).join(separator ?? void 0));
@@ -86461,7 +86500,7 @@ var CreateLabelCommand = class {
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<string>?} description
+   * @member {Nullable<string>?} description
    */
   description;
   /**
@@ -86480,7 +86519,7 @@ var CreateLabelCommand = class {
    */
   constructor(params) {
     this.color = params.color.replace(/^#/, "");
-    this.description = params.description;
+    this.description = get_default(params, "description", null);
     this.name = params.name;
   }
 };
@@ -87014,19 +87053,23 @@ var UpdateLabelCommand = class {
    * A `6` character hex code, without the leading #, identifying the updated
    * color of the label.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<string>?} color
+   * @member {Nullable<string>?} color
    */
   color;
   /**
    * A brief description of the label, such as its purpose.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<string>?} description
+   * @member {Nullable<string>?} description
    */
   description;
   /**
@@ -87041,10 +87084,12 @@ var UpdateLabelCommand = class {
   /**
    * New label name.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<string>?} name
+   * @member {Nullable<string>?} name
    */
   name;
   /**
@@ -87053,10 +87098,11 @@ var UpdateLabelCommand = class {
    * @param {UpdateLabelCommand} params - Command parameters
    */
   constructor(params) {
-    this.color = params.color?.replace(/^#/, "");
-    this.description = params.description;
+    this.color = get_default(params, "color", null);
+    this.description = get_default(params, "description", null);
     this.id = params.id;
-    this.name = params.name;
+    this.name = get_default(params, "name", null);
+    this.color && (this.color = this.color.replace(/^#/, ""));
   }
 };
 var update_command_default = UpdateLabelCommand;
@@ -87334,13 +87380,13 @@ var deepFindPathToProperty = (object, searchProp, path = []) => {
   }
   return [];
 };
-var get = (object, path) => {
+var get2 = (object, path) => {
   return path.reduce((current, nextProperty) => current[nextProperty], object);
 };
 var set = (object, path, mutator) => {
   const lastProperty = path[path.length - 1];
   const parentPath = [...path].slice(0, -1);
-  const parent = get(object, parentPath);
+  const parent = get2(object, parentPath);
   if (typeof mutator === "function") {
     parent[lastProperty] = mutator(parent[lastProperty]);
   } else {
@@ -87353,7 +87399,7 @@ var extractPageInfos = (responseData) => {
   const pageInfoPath = findPaginatedResourcePath(responseData);
   return {
     pathInQuery: pageInfoPath,
-    pageInfo: get(responseData, [...pageInfoPath, "pageInfo"])
+    pageInfo: get2(responseData, [...pageInfoPath, "pageInfo"])
   };
 };
 
@@ -87402,21 +87448,21 @@ var mergeResponses = (response1, response2) => {
   }
   const path = findPaginatedResourcePath(response1);
   const nodesPath = [...path, "nodes"];
-  const newNodes = get(response2, nodesPath);
+  const newNodes = get2(response2, nodesPath);
   if (newNodes) {
     set(response1, nodesPath, (values) => {
       return [...values, ...newNodes];
     });
   }
   const edgesPath = [...path, "edges"];
-  const newEdges = get(response2, edgesPath);
+  const newEdges = get2(response2, edgesPath);
   if (newEdges) {
     set(response1, edgesPath, (values) => {
       return [...values, ...newEdges];
     });
   }
   const pageInfoPath = [...path, "pageInfo"];
-  set(response1, pageInfoPath, get(response2, pageInfoPath));
+  set(response1, pageInfoPath, get2(response2, pageInfoPath));
   return response1;
 };
 
