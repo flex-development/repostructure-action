@@ -30,6 +30,7 @@ import {
 import type { Connection } from '@octokit/graphql'
 import type {
   RepositoryBranchProtectionRulesArgs as BranchesArgs,
+  CreateEnvironmentInput,
   RepositoryEnvironmentsArgs as EnvironmentsArgs,
   RepositoryLabelsArgs as LabelsArgs,
   QueryUserArgs,
@@ -103,12 +104,30 @@ const server: SetupServer = setupServer(
       operationName,
       rootValue: {
         /**
+         * Mock `createEnvironment` mutation resolver.
+         *
+         * @see https://docs.github.com/graphql/reference/mutations#createenvironment
+         *
+         * @param {Record<'input', CreateEnvironmentInput>} args - Mutation args
+         * @return {{ environment: Environment }} New environment payload
+         */
+        createEnvironment(
+          args: Record<'input', CreateEnvironmentInput>
+        ): { environment: Environment } {
+          return {
+            environment: {
+              id: faker.string.nanoid(),
+              name: args.input.name
+            }
+          }
+        },
+        /**
          * Mock `createLabel` mutation resolver.
          *
          * @see https://docs.github.com/graphql/reference/mutations#createlabel
          *
          * @param {Record<'input', CreateLabelInput>} args - Mutation args
-         * @return {{ label: Label }} Object containing new label
+         * @return {{ label: Label }} New label payload
          * @throws {GraphQLError} If label name is not unique
          */
         createLabel(args: Record<'input', CreateLabelInput>): { label: Label } {
@@ -133,7 +152,7 @@ const server: SetupServer = setupServer(
          *
          * @see https://docs.github.com/graphql/reference/mutations#deleteenvironment
          *
-         * @return {{ clientMutationId: string }} Client mutation id object
+         * @return {{ clientMutationId: string }} Deleted environment payload
          */
         deleteEnvironment(): { clientMutationId: string } {
           return { clientMutationId: CLIENT_MUTATION_ID }
@@ -143,7 +162,7 @@ const server: SetupServer = setupServer(
          *
          * @see https://docs.github.com/graphql/reference/mutations#deletelabel
          *
-         * @return {{ clientMutationId: string }} Client mutation id object
+         * @return {{ clientMutationId: string }} Deleted label payload
          */
         deleteLabel(): { clientMutationId: string } {
           return { clientMutationId: CLIENT_MUTATION_ID }
@@ -223,7 +242,7 @@ const server: SetupServer = setupServer(
          * @see https://docs.github.com/graphql/reference/mutations#updateenvironment
          *
          * @param {Record<'input', UpdateEnvironmentInput>} args - Mutation args
-         * @return {{ environment: Environment }} Updated environment object
+         * @return {{ environment: Environment }} Updated environment payload
          * @throws {GraphQLError} If environment to update is not found
          */
         updateEnvironment(
@@ -248,7 +267,7 @@ const server: SetupServer = setupServer(
              * @const {string} message
              */
             const message: string =
-              `Could not resolve to a node with the global id of ${args.input.environmentId}`
+              `Could not resolve to a node with the global id of '${args.input.environmentId}'`
 
             throw new GraphQLError(message, {
               extensions: { type: 'NOT_FOUND' }
@@ -263,7 +282,7 @@ const server: SetupServer = setupServer(
          * @see https://docs.github.com/graphql/reference/mutations#updatelabel
          *
          * @param {Record<'input', UpdateLabelInput>} args - Mutation args
-         * @return {{ label: Label }} Updated label object
+         * @return {{ label: Label }} Updated label payload
          * @throws {GraphQLError} If label to update is not found
          */
         updateLabel(args: Record<'input', UpdateLabelInput>): { label: Label } {
@@ -286,7 +305,7 @@ const server: SetupServer = setupServer(
              * @const {string} message
              */
             const message: string =
-              `Could not resolve to Label node with the global id of ${args.input.id}`
+              `Could not resolve to Label node with the global id of '${args.input.id}'`
 
             throw new GraphQLError(message, {
               extensions: { type: 'NOT_FOUND' }

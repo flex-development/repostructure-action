@@ -1,6 +1,6 @@
 /**
- * @file Functional Tests - UpdateEnvironmentHandler
- * @module environments/commands/tests/functional/UpdateEnvironmentHandler
+ * @file Functional Tests - CreateEnvironmentHandler
+ * @module environments/commands/tests/functional/CreateEnvironmentHandler
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
@@ -15,10 +15,11 @@ import { ConfigService } from '@nestjs/config'
 import { CqrsModule } from '@nestjs/cqrs'
 import { Test, TestingModule } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
-import UpdateEnvironmentCommand from '../update.command'
-import TestSubject from '../update.handler'
+import CreateEnvironmentCommand from '../create.command'
+import TestSubject from '../create.handler'
+import UpdateEnvironmentHandler from '../update.handler'
 
-describe('functional:environments/commands/UpdateEnvironmentHandler', () => {
+describe('functional:environments/commands/CreateEnvironmentHandler', () => {
   let octokit: Octokit
   let ref: TestingModule
   let subject: TestSubject
@@ -31,12 +32,14 @@ describe('functional:environments/commands/UpdateEnvironmentHandler', () => {
         TeamHandler,
         TeamsHandler,
         TestSubject,
+        UpdateEnvironmentHandler,
         UserHandler,
         UsersHandler,
         {
           provide: ConfigService,
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
+            node_id: data.data.repository.id,
             owner: data.data.organization.login
           })
         }
@@ -48,34 +51,34 @@ describe('functional:environments/commands/UpdateEnvironmentHandler', () => {
   })
 
   describe('#execute', () => {
-    it('should update environment', async () => {
+    beforeEach(() => {
+      vi
+        .spyOn(UpdateEnvironmentHandler.prototype, 'execute')
+        .mockImplementationOnce(async cmd => ({ id: cmd.id, name: '' }))
+
+      vi.spyOn(octokit, 'graphql')
+    })
+
+    it('should create environment', async () => {
       // Arrange
-      const command: UpdateEnvironmentCommand = new UpdateEnvironmentCommand({
-        id: get(data.data.repository.environments.nodes, '-1.id'),
-        reviewers: {
-          teams: [get(data.data.organization.teams.nodes, '0.slug')],
-          users: [get(data.data.users, '0.login')]
-        }
+      const command: CreateEnvironmentCommand = new CreateEnvironmentCommand({
+        name: 'production',
+        reviewers: { users: [get(data.data.users, '0.login')] }
       })
 
       // Act
-      vi.spyOn(octokit, 'graphql')
       await subject.execute(command)
 
       // Expect
       expect(octokit.graphql).toHaveBeenCalledWith({
         input: {
           clientMutationId: CLIENT_MUTATION_ID,
-          environmentId: command.id,
-          preventSelfReview: command.prevent_self_review,
-          reviewers: [
-            get(data.data.users, '0.id'),
-            get(data.data.organization.teams.nodes, '0.id')
-          ],
-          waitTimer: command.wait_timer
+          name: command.name,
+          repositoryId: data.data.repository.id
         },
         query: get(subject, 'operation', <Optional<string>>undefined)
       })
+      expect(UpdateEnvironmentHandler.prototype.execute).toHaveBeenCalledOnce()
     })
   })
 })

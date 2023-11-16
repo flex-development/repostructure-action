@@ -50,8 +50,8 @@ describe('functional:labels/commands/UpdateLabelHandler', () => {
       await subject.execute(command)
 
       // Expect
-      expect(vi.mocked(octokit.graphql)).toHaveBeenCalledOnce()
-      expect(vi.mocked(octokit.graphql)).toHaveBeenCalledWith({
+      expect(octokit.graphql).toHaveBeenCalledOnce()
+      expect(octokit.graphql).toHaveBeenCalledWith({
         input: { ...command, clientMutationId: CLIENT_MUTATION_ID },
         query: get(subject, 'operation', <Optional<string>>undefined)
       })
