@@ -1,7 +1,21 @@
 {
   "data": {
+    "organization": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjQ4NzM5MDkx",
+      "login": "flex-development",
+      "teams": {
+        "nodes": [
+          {
+            "id": "T_kwDOAuezE84AYvVC",
+            "slug": "dependabot-review"
+          }
+        ]
+      }
+    },
     "repository": {
       "id": "R_kgDOJGP30w",
+      "name": "repostructure-action",
+      "nameWithOwner": "flex-development/repostructure-action",
       "branchProtectionRules": {
         "edges": [
           {

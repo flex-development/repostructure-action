@@ -5,8 +5,6 @@
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import INPUT_CONFIG from '#fixtures/input-config.fixture'
-import OWNER from '#fixtures/owner.fixture'
-import REPO from '#fixtures/repo.fixture'
 import { ConfigModule } from '#src/config'
 import {
   CreateLabelCommand,
@@ -117,7 +115,10 @@ describe('integration:labels/LabelsModule', () => {
 
   describe('queries', () => {
     describe.each<[string, LabelsQuery]>([
-      ['LabelsQuery', new LabelsQuery({ owner: OWNER, repo: REPO })]
+      ['LabelsQuery', new LabelsQuery({
+        owner: data.data.organization.login,
+        repo: data.data.repository.name
+      })]
     ])('%s', (key, query) => {
       it('should execute query', async () => {
         // Arrange

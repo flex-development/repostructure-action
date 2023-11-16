@@ -5,8 +5,6 @@
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import OWNER from '#fixtures/owner.fixture'
-import REPO from '#fixtures/repo.fixture'
 import type { Branch } from '#src/branches/types'
 import { Test, TestingModule } from '@nestjs/testing'
 import TestSubject from '../branches.handler'
@@ -34,8 +32,8 @@ describe('unit:branches/queries/BranchesHandler', () => {
     it('should return protected branch array', async () => {
       // Arrange
       const query: BranchesQuery = new BranchesQuery({
-        owner: OWNER,
-        repo: REPO
+        owner: data.data.organization.login,
+        repo: data.data.repository.name
       })
 
       // Act

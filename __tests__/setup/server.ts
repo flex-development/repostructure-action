@@ -10,6 +10,7 @@ import type Environment from '#src/environments/types/environment'
 import type CreateLabelInput from '#src/labels/commands/create.command'
 import type UpdateLabelInput from '#src/labels/commands/update.command'
 import type Label from '#src/labels/types/label'
+import type Team from '#src/teams/types/team'
 import type User from '#src/users/types/user'
 import connection from '#tests/utils/connection'
 import * as mlly from '@flex-development/mlly'
@@ -22,6 +23,7 @@ import {
   shake,
   template,
   type EmptyObject,
+  type Nullable,
   type Optional,
   type TemplateData
 } from '@flex-development/tutils'
@@ -30,7 +32,8 @@ import type {
   RepositoryBranchProtectionRulesArgs as BranchesArgs,
   RepositoryEnvironmentsArgs as EnvironmentsArgs,
   RepositoryLabelsArgs as LabelsArgs,
-  QueryUserArgs
+  QueryUserArgs,
+  OrganizationTeamArgs as TeamArgs
 } from '@octokit/graphql-schema'
 import type { Endpoints } from '@octokit/types'
 import {
@@ -90,34 +93,6 @@ const server: SetupServer = setupServer(
 
     return HttpResponse.json(await import(data, { assert: { type: 'json' } }))
   }),
-  http.get<
-    Endpoints['GET /orgs/{org}/teams/{team_slug}']['parameters'],
-    EmptyObject,
-    Endpoints['GET /orgs/{org}/teams/{team_slug}']['response']['data']
-  >(/\/orgs\/(?<org>[\w-]+)\/teams\/(?<team_slug>[\w-]+)$/, async ({
-    params
-  }) => {
-    /**
-     * Relative path to team data fixture.
-     *
-     * @const {string} data
-     */
-    const data: string = fixture('orgs/{org}/teams/{team_slug}', params)
-
-    // return error response if team was not found
-    if (!mlly.isFile(data)) {
-      return HttpResponse.json({
-        documentation_url:
-          'https://docs.github.com/rest/teams/teams#get-a-team-by-name',
-        message: 'Not Found'
-      }, {
-        status: 404,
-        statusText: 'Not Found'
-      })
-    }
-
-    return HttpResponse.json(await import(data, { assert: { type: 'json' } }))
-  }),
   graphql.link(/\/graphql$/).operation<ExecutionResult>(async ({
     operationName,
     query,
@@ -161,6 +136,35 @@ const server: SetupServer = setupServer(
          */
         deleteLabel(): { clientMutationId: string } {
           return { clientMutationId: CLIENT_MUTATION_ID }
+        },
+        /**
+         * Mock `organization` object.
+         *
+         * @see https://docs.github.com/graphql/reference/objects#organization
+         */
+        organization: {
+          /**
+           * Node ID of organization.
+           *
+           * @const {string} id
+           */
+          id: root.data.organization.id,
+          /**
+           * Organization login.
+           *
+           * @const {string} login
+           */
+          login: root.data.organization.login,
+          /**
+           * Mock organization `team` query resolver.
+           *
+           * @param {TeamArgs} args - Query arguments
+           * @return {Nullable<Team>} Team object or `null`
+           */
+          team(args: TeamArgs): Nullable<Team> {
+            const { nodes } = root.data.organization.teams
+            return nodes.find(node => node.slug === args.slug) ?? null
+          }
         },
         /**
          * Mock `repository` object.

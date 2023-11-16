@@ -198,7 +198,7 @@ class ConfigModule extends ConfigBaseModule {
       node_id: repository.payload.id,
       owner,
       repo,
-      token: core.getInput('token', { required: true })
+      token
     }
   }
 }

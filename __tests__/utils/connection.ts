@@ -18,7 +18,10 @@ import { GraphQLError } from 'graphql'
 /**
  * Mock data keys.
  */
-type ConnectionKey = Exclude<keyof typeof data.data.repository, 'id'>
+type ConnectionKey = Exclude<
+  keyof typeof data.data.repository,
+  'id' | 'name' | 'nameWithOwner'
+>
 
 /**
  * Create a connection object.

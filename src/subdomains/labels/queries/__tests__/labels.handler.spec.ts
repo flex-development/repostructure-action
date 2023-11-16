@@ -5,8 +5,6 @@
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import OWNER from '#fixtures/owner.fixture'
-import REPO from '#fixtures/repo.fixture'
 import type { Label } from '#src/labels/types'
 import { Test, TestingModule } from '@nestjs/testing'
 import TestSubject from '../labels.handler'
@@ -33,7 +31,10 @@ describe('unit:labels/queries/LabelsHandler', () => {
 
     it('should return repository labels array', async () => {
       // Arrange
-      const query: LabelsQuery = new LabelsQuery({ owner: OWNER, repo: REPO })
+      const query: LabelsQuery = new LabelsQuery({
+        owner: data.data.organization.login,
+        repo: data.data.repository.name
+      })
 
       // Act
       const result = await subject.execute(query)

@@ -3,8 +3,7 @@
  * @module repostructure/labels/queries/tests/functional/LabelsQuery
  */
 
-import OWNER from '#fixtures/owner.fixture'
-import REPO from '#fixtures/repo.fixture'
+import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import { RepositoryQuery } from '#src/queries'
 import TestSubject from '../labels.query'
 
@@ -15,8 +14,8 @@ describe('functional:labels/queries/LabelsQuery', () => {
     it('should extend RepositoryQuery', () => {
       // Arrange
       const params: Record<'owner' | 'repo', string> = {
-        owner: OWNER,
-        repo: REPO
+        owner: data.data.organization.login,
+        repo: data.data.repository.name
       }
 
       // Act

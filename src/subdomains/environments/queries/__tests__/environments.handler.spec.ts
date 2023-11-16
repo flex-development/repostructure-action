@@ -5,8 +5,6 @@
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import OWNER from '#fixtures/owner.fixture'
-import REPO from '#fixtures/repo.fixture'
 import type { Environment } from '#src/environments/types'
 import { Test, TestingModule } from '@nestjs/testing'
 import TestSubject from '../environments.handler'
@@ -34,8 +32,8 @@ describe('unit:environments/queries/EnvironmentsHandler', () => {
     it('should return environments array', async () => {
       // Arrange
       const query: EnvironmentsQuery = new EnvironmentsQuery({
-        owner: OWNER,
-        repo: REPO
+        owner: data.data.organization.login,
+        repo: data.data.repository.name
       })
 
       // Act

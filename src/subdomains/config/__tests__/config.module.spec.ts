@@ -6,8 +6,6 @@
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import INPUT_CONFIG from '#fixtures/input-config.fixture'
-import OWNER from '#fixtures/owner.fixture'
-import REPO from '#fixtures/repo.fixture'
 import env from '#tests/setup/env'
 import type { NodeError } from '@flex-development/errnode'
 import pathe from '@flex-development/pathe'
@@ -63,8 +61,8 @@ describe('unit:config/ConfigModule', () => {
         id: CLIENT_MUTATION_ID,
         infrastructure: expect.any(Object),
         node_id: data.data.repository.id,
-        owner: OWNER,
-        repo: REPO,
+        owner: data.data.organization.login,
+        repo: data.data.repository.name,
         token: import.meta.env.INPUT_TOKEN
       })
     })

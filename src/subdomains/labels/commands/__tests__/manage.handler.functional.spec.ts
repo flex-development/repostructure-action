@@ -6,8 +6,6 @@
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import OWNER from '#fixtures/owner.fixture'
-import REPO from '#fixtures/repo.fixture'
 import { LabelsHandler } from '#src/labels/queries'
 import type { Label } from '#src/labels/types'
 import type { Spy } from '#tests/interfaces'
@@ -41,8 +39,8 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
             node_id: data.data.repository.id,
-            owner: OWNER,
-            repo: REPO
+            owner: data.data.organization.login,
+            repo: data.data.repository.name
           })
         }
       ]

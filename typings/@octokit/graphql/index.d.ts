@@ -54,5 +54,9 @@ declare module '@octokit/graphql' {
   ) => Promise<{ payload: T }>
 
   export { GraphqlResponseError } from '@octokit/graphql/dist-types/error'
+  export type {
+    GraphQlEndpointOptions,
+    GraphQlQueryResponse
+  } from '@octokit/graphql/dist-types/types'
   export { graphql }
 }

@@ -4,6 +4,7 @@
  */
 
 import type { User } from '#src/users/types'
+import { reduceAsync } from '@flex-development/tutils'
 import { QueryBus, QueryHandler, type IQueryHandler } from '@nestjs/cqrs'
 import UserQuery from './user.query'
 import UsersQuery from './users.query'
@@ -41,19 +42,10 @@ class UsersHandler implements IQueryHandler<UsersQuery, User[]> {
    * @return {Promise<User[]>} GitHub user objects array
    */
   public async execute(query: UsersQuery): Promise<User[]> {
-    /**
-     * GitHub user objects.
-     *
-     * @const {User[]} users
-     */
-    const users: User[] = []
-
-    // get github users
-    for (const login of query.logins) {
-      users.push(await this.queries.execute(new UserQuery({ login })))
-    }
-
-    return users
+    return reduceAsync(query.logins, async (acc, login) => [
+      ...acc,
+      await this.queries.execute(new UserQuery({ login }))
+    ], <User[]>[])
   }
 }
 

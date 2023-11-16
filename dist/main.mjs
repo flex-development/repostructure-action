@@ -86434,7 +86434,7 @@ var ConfigModule = ConfigModule_1 = class ConfigModule2 extends import_config.Co
       node_id: repository.payload.id,
       owner,
       repo,
-      token: core.getInput("token", { required: true })
+      token: token2
     };
   }
 };
@@ -87560,11 +87560,10 @@ var runner_module_default = RunnerModule;
 
 // src/main.ts
 try {
-  const app = await import_core6.NestFactory.createApplicationContext(runner_module_default, {
+  await import_core6.NestFactory.createApplicationContext(runner_module_default, {
     abortOnError: false,
     logger: ["error", "fatal", "warn"]
   });
-  void await app.init();
 } catch (e) {
   core3.setFailed(e);
 }
