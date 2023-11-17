@@ -52,14 +52,13 @@ describe('unit:config/ConfigModule', () => {
 
   describe('.load', () => {
     it('should return configuration object', async () => {
-      // Act
-      const result = await TestSubject.load()
-
-      // Expect
-      expect(result).toMatchObject({
+      expect(await TestSubject.load()).toMatchObject({
         api: import.meta.env.INPUT_API,
         id: CLIENT_MUTATION_ID,
-        infrastructure: expect.any(Object),
+        infrastructure: {
+          environments: expect.any(Array),
+          labels: expect.any(Array)
+        },
         node_id: data.data.repository.id,
         owner: data.data.organization.login,
         repo: data.data.repository.name,

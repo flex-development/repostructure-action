@@ -738,7 +738,7 @@ var require_proxy = __commonJS({
       if (proxyVar) {
         try {
           return new URL(proxyVar);
-        } catch (_a11) {
+        } catch (_a16) {
           if (!proxyVar.startsWith("http://") && !proxyVar.startsWith("https://"))
             return new URL(`http://${proxyVar}`);
         }
@@ -17473,7 +17473,7 @@ var require_oidc_utils = __commonJS({
         return runtimeUrl;
       }
       static getCall(id_token_url) {
-        var _a11;
+        var _a16;
         return __awaiter4(this, void 0, void 0, function* () {
           const httpclient = _OidcClient.createHttpClient();
           const res = yield httpclient.getJson(id_token_url).catch((error2) => {
@@ -17483,7 +17483,7 @@ var require_oidc_utils = __commonJS({
  
         Error Message: ${error2.message}`);
           });
-          const id_token = (_a11 = res.result) === null || _a11 === void 0 ? void 0 : _a11.value;
+          const id_token = (_a16 = res.result) === null || _a16 === void 0 ? void 0 : _a16.value;
           if (!id_token) {
             throw new Error("Response json body do not have ID Token field");
           }
@@ -17571,7 +17571,7 @@ var require_summary = __commonJS({
           }
           try {
             yield access(pathFromEnv, fs_1.constants.R_OK | fs_1.constants.W_OK);
-          } catch (_a11) {
+          } catch (_a16) {
             throw new Error(`Unable to access summary file: '${pathFromEnv}'. Check if the file has correct read/write permissions.`);
           }
           this._filePath = pathFromEnv;
@@ -18091,13 +18091,13 @@ var require_tslib = __commonJS({
     var __extends4;
     var __assign4;
     var __rest4;
-    var __decorate19;
+    var __decorate25;
     var __param4;
     var __esDecorate4;
     var __runInitializers4;
     var __propKey4;
     var __setFunctionName4;
-    var __metadata14;
+    var __metadata19;
     var __awaiter4;
     var __generator4;
     var __exportStar4;
@@ -18180,7 +18180,7 @@ var require_tslib = __commonJS({
           }
         return t;
       };
-      __decorate19 = function(decorators, target, key2, desc) {
+      __decorate25 = function(decorators, target, key2, desc) {
         var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
           r = Reflect.decorate(decorators, target, key2, desc);
@@ -18254,7 +18254,7 @@ var require_tslib = __commonJS({
           name = name.description ? "[".concat(name.description, "]") : "";
         return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
       };
-      __metadata14 = function(metadataKey, metadataValue) {
+      __metadata19 = function(metadataKey, metadataValue) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
           return Reflect.metadata(metadataKey, metadataValue);
       };
@@ -18615,13 +18615,13 @@ var require_tslib = __commonJS({
       exporter("__extends", __extends4);
       exporter("__assign", __assign4);
       exporter("__rest", __rest4);
-      exporter("__decorate", __decorate19);
+      exporter("__decorate", __decorate25);
       exporter("__param", __param4);
       exporter("__esDecorate", __esDecorate4);
       exporter("__runInitializers", __runInitializers4);
       exporter("__propKey", __propKey4);
       exporter("__setFunctionName", __setFunctionName4);
-      exporter("__metadata", __metadata14);
+      exporter("__metadata", __metadata19);
       exporter("__awaiter", __awaiter4);
       exporter("__generator", __generator4);
       exporter("__exportStar", __exportStar4);
@@ -19004,8 +19004,8 @@ var require_Reflect = __commonJS({
               keys.push(key2);
             }
           }
-          for (var _a11 = 0, parentKeys_1 = parentKeys; _a11 < parentKeys_1.length; _a11++) {
-            var key2 = parentKeys_1[_a11];
+          for (var _a16 = 0, parentKeys_1 = parentKeys; _a16 < parentKeys_1.length; _a16++) {
+            var key2 = parentKeys_1[_a16];
             var hasKey = set2.has(key2);
             if (!hasKey) {
               set2.add(key2);
@@ -19742,13 +19742,13 @@ var require_tslib2 = __commonJS({
     var __extends4;
     var __assign4;
     var __rest4;
-    var __decorate19;
+    var __decorate25;
     var __param4;
     var __esDecorate4;
     var __runInitializers4;
     var __propKey4;
     var __setFunctionName4;
-    var __metadata14;
+    var __metadata19;
     var __awaiter4;
     var __generator4;
     var __exportStar4;
@@ -19831,7 +19831,7 @@ var require_tslib2 = __commonJS({
           }
         return t;
       };
-      __decorate19 = function(decorators, target, key2, desc) {
+      __decorate25 = function(decorators, target, key2, desc) {
         var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
           r = Reflect.decorate(decorators, target, key2, desc);
@@ -19905,7 +19905,7 @@ var require_tslib2 = __commonJS({
           name = name.description ? "[".concat(name.description, "]") : "";
         return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
       };
-      __metadata14 = function(metadataKey, metadataValue) {
+      __metadata19 = function(metadataKey, metadataValue) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
           return Reflect.metadata(metadataKey, metadataValue);
       };
@@ -20266,13 +20266,13 @@ var require_tslib2 = __commonJS({
       exporter("__extends", __extends4);
       exporter("__assign", __assign4);
       exporter("__rest", __rest4);
-      exporter("__decorate", __decorate19);
+      exporter("__decorate", __decorate25);
       exporter("__param", __param4);
       exporter("__esDecorate", __esDecorate4);
       exporter("__runInitializers", __runInitializers4);
       exporter("__propKey", __propKey4);
       exporter("__setFunctionName", __setFunctionName4);
-      exporter("__metadata", __metadata14);
+      exporter("__metadata", __metadata19);
       exporter("__awaiter", __awaiter4);
       exporter("__generator", __generator4);
       exporter("__exportStar", __exportStar4);
@@ -20944,7 +20944,7 @@ var require_module_decorator = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Module = void 0;
     var validate_module_keys_util_1 = require_validate_module_keys_util();
-    function Module7(metadata) {
+    function Module8(metadata) {
       const propsKeys = Object.keys(metadata);
       (0, validate_module_keys_util_1.validateModuleKeys)(propsKeys);
       return (target) => {
@@ -20955,7 +20955,7 @@ var require_module_decorator = __commonJS({
         }
       };
     }
-    exports.Module = Module7;
+    exports.Module = Module8;
   }
 });
 
@@ -25341,7 +25341,7 @@ var require_Subscription = __commonJS({
         this._finalizers = null;
       }
       Subscription2.prototype.unsubscribe = function() {
-        var e_1, _a11, e_2, _b6;
+        var e_1, _a16, e_2, _b10;
         var errors;
         if (!this.closed) {
           this.closed = true;
@@ -25358,8 +25358,8 @@ var require_Subscription = __commonJS({
                 e_1 = { error: e_1_1 };
               } finally {
                 try {
-                  if (_parentage_1_1 && !_parentage_1_1.done && (_a11 = _parentage_1.return))
-                    _a11.call(_parentage_1);
+                  if (_parentage_1_1 && !_parentage_1_1.done && (_a16 = _parentage_1.return))
+                    _a16.call(_parentage_1);
                 } finally {
                   if (e_1)
                     throw e_1.error;
@@ -25398,8 +25398,8 @@ var require_Subscription = __commonJS({
               e_2 = { error: e_2_1 };
             } finally {
               try {
-                if (_finalizers_1_1 && !_finalizers_1_1.done && (_b6 = _finalizers_1.return))
-                  _b6.call(_finalizers_1);
+                if (_finalizers_1_1 && !_finalizers_1_1.done && (_b10 = _finalizers_1.return))
+                  _b10.call(_finalizers_1);
               } finally {
                 if (e_2)
                   throw e_2.error;
@@ -25412,7 +25412,7 @@ var require_Subscription = __commonJS({
         }
       };
       Subscription2.prototype.add = function(teardown) {
-        var _a11;
+        var _a16;
         if (teardown && teardown !== this) {
           if (this.closed) {
             execFinalizer(teardown);
@@ -25423,7 +25423,7 @@ var require_Subscription = __commonJS({
               }
               teardown._addParent(this);
             }
-            (this._finalizers = (_a11 = this._finalizers) !== null && _a11 !== void 0 ? _a11 : []).push(teardown);
+            (this._finalizers = (_a16 = this._finalizers) !== null && _a16 !== void 0 ? _a16 : []).push(teardown);
           }
         }
       };
@@ -25620,7 +25620,7 @@ var require_errorContext = __commonJS({
         }
         cb();
         if (isRoot) {
-          var _a11 = context2, errorThrown = _a11.errorThrown, error2 = _a11.error;
+          var _a16 = context2, errorThrown = _a16.errorThrown, error2 = _a16.error;
           context2 = null;
           if (errorThrown) {
             throw error2;
@@ -25930,7 +25930,7 @@ var require_Observable = __commonJS({
         var _this = this;
         var subscriber = isSubscriber(observerOrNext) ? observerOrNext : new Subscriber_1.SafeSubscriber(observerOrNext, error2, complete);
         errorContext_1.errorContext(function() {
-          var _a11 = _this, operator = _a11.operator, source2 = _a11.source;
+          var _a16 = _this, operator = _a16.operator, source2 = _a16.source;
           subscriber.add(operator ? operator.call(subscriber, source2) : source2 ? _this._subscribe(subscriber) : _this._trySubscribe(subscriber));
         });
         return subscriber;
@@ -25962,8 +25962,8 @@ var require_Observable = __commonJS({
         });
       };
       Observable2.prototype._subscribe = function(subscriber) {
-        var _a11;
-        return (_a11 = this.source) === null || _a11 === void 0 ? void 0 : _a11.subscribe(subscriber);
+        var _a16;
+        return (_a16 = this.source) === null || _a16 === void 0 ? void 0 : _a16.subscribe(subscriber);
       };
       Observable2.prototype[observable_1.observable] = function() {
         return this;
@@ -25996,8 +25996,8 @@ var require_Observable = __commonJS({
     }();
     exports.Observable = Observable;
     function getPromiseCtor(promiseCtor) {
-      var _a11;
-      return (_a11 = promiseCtor !== null && promiseCtor !== void 0 ? promiseCtor : config_1.config.Promise) !== null && _a11 !== void 0 ? _a11 : Promise;
+      var _a16;
+      return (_a16 = promiseCtor !== null && promiseCtor !== void 0 ? promiseCtor : config_1.config.Promise) !== null && _a16 !== void 0 ? _a16 : Promise;
     }
     function isObserver(value) {
       return value && isFunction_1.isFunction(value.next) && isFunction_1.isFunction(value.error) && isFunction_1.isFunction(value.complete);
@@ -26206,32 +26206,32 @@ var require_isReadableStreamLike = __commonJS({
     var isFunction_1 = require_isFunction();
     function readableStreamLikeToAsyncGenerator(readableStream) {
       return __asyncGenerator4(this, arguments, function readableStreamLikeToAsyncGenerator_1() {
-        var reader, _a11, value, done;
-        return __generator4(this, function(_b6) {
-          switch (_b6.label) {
+        var reader, _a16, value, done;
+        return __generator4(this, function(_b10) {
+          switch (_b10.label) {
             case 0:
               reader = readableStream.getReader();
-              _b6.label = 1;
+              _b10.label = 1;
             case 1:
-              _b6.trys.push([1, , 9, 10]);
-              _b6.label = 2;
+              _b10.trys.push([1, , 9, 10]);
+              _b10.label = 2;
             case 2:
               if (false)
                 return [3, 8];
               return [4, __await4(reader.read())];
             case 3:
-              _a11 = _b6.sent(), value = _a11.value, done = _a11.done;
+              _a16 = _b10.sent(), value = _a16.value, done = _a16.done;
               if (!done)
                 return [3, 5];
               return [4, __await4(void 0)];
             case 4:
-              return [2, _b6.sent()];
+              return [2, _b10.sent()];
             case 5:
               return [4, __await4(value)];
             case 6:
-              return [4, _b6.sent()];
+              return [4, _b10.sent()];
             case 7:
-              _b6.sent();
+              _b10.sent();
               return [3, 2];
             case 8:
               return [3, 10];
@@ -26467,7 +26467,7 @@ var require_innerFrom = __commonJS({
     exports.fromPromise = fromPromise;
     function fromIterable(iterable) {
       return new Observable_1.Observable(function(subscriber) {
-        var e_1, _a11;
+        var e_1, _a16;
         try {
           for (var iterable_1 = __values4(iterable), iterable_1_1 = iterable_1.next(); !iterable_1_1.done; iterable_1_1 = iterable_1.next()) {
             var value = iterable_1_1.value;
@@ -26480,8 +26480,8 @@ var require_innerFrom = __commonJS({
           e_1 = { error: e_1_1 };
         } finally {
           try {
-            if (iterable_1_1 && !iterable_1_1.done && (_a11 = iterable_1.return))
-              _a11.call(iterable_1);
+            if (iterable_1_1 && !iterable_1_1.done && (_a16 = iterable_1.return))
+              _a16.call(iterable_1);
           } finally {
             if (e_1)
               throw e_1.error;
@@ -26505,42 +26505,42 @@ var require_innerFrom = __commonJS({
     exports.fromReadableStreamLike = fromReadableStreamLike;
     function process2(asyncIterable, subscriber) {
       var asyncIterable_1, asyncIterable_1_1;
-      var e_2, _a11;
+      var e_2, _a16;
       return __awaiter4(this, void 0, void 0, function() {
         var value, e_2_1;
-        return __generator4(this, function(_b6) {
-          switch (_b6.label) {
+        return __generator4(this, function(_b10) {
+          switch (_b10.label) {
             case 0:
-              _b6.trys.push([0, 5, 6, 11]);
+              _b10.trys.push([0, 5, 6, 11]);
               asyncIterable_1 = __asyncValues4(asyncIterable);
-              _b6.label = 1;
+              _b10.label = 1;
             case 1:
               return [4, asyncIterable_1.next()];
             case 2:
-              if (!(asyncIterable_1_1 = _b6.sent(), !asyncIterable_1_1.done))
+              if (!(asyncIterable_1_1 = _b10.sent(), !asyncIterable_1_1.done))
                 return [3, 4];
               value = asyncIterable_1_1.value;
               subscriber.next(value);
               if (subscriber.closed) {
                 return [2];
               }
-              _b6.label = 3;
+              _b10.label = 3;
             case 3:
               return [3, 1];
             case 4:
               return [3, 11];
             case 5:
-              e_2_1 = _b6.sent();
+              e_2_1 = _b10.sent();
               e_2 = { error: e_2_1 };
               return [3, 11];
             case 6:
-              _b6.trys.push([6, , 9, 10]);
-              if (!(asyncIterable_1_1 && !asyncIterable_1_1.done && (_a11 = asyncIterable_1.return)))
+              _b10.trys.push([6, , 9, 10]);
+              if (!(asyncIterable_1_1 && !asyncIterable_1_1.done && (_a16 = asyncIterable_1.return)))
                 return [3, 8];
-              return [4, _a11.call(asyncIterable_1)];
+              return [4, _a16.call(asyncIterable_1)];
             case 7:
-              _b6.sent();
-              _b6.label = 8;
+              _b10.sent();
+              _b10.label = 8;
             case 8:
               return [3, 10];
             case 9:
@@ -26625,11 +26625,11 @@ var require_OperatorSubscriber = __commonJS({
         return _this;
       }
       OperatorSubscriber2.prototype.unsubscribe = function() {
-        var _a11;
+        var _a16;
         if (!this.shouldUnsubscribe || this.shouldUnsubscribe()) {
           var closed_1 = this.closed;
           _super.prototype.unsubscribe.call(this);
-          !closed_1 && ((_a11 = this.onFinalize) === null || _a11 === void 0 ? void 0 : _a11.call(this));
+          !closed_1 && ((_a16 = this.onFinalize) === null || _a16 === void 0 ? void 0 : _a16.call(this));
         }
       };
       return OperatorSubscriber2;
@@ -26822,7 +26822,7 @@ var require_AsyncAction = __commonJS({
         return _this;
       }
       AsyncAction2.prototype.schedule = function(state, delay) {
-        var _a11;
+        var _a16;
         if (delay === void 0) {
           delay = 0;
         }
@@ -26837,7 +26837,7 @@ var require_AsyncAction = __commonJS({
         }
         this.pending = true;
         this.delay = delay;
-        this.id = (_a11 = this.id) !== null && _a11 !== void 0 ? _a11 : this.requestAsyncId(scheduler, this.id, delay);
+        this.id = (_a16 = this.id) !== null && _a16 !== void 0 ? _a16 : this.requestAsyncId(scheduler, this.id, delay);
         return this;
       };
       AsyncAction2.prototype.requestAsyncId = function(scheduler, _id, delay) {
@@ -26886,7 +26886,7 @@ var require_AsyncAction = __commonJS({
       };
       AsyncAction2.prototype.unsubscribe = function() {
         if (!this.closed) {
-          var _a11 = this, id = _a11.id, scheduler = _a11.scheduler;
+          var _a16 = this, id = _a16.id, scheduler = _a16.scheduler;
           var actions = scheduler.actions;
           this.work = this.state = this.scheduler = null;
           this.pending = false;
@@ -27186,7 +27186,7 @@ var require_bufferCount = __commonJS({
         var buffers = [];
         var count = 0;
         source2.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var e_1, _a11, e_2, _b6;
+          var e_1, _a16, e_2, _b10;
           var toEmit = null;
           if (count++ % startBufferEvery === 0) {
             buffers.push([]);
@@ -27204,8 +27204,8 @@ var require_bufferCount = __commonJS({
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (buffers_1_1 && !buffers_1_1.done && (_a11 = buffers_1.return))
-                _a11.call(buffers_1);
+              if (buffers_1_1 && !buffers_1_1.done && (_a16 = buffers_1.return))
+                _a16.call(buffers_1);
             } finally {
               if (e_1)
                 throw e_1.error;
@@ -27222,8 +27222,8 @@ var require_bufferCount = __commonJS({
               e_2 = { error: e_2_1 };
             } finally {
               try {
-                if (toEmit_1_1 && !toEmit_1_1.done && (_b6 = toEmit_1.return))
-                  _b6.call(toEmit_1);
+                if (toEmit_1_1 && !toEmit_1_1.done && (_b10 = toEmit_1.return))
+                  _b10.call(toEmit_1);
               } finally {
                 if (e_2)
                   throw e_2.error;
@@ -27231,7 +27231,7 @@ var require_bufferCount = __commonJS({
             }
           }
         }, function() {
-          var e_3, _a11;
+          var e_3, _a16;
           try {
             for (var buffers_2 = __values4(buffers), buffers_2_1 = buffers_2.next(); !buffers_2_1.done; buffers_2_1 = buffers_2.next()) {
               var buffer2 = buffers_2_1.value;
@@ -27241,8 +27241,8 @@ var require_bufferCount = __commonJS({
             e_3 = { error: e_3_1 };
           } finally {
             try {
-              if (buffers_2_1 && !buffers_2_1.done && (_a11 = buffers_2.return))
-                _a11.call(buffers_2);
+              if (buffers_2_1 && !buffers_2_1.done && (_a16 = buffers_2.return))
+                _a16.call(buffers_2);
             } finally {
               if (e_3)
                 throw e_3.error;
@@ -27342,13 +27342,13 @@ var require_bufferTime = __commonJS({
     var args_1 = require_args();
     var executeSchedule_1 = require_executeSchedule();
     function bufferTime(bufferTimeSpan) {
-      var _a11, _b6;
+      var _a16, _b10;
       var otherArgs = [];
       for (var _i = 1; _i < arguments.length; _i++) {
         otherArgs[_i - 1] = arguments[_i];
       }
-      var scheduler = (_a11 = args_1.popScheduler(otherArgs)) !== null && _a11 !== void 0 ? _a11 : async_1.asyncScheduler;
-      var bufferCreationInterval = (_b6 = otherArgs[0]) !== null && _b6 !== void 0 ? _b6 : null;
+      var scheduler = (_a16 = args_1.popScheduler(otherArgs)) !== null && _a16 !== void 0 ? _a16 : async_1.asyncScheduler;
+      var bufferCreationInterval = (_b10 = otherArgs[0]) !== null && _b10 !== void 0 ? _b10 : null;
       var maxBufferSize = otherArgs[1] || Infinity;
       return lift_1.operate(function(source2, subscriber) {
         var bufferRecords = [];
@@ -27382,7 +27382,7 @@ var require_bufferTime = __commonJS({
         }
         startBuffer();
         var bufferTimeSubscriber = OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var e_1, _a12;
+          var e_1, _a17;
           var recordsCopy = bufferRecords.slice();
           try {
             for (var recordsCopy_1 = __values4(recordsCopy), recordsCopy_1_1 = recordsCopy_1.next(); !recordsCopy_1_1.done; recordsCopy_1_1 = recordsCopy_1.next()) {
@@ -27395,8 +27395,8 @@ var require_bufferTime = __commonJS({
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (recordsCopy_1_1 && !recordsCopy_1_1.done && (_a12 = recordsCopy_1.return))
-                _a12.call(recordsCopy_1);
+              if (recordsCopy_1_1 && !recordsCopy_1_1.done && (_a17 = recordsCopy_1.return))
+                _a17.call(recordsCopy_1);
             } finally {
               if (e_1)
                 throw e_1.error;
@@ -27460,7 +27460,7 @@ var require_bufferToggle = __commonJS({
           closingSubscription.add(innerFrom_1.innerFrom(closingSelector(openValue)).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, emitBuffer, noop_1.noop)));
         }, noop_1.noop));
         source2.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var e_1, _a11;
+          var e_1, _a16;
           try {
             for (var buffers_1 = __values4(buffers), buffers_1_1 = buffers_1.next(); !buffers_1_1.done; buffers_1_1 = buffers_1.next()) {
               var buffer2 = buffers_1_1.value;
@@ -27470,8 +27470,8 @@ var require_bufferToggle = __commonJS({
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (buffers_1_1 && !buffers_1_1.done && (_a11 = buffers_1.return))
-                _a11.call(buffers_1);
+              if (buffers_1_1 && !buffers_1_1.done && (_a16 = buffers_1.return))
+                _a16.call(buffers_1);
             } finally {
               if (e_1)
                 throw e_1.error;
@@ -27723,11 +27723,11 @@ var require_scheduleIterable = __commonJS({
         executeSchedule_1.executeSchedule(subscriber, scheduler, function() {
           iterator2 = input[iterator_1.iterator]();
           executeSchedule_1.executeSchedule(subscriber, scheduler, function() {
-            var _a11;
+            var _a16;
             var value;
             var done;
             try {
-              _a11 = iterator2.next(), value = _a11.value, done = _a11.done;
+              _a16 = iterator2.next(), value = _a16.value, done = _a16.done;
             } catch (err) {
               subscriber.error(err);
               return;
@@ -27958,7 +27958,7 @@ var require_combineLatest = __commonJS({
       }
       var scheduler = args_1.popScheduler(args);
       var resultSelector = args_1.popResultSelector(args);
-      var _a11 = argsArgArrayOrObject_1.argsArgArrayOrObject(args), observables = _a11.args, keys = _a11.keys;
+      var _a16 = argsArgArrayOrObject_1.argsArgArrayOrObject(args), observables = _a16.args, keys = _a16.keys;
       if (observables.length === 0) {
         return from_1.from([], scheduler);
       }
@@ -28583,23 +28583,23 @@ var require_Subject = __commonJS({
       Subject2.prototype.next = function(value) {
         var _this = this;
         errorContext_1.errorContext(function() {
-          var e_1, _a11;
+          var e_1, _a16;
           _this._throwIfClosed();
           if (!_this.isStopped) {
             if (!_this.currentObservers) {
               _this.currentObservers = Array.from(_this.observers);
             }
             try {
-              for (var _b6 = __values4(_this.currentObservers), _c2 = _b6.next(); !_c2.done; _c2 = _b6.next()) {
-                var observer = _c2.value;
+              for (var _b10 = __values4(_this.currentObservers), _c5 = _b10.next(); !_c5.done; _c5 = _b10.next()) {
+                var observer = _c5.value;
                 observer.next(value);
               }
             } catch (e_1_1) {
               e_1 = { error: e_1_1 };
             } finally {
               try {
-                if (_c2 && !_c2.done && (_a11 = _b6.return))
-                  _a11.call(_b6);
+                if (_c5 && !_c5.done && (_a16 = _b10.return))
+                  _a16.call(_b10);
               } finally {
                 if (e_1)
                   throw e_1.error;
@@ -28641,8 +28641,8 @@ var require_Subject = __commonJS({
       };
       Object.defineProperty(Subject2.prototype, "observed", {
         get: function() {
-          var _a11;
-          return ((_a11 = this.observers) === null || _a11 === void 0 ? void 0 : _a11.length) > 0;
+          var _a16;
+          return ((_a16 = this.observers) === null || _a16 === void 0 ? void 0 : _a16.length) > 0;
         },
         enumerable: false,
         configurable: true
@@ -28658,7 +28658,7 @@ var require_Subject = __commonJS({
       };
       Subject2.prototype._innerSubscribe = function(subscriber) {
         var _this = this;
-        var _a11 = this, hasError = _a11.hasError, isStopped = _a11.isStopped, observers = _a11.observers;
+        var _a16 = this, hasError = _a16.hasError, isStopped = _a16.isStopped, observers = _a16.observers;
         if (hasError || isStopped) {
           return Subscription_1.EMPTY_SUBSCRIPTION;
         }
@@ -28670,7 +28670,7 @@ var require_Subject = __commonJS({
         });
       };
       Subject2.prototype._checkFinalizedStatuses = function(subscriber) {
-        var _a11 = this, hasError = _a11.hasError, thrownError = _a11.thrownError, isStopped = _a11.isStopped;
+        var _a16 = this, hasError = _a16.hasError, thrownError = _a16.thrownError, isStopped = _a16.isStopped;
         if (hasError) {
           subscriber.error(thrownError);
         } else if (isStopped) {
@@ -28697,20 +28697,20 @@ var require_Subject = __commonJS({
         return _this;
       }
       AnonymousSubject2.prototype.next = function(value) {
-        var _a11, _b6;
-        (_b6 = (_a11 = this.destination) === null || _a11 === void 0 ? void 0 : _a11.next) === null || _b6 === void 0 ? void 0 : _b6.call(_a11, value);
+        var _a16, _b10;
+        (_b10 = (_a16 = this.destination) === null || _a16 === void 0 ? void 0 : _a16.next) === null || _b10 === void 0 ? void 0 : _b10.call(_a16, value);
       };
       AnonymousSubject2.prototype.error = function(err) {
-        var _a11, _b6;
-        (_b6 = (_a11 = this.destination) === null || _a11 === void 0 ? void 0 : _a11.error) === null || _b6 === void 0 ? void 0 : _b6.call(_a11, err);
+        var _a16, _b10;
+        (_b10 = (_a16 = this.destination) === null || _a16 === void 0 ? void 0 : _a16.error) === null || _b10 === void 0 ? void 0 : _b10.call(_a16, err);
       };
       AnonymousSubject2.prototype.complete = function() {
-        var _a11, _b6;
-        (_b6 = (_a11 = this.destination) === null || _a11 === void 0 ? void 0 : _a11.complete) === null || _b6 === void 0 ? void 0 : _b6.call(_a11);
+        var _a16, _b10;
+        (_b10 = (_a16 = this.destination) === null || _a16 === void 0 ? void 0 : _a16.complete) === null || _b10 === void 0 ? void 0 : _b10.call(_a16);
       };
       AnonymousSubject2.prototype._subscribe = function(subscriber) {
-        var _a11, _b6;
-        return (_b6 = (_a11 = this.source) === null || _a11 === void 0 ? void 0 : _a11.subscribe(subscriber)) !== null && _b6 !== void 0 ? _b6 : Subscription_1.EMPTY_SUBSCRIPTION;
+        var _a16, _b10;
+        return (_b10 = (_a16 = this.source) === null || _a16 === void 0 ? void 0 : _a16.subscribe(subscriber)) !== null && _b10 !== void 0 ? _b10 : Subscription_1.EMPTY_SUBSCRIPTION;
       };
       return AnonymousSubject2;
     }(Subject);
@@ -29128,15 +29128,15 @@ var require_Notification = __commonJS({
         return observeNotification(this, observer);
       };
       Notification2.prototype.do = function(nextHandler, errorHandler, completeHandler) {
-        var _a11 = this, kind = _a11.kind, value = _a11.value, error2 = _a11.error;
+        var _a16 = this, kind = _a16.kind, value = _a16.value, error2 = _a16.error;
         return kind === "N" ? nextHandler === null || nextHandler === void 0 ? void 0 : nextHandler(value) : kind === "E" ? errorHandler === null || errorHandler === void 0 ? void 0 : errorHandler(error2) : completeHandler === null || completeHandler === void 0 ? void 0 : completeHandler();
       };
       Notification2.prototype.accept = function(nextOrObserver, error2, complete) {
-        var _a11;
-        return isFunction_1.isFunction((_a11 = nextOrObserver) === null || _a11 === void 0 ? void 0 : _a11.next) ? this.observe(nextOrObserver) : this.do(nextOrObserver, error2, complete);
+        var _a16;
+        return isFunction_1.isFunction((_a16 = nextOrObserver) === null || _a16 === void 0 ? void 0 : _a16.next) ? this.observe(nextOrObserver) : this.do(nextOrObserver, error2, complete);
       };
       Notification2.prototype.toObservable = function() {
-        var _a11 = this, kind = _a11.kind, value = _a11.value, error2 = _a11.error;
+        var _a16 = this, kind = _a16.kind, value = _a16.value, error2 = _a16.error;
         var result = kind === "N" ? of_1.of(value) : kind === "E" ? throwError_1.throwError(function() {
           return error2;
         }) : kind === "C" ? empty_1.EMPTY : 0;
@@ -29159,12 +29159,12 @@ var require_Notification = __commonJS({
     }();
     exports.Notification = Notification;
     function observeNotification(notification, observer) {
-      var _a11, _b6, _c2;
+      var _a16, _b10, _c5;
       var _d = notification, kind = _d.kind, value = _d.value, error2 = _d.error;
       if (typeof kind !== "string") {
         throw new TypeError('Invalid notification, missing "kind"');
       }
-      kind === "N" ? (_a11 = observer.next) === null || _a11 === void 0 ? void 0 : _a11.call(observer, value) : kind === "E" ? (_b6 = observer.error) === null || _b6 === void 0 ? void 0 : _b6.call(observer, error2) : (_c2 = observer.complete) === null || _c2 === void 0 ? void 0 : _c2.call(observer);
+      kind === "N" ? (_a16 = observer.next) === null || _a16 === void 0 ? void 0 : _a16.call(observer, value) : kind === "E" ? (_b10 = observer.error) === null || _b10 === void 0 ? void 0 : _b10.call(observer, error2) : (_c5 = observer.complete) === null || _c5 === void 0 ? void 0 : _c5.call(observer);
     }
     exports.observeNotification = observeNotification;
   }
@@ -29773,7 +29773,7 @@ var require_takeLast = __commonJS({
           buffer2.push(value);
           count < buffer2.length && buffer2.shift();
         }, function() {
-          var e_1, _a11;
+          var e_1, _a16;
           try {
             for (var buffer_1 = __values4(buffer2), buffer_1_1 = buffer_1.next(); !buffer_1_1.done; buffer_1_1 = buffer_1.next()) {
               var value = buffer_1_1.value;
@@ -29783,8 +29783,8 @@ var require_takeLast = __commonJS({
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (buffer_1_1 && !buffer_1_1.done && (_a11 = buffer_1.return))
-                _a11.call(buffer_1);
+              if (buffer_1_1 && !buffer_1_1.done && (_a16 = buffer_1.return))
+                _a16.call(buffer_1);
             } finally {
               if (e_1)
                 throw e_1.error;
@@ -30455,7 +30455,7 @@ var require_BehaviorSubject = __commonJS({
         return subscription;
       };
       BehaviorSubject2.prototype.getValue = function() {
-        var _a11 = this, hasError = _a11.hasError, thrownError = _a11.thrownError, _value = _a11._value;
+        var _a16 = this, hasError = _a16.hasError, thrownError = _a16.thrownError, _value = _a16._value;
         if (hasError) {
           throw thrownError;
         }
@@ -30529,7 +30529,7 @@ var require_AsyncSubject = __commonJS({
         return _this;
       }
       AsyncSubject2.prototype._checkFinalizedStatuses = function(subscriber) {
-        var _a11 = this, hasError = _a11.hasError, _hasValue = _a11._hasValue, _value = _a11._value, thrownError = _a11.thrownError, isStopped = _a11.isStopped, _isComplete = _a11._isComplete;
+        var _a16 = this, hasError = _a16.hasError, _hasValue = _a16._hasValue, _value = _a16._value, thrownError = _a16.thrownError, isStopped = _a16.isStopped, _isComplete = _a16._isComplete;
         if (hasError) {
           subscriber.error(thrownError);
         } else if (isStopped || _isComplete) {
@@ -30544,7 +30544,7 @@ var require_AsyncSubject = __commonJS({
         }
       };
       AsyncSubject2.prototype.complete = function() {
-        var _a11 = this, _hasValue = _a11._hasValue, _value = _a11._value, _isComplete = _a11._isComplete;
+        var _a16 = this, _hasValue = _a16._hasValue, _value = _a16._value, _isComplete = _a16._isComplete;
         if (!_isComplete) {
           this._isComplete = true;
           _hasValue && _super.prototype.next.call(this, _value);
@@ -30630,7 +30630,7 @@ var require_ReplaySubject = __commonJS({
         return _this;
       }
       ReplaySubject2.prototype.next = function(value) {
-        var _a11 = this, isStopped = _a11.isStopped, _buffer = _a11._buffer, _infiniteTimeWindow = _a11._infiniteTimeWindow, _timestampProvider = _a11._timestampProvider, _windowTime = _a11._windowTime;
+        var _a16 = this, isStopped = _a16.isStopped, _buffer = _a16._buffer, _infiniteTimeWindow = _a16._infiniteTimeWindow, _timestampProvider = _a16._timestampProvider, _windowTime = _a16._windowTime;
         if (!isStopped) {
           _buffer.push(value);
           !_infiniteTimeWindow && _buffer.push(_timestampProvider.now() + _windowTime);
@@ -30642,7 +30642,7 @@ var require_ReplaySubject = __commonJS({
         this._throwIfClosed();
         this._trimBuffer();
         var subscription = this._innerSubscribe(subscriber);
-        var _a11 = this, _infiniteTimeWindow = _a11._infiniteTimeWindow, _buffer = _a11._buffer;
+        var _a16 = this, _infiniteTimeWindow = _a16._infiniteTimeWindow, _buffer = _a16._buffer;
         var copy = _buffer.slice();
         for (var i = 0; i < copy.length && !subscriber.closed; i += _infiniteTimeWindow ? 1 : 2) {
           subscriber.next(copy[i]);
@@ -30651,7 +30651,7 @@ var require_ReplaySubject = __commonJS({
         return subscription;
       };
       ReplaySubject2.prototype._trimBuffer = function() {
-        var _a11 = this, _bufferSize = _a11._bufferSize, _timestampProvider = _a11._timestampProvider, _buffer = _a11._buffer, _infiniteTimeWindow = _a11._infiniteTimeWindow;
+        var _a16 = this, _bufferSize = _a16._bufferSize, _timestampProvider = _a16._timestampProvider, _buffer = _a16._buffer, _infiniteTimeWindow = _a16._infiniteTimeWindow;
         var adjustedBufferSize = (_infiniteTimeWindow ? 1 : 2) * _bufferSize;
         _bufferSize < Infinity && adjustedBufferSize < _buffer.length && _buffer.splice(0, _buffer.length - adjustedBufferSize);
         if (!_infiniteTimeWindow) {
@@ -30838,12 +30838,12 @@ var require_repeat = __commonJS({
     var innerFrom_1 = require_innerFrom();
     var timer_1 = require_timer();
     function repeat(countOrConfig) {
-      var _a11;
+      var _a16;
       var count = Infinity;
       var delay;
       if (countOrConfig != null) {
         if (typeof countOrConfig === "object") {
-          _a11 = countOrConfig.count, count = _a11 === void 0 ? Infinity : _a11, delay = countOrConfig.delay;
+          _a16 = countOrConfig.count, count = _a16 === void 0 ? Infinity : _a16, delay = countOrConfig.delay;
         } else {
           count = countOrConfig;
         }
@@ -30970,7 +30970,7 @@ var require_retry = __commonJS({
           count: configOrCount
         };
       }
-      var _a11 = config.count, count = _a11 === void 0 ? Infinity : _a11, delay = config.delay, _b6 = config.resetOnSuccess, resetOnSuccess = _b6 === void 0 ? false : _b6;
+      var _a16 = config.count, count = _a16 === void 0 ? Infinity : _a16, delay = config.delay, _b10 = config.resetOnSuccess, resetOnSuccess = _b10 === void 0 ? false : _b10;
       return count <= 0 ? identity_1.identity : lift_1.operate(function(source2, subscriber) {
         var soFar = 0;
         var innerSub;
@@ -31244,9 +31244,9 @@ var require_share = __commonJS({
       if (options === void 0) {
         options = {};
       }
-      var _a11 = options.connector, connector = _a11 === void 0 ? function() {
+      var _a16 = options.connector, connector = _a16 === void 0 ? function() {
         return new Subject_1.Subject();
-      } : _a11, _b6 = options.resetOnError, resetOnError = _b6 === void 0 ? true : _b6, _c2 = options.resetOnComplete, resetOnComplete = _c2 === void 0 ? true : _c2, _d = options.resetOnRefCountZero, resetOnRefCountZero = _d === void 0 ? true : _d;
+      } : _a16, _b10 = options.resetOnError, resetOnError = _b10 === void 0 ? true : _b10, _c5 = options.resetOnComplete, resetOnComplete = _c5 === void 0 ? true : _c5, _d = options.resetOnRefCountZero, resetOnRefCountZero = _d === void 0 ? true : _d;
       return function(wrapperSource) {
         var connection;
         var resetConnection;
@@ -31337,11 +31337,11 @@ var require_shareReplay = __commonJS({
     var ReplaySubject_1 = require_ReplaySubject();
     var share_1 = require_share();
     function shareReplay(configOrBufferSize, windowTime, scheduler) {
-      var _a11, _b6, _c2;
+      var _a16, _b10, _c5;
       var bufferSize;
       var refCount = false;
       if (configOrBufferSize && typeof configOrBufferSize === "object") {
-        _a11 = configOrBufferSize.bufferSize, bufferSize = _a11 === void 0 ? Infinity : _a11, _b6 = configOrBufferSize.windowTime, windowTime = _b6 === void 0 ? Infinity : _b6, _c2 = configOrBufferSize.refCount, refCount = _c2 === void 0 ? false : _c2, scheduler = configOrBufferSize.scheduler;
+        _a16 = configOrBufferSize.bufferSize, bufferSize = _a16 === void 0 ? Infinity : _a16, _b10 = configOrBufferSize.windowTime, windowTime = _b10 === void 0 ? Infinity : _b10, _c5 = configOrBufferSize.refCount, refCount = _c5 === void 0 ? false : _c5, scheduler = configOrBufferSize.scheduler;
       } else {
         bufferSize = configOrBufferSize !== null && configOrBufferSize !== void 0 ? configOrBufferSize : Infinity;
       }
@@ -31706,29 +31706,29 @@ var require_tap = __commonJS({
     function tap(observerOrNext, error2, complete) {
       var tapObserver = isFunction_1.isFunction(observerOrNext) || error2 || complete ? { next: observerOrNext, error: error2, complete } : observerOrNext;
       return tapObserver ? lift_1.operate(function(source2, subscriber) {
-        var _a11;
-        (_a11 = tapObserver.subscribe) === null || _a11 === void 0 ? void 0 : _a11.call(tapObserver);
+        var _a16;
+        (_a16 = tapObserver.subscribe) === null || _a16 === void 0 ? void 0 : _a16.call(tapObserver);
         var isUnsub = true;
         source2.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var _a12;
-          (_a12 = tapObserver.next) === null || _a12 === void 0 ? void 0 : _a12.call(tapObserver, value);
+          var _a17;
+          (_a17 = tapObserver.next) === null || _a17 === void 0 ? void 0 : _a17.call(tapObserver, value);
           subscriber.next(value);
         }, function() {
-          var _a12;
+          var _a17;
           isUnsub = false;
-          (_a12 = tapObserver.complete) === null || _a12 === void 0 ? void 0 : _a12.call(tapObserver);
+          (_a17 = tapObserver.complete) === null || _a17 === void 0 ? void 0 : _a17.call(tapObserver);
           subscriber.complete();
         }, function(err) {
-          var _a12;
+          var _a17;
           isUnsub = false;
-          (_a12 = tapObserver.error) === null || _a12 === void 0 ? void 0 : _a12.call(tapObserver, err);
+          (_a17 = tapObserver.error) === null || _a17 === void 0 ? void 0 : _a17.call(tapObserver, err);
           subscriber.error(err);
         }, function() {
-          var _a12, _b6;
+          var _a17, _b10;
           if (isUnsub) {
-            (_a12 = tapObserver.unsubscribe) === null || _a12 === void 0 ? void 0 : _a12.call(tapObserver);
+            (_a17 = tapObserver.unsubscribe) === null || _a17 === void 0 ? void 0 : _a17.call(tapObserver);
           }
-          (_b6 = tapObserver.finalize) === null || _b6 === void 0 ? void 0 : _b6.call(tapObserver);
+          (_b10 = tapObserver.finalize) === null || _b10 === void 0 ? void 0 : _b10.call(tapObserver);
         }));
       }) : identity_1.identity;
     }
@@ -31747,7 +31747,7 @@ var require_throttle = __commonJS({
     var innerFrom_1 = require_innerFrom();
     function throttle(durationSelector, config) {
       return lift_1.operate(function(source2, subscriber) {
-        var _a11 = config !== null && config !== void 0 ? config : {}, _b6 = _a11.leading, leading = _b6 === void 0 ? true : _b6, _c2 = _a11.trailing, trailing = _c2 === void 0 ? false : _c2;
+        var _a16 = config !== null && config !== void 0 ? config : {}, _b10 = _a16.leading, leading = _b10 === void 0 ? true : _b10, _c5 = _a16.trailing, trailing = _c5 === void 0 ? false : _c5;
         var hasValue = false;
         var sendValue = null;
         var throttled = null;
@@ -31872,7 +31872,7 @@ var require_timeout = __commonJS({
       };
     });
     function timeout(config, schedulerArg) {
-      var _a11 = isDate_1.isValidDate(config) ? { first: config } : typeof config === "number" ? { each: config } : config, first = _a11.first, each = _a11.each, _b6 = _a11.with, _with = _b6 === void 0 ? timeoutErrorFactory : _b6, _c2 = _a11.scheduler, scheduler = _c2 === void 0 ? schedulerArg !== null && schedulerArg !== void 0 ? schedulerArg : async_1.asyncScheduler : _c2, _d = _a11.meta, meta = _d === void 0 ? null : _d;
+      var _a16 = isDate_1.isValidDate(config) ? { first: config } : typeof config === "number" ? { each: config } : config, first = _a16.first, each = _a16.each, _b10 = _a16.with, _with = _b10 === void 0 ? timeoutErrorFactory : _b10, _c5 = _a16.scheduler, scheduler = _c5 === void 0 ? schedulerArg !== null && schedulerArg !== void 0 ? schedulerArg : async_1.asyncScheduler : _c5, _d = _a16.meta, meta = _d === void 0 ? null : _d;
       if (first == null && each == null) {
         throw new TypeError("No timeout provided.");
       }
@@ -32049,7 +32049,7 @@ var require_windowCount = __commonJS({
         var count = 0;
         subscriber.next(windows[0].asObservable());
         source2.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var e_1, _a11;
+          var e_1, _a16;
           try {
             for (var windows_1 = __values4(windows), windows_1_1 = windows_1.next(); !windows_1_1.done; windows_1_1 = windows_1.next()) {
               var window_1 = windows_1_1.value;
@@ -32059,8 +32059,8 @@ var require_windowCount = __commonJS({
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (windows_1_1 && !windows_1_1.done && (_a11 = windows_1.return))
-                _a11.call(windows_1);
+              if (windows_1_1 && !windows_1_1.done && (_a16 = windows_1.return))
+                _a16.call(windows_1);
             } finally {
               if (e_1)
                 throw e_1.error;
@@ -32110,13 +32110,13 @@ var require_windowTime = __commonJS({
     var args_1 = require_args();
     var executeSchedule_1 = require_executeSchedule();
     function windowTime(windowTimeSpan) {
-      var _a11, _b6;
+      var _a16, _b10;
       var otherArgs = [];
       for (var _i = 1; _i < arguments.length; _i++) {
         otherArgs[_i - 1] = arguments[_i];
       }
-      var scheduler = (_a11 = args_1.popScheduler(otherArgs)) !== null && _a11 !== void 0 ? _a11 : async_1.asyncScheduler;
-      var windowCreationInterval = (_b6 = otherArgs[0]) !== null && _b6 !== void 0 ? _b6 : null;
+      var scheduler = (_a16 = args_1.popScheduler(otherArgs)) !== null && _a16 !== void 0 ? _a16 : async_1.asyncScheduler;
+      var windowCreationInterval = (_b10 = otherArgs[0]) !== null && _b10 !== void 0 ? _b10 : null;
       var maxWindowSize = otherArgs[1] || Infinity;
       return lift_1.operate(function(source2, subscriber) {
         var windowRecords = [];
@@ -32155,8 +32155,8 @@ var require_windowTime = __commonJS({
           return windowRecords.slice().forEach(cb);
         };
         var terminate = function(cb) {
-          loop(function(_a12) {
-            var window2 = _a12.window;
+          loop(function(_a17) {
+            var window2 = _a17.window;
             return cb(window2);
           });
           cb(subscriber);
@@ -32241,7 +32241,7 @@ var require_windowToggle = __commonJS({
           closingSubscription.add(closingNotifier.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, closeWindow, noop_1.noop, handleError)));
         }, noop_1.noop));
         source2.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function(value) {
-          var e_1, _a11;
+          var e_1, _a16;
           var windowsCopy = windows.slice();
           try {
             for (var windowsCopy_1 = __values4(windowsCopy), windowsCopy_1_1 = windowsCopy_1.next(); !windowsCopy_1_1.done; windowsCopy_1_1 = windowsCopy_1.next()) {
@@ -32252,8 +32252,8 @@ var require_windowToggle = __commonJS({
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (windowsCopy_1_1 && !windowsCopy_1_1.done && (_a11 = windowsCopy_1.return))
-                _a11.call(windowsCopy_1);
+              if (windowsCopy_1_1 && !windowsCopy_1_1.done && (_a16 = windowsCopy_1.return))
+                _a16.call(windowsCopy_1);
             } finally {
               if (e_1)
                 throw e_1.error;
@@ -34036,7 +34036,7 @@ var require_AsapAction = __commonJS({
         return scheduler._scheduled || (scheduler._scheduled = immediateProvider_1.immediateProvider.setImmediate(scheduler.flush.bind(scheduler, void 0)));
       };
       AsapAction2.prototype.recycleAsyncId = function(scheduler, id, delay) {
-        var _a11;
+        var _a16;
         if (delay === void 0) {
           delay = 0;
         }
@@ -34044,7 +34044,7 @@ var require_AsapAction = __commonJS({
           return _super.prototype.recycleAsyncId.call(this, scheduler, id, delay);
         }
         var actions = scheduler.actions;
-        if (id != null && ((_a11 = actions[actions.length - 1]) === null || _a11 === void 0 ? void 0 : _a11.id) !== id) {
+        if (id != null && ((_a16 = actions[actions.length - 1]) === null || _a16 === void 0 ? void 0 : _a16.id) !== id) {
           immediateProvider_1.immediateProvider.clearImmediate(id);
           if (scheduler._scheduled === id) {
             scheduler._scheduled = void 0;
@@ -34299,7 +34299,7 @@ var require_AnimationFrameAction = __commonJS({
         }));
       };
       AnimationFrameAction2.prototype.recycleAsyncId = function(scheduler, id, delay) {
-        var _a11;
+        var _a16;
         if (delay === void 0) {
           delay = 0;
         }
@@ -34307,7 +34307,7 @@ var require_AnimationFrameAction = __commonJS({
           return _super.prototype.recycleAsyncId.call(this, scheduler, id, delay);
         }
         var actions = scheduler.actions;
-        if (id != null && ((_a11 = actions[actions.length - 1]) === null || _a11 === void 0 ? void 0 : _a11.id) !== id) {
+        if (id != null && ((_a16 = actions[actions.length - 1]) === null || _a16 === void 0 ? void 0 : _a16.id) !== id) {
           animationFrameProvider_1.animationFrameProvider.cancelAnimationFrame(id);
           scheduler._scheduled = void 0;
         }
@@ -34439,7 +34439,7 @@ var require_VirtualTimeScheduler = __commonJS({
         return _this;
       }
       VirtualTimeScheduler2.prototype.flush = function() {
-        var _a11 = this, actions = _a11.actions, maxFrames = _a11.maxFrames;
+        var _a16 = this, actions = _a16.actions, maxFrames = _a16.maxFrames;
         var error2;
         var action;
         while ((action = actions[0]) && action.delay <= maxFrames) {
@@ -34786,7 +34786,7 @@ var require_connectable = __commonJS({
         config = DEFAULT_CONFIG;
       }
       var connection = null;
-      var connector = config.connector, _a11 = config.resetOnDisconnect, resetOnDisconnect = _a11 === void 0 ? true : _a11;
+      var connector = config.connector, _a16 = config.resetOnDisconnect, resetOnDisconnect = _a16 === void 0 ? true : _a16;
       var subject = connector();
       var result = new Observable_1.Observable(function(subscriber) {
         return subject.subscribe(subscriber);
@@ -34829,7 +34829,7 @@ var require_forkJoin = __commonJS({
         args[_i] = arguments[_i];
       }
       var resultSelector = args_1.popResultSelector(args);
-      var _a11 = argsArgArrayOrObject_1.argsArgArrayOrObject(args), sources = _a11.args, keys = _a11.keys;
+      var _a16 = argsArgArrayOrObject_1.argsArgArrayOrObject(args), sources = _a16.args, keys = _a16.keys;
       var result = new Observable_1.Observable(function(subscriber) {
         var length = sources.length;
         if (!length) {
@@ -34912,11 +34912,11 @@ var require_fromEvent = __commonJS({
       if (resultSelector) {
         return fromEvent(target, eventName, options).pipe(mapOneOrManyArgs_1.mapOneOrManyArgs(resultSelector));
       }
-      var _a11 = __read4(isEventTarget(target) ? eventTargetMethods.map(function(methodName) {
+      var _a16 = __read4(isEventTarget(target) ? eventTargetMethods.map(function(methodName) {
         return function(handler2) {
           return target[methodName](eventName, handler2, options);
         };
-      }) : isNodeStyleEventEmitter(target) ? nodeEventEmitterMethods.map(toCommonHandlerRegistry(target, eventName)) : isJQueryStyleEventEmitter(target) ? jqueryMethods.map(toCommonHandlerRegistry(target, eventName)) : [], 2), add = _a11[0], remove = _a11[1];
+      }) : isNodeStyleEventEmitter(target) ? nodeEventEmitterMethods.map(toCommonHandlerRegistry(target, eventName)) : isJQueryStyleEventEmitter(target) ? jqueryMethods.map(toCommonHandlerRegistry(target, eventName)) : [], 2), add = _a16[0], remove = _a16[1];
       if (!add) {
         if (isArrayLike_1.isArrayLike(target)) {
           return mergeMap_1.mergeMap(function(subTarget) {
@@ -35079,11 +35079,11 @@ var require_generate = __commonJS({
     var defer_1 = require_defer();
     var scheduleIterable_1 = require_scheduleIterable();
     function generate(initialStateOrOptions, condition, iterate2, resultSelectorOrScheduler, scheduler) {
-      var _a11, _b6;
+      var _a16, _b10;
       var resultSelector;
       var initialState;
       if (arguments.length === 1) {
-        _a11 = initialStateOrOptions, initialState = _a11.initialState, condition = _a11.condition, iterate2 = _a11.iterate, _b6 = _a11.resultSelector, resultSelector = _b6 === void 0 ? identity_1.identity : _b6, scheduler = _a11.scheduler;
+        _a16 = initialStateOrOptions, initialState = _a16.initialState, condition = _a16.condition, iterate2 = _a16.iterate, _b10 = _a16.resultSelector, resultSelector = _b10 === void 0 ? identity_1.identity : _b10, scheduler = _a16.scheduler;
       } else {
         initialState = initialStateOrOptions;
         if (!resultSelectorOrScheduler || isScheduler_1.isScheduler(resultSelectorOrScheduler)) {
@@ -35095,18 +35095,18 @@ var require_generate = __commonJS({
       }
       function gen() {
         var state;
-        return __generator4(this, function(_a12) {
-          switch (_a12.label) {
+        return __generator4(this, function(_a17) {
+          switch (_a17.label) {
             case 0:
               state = initialState;
-              _a12.label = 1;
+              _a17.label = 1;
             case 1:
               if (!(!condition || condition(state)))
                 return [3, 4];
               return [4, resultSelector(state)];
             case 2:
-              _a12.sent();
-              _a12.label = 3;
+              _a17.sent();
+              _a17.label = 3;
             case 3:
               state = iterate2(state);
               return [3, 1];
@@ -37321,14 +37321,14 @@ var require_external_proxy = __commonJS({
 var require_handler_metadata_storage = __commonJS({
   "node_modules/@nestjs/core/helpers/handler-metadata-storage.js"(exports) {
     "use strict";
-    var _a11;
+    var _a16;
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.HandlerMetadataStorage = exports.HANDLER_METADATA_SYMBOL = void 0;
     var constants_1 = require_constants8();
     exports.HANDLER_METADATA_SYMBOL = Symbol.for("handler_metadata:cache");
     var HandlerMetadataStorage = class {
       constructor() {
-        this[_a11] = /* @__PURE__ */ new Map();
+        this[_a16] = /* @__PURE__ */ new Map();
       }
       set(controller, methodName, metadata) {
         const metadataKey = this.getMetadataKey(controller, methodName);
@@ -37345,7 +37345,7 @@ var require_handler_metadata_storage = __commonJS({
       }
     };
     exports.HandlerMetadataStorage = HandlerMetadataStorage;
-    _a11 = exports.HANDLER_METADATA_SYMBOL;
+    _a16 = exports.HANDLER_METADATA_SYMBOL;
   }
 });
 
@@ -37925,7 +37925,7 @@ var require_provider_classifier = __commonJS({
 var require_instance_wrapper = __commonJS({
   "node_modules/@nestjs/core/injector/instance-wrapper.js"(exports) {
     "use strict";
-    var _a11;
+    var _a16;
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.InstanceWrapper = exports.INSTANCE_ID_SYMBOL = exports.INSTANCE_METADATA_SYMBOL = void 0;
     var common_1 = require_common();
@@ -37943,7 +37943,7 @@ var require_instance_wrapper = __commonJS({
         this.isAlias = false;
         this.scope = common_1.Scope.DEFAULT;
         this.values = /* @__PURE__ */ new WeakMap();
-        this[_a11] = {};
+        this[_a16] = {};
         this.initialize(metadata);
         this[exports.INSTANCE_ID_SYMBOL] = metadata[exports.INSTANCE_ID_SYMBOL] ?? this.generateUuid();
       }
@@ -38197,7 +38197,7 @@ var require_instance_wrapper = __commonJS({
       }
     };
     exports.InstanceWrapper = InstanceWrapper;
-    _a11 = exports.INSTANCE_METADATA_SYMBOL;
+    _a16 = exports.INSTANCE_METADATA_SYMBOL;
     InstanceWrapper.logger = new common_1.Logger(InstanceWrapper.name);
   }
 });
@@ -39541,7 +39541,7 @@ var require_module = __commonJS({
     var constants_2 = require_constants8();
     var instance_wrapper_1 = require_instance_wrapper();
     var module_ref_1 = require_module_ref();
-    var Module7 = class {
+    var Module8 = class {
       constructor(_metatype, container) {
         this._metatype = _metatype;
         this.container = container;
@@ -39928,7 +39928,7 @@ var require_module = __commonJS({
         return key2 ? uuid_factory_1.UuidFactory.get(`${prefix}_${key2}`) : (0, random_string_generator_util_1.randomStringGenerator)();
       }
     };
-    exports.Module = Module7;
+    exports.Module = Module8;
   }
 });
 
@@ -46137,7 +46137,7 @@ var require_set = __commonJS({
 var require_config_service = __commonJS({
   "node_modules/@nestjs/config/dist/config.service.js"(exports) {
     "use strict";
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -46147,7 +46147,7 @@ var require_config_service = __commonJS({
             r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
       return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
     };
-    var __metadata14 = exports && exports.__metadata || function(k, v) {
+    var __metadata19 = exports && exports.__metadata || function(k, v) {
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
         return Reflect.metadata(k, v);
     };
@@ -46167,7 +46167,7 @@ var require_config_service = __commonJS({
     var has_1 = __importDefault4(require_has());
     var set_1 = __importDefault4(require_set());
     var config_constants_1 = require_config_constants();
-    var ConfigService7 = exports.ConfigService = class ConfigService {
+    var ConfigService11 = exports.ConfigService = class ConfigService {
       set isCacheEnabled(value) {
         this._isCacheEnabled = value;
       }
@@ -46248,12 +46248,12 @@ var require_config_service = __commonJS({
         return options && options?.infer && Object.keys(options).length === 1;
       }
     };
-    exports.ConfigService = ConfigService7 = __decorate19([
+    exports.ConfigService = ConfigService11 = __decorate25([
       (0, common_1.Injectable)(),
       __param4(0, (0, common_1.Optional)()),
       __param4(0, (0, common_1.Inject)(config_constants_1.CONFIGURATION_TOKEN)),
-      __metadata14("design:paramtypes", [Object])
-    ], ConfigService7);
+      __metadata19("design:paramtypes", [Object])
+    ], ConfigService11);
   }
 });
 
@@ -46261,7 +46261,7 @@ var require_config_service = __commonJS({
 var require_config_host_module = __commonJS({
   "node_modules/@nestjs/config/dist/config-host.module.js"(exports) {
     "use strict";
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -46278,7 +46278,7 @@ var require_config_host_module = __commonJS({
     var config_service_1 = require_config_service();
     var ConfigHostModule = exports.ConfigHostModule = class ConfigHostModule {
     };
-    exports.ConfigHostModule = ConfigHostModule = __decorate19([
+    exports.ConfigHostModule = ConfigHostModule = __decorate25([
       (0, common_1.Global)(),
       (0, common_1.Module)({
         providers: [
@@ -46907,7 +46907,7 @@ var require_config_module = __commonJS({
     } : function(o, v) {
       o["default"] = v;
     });
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -47097,7 +47097,7 @@ var require_config_module = __commonJS({
       }
     };
     ConfigModule3._envVariablesLoaded = new Promise((resolve2) => ConfigModule_12.environmentVariablesLoadedSignal = resolve2);
-    exports.ConfigModule = ConfigModule3 = ConfigModule_12 = __decorate19([
+    exports.ConfigModule = ConfigModule3 = ConfigModule_12 = __decorate25([
       (0, common_1.Module)({
         imports: [config_host_module_1.ConfigHostModule],
         providers: [
@@ -47378,16 +47378,16 @@ var require_config2 = __commonJS({
 var require_aggregate_root = __commonJS({
   "node_modules/@nestjs/cqrs/dist/aggregate-root.js"(exports) {
     "use strict";
-    var _a11;
-    var _b6;
+    var _a16;
+    var _b10;
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AggregateRoot = void 0;
     var INTERNAL_EVENTS = Symbol();
     var IS_AUTO_COMMIT_ENABLED = Symbol();
     var AggregateRoot = class {
       constructor() {
-        this[_a11] = false;
-        this[_b6] = [];
+        this[_a16] = false;
+        this[_b10] = [];
       }
       /**
        * Sets whether the aggregate root should automatically commit events.
@@ -47462,7 +47462,7 @@ var require_aggregate_root = __commonJS({
       }
     };
     exports.AggregateRoot = AggregateRoot;
-    _a11 = IS_AUTO_COMMIT_ENABLED, _b6 = INTERNAL_EVENTS;
+    _a16 = IS_AUTO_COMMIT_ENABLED, _b10 = INTERNAL_EVENTS;
   }
 });
 
@@ -47540,7 +47540,7 @@ var require_observable_bus = __commonJS({
 var require_command_bus = __commonJS({
   "node_modules/@nestjs/cqrs/dist/command-bus.js"(exports) {
     "use strict";
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -47550,7 +47550,7 @@ var require_command_bus = __commonJS({
             r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
       return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
     };
-    var __metadata14 = exports && exports.__metadata || function(k, v) {
+    var __metadata19 = exports && exports.__metadata || function(k, v) {
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
         return Reflect.metadata(k, v);
     };
@@ -47564,7 +47564,7 @@ var require_command_bus = __commonJS({
     var default_command_pubsub_1 = require_default_command_pubsub();
     var index_1 = require_dist5();
     var observable_bus_1 = require_observable_bus();
-    var CommandBus3 = class CommandBus extends observable_bus_1.ObservableBus {
+    var CommandBus5 = class CommandBus extends observable_bus_1.ObservableBus {
       constructor(moduleRef) {
         super();
         this.moduleRef = moduleRef;
@@ -47639,11 +47639,11 @@ var require_command_bus = __commonJS({
         this._publisher = new default_command_pubsub_1.DefaultCommandPubSub(this.subject$);
       }
     };
-    CommandBus3 = __decorate19([
+    CommandBus5 = __decorate25([
       (0, common_1.Injectable)(),
-      __metadata14("design:paramtypes", [core_1.ModuleRef])
-    ], CommandBus3);
-    exports.CommandBus = CommandBus3;
+      __metadata19("design:paramtypes", [core_1.ModuleRef])
+    ], CommandBus5);
+    exports.CommandBus = CommandBus5;
   }
 });
 
@@ -47814,7 +47814,7 @@ var require_default_unhandled_exception_pubsub = __commonJS({
 var require_unhandled_exception_bus = __commonJS({
   "node_modules/@nestjs/cqrs/dist/unhandled-exception-bus.js"(exports) {
     "use strict";
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -47824,7 +47824,7 @@ var require_unhandled_exception_bus = __commonJS({
             r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
       return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
     };
-    var __metadata14 = exports && exports.__metadata || function(k, v) {
+    var __metadata19 = exports && exports.__metadata || function(k, v) {
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
         return Reflect.metadata(k, v);
     };
@@ -47874,9 +47874,9 @@ var require_unhandled_exception_bus = __commonJS({
         this._publisher = new default_unhandled_exception_pubsub_1.DefaultUnhandledExceptionPubSub(this.subject$);
       }
     };
-    UnhandledExceptionBus = __decorate19([
+    UnhandledExceptionBus = __decorate25([
       (0, common_1.Injectable)(),
-      __metadata14("design:paramtypes", [])
+      __metadata19("design:paramtypes", [])
     ], UnhandledExceptionBus);
     exports.UnhandledExceptionBus = UnhandledExceptionBus;
   }
@@ -47911,7 +47911,7 @@ var require_utils11 = __commonJS({
 var require_event_bus = __commonJS({
   "node_modules/@nestjs/cqrs/dist/event-bus.js"(exports) {
     "use strict";
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -47921,7 +47921,7 @@ var require_event_bus = __commonJS({
             r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
       return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
     };
-    var __metadata14 = exports && exports.__metadata || function(k, v) {
+    var __metadata19 = exports && exports.__metadata || function(k, v) {
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
         return Reflect.metadata(k, v);
     };
@@ -48049,9 +48049,9 @@ var require_event_bus = __commonJS({
         };
       }
     };
-    EventBus = EventBus_1 = __decorate19([
+    EventBus = EventBus_1 = __decorate25([
       (0, common_1.Injectable)(),
-      __metadata14("design:paramtypes", [
+      __metadata19("design:paramtypes", [
         command_bus_1.CommandBus,
         core_1.ModuleRef,
         unhandled_exception_bus_1.UnhandledExceptionBus
@@ -48065,7 +48065,7 @@ var require_event_bus = __commonJS({
 var require_event_publisher = __commonJS({
   "node_modules/@nestjs/cqrs/dist/event-publisher.js"(exports) {
     "use strict";
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -48075,7 +48075,7 @@ var require_event_publisher = __commonJS({
             r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
       return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
     };
-    var __metadata14 = exports && exports.__metadata || function(k, v) {
+    var __metadata19 = exports && exports.__metadata || function(k, v) {
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
         return Reflect.metadata(k, v);
     };
@@ -48119,9 +48119,9 @@ var require_event_publisher = __commonJS({
         return object;
       }
     };
-    EventPublisher = __decorate19([
+    EventPublisher = __decorate25([
       (0, common_1.Injectable)(),
-      __metadata14("design:paramtypes", [event_bus_1.EventBus])
+      __metadata19("design:paramtypes", [event_bus_1.EventBus])
     ], EventPublisher);
     exports.EventPublisher = EventPublisher;
   }
@@ -48149,7 +48149,7 @@ var require_default_query_pubsub = __commonJS({
 var require_query_bus = __commonJS({
   "node_modules/@nestjs/cqrs/dist/query-bus.js"(exports) {
     "use strict";
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -48159,7 +48159,7 @@ var require_query_bus = __commonJS({
             r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
       return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
     };
-    var __metadata14 = exports && exports.__metadata || function(k, v) {
+    var __metadata19 = exports && exports.__metadata || function(k, v) {
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
         return Reflect.metadata(k, v);
     };
@@ -48173,7 +48173,7 @@ var require_query_bus = __commonJS({
     var invalid_query_handler_exception_1 = require_invalid_query_handler_exception();
     var default_query_pubsub_1 = require_default_query_pubsub();
     var observable_bus_1 = require_observable_bus();
-    var QueryBus4 = class QueryBus extends observable_bus_1.ObservableBus {
+    var QueryBus6 = class QueryBus extends observable_bus_1.ObservableBus {
       constructor(moduleRef) {
         super();
         this.moduleRef = moduleRef;
@@ -48242,11 +48242,11 @@ var require_query_bus = __commonJS({
         this._publisher = new default_query_pubsub_1.DefaultQueryPubSub(this.subject$);
       }
     };
-    QueryBus4 = __decorate19([
+    QueryBus6 = __decorate25([
       (0, common_1.Injectable)(),
-      __metadata14("design:paramtypes", [core_1.ModuleRef])
-    ], QueryBus4);
-    exports.QueryBus = QueryBus4;
+      __metadata19("design:paramtypes", [core_1.ModuleRef])
+    ], QueryBus6);
+    exports.QueryBus = QueryBus6;
   }
 });
 
@@ -48254,7 +48254,7 @@ var require_query_bus = __commonJS({
 var require_explorer_service = __commonJS({
   "node_modules/@nestjs/cqrs/dist/services/explorer.service.js"(exports) {
     "use strict";
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -48264,7 +48264,7 @@ var require_explorer_service = __commonJS({
             r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
       return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
     };
-    var __metadata14 = exports && exports.__metadata || function(k, v) {
+    var __metadata19 = exports && exports.__metadata || function(k, v) {
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
         return Reflect.metadata(k, v);
     };
@@ -48304,9 +48304,9 @@ var require_explorer_service = __commonJS({
         return metadata ? instance.constructor : void 0;
       }
     };
-    ExplorerService = __decorate19([
+    ExplorerService = __decorate25([
       (0, common_1.Injectable)(),
-      __metadata14("design:paramtypes", [modules_container_1.ModulesContainer])
+      __metadata19("design:paramtypes", [modules_container_1.ModulesContainer])
     ], ExplorerService);
     exports.ExplorerService = ExplorerService;
   }
@@ -48316,7 +48316,7 @@ var require_explorer_service = __commonJS({
 var require_cqrs_module = __commonJS({
   "node_modules/@nestjs/cqrs/dist/cqrs.module.js"(exports) {
     "use strict";
-    var __decorate19 = exports && exports.__decorate || function(decorators, target, key2, desc) {
+    var __decorate25 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
         r = Reflect.decorate(decorators, target, key2, desc);
@@ -48326,7 +48326,7 @@ var require_cqrs_module = __commonJS({
             r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
       return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
     };
-    var __metadata14 = exports && exports.__metadata || function(k, v) {
+    var __metadata19 = exports && exports.__metadata || function(k, v) {
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
         return Reflect.metadata(k, v);
     };
@@ -48365,7 +48365,7 @@ var require_cqrs_module = __commonJS({
         this.eventBus.registerSagas(sagas);
       }
     };
-    CqrsModule2 = CqrsModule_1 = __decorate19([
+    CqrsModule2 = CqrsModule_1 = __decorate25([
       (0, common_1.Module)({
         providers: [
           command_bus_1.CommandBus,
@@ -48383,7 +48383,7 @@ var require_cqrs_module = __commonJS({
           event_publisher_1.EventPublisher
         ]
       }),
-      __metadata14("design:paramtypes", [
+      __metadata19("design:paramtypes", [
         explorer_service_1.ExplorerService,
         event_bus_1.EventBus,
         command_bus_1.CommandBus,
@@ -48922,7 +48922,7 @@ var require_command_handler_decorator = __commonJS({
     require_Reflect();
     var constants_1 = require_constants11();
     var uuid_1 = require_dist4();
-    var CommandHandler5 = (command) => {
+    var CommandHandler9 = (command) => {
       return (target) => {
         if (!Reflect.hasOwnMetadata(constants_1.COMMAND_METADATA, command)) {
           Reflect.defineMetadata(constants_1.COMMAND_METADATA, { id: (0, uuid_1.v4)() }, command);
@@ -48930,7 +48930,7 @@ var require_command_handler_decorator = __commonJS({
         Reflect.defineMetadata(constants_1.COMMAND_HANDLER_METADATA, command, target);
       };
     };
-    exports.CommandHandler = CommandHandler5;
+    exports.CommandHandler = CommandHandler9;
   }
 });
 
@@ -48966,7 +48966,7 @@ var require_query_handler_decorator = __commonJS({
     require_Reflect();
     var constants_1 = require_constants11();
     var uuid_1 = require_dist4();
-    var QueryHandler6 = (query) => {
+    var QueryHandler7 = (query) => {
       return (target) => {
         if (!Reflect.hasOwnMetadata(constants_1.QUERY_METADATA, query)) {
           Reflect.defineMetadata(constants_1.QUERY_METADATA, { id: (0, uuid_1.v4)() }, query);
@@ -48974,7 +48974,7 @@ var require_query_handler_decorator = __commonJS({
         Reflect.defineMetadata(constants_1.QUERY_HANDLER_METADATA, query, target);
       };
     };
-    exports.QueryHandler = QueryHandler6;
+    exports.QueryHandler = QueryHandler7;
   }
 });
 
@@ -49304,7 +49304,7 @@ var require_context = __commonJS({
        * Hydrate the context from the environment
        */
       constructor() {
-        var _a11, _b6, _c2;
+        var _a16, _b10, _c5;
         this.payload = {};
         if (process.env.GITHUB_EVENT_PATH) {
           if ((0, fs_1.existsSync)(process.env.GITHUB_EVENT_PATH)) {
@@ -49323,9 +49323,9 @@ var require_context = __commonJS({
         this.job = process.env.GITHUB_JOB;
         this.runNumber = parseInt(process.env.GITHUB_RUN_NUMBER, 10);
         this.runId = parseInt(process.env.GITHUB_RUN_ID, 10);
-        this.apiUrl = (_a11 = process.env.GITHUB_API_URL) !== null && _a11 !== void 0 ? _a11 : `https://api.github.com`;
-        this.serverUrl = (_b6 = process.env.GITHUB_SERVER_URL) !== null && _b6 !== void 0 ? _b6 : `https://github.com`;
-        this.graphqlUrl = (_c2 = process.env.GITHUB_GRAPHQL_URL) !== null && _c2 !== void 0 ? _c2 : `https://api.github.com/graphql`;
+        this.apiUrl = (_a16 = process.env.GITHUB_API_URL) !== null && _a16 !== void 0 ? _a16 : `https://api.github.com`;
+        this.serverUrl = (_b10 = process.env.GITHUB_SERVER_URL) !== null && _b10 !== void 0 ? _b10 : `https://github.com`;
+        this.graphqlUrl = (_c5 = process.env.GITHUB_GRAPHQL_URL) !== null && _c5 !== void 0 ? _c5 : `https://api.github.com/graphql`;
       }
       get issue() {
         const payload = this.payload;
@@ -49370,7 +49370,7 @@ var require_proxy2 = __commonJS({
       if (proxyVar) {
         try {
           return new URL(proxyVar);
-        } catch (_a11) {
+        } catch (_a16) {
           if (!proxyVar.startsWith("http://") && !proxyVar.startsWith("https://"))
             return new URL(`http://${proxyVar}`);
         }
@@ -71814,13 +71814,13 @@ var require_tslib3 = __commonJS({
     var __extends4;
     var __assign4;
     var __rest4;
-    var __decorate19;
+    var __decorate25;
     var __param4;
     var __esDecorate4;
     var __runInitializers4;
     var __propKey4;
     var __setFunctionName4;
-    var __metadata14;
+    var __metadata19;
     var __awaiter4;
     var __generator4;
     var __exportStar4;
@@ -71903,7 +71903,7 @@ var require_tslib3 = __commonJS({
           }
         return t;
       };
-      __decorate19 = function(decorators, target, key2, desc) {
+      __decorate25 = function(decorators, target, key2, desc) {
         var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
           r = Reflect.decorate(decorators, target, key2, desc);
@@ -71977,7 +71977,7 @@ var require_tslib3 = __commonJS({
           name = name.description ? "[".concat(name.description, "]") : "";
         return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
       };
-      __metadata14 = function(metadataKey, metadataValue) {
+      __metadata19 = function(metadataKey, metadataValue) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
           return Reflect.metadata(metadataKey, metadataValue);
       };
@@ -72338,13 +72338,13 @@ var require_tslib3 = __commonJS({
       exporter("__extends", __extends4);
       exporter("__assign", __assign4);
       exporter("__rest", __rest4);
-      exporter("__decorate", __decorate19);
+      exporter("__decorate", __decorate25);
       exporter("__param", __param4);
       exporter("__esDecorate", __esDecorate4);
       exporter("__runInitializers", __runInitializers4);
       exporter("__propKey", __propKey4);
       exporter("__setFunctionName", __setFunctionName4);
-      exporter("__metadata", __metadata14);
+      exporter("__metadata", __metadata19);
       exporter("__awaiter", __awaiter4);
       exporter("__generator", __generator4);
       exporter("__exportStar", __exportStar4);
@@ -79631,12 +79631,12 @@ var require_before_after_hook2 = __commonJS({
 
 // src/main.ts
 var core3 = __toESM(require_core(), 1);
-var import_core8 = __toESM(require_core3(), 1);
+var import_core12 = __toESM(require_core3(), 1);
 
 // src/runner.module.ts
-var import_common6 = __toESM(require_common(), 1);
-var import_config8 = __toESM(require_config2(), 1);
-var import_cqrs10 = __toESM(require_cqrs(), 1);
+var import_common7 = __toESM(require_common(), 1);
+var import_config12 = __toESM(require_config2(), 1);
+var import_cqrs15 = __toESM(require_cqrs(), 1);
 
 // package.json
 var package_default = {
@@ -81094,9 +81094,38 @@ var getSource = async (id, options = {}) => {
 };
 var get_source_default = getSource;
 
+// node_modules/@flex-development/tutils/dist/enums/sort-order.mjs
+var SortOrder = /* @__PURE__ */ ((SortOrder2) => (SortOrder2[SortOrder2.ASC = 1] = "ASC", SortOrder2[SortOrder2.DESC = -1] = "DESC", SortOrder2))(SortOrder || {});
+var sort_order_default = SortOrder;
+
 // node_modules/@flex-development/tutils/dist/utils/cast.mjs
 var cast4 = (value) => value;
 var cast_default4 = cast4;
+
+// node_modules/@flex-development/tutils/dist/utils/sort.mjs
+var sort = (arr, compare) => cast_default4([...arr].sort(compare));
+var sort_default = sort;
+
+// node_modules/@flex-development/tutils/dist/utils/alphabetize.mjs
+var alphabetize = (arr, mapper, options = null) => {
+  const {
+    caseFirst = "upper",
+    locales,
+    numeric = true,
+    order = sort_order_default.ASC,
+    ...opts
+  } = options ??= {};
+  return sort_default(arr, (a, b) => {
+    const target = mapper(order === sort_order_default.ASC ? a : b), that = mapper(order === sort_order_default.ASC ? b : a);
+    return target.localeCompare(that, locales, {
+      ...opts,
+      caseFirst,
+      numeric,
+      usage: "sort"
+    });
+  });
+};
+var alphabetize_default = alphabetize;
 
 // node_modules/@flex-development/tutils/dist/utils/is-falsy.mjs
 var isFalsy2 = (value) => !value;
@@ -81388,6 +81417,75 @@ var reduceAsync = async (arr, reducer, initial = cast_default4(arr[0])) => {
     acc = await reducer(acc, curr, i, arr);
   return acc;
 };
+
+// node_modules/@flex-development/tutils/dist/utils/is-object-plain.mjs
+var isObjectPlain = (value) => {
+  let plain = false;
+  switch (true) {
+    case !is_object_default2(value):
+      break;
+    case is_null_default4(Object.getPrototypeOf(value)):
+      plain = true;
+      break;
+    default:
+      let proto = value;
+      for (; !is_null_default4(Object.getPrototypeOf(proto)); )
+        proto = Object.getPrototypeOf(proto);
+      plain = proto === Object.getPrototypeOf(value);
+      break;
+  }
+  return plain;
+};
+var is_object_plain_default = isObjectPlain;
+
+// node_modules/@flex-development/tutils/dist/utils/ksort.mjs
+var ksort = (obj, options) => {
+  if (!is_array_default3(obj) && !is_object_plain_default(obj))
+    return obj;
+  const cache = /* @__PURE__ */ new WeakMap(), arrsort = (arr) => {
+    if (cache.has(arr))
+      return cast_default4(cache.get(arr));
+    cache.set(arr, arr);
+    for (const [key2, item] of arr.entries())
+      is_array_default3(item) && (arr[key2] = arrsort(cast_default4(item))), is_object_plain_default(item) && (arr[key2] = sort2(item));
+    return arr;
+  }, clear = (obj2) => {
+    for (const key2 of properties(obj2))
+      Reflect.deleteProperty(obj2, key2);
+    return obj2;
+  }, sort2 = (object) => {
+    if (cache.has(object))
+      return cast_default4(cache.get(object));
+    const props = [
+      ...alphabetize_default(Object.getOwnPropertyNames(object), identity_default, options),
+      ...Object.getOwnPropertySymbols(object)
+    ].map((key2) => [key2, descriptor_default2(object, key2)]), ret = clear(object);
+    cache.set(object, ret);
+    for (const [key2, descriptor22] of props) {
+      if (options?.deep)
+        switch (true) {
+          case is_array_default3(descriptor22.value):
+            descriptor22.value = arrsort(cast_default4(descriptor22.value));
+            break;
+          case is_object_plain_default(descriptor22.value):
+            descriptor22.value = sort2(cast_default4(descriptor22.value));
+            break;
+          default:
+            break;
+        }
+      define_default2(ret, key2, descriptor22);
+    }
+    return ret;
+  };
+  return cast_default4(
+    is_array_default3(obj) ? options?.deep ? arrsort(cast_default4(obj)) : obj : sort2(obj)
+  );
+};
+var ksort_default = ksort;
+
+// node_modules/@flex-development/tutils/dist/utils/pick.mjs
+var pick = (target, keys) => cast_default4(ksort_default(reduce(keys, (acc, key2) => has_own_default2(target, key2) ? define_default2(acc, key2, { value: get_default(target, key2) }) : acc, {})));
+var pick_default = pick;
 
 // node_modules/@flex-development/tutils/dist/utils/sift.mjs
 var sift = (arr) => cast_default4(select2(arr, (item) => !is_falsy_default2(item)));
@@ -86439,7 +86537,11 @@ var ConfigModule = ConfigModule_1 = class ConfigModule2 extends import_config.Co
       default:
         throw new err_unknown_file_extension_default(ext, path);
     }
-    return defaults_default(infrastructure, {
+    return defaults_default(pick_default(infrastructure, [
+      "environments",
+      "labels"
+    ]), {
+      environments: [],
       labels: []
     });
   }
@@ -86490,29 +86592,10 @@ ConfigModule = ConfigModule_1 = __decorate4([
 ], ConfigModule);
 var config_module_default = ConfigModule;
 
-// src/subdomains/labels/commands/create.command.ts
-var CreateLabelCommand = class {
+// src/subdomains/environments/commands/create.command.ts
+var CreateEnvironmentCommand = class {
   /**
-   * A `6` character hex code, without the leading #, identifying the updated
-   * color of the label.
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {string} color
-   */
-  color;
-  /**
-   * A brief description of the label, such as its purpose.
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nullable<string>?} description
-   */
-  description;
-  /**
-   * Label name.
+   * Environment name.
    *
    * @public
    * @readonly
@@ -86521,19 +86604,58 @@ var CreateLabelCommand = class {
    */
   name;
   /**
-   * Create a new label creation command.
+   * Prevent users from approving their own deployments to this environment.
    *
-   * @param {CreateLabelCommand} params - Command parameters
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<boolean>?} prevent_self_review
+   */
+  prevent_self_review;
+  /**
+   * Users and teams that can approve deployments to this environment.
+   *
+   * @see {@linkcode Reviewers}
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<Partial<Reviewers>>?} reviewers
+   */
+  reviewers;
+  /**
+   * Amount of time (in minutes) to delay a deployment to this environment after
+   * a deployment is initially triggered.
+   *
+   * The time must be an integer between `0` and `43_200` (`30` days).
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<number>?} wait_timer
+   */
+  wait_timer;
+  /**
+   * Create a new environment creation command.
+   *
+   * @param {CreateEnvironmentCommand} params - Command parameters
    */
   constructor(params) {
-    this.color = params.color.replace(/^#/, "");
-    this.description = get_default(params, "description", null);
     this.name = params.name;
+    this.prevent_self_review = get_default(params, "prevent_self_review", null);
+    this.reviewers = get_default(params, "reviewers", null);
+    this.wait_timer = get_default(params, "wait_timer", null);
   }
 };
-var create_command_default = CreateLabelCommand;
+var create_command_default = CreateEnvironmentCommand;
 
-// src/subdomains/labels/commands/create.handler.ts
+// src/subdomains/environments/commands/create.handler.ts
 var import_config3 = __toESM(require_config2(), 1);
 var import_cqrs = __toESM(require_cqrs(), 1);
 
@@ -86717,7 +86839,70 @@ var Octokit2 = class {
   }
 };
 
-// src/subdomains/labels/commands/create.handler.ts
+// src/subdomains/environments/commands/update.command.ts
+var UpdateEnvironmentCommand = class {
+  /**
+   * Node ID of environment to update.
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {string} id
+   */
+  id;
+  /**
+   * Prevent users from approving their own deployments to this environment.
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<boolean>?} prevent_self_review
+   */
+  prevent_self_review;
+  /**
+   * Users and teams that can approve deployments to this environment.
+   *
+   * @see {@linkcode Reviewers}
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<Partial<Reviewers>>?} reviewers
+   */
+  reviewers;
+  /**
+   * Amount of time (in minutes) to delay a deployment to this environment after
+   * a deployment is initially triggered.
+   *
+   * The time must be an integer between `0` and `43_200` (`30` days).
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<number>?} wait_timer
+   */
+  wait_timer;
+  /**
+   * Create a new environment update command.
+   *
+   * @param {UpdateEnvironmentCommand} params - Command parameters
+   */
+  constructor(params) {
+    this.id = params.id;
+    this.prevent_self_review = get_default(params, "prevent_self_review", null);
+    this.reviewers = get_default(params, "reviewers", null);
+    this.wait_timer = get_default(params, "wait_timer", null);
+  }
+};
+var update_command_default = UpdateEnvironmentCommand;
+
+// src/subdomains/environments/commands/create.handler.ts
 var __decorate5 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -86734,6 +86919,1020 @@ var __metadata4 = function(k, v) {
 };
 var _a;
 var _b;
+var _c;
+var CreateEnvironmentHandler = class CreateEnvironmentHandler2 {
+  octokit;
+  config;
+  commands;
+  /**
+   * GraphQL mutation.
+   *
+   * @see https://docs.github.com/graphql/reference/mutations#createenvironment
+   *
+   * @protected
+   * @readonly
+   * @instance
+   * @member {string} operation
+   */
+  operation;
+  /**
+   * Create a new environment creation command handler.
+   *
+   * @see {@linkcode CommandBus}
+   * @see {@linkcode ConfigService}
+   * @see {@linkcode Config}
+   * @see {@linkcode Octokit}
+   *
+   * @param {Octokit} octokit - Hydrated octokit client
+   * @param {ConfigService<Config, true>} config - Infrastructure config service
+   * @param {CommandBus} commands - Command bus
+   */
+  constructor(octokit, config, commands) {
+    this.octokit = octokit;
+    this.config = config;
+    this.commands = commands;
+    this.operation = print(lib_default`
+      mutation CreateEnvironment($input: CreateEnvironmentInput!) {
+        payload: createEnvironment(input: $input) {
+          environment {
+            id
+            name
+           }
+        }
+      }
+    `);
+  }
+  /**
+   * Execute an environment creation command.
+   *
+   * @see {@linkcode CreateEnvironmentCommand}
+   * @see {@linkcode Environment}
+   *
+   * @public
+   * @async
+   *
+   * @param {CreateEnvironmentCommand} command - Command to execute
+   * @return {Promise<Environment>} New environment
+   */
+  async execute(command) {
+    const { payload } = await this.octokit.graphql({
+      input: {
+        clientMutationId: this.config.get("id"),
+        name: command.name,
+        repositoryId: this.config.get("node_id")
+      },
+      query: this.operation
+    });
+    return this.commands.execute(new update_command_default({
+      ...command,
+      id: payload.environment.id
+    }));
+  }
+};
+CreateEnvironmentHandler = __decorate5([
+  (0, import_cqrs.CommandHandler)(create_command_default),
+  __metadata4("design:paramtypes", [typeof (_a = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a : Object, typeof (_b = typeof import_config3.ConfigService !== "undefined" && import_config3.ConfigService) === "function" ? _b : Object, typeof (_c = typeof import_cqrs.CommandBus !== "undefined" && import_cqrs.CommandBus) === "function" ? _c : Object])
+], CreateEnvironmentHandler);
+var create_handler_default = CreateEnvironmentHandler;
+
+// src/subdomains/environments/commands/delete.command.ts
+var DeleteEnvironmentCommand = class {
+  /**
+   * Node ID of environment to delete.
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {string} id
+   */
+  id;
+  /**
+   * Create a new environment deletion command.
+   *
+   * @param {DeleteEnvironmentCommand} params - Command parameters
+   */
+  constructor(params) {
+    this.id = params.id;
+  }
+};
+var delete_command_default = DeleteEnvironmentCommand;
+
+// src/subdomains/environments/commands/delete.handler.ts
+var import_config4 = __toESM(require_config2(), 1);
+var import_cqrs2 = __toESM(require_cqrs(), 1);
+var __decorate6 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var __metadata5 = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+    return Reflect.metadata(k, v);
+};
+var _a2;
+var _b2;
+var DeleteEnvironmentHandler = class DeleteEnvironmentHandler2 {
+  octokit;
+  config;
+  /**
+   * GraphQL mutation.
+   *
+   * @see https://docs.github.com/graphql/reference/mutations#deleteenvironment
+   *
+   * @protected
+   * @readonly
+   * @instance
+   * @member {string} operation
+   */
+  operation;
+  /**
+   * Create a new environment deletion command handler.
+   *
+   * @see {@linkcode ConfigService}
+   * @see {@linkcode Config}
+   * @see {@linkcode Octokit}
+   *
+   * @param {Octokit} octokit - Hydrated octokit client
+   * @param {ConfigService<Config, true>} config - Infrastructure config service
+   */
+  constructor(octokit, config) {
+    this.octokit = octokit;
+    this.config = config;
+    this.operation = print(lib_default`
+      mutation DeleteEnvironment($input: DeleteEnvironmentInput!) {
+        payload: deleteEnvironment(input: $input) {
+          clientMutationId
+        }
+      }
+    `);
+  }
+  /**
+   * Execute an environment deletion command.
+   *
+   * @see {@linkcode DeleteEnvironmentCommand}
+   *
+   * @public
+   * @async
+   *
+   * @param {DeleteEnvironmentCommand} command - Command to execute
+   * @return {Promise<void>} Nothing when complete
+   */
+  async execute(command) {
+    return void await this.octokit.graphql({
+      input: {
+        clientMutationId: this.config.get("id"),
+        id: command.id
+      },
+      query: this.operation
+    });
+  }
+};
+DeleteEnvironmentHandler = __decorate6([
+  (0, import_cqrs2.CommandHandler)(delete_command_default),
+  __metadata5("design:paramtypes", [typeof (_a2 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a2 : Object, typeof (_b2 = typeof import_config4.ConfigService !== "undefined" && import_config4.ConfigService) === "function" ? _b2 : Object])
+], DeleteEnvironmentHandler);
+var delete_handler_default = DeleteEnvironmentHandler;
+
+// src/subdomains/environments/commands/manage.command.ts
+var ManageEnvironmentsCommand = class {
+  /**
+   * Environments parsed from infrastructure file.
+   *
+   * @see {@linkcode CreateEnvironmentCommand}
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {CreateEnvironmentCommand[]} environments
+   */
+  environments;
+  /**
+   * Create a new environment management command.
+   *
+   * @param {CreateEnvironmentCommand[]} environments - Environments to manage
+   */
+  constructor(environments) {
+    this.environments = select2(environments, null, (environment) => {
+      return new create_command_default(environment);
+    });
+  }
+};
+var manage_command_default = ManageEnvironmentsCommand;
+
+// src/commands/manage-list.handler.ts
+var ManageListHandler = class {
+  /**
+   * Manage an infrastructure list.
+   *
+   * @protected
+   * @async
+   *
+   * @template Q - List query constructor type
+   * @template C - Create command constructor type
+   * @template D - Delete command constructor type
+   * @template U - Update command constructor type
+   *
+   * @param {keyof T} key - Key used to compare nodes
+   * @param {InstanceType<C>[]} list - Infrastructure list to manage
+   * @param {Q} Query - Query to execute to find existing nodes
+   * @param {D} Delete - Command to execute to remove stale nodes
+   * @param {C} Create - Command to execute to create new nodes
+   * @param {U} Update - Command to execute to update nodes
+   * @return {Promise<T[]>} Managed infrastructure list
+   */
+  async manage(key2, list, Query, Delete, Create, Update) {
+    const managed = [];
+    if (list.length) {
+      const current = await this.queries.execute(new Query({
+        owner: this.config.get("owner"),
+        repo: this.config.get("repo")
+      }));
+      for (const node of current) {
+        if (!includes_default3(list, node, 0, (n) => n[key2])) {
+          await this.commands.execute(new Delete(node));
+        }
+      }
+      for (const node of list) {
+        const curr = current.find((curr2) => node[key2] === curr2[key2]);
+        managed.push(
+          is_undefined_default4(curr) ? await this.commands.execute(new Create(node)) : await this.commands.execute(new Update({ ...node, id: curr.id }))
+        );
+      }
+    }
+    return managed;
+  }
+};
+var manage_list_handler_default = ManageListHandler;
+
+// src/subdomains/environments/queries/environments.handler.ts
+var import_cqrs3 = __toESM(require_cqrs(), 1);
+
+// src/queries/repository.query.ts
+var RepositoryQuery = class {
+  /**
+   * Repository owner.
+   *
+   * @public
+   * @instance
+   * @member {string} owner
+   */
+  owner;
+  /**
+   * Repository name.
+   *
+   * @public
+   * @instance
+   * @member {string} repo
+   */
+  repo;
+  /**
+   * Create a new repository query.
+   *
+   * @param {RepositoryQuery} params - Query parameters
+   */
+  constructor(params) {
+    this.owner = params.owner;
+    this.repo = params.repo;
+  }
+};
+var repository_query_default = RepositoryQuery;
+
+// src/subdomains/environments/queries/environments.query.ts
+var EnvironmentsQuery = class extends repository_query_default {
+};
+var environments_query_default = EnvironmentsQuery;
+
+// src/subdomains/environments/queries/environments.handler.ts
+var __decorate7 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var __metadata6 = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+    return Reflect.metadata(k, v);
+};
+var _a3;
+var EnvironmentsHandler = class EnvironmentsHandler2 {
+  octokit;
+  /**
+   * GraphQL query.
+   *
+   * @see https://docs.github.com/graphql/reference/queries#repository
+   *
+   * @protected
+   * @readonly
+   * @instance
+   * @member {string} operation
+   */
+  operation;
+  /**
+   * Create a new environments query handler.
+   *
+   * @see {@linkcode Octokit}
+   *
+   * @param {Octokit} octokit - Hydrated octokit client
+   */
+  constructor(octokit) {
+    this.octokit = octokit;
+    this.operation = print(lib_default`
+      query Environments($cursor: String, $owner: String!, $repo: String!) {
+        payload: repository(name: $repo, owner: $owner) {
+          environments(
+            after: $cursor,
+            first: 100,
+            orderBy: { direction: ASC, field: NAME }
+          ) {
+            nodes {
+              id
+              name
+            }
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
+          }
+          id
+        }
+      }
+    `);
+  }
+  /**
+   * Execute an environments query.
+   *
+   * @see {@linkcode Environment}
+   * @see {@linkcode EnvironmentsQuery}
+   *
+   * @public
+   * @async
+   *
+   * @param {EnvironmentsQuery} query - Query to execute
+   * @return {Promise<Environment[]>} Environments array
+   */
+  async execute(query) {
+    const { payload } = await this.octokit.graphql.paginate(this.operation, query);
+    return payload.environments.nodes;
+  }
+};
+EnvironmentsHandler = __decorate7([
+  (0, import_cqrs3.QueryHandler)(environments_query_default),
+  __metadata6("design:paramtypes", [typeof (_a3 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a3 : Object])
+], EnvironmentsHandler);
+var environments_handler_default = EnvironmentsHandler;
+
+// src/subdomains/environments/commands/manage.handler.ts
+var import_config5 = __toESM(require_config2(), 1);
+var import_cqrs4 = __toESM(require_cqrs(), 1);
+var __decorate8 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var __metadata7 = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+    return Reflect.metadata(k, v);
+};
+var _a4;
+var _b3;
+var _c2;
+var ManageEnvironmentsHandler = class ManageEnvironmentsHandler2 extends manage_list_handler_default {
+  config;
+  commands;
+  queries;
+  /**
+   * Create a new environment management command handler.
+   *
+   * @see {@linkcode CommandBus}
+   * @see {@linkcode ConfigService}
+   * @see {@linkcode Config}
+   * @see {@linkcode QueryBus}
+   *
+   * @param {ConfigService<Config, true>} config - Infrastructure config service
+   * @param {CommandBus} commands - Command bus
+   * @param {QueryBus} queries - Query bus
+   */
+  constructor(config, commands, queries) {
+    super();
+    this.config = config;
+    this.commands = commands;
+    this.queries = queries;
+  }
+  /**
+   * Execute an environment management command.
+   *
+   * @see {@linkcode Environment}
+   * @see {@linkcode ManageEnvironmentsCommand}
+   *
+   * @public
+   * @async
+   *
+   * @param {ManageEnvironmentsCommand} command - Command to execute
+   * @return {Promise<Environment[]>} Managed environments
+   */
+  async execute(command) {
+    return this.manage("name", command.environments, environments_query_default, delete_command_default, create_command_default, update_command_default);
+  }
+};
+ManageEnvironmentsHandler = __decorate8([
+  (0, import_cqrs4.CommandHandler)(manage_command_default),
+  __metadata7("design:paramtypes", [typeof (_a4 = typeof import_config5.ConfigService !== "undefined" && import_config5.ConfigService) === "function" ? _a4 : Object, typeof (_b3 = typeof import_cqrs4.CommandBus !== "undefined" && import_cqrs4.CommandBus) === "function" ? _b3 : Object, typeof (_c2 = typeof import_cqrs4.QueryBus !== "undefined" && import_cqrs4.QueryBus) === "function" ? _c2 : Object])
+], ManageEnvironmentsHandler);
+var manage_handler_default = ManageEnvironmentsHandler;
+
+// src/subdomains/teams/queries/team.handler.ts
+var import_cqrs5 = __toESM(require_cqrs(), 1);
+
+// src/subdomains/teams/queries/team.query.ts
+var TeamQuery = class {
+  /**
+   * Organization name.
+   *
+   * @public
+   * @instance
+   * @member {string} org
+   */
+  org;
+  /**
+   * Team slug.
+   *
+   * @public
+   * @instance
+   * @member {string} team
+   */
+  team;
+  /**
+   * Create a new team query.
+   *
+   * @param {TeamQuery} params - Query parameters
+   */
+  constructor(params) {
+    this.org = params.org;
+    this.team = params.team;
+  }
+};
+var team_query_default = TeamQuery;
+
+// src/subdomains/teams/queries/team.handler.ts
+var __decorate9 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var __metadata8 = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+    return Reflect.metadata(k, v);
+};
+var _a5;
+var TeamHandler = class TeamHandler2 {
+  octokit;
+  /**
+   * GraphQL query.
+   *
+   * @see https://docs.github.com/graphql/reference/queries#organization
+   *
+   * @protected
+   * @readonly
+   * @instance
+   * @member {string} operation
+   */
+  operation;
+  /**
+   * Create a new team query handler.
+   *
+   * @see {@linkcode Octokit}
+   *
+   * @param {Octokit} octokit - Hydrated octokit client
+   */
+  constructor(octokit) {
+    this.octokit = octokit;
+    this.operation = print(lib_default`
+      query Team($org: String!, $team: String!) {
+        payload: organization(login: $org) {
+          id
+          team(slug: $team) {
+            id
+            slug
+          }
+        }
+      }
+    `);
+  }
+  /**
+   * Execute a team query.
+   *
+   * @see {@linkcode Team}
+   * @see {@linkcode TeamQuery}
+   *
+   * @public
+   * @async
+   *
+   * @param {TeamQuery} query - Query to execute
+   * @return {Promise<Team>} Team object
+   * @throws {GraphqlResponseError}
+   */
+  async execute(query) {
+    const request3 = {
+      method: "POST",
+      query: this.operation,
+      url: "/graphql",
+      variables: { ...query }
+    };
+    const { headers, data: { data, errors = [] } } = await this.octokit.request(request3);
+    if (data?.payload && !data.payload.team) {
+      const { team } = query;
+      const m = `Could not resolve to a Team with the slug of '${team}'`;
+      errors.push({
+        ...new GraphQLError(m).toJSON(),
+        type: "NOT_FOUND"
+      });
+    }
+    if (errors.length) {
+      throw new GraphqlResponseError2(request3, headers, { data, errors });
+    }
+    return data.payload.team;
+  }
+};
+TeamHandler = __decorate9([
+  (0, import_cqrs5.QueryHandler)(team_query_default),
+  __metadata8("design:paramtypes", [typeof (_a5 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a5 : Object])
+], TeamHandler);
+var team_handler_default = TeamHandler;
+
+// src/subdomains/teams/queries/teams.handler.ts
+var import_cqrs6 = __toESM(require_cqrs(), 1);
+
+// src/subdomains/teams/queries/teams.query.ts
+var TeamsQuery = class {
+  /**
+   * Organization name.
+   *
+   * @public
+   * @instance
+   * @member {string} org
+   */
+  org;
+  /**
+   * Team slugs.
+   *
+   * @public
+   * @instance
+   * @member {string[]} teams
+   */
+  teams;
+  /**
+   * Create a new teams query.
+   *
+   * @param {TeamsQuery} params - Query parameters
+   */
+  constructor(params) {
+    this.org = params.org;
+    this.teams = params.teams;
+  }
+};
+var teams_query_default = TeamsQuery;
+
+// src/subdomains/teams/queries/teams.handler.ts
+var __decorate10 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var __metadata9 = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+    return Reflect.metadata(k, v);
+};
+var _a6;
+var TeamsHandler = class TeamsHandler2 {
+  queries;
+  /**
+   * Create a new teams query handler.
+   *
+   * @see {@linkcode QueryBus}
+   *
+   * @param {QueryBus} queries - Query bus
+   */
+  constructor(queries) {
+    this.queries = queries;
+  }
+  /**
+   * Execute a teams query.
+   *
+   * @see {@linkcode Team}
+   * @see {@linkcode TeamsQuery}
+   *
+   * @public
+   * @async
+   *
+   * @param {TeamsQuery} query - Query to execute
+   * @return {Promise<Team[]>} Team objects array
+   */
+  async execute(query) {
+    return reduceAsync(query.teams, async (acc, team) => [
+      ...acc,
+      await this.queries.execute(new team_query_default({ org: query.org, team }))
+    ], []);
+  }
+};
+TeamsHandler = __decorate10([
+  (0, import_cqrs6.QueryHandler)(teams_query_default),
+  __metadata9("design:paramtypes", [typeof (_a6 = typeof import_cqrs6.QueryBus !== "undefined" && import_cqrs6.QueryBus) === "function" ? _a6 : Object])
+], TeamsHandler);
+var teams_handler_default = TeamsHandler;
+
+// src/subdomains/users/queries/user.handler.ts
+var import_cqrs7 = __toESM(require_cqrs(), 1);
+
+// src/subdomains/users/queries/user.query.ts
+var UserQuery = class {
+  /**
+   * User login.
+   *
+   * @public
+   * @instance
+   * @member {string} login
+   */
+  login;
+  /**
+   * Create a new GitHub user query.
+   *
+   * @param {UserQuery} params - Query parameters
+   */
+  constructor(params) {
+    this.login = params.login;
+  }
+};
+var user_query_default = UserQuery;
+
+// src/subdomains/users/queries/user.handler.ts
+var __decorate11 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var __metadata10 = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+    return Reflect.metadata(k, v);
+};
+var _a7;
+var UserHandler = class UserHandler2 {
+  octokit;
+  /**
+   * GraphQL query.
+   *
+   * @see https://docs.github.com/graphql/reference/queries#user
+   *
+   * @protected
+   * @readonly
+   * @instance
+   * @member {string} operation
+   */
+  operation;
+  /**
+   * Create a new GitHub user query handler.
+   *
+   * @see {@linkcode Octokit}
+   *
+   * @param {Octokit} octokit - Hydrated octokit client
+   */
+  constructor(octokit) {
+    this.octokit = octokit;
+    this.operation = print(lib_default`
+      query User($login: String!) {
+        payload: user(login: $login) {
+          id
+          login
+        }
+      }
+    `);
+  }
+  /**
+   * Execute a GitHub user query.
+   *
+   * @see {@linkcode User}
+   * @see {@linkcode UserQuery}
+   *
+   * @public
+   * @async
+   *
+   * @param {UserQuery} query - Query to execute
+   * @return {Promise<User>} GitHub user object
+   */
+  async execute(query) {
+    const { payload } = await this.octokit.graphql({
+      login: query.login,
+      query: this.operation
+    });
+    return payload;
+  }
+};
+UserHandler = __decorate11([
+  (0, import_cqrs7.QueryHandler)(user_query_default),
+  __metadata10("design:paramtypes", [typeof (_a7 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a7 : Object])
+], UserHandler);
+var user_handler_default = UserHandler;
+
+// src/subdomains/users/queries/users.handler.ts
+var import_cqrs8 = __toESM(require_cqrs(), 1);
+
+// src/subdomains/users/queries/users.query.ts
+var UsersQuery = class {
+  /**
+   * User logins.
+   *
+   * @public
+   * @instance
+   * @member {string[]} logins
+   */
+  logins;
+  /**
+   * Create a new GitHub users query.
+   *
+   * @param {UsersQuery} params - Query parameters
+   */
+  constructor(params) {
+    this.logins = params.logins;
+  }
+};
+var users_query_default = UsersQuery;
+
+// src/subdomains/users/queries/users.handler.ts
+var __decorate12 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var __metadata11 = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+    return Reflect.metadata(k, v);
+};
+var _a8;
+var UsersHandler = class UsersHandler2 {
+  queries;
+  /**
+   * Create a new GitHub users query handler.
+   *
+   * @see {@linkcode QueryBus}
+   *
+   * @param {QueryBus} queries - Query bus
+   */
+  constructor(queries) {
+    this.queries = queries;
+  }
+  /**
+   * Execute a GitHub users query.
+   *
+   * @see {@linkcode User}
+   * @see {@linkcode UsersQuery}
+   *
+   * @public
+   * @async
+   *
+   * @param {UsersQuery} query - Query to execute
+   * @return {Promise<User[]>} GitHub user objects array
+   */
+  async execute(query) {
+    return reduceAsync(query.logins, async (acc, login) => [
+      ...acc,
+      await this.queries.execute(new user_query_default({ login }))
+    ], []);
+  }
+};
+UsersHandler = __decorate12([
+  (0, import_cqrs8.QueryHandler)(users_query_default),
+  __metadata11("design:paramtypes", [typeof (_a8 = typeof import_cqrs8.QueryBus !== "undefined" && import_cqrs8.QueryBus) === "function" ? _a8 : Object])
+], UsersHandler);
+var users_handler_default = UsersHandler;
+
+// src/subdomains/environments/commands/update.handler.ts
+var import_config6 = __toESM(require_config2(), 1);
+var import_cqrs9 = __toESM(require_cqrs(), 1);
+var __decorate13 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var __metadata12 = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+    return Reflect.metadata(k, v);
+};
+var _a9;
+var _b4;
+var _c3;
+var UpdateEnvironmentHandler = class UpdateEnvironmentHandler2 {
+  octokit;
+  config;
+  queries;
+  /**
+   * GraphQL mutation.
+   *
+   * @see https://docs.github.com/graphql/reference/mutations#updateenvironment
+   *
+   * @protected
+   * @readonly
+   * @instance
+   * @member {string} operation
+   */
+  operation;
+  /**
+   * Create a new environment update command handler.
+   *
+   * @see {@linkcode ConfigService}
+   * @see {@linkcode Config}
+   * @see {@linkcode Octokit}
+   * @see {@linkcode QueryBus}
+   *
+   * @param {Octokit} octokit - Hydrated octokit client
+   * @param {ConfigService<Config, true>} config - Infrastructure config service
+   * @param {QueryBus} queries - Query bus
+   */
+  constructor(octokit, config, queries) {
+    this.octokit = octokit;
+    this.config = config;
+    this.queries = queries;
+    this.operation = print(lib_default`
+      mutation UpdateEnvironment($input: UpdateEnvironmentInput!) {
+        payload: updateEnvironment(input: $input) {
+          environment {
+            id
+            name
+           }
+        }
+      }
+    `);
+  }
+  /**
+   * Execute an environment update command.
+   *
+   * @see {@linkcode Environment}
+   * @see {@linkcode UpdateEnvironmentCommand}
+   *
+   * @public
+   * @async
+   *
+   * @param {UpdateEnvironmentCommand} command - Command to execute
+   * @return {Promise<Environment>} Updated environment
+   */
+  async execute(command) {
+    let reviewers = [];
+    if (command.reviewers) {
+      reviewers = [
+        ...await this.queries.execute(new users_query_default({
+          logins: get_default(command.reviewers, "users", [])
+        })),
+        ...await this.queries.execute(new teams_query_default({
+          org: this.config.get("owner"),
+          teams: get_default(command.reviewers, "teams", [])
+        }))
+      ];
+    }
+    const { payload } = await this.octokit.graphql({
+      input: {
+        clientMutationId: this.config.get("id"),
+        environmentId: command.id,
+        preventSelfReview: command.prevent_self_review,
+        reviewers: select2(reviewers, null, (reviewer) => reviewer.id),
+        waitTimer: command.wait_timer
+      },
+      query: this.operation
+    });
+    return payload.environment;
+  }
+};
+UpdateEnvironmentHandler = __decorate13([
+  (0, import_cqrs9.CommandHandler)(update_command_default),
+  __metadata12("design:paramtypes", [typeof (_a9 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a9 : Object, typeof (_b4 = typeof import_config6.ConfigService !== "undefined" && import_config6.ConfigService) === "function" ? _b4 : Object, typeof (_c3 = typeof import_cqrs9.QueryBus !== "undefined" && import_cqrs9.QueryBus) === "function" ? _c3 : Object])
+], UpdateEnvironmentHandler);
+var update_handler_default = UpdateEnvironmentHandler;
+
+// src/subdomains/environments/environments.module.ts
+var import_common2 = __toESM(require_common(), 1);
+var __decorate14 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var EnvironmentsModule = class EnvironmentsModule2 {
+};
+EnvironmentsModule = __decorate14([
+  (0, import_common2.Module)({
+    providers: [
+      create_handler_default,
+      delete_handler_default,
+      environments_handler_default,
+      manage_handler_default,
+      update_handler_default
+    ]
+  })
+], EnvironmentsModule);
+var environments_module_default = EnvironmentsModule;
+
+// src/subdomains/labels/commands/create.command.ts
+var CreateLabelCommand = class {
+  /**
+   * A `6` character hex code, without the leading #, identifying the updated
+   * color of the label.
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {string} color
+   */
+  color;
+  /**
+   * A brief description of the label, such as its purpose.
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<string>?} description
+   */
+  description;
+  /**
+   * Label name.
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {string} name
+   */
+  name;
+  /**
+   * Create a new label creation command.
+   *
+   * @param {CreateLabelCommand} params - Command parameters
+   */
+  constructor(params) {
+    this.color = params.color.replace(/^#/, "");
+    this.description = get_default(params, "description", null);
+    this.name = params.name;
+  }
+};
+var create_command_default2 = CreateLabelCommand;
+
+// src/subdomains/labels/commands/create.handler.ts
+var import_config7 = __toESM(require_config2(), 1);
+var import_cqrs10 = __toESM(require_cqrs(), 1);
+var __decorate15 = function(decorators, target, key2, desc) {
+  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+    r = Reflect.decorate(decorators, target, key2, desc);
+  else
+    for (var i = decorators.length - 1; i >= 0; i--)
+      if (d = decorators[i])
+        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
+  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+};
+var __metadata13 = function(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+    return Reflect.metadata(k, v);
+};
+var _a10;
+var _b5;
 var CreateLabelHandler = class CreateLabelHandler2 {
   octokit;
   config;
@@ -86798,11 +87997,11 @@ var CreateLabelHandler = class CreateLabelHandler2 {
     return payload.label;
   }
 };
-CreateLabelHandler = __decorate5([
-  (0, import_cqrs.CommandHandler)(create_command_default),
-  __metadata4("design:paramtypes", [typeof (_a = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a : Object, typeof (_b = typeof import_config3.ConfigService !== "undefined" && import_config3.ConfigService) === "function" ? _b : Object])
+CreateLabelHandler = __decorate15([
+  (0, import_cqrs10.CommandHandler)(create_command_default2),
+  __metadata13("design:paramtypes", [typeof (_a10 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a10 : Object, typeof (_b5 = typeof import_config7.ConfigService !== "undefined" && import_config7.ConfigService) === "function" ? _b5 : Object])
 ], CreateLabelHandler);
-var create_handler_default = CreateLabelHandler;
+var create_handler_default2 = CreateLabelHandler;
 
 // src/subdomains/labels/commands/delete.command.ts
 var DeleteLabelCommand = class {
@@ -86824,12 +88023,12 @@ var DeleteLabelCommand = class {
     this.id = params.id;
   }
 };
-var delete_command_default = DeleteLabelCommand;
+var delete_command_default2 = DeleteLabelCommand;
 
 // src/subdomains/labels/commands/delete.handler.ts
-var import_config4 = __toESM(require_config2(), 1);
-var import_cqrs2 = __toESM(require_cqrs(), 1);
-var __decorate6 = function(decorators, target, key2, desc) {
+var import_config8 = __toESM(require_config2(), 1);
+var import_cqrs11 = __toESM(require_cqrs(), 1);
+var __decorate16 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
     r = Reflect.decorate(decorators, target, key2, desc);
@@ -86839,12 +88038,12 @@ var __decorate6 = function(decorators, target, key2, desc) {
         r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
   return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
 };
-var __metadata5 = function(k, v) {
+var __metadata14 = function(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
     return Reflect.metadata(k, v);
 };
-var _a2;
-var _b2;
+var _a11;
+var _b6;
 var DeleteLabelHandler = class DeleteLabelHandler2 {
   octokit;
   config;
@@ -86898,11 +88097,11 @@ var DeleteLabelHandler = class DeleteLabelHandler2 {
     });
   }
 };
-DeleteLabelHandler = __decorate6([
-  (0, import_cqrs2.CommandHandler)(delete_command_default),
-  __metadata5("design:paramtypes", [typeof (_a2 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a2 : Object, typeof (_b2 = typeof import_config4.ConfigService !== "undefined" && import_config4.ConfigService) === "function" ? _b2 : Object])
+DeleteLabelHandler = __decorate16([
+  (0, import_cqrs11.CommandHandler)(delete_command_default2),
+  __metadata14("design:paramtypes", [typeof (_a11 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a11 : Object, typeof (_b6 = typeof import_config8.ConfigService !== "undefined" && import_config8.ConfigService) === "function" ? _b6 : Object])
 ], DeleteLabelHandler);
-var delete_handler_default = DeleteLabelHandler;
+var delete_handler_default2 = DeleteLabelHandler;
 
 // src/subdomains/labels/commands/manage.command.ts
 var ManageLabelsCommand = class {
@@ -86923,88 +88122,13 @@ var ManageLabelsCommand = class {
    * @param {CreateLabelCommand[]} labels - Labels to manage
    */
   constructor(labels) {
-    this.labels = select2(labels, null, (label) => new create_command_default(label));
+    this.labels = select2(labels, null, (label) => new create_command_default2(label));
   }
 };
-var manage_command_default = ManageLabelsCommand;
-
-// src/commands/manage-list.handler.ts
-var ManageListHandler = class {
-  /**
-   * Manage an infrastructure list.
-   *
-   * @protected
-   * @async
-   *
-   * @template Q - List query constructor type
-   * @template C - Create command constructor type
-   * @template D - Delete command constructor type
-   * @template U - Update command constructor type
-   *
-   * @param {keyof T} key - Key used to compare nodes
-   * @param {InstanceType<C>[]} list - Infrastructure list to manage
-   * @param {Q} Query - Query to execute to find existing nodes
-   * @param {D} Delete - Command to execute to remove stale nodes
-   * @param {C} Create - Command to execute to create new nodes
-   * @param {U} Update - Command to execute to update nodes
-   * @return {Promise<T[]>} Managed infrastructure list
-   */
-  async manage(key2, list, Query, Delete, Create, Update) {
-    const managed = [];
-    if (list.length) {
-      const current = await this.queries.execute(new Query({
-        owner: this.config.get("owner"),
-        repo: this.config.get("repo")
-      }));
-      for (const node of current) {
-        if (!includes_default3(list, node, 0, (n) => n[key2])) {
-          await this.commands.execute(new Delete(node));
-        }
-      }
-      for (const node of list) {
-        const curr = current.find((curr2) => node[key2] === curr2[key2]);
-        managed.push(
-          is_undefined_default4(curr) ? await this.commands.execute(new Create(node)) : await this.commands.execute(new Update({ ...node, id: curr.id }))
-        );
-      }
-    }
-    return managed;
-  }
-};
-var manage_list_handler_default = ManageListHandler;
+var manage_command_default2 = ManageLabelsCommand;
 
 // src/subdomains/labels/queries/labels.handler.ts
-var import_cqrs3 = __toESM(require_cqrs(), 1);
-
-// src/queries/repository.query.ts
-var RepositoryQuery = class {
-  /**
-   * Repository owner.
-   *
-   * @public
-   * @instance
-   * @member {string} owner
-   */
-  owner;
-  /**
-   * Repository name.
-   *
-   * @public
-   * @instance
-   * @member {string} repo
-   */
-  repo;
-  /**
-   * Create a new repository query.
-   *
-   * @param {RepositoryQuery} params - Query parameters
-   */
-  constructor(params) {
-    this.owner = params.owner;
-    this.repo = params.repo;
-  }
-};
-var repository_query_default = RepositoryQuery;
+var import_cqrs12 = __toESM(require_cqrs(), 1);
 
 // src/subdomains/labels/queries/labels.query.ts
 var LabelsQuery = class extends repository_query_default {
@@ -87012,7 +88136,7 @@ var LabelsQuery = class extends repository_query_default {
 var labels_query_default = LabelsQuery;
 
 // src/subdomains/labels/queries/labels.handler.ts
-var __decorate7 = function(decorators, target, key2, desc) {
+var __decorate17 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
     r = Reflect.decorate(decorators, target, key2, desc);
@@ -87022,11 +88146,11 @@ var __decorate7 = function(decorators, target, key2, desc) {
         r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
   return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
 };
-var __metadata6 = function(k, v) {
+var __metadata15 = function(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
     return Reflect.metadata(k, v);
 };
-var _a3;
+var _a12;
 var LabelsHandler = class LabelsHandler2 {
   octokit;
   /**
@@ -87090,15 +88214,15 @@ var LabelsHandler = class LabelsHandler2 {
     return payload.labels.nodes;
   }
 };
-LabelsHandler = __decorate7([
-  (0, import_cqrs3.QueryHandler)(labels_query_default),
-  __metadata6("design:paramtypes", [typeof (_a3 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a3 : Object])
+LabelsHandler = __decorate17([
+  (0, import_cqrs12.QueryHandler)(labels_query_default),
+  __metadata15("design:paramtypes", [typeof (_a12 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a12 : Object])
 ], LabelsHandler);
 var labels_handler_default = LabelsHandler;
 
 // src/subdomains/labels/commands/manage.handler.ts
-var import_config5 = __toESM(require_config2(), 1);
-var import_cqrs4 = __toESM(require_cqrs(), 1);
+var import_config9 = __toESM(require_config2(), 1);
+var import_cqrs13 = __toESM(require_cqrs(), 1);
 
 // src/subdomains/labels/commands/update.command.ts
 var UpdateLabelCommand = class {
@@ -87146,10 +88270,10 @@ var UpdateLabelCommand = class {
     this.color && (this.color = this.color.replace(/^#/, ""));
   }
 };
-var update_command_default = UpdateLabelCommand;
+var update_command_default2 = UpdateLabelCommand;
 
 // src/subdomains/labels/commands/manage.handler.ts
-var __decorate8 = function(decorators, target, key2, desc) {
+var __decorate18 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
     r = Reflect.decorate(decorators, target, key2, desc);
@@ -87159,13 +88283,13 @@ var __decorate8 = function(decorators, target, key2, desc) {
         r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
   return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
 };
-var __metadata7 = function(k, v) {
+var __metadata16 = function(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
     return Reflect.metadata(k, v);
 };
-var _a4;
-var _b3;
-var _c;
+var _a13;
+var _b7;
+var _c4;
 var ManageLabelsHandler = class ManageLabelsHandler2 extends manage_list_handler_default {
   config;
   commands;
@@ -87201,19 +88325,19 @@ var ManageLabelsHandler = class ManageLabelsHandler2 extends manage_list_handler
    * @return {Promise<Label[]>} Managed repository labels
    */
   async execute(command) {
-    return this.manage("name", command.labels, labels_query_default, delete_command_default, create_command_default, update_command_default);
+    return this.manage("name", command.labels, labels_query_default, delete_command_default2, create_command_default2, update_command_default2);
   }
 };
-ManageLabelsHandler = __decorate8([
-  (0, import_cqrs4.CommandHandler)(manage_command_default),
-  __metadata7("design:paramtypes", [typeof (_a4 = typeof import_config5.ConfigService !== "undefined" && import_config5.ConfigService) === "function" ? _a4 : Object, typeof (_b3 = typeof import_cqrs4.CommandBus !== "undefined" && import_cqrs4.CommandBus) === "function" ? _b3 : Object, typeof (_c = typeof import_cqrs4.QueryBus !== "undefined" && import_cqrs4.QueryBus) === "function" ? _c : Object])
+ManageLabelsHandler = __decorate18([
+  (0, import_cqrs13.CommandHandler)(manage_command_default2),
+  __metadata16("design:paramtypes", [typeof (_a13 = typeof import_config9.ConfigService !== "undefined" && import_config9.ConfigService) === "function" ? _a13 : Object, typeof (_b7 = typeof import_cqrs13.CommandBus !== "undefined" && import_cqrs13.CommandBus) === "function" ? _b7 : Object, typeof (_c4 = typeof import_cqrs13.QueryBus !== "undefined" && import_cqrs13.QueryBus) === "function" ? _c4 : Object])
 ], ManageLabelsHandler);
-var manage_handler_default = ManageLabelsHandler;
+var manage_handler_default2 = ManageLabelsHandler;
 
 // src/subdomains/labels/commands/update.handler.ts
-var import_config6 = __toESM(require_config2(), 1);
-var import_cqrs5 = __toESM(require_cqrs(), 1);
-var __decorate9 = function(decorators, target, key2, desc) {
+var import_config10 = __toESM(require_config2(), 1);
+var import_cqrs14 = __toESM(require_cqrs(), 1);
+var __decorate19 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
     r = Reflect.decorate(decorators, target, key2, desc);
@@ -87223,12 +88347,12 @@ var __decorate9 = function(decorators, target, key2, desc) {
         r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
   return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
 };
-var __metadata8 = function(k, v) {
+var __metadata17 = function(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
     return Reflect.metadata(k, v);
 };
-var _a5;
-var _b4;
+var _a14;
+var _b8;
 var UpdateLabelHandler = class UpdateLabelHandler2 {
   octokit;
   config;
@@ -87289,15 +88413,15 @@ var UpdateLabelHandler = class UpdateLabelHandler2 {
     return payload.label;
   }
 };
-UpdateLabelHandler = __decorate9([
-  (0, import_cqrs5.CommandHandler)(update_command_default),
-  __metadata8("design:paramtypes", [typeof (_a5 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a5 : Object, typeof (_b4 = typeof import_config6.ConfigService !== "undefined" && import_config6.ConfigService) === "function" ? _b4 : Object])
+UpdateLabelHandler = __decorate19([
+  (0, import_cqrs14.CommandHandler)(update_command_default2),
+  __metadata17("design:paramtypes", [typeof (_a14 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a14 : Object, typeof (_b8 = typeof import_config10.ConfigService !== "undefined" && import_config10.ConfigService) === "function" ? _b8 : Object])
 ], UpdateLabelHandler);
-var update_handler_default = UpdateLabelHandler;
+var update_handler_default2 = UpdateLabelHandler;
 
 // src/subdomains/labels/labels.module.ts
-var import_common2 = __toESM(require_common(), 1);
-var __decorate10 = function(decorators, target, key2, desc) {
+var import_common3 = __toESM(require_common(), 1);
+var __decorate20 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
     r = Reflect.decorate(decorators, target, key2, desc);
@@ -87309,14 +88433,14 @@ var __decorate10 = function(decorators, target, key2, desc) {
 };
 var LabelsModule = class LabelsModule2 {
 };
-LabelsModule = __decorate10([
-  (0, import_common2.Module)({
+LabelsModule = __decorate20([
+  (0, import_common3.Module)({
     providers: [
-      create_handler_default,
-      delete_handler_default,
+      create_handler_default2,
+      delete_handler_default2,
       labels_handler_default,
-      manage_handler_default,
-      update_handler_default
+      manage_handler_default2,
+      update_handler_default2
     ]
   })
 ], LabelsModule);
@@ -87325,8 +88449,8 @@ var labels_module_default = LabelsModule;
 // src/subdomains/octokit/octokit.module.ts
 var core2 = __toESM(require_core(), 1);
 var github2 = __toESM(require_github(), 1);
-var import_common3 = __toESM(require_common(), 1);
-var import_config7 = __toESM(require_config2(), 1);
+var import_common4 = __toESM(require_common(), 1);
+var import_config11 = __toESM(require_config2(), 1);
 
 // node_modules/@octokit/plugin-paginate-graphql/dist-src/errors.js
 var generateMessage = (path, cursorValue) => `The cursor at "${path.join(
@@ -87506,7 +88630,7 @@ function paginateGraphql(octokit) {
 }
 
 // src/subdomains/octokit/octokit.module.ts
-var __decorate11 = function(decorators, target, key2, desc) {
+var __decorate21 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
     r = Reflect.decorate(decorators, target, key2, desc);
@@ -87518,13 +88642,13 @@ var __decorate11 = function(decorators, target, key2, desc) {
 };
 var OctokitModule = class OctokitModule2 {
 };
-OctokitModule = __decorate11([
-  (0, import_common3.Global)(),
-  (0, import_common3.Module)({
+OctokitModule = __decorate21([
+  (0, import_common4.Global)(),
+  (0, import_common4.Module)({
     exports: [Octokit2],
     providers: [
       {
-        inject: [import_config7.ConfigService],
+        inject: [import_config11.ConfigService],
         provide: Octokit2,
         useFactory(config) {
           return github2.getOctokit(config.get("token"), {
@@ -87550,219 +88674,9 @@ OctokitModule = __decorate11([
 ], OctokitModule);
 var octokit_module_default = OctokitModule;
 
-// src/subdomains/teams/queries/team.handler.ts
-var import_cqrs6 = __toESM(require_cqrs(), 1);
-
-// src/subdomains/teams/queries/team.query.ts
-var TeamQuery = class {
-  /**
-   * Organization name.
-   *
-   * @public
-   * @instance
-   * @member {string} org
-   */
-  org;
-  /**
-   * Team slug.
-   *
-   * @public
-   * @instance
-   * @member {string} team
-   */
-  team;
-  /**
-   * Create a new team query.
-   *
-   * @param {TeamQuery} params - Query parameters
-   */
-  constructor(params) {
-    this.org = params.org;
-    this.team = params.team;
-  }
-};
-var team_query_default = TeamQuery;
-
-// src/subdomains/teams/queries/team.handler.ts
-var __decorate12 = function(decorators, target, key2, desc) {
-  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-    r = Reflect.decorate(decorators, target, key2, desc);
-  else
-    for (var i = decorators.length - 1; i >= 0; i--)
-      if (d = decorators[i])
-        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
-  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
-};
-var __metadata9 = function(k, v) {
-  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-    return Reflect.metadata(k, v);
-};
-var _a6;
-var TeamHandler = class TeamHandler2 {
-  octokit;
-  /**
-   * GraphQL query.
-   *
-   * @see https://docs.github.com/graphql/reference/queries#organization
-   *
-   * @protected
-   * @readonly
-   * @instance
-   * @member {string} operation
-   */
-  operation;
-  /**
-   * Create a new team query handler.
-   *
-   * @see {@linkcode Octokit}
-   *
-   * @param {Octokit} octokit - Hydrated octokit client
-   */
-  constructor(octokit) {
-    this.octokit = octokit;
-    this.operation = print(lib_default`
-      query Team($org: String!, $team: String!) {
-        payload: organization(login: $org) {
-          id
-          team(slug: $team) {
-            id
-            slug
-          }
-        }
-      }
-    `);
-  }
-  /**
-   * Execute a team query.
-   *
-   * @see {@linkcode Team}
-   * @see {@linkcode TeamQuery}
-   *
-   * @public
-   * @async
-   *
-   * @param {TeamQuery} query - Query to execute
-   * @return {Promise<Team>} Team object
-   * @throws {GraphqlResponseError}
-   */
-  async execute(query) {
-    const request3 = {
-      method: "POST",
-      query: this.operation,
-      url: "/graphql",
-      variables: { ...query }
-    };
-    const { headers, data: { data, errors = [] } } = await this.octokit.request(request3);
-    if (data?.payload && !data.payload.team) {
-      const { team } = query;
-      const m = `Could not resolve to a Team with the slug of '${team}'`;
-      errors.push({
-        ...new GraphQLError(m).toJSON(),
-        type: "NOT_FOUND"
-      });
-    }
-    if (errors.length) {
-      throw new GraphqlResponseError2(request3, headers, { data, errors });
-    }
-    return data.payload.team;
-  }
-};
-TeamHandler = __decorate12([
-  (0, import_cqrs6.QueryHandler)(team_query_default),
-  __metadata9("design:paramtypes", [typeof (_a6 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a6 : Object])
-], TeamHandler);
-var team_handler_default = TeamHandler;
-
-// src/subdomains/teams/queries/teams.handler.ts
-var import_cqrs7 = __toESM(require_cqrs(), 1);
-
-// src/subdomains/teams/queries/teams.query.ts
-var TeamsQuery = class {
-  /**
-   * Organization name.
-   *
-   * @public
-   * @instance
-   * @member {string} org
-   */
-  org;
-  /**
-   * Team slugs.
-   *
-   * @public
-   * @instance
-   * @member {string[]} teams
-   */
-  teams;
-  /**
-   * Create a new teams query.
-   *
-   * @param {TeamsQuery} params - Query parameters
-   */
-  constructor(params) {
-    this.org = params.org;
-    this.teams = params.teams;
-  }
-};
-var teams_query_default = TeamsQuery;
-
-// src/subdomains/teams/queries/teams.handler.ts
-var __decorate13 = function(decorators, target, key2, desc) {
-  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-    r = Reflect.decorate(decorators, target, key2, desc);
-  else
-    for (var i = decorators.length - 1; i >= 0; i--)
-      if (d = decorators[i])
-        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
-  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
-};
-var __metadata10 = function(k, v) {
-  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-    return Reflect.metadata(k, v);
-};
-var _a7;
-var TeamsHandler = class TeamsHandler2 {
-  queries;
-  /**
-   * Create a new teams query handler.
-   *
-   * @see {@linkcode QueryBus}
-   *
-   * @param {QueryBus} queries - Query bus
-   */
-  constructor(queries) {
-    this.queries = queries;
-  }
-  /**
-   * Execute a teams query.
-   *
-   * @see {@linkcode Team}
-   * @see {@linkcode TeamsQuery}
-   *
-   * @public
-   * @async
-   *
-   * @param {TeamsQuery} query - Query to execute
-   * @return {Promise<Team[]>} Team objects array
-   */
-  async execute(query) {
-    return reduceAsync(query.teams, async (acc, team) => [
-      ...acc,
-      await this.queries.execute(new team_query_default({ org: query.org, team }))
-    ], []);
-  }
-};
-TeamsHandler = __decorate13([
-  (0, import_cqrs7.QueryHandler)(teams_query_default),
-  __metadata10("design:paramtypes", [typeof (_a7 = typeof import_cqrs7.QueryBus !== "undefined" && import_cqrs7.QueryBus) === "function" ? _a7 : Object])
-], TeamsHandler);
-var teams_handler_default = TeamsHandler;
-
 // src/subdomains/teams/teams.module.ts
-var import_common4 = __toESM(require_common(), 1);
-var __decorate14 = function(decorators, target, key2, desc) {
+var import_common5 = __toESM(require_common(), 1);
+var __decorate22 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
     r = Reflect.decorate(decorators, target, key2, desc);
@@ -87774,188 +88688,14 @@ var __decorate14 = function(decorators, target, key2, desc) {
 };
 var TeamsModule = class TeamsModule2 {
 };
-TeamsModule = __decorate14([
-  (0, import_common4.Module)({ providers: [team_handler_default, teams_handler_default] })
+TeamsModule = __decorate22([
+  (0, import_common5.Module)({ providers: [team_handler_default, teams_handler_default] })
 ], TeamsModule);
 var teams_module_default = TeamsModule;
 
-// src/subdomains/users/queries/user.handler.ts
-var import_cqrs8 = __toESM(require_cqrs(), 1);
-
-// src/subdomains/users/queries/user.query.ts
-var UserQuery = class {
-  /**
-   * User login.
-   *
-   * @public
-   * @instance
-   * @member {string} login
-   */
-  login;
-  /**
-   * Create a new GitHub user query.
-   *
-   * @param {UserQuery} params - Query parameters
-   */
-  constructor(params) {
-    this.login = params.login;
-  }
-};
-var user_query_default = UserQuery;
-
-// src/subdomains/users/queries/user.handler.ts
-var __decorate15 = function(decorators, target, key2, desc) {
-  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-    r = Reflect.decorate(decorators, target, key2, desc);
-  else
-    for (var i = decorators.length - 1; i >= 0; i--)
-      if (d = decorators[i])
-        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
-  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
-};
-var __metadata11 = function(k, v) {
-  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-    return Reflect.metadata(k, v);
-};
-var _a8;
-var UserHandler = class UserHandler2 {
-  octokit;
-  /**
-   * GraphQL query.
-   *
-   * @see https://docs.github.com/graphql/reference/queries#user
-   *
-   * @protected
-   * @readonly
-   * @instance
-   * @member {string} operation
-   */
-  operation;
-  /**
-   * Create a new GitHub user query handler.
-   *
-   * @see {@linkcode Octokit}
-   *
-   * @param {Octokit} octokit - Hydrated octokit client
-   */
-  constructor(octokit) {
-    this.octokit = octokit;
-    this.operation = print(lib_default`
-      query User($login: String!) {
-        payload: user(login: $login) {
-          id
-          login
-        }
-      }
-    `);
-  }
-  /**
-   * Execute a GitHub user query.
-   *
-   * @see {@linkcode User}
-   * @see {@linkcode UserQuery}
-   *
-   * @public
-   * @async
-   *
-   * @param {UserQuery} query - Query to execute
-   * @return {Promise<User>} GitHub user object
-   */
-  async execute(query) {
-    const { payload } = await this.octokit.graphql({
-      login: query.login,
-      query: this.operation
-    });
-    return payload;
-  }
-};
-UserHandler = __decorate15([
-  (0, import_cqrs8.QueryHandler)(user_query_default),
-  __metadata11("design:paramtypes", [typeof (_a8 = typeof Octokit2 !== "undefined" && Octokit2) === "function" ? _a8 : Object])
-], UserHandler);
-var user_handler_default = UserHandler;
-
-// src/subdomains/users/queries/users.handler.ts
-var import_cqrs9 = __toESM(require_cqrs(), 1);
-
-// src/subdomains/users/queries/users.query.ts
-var UsersQuery = class {
-  /**
-   * User logins.
-   *
-   * @public
-   * @instance
-   * @member {string[]} logins
-   */
-  logins;
-  /**
-   * Create a new GitHub users query.
-   *
-   * @param {UsersQuery} params - Query parameters
-   */
-  constructor(params) {
-    this.logins = params.logins;
-  }
-};
-var users_query_default = UsersQuery;
-
-// src/subdomains/users/queries/users.handler.ts
-var __decorate16 = function(decorators, target, key2, desc) {
-  var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-    r = Reflect.decorate(decorators, target, key2, desc);
-  else
-    for (var i = decorators.length - 1; i >= 0; i--)
-      if (d = decorators[i])
-        r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
-  return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
-};
-var __metadata12 = function(k, v) {
-  if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-    return Reflect.metadata(k, v);
-};
-var _a9;
-var UsersHandler = class UsersHandler2 {
-  queries;
-  /**
-   * Create a new GitHub users query handler.
-   *
-   * @see {@linkcode QueryBus}
-   *
-   * @param {QueryBus} queries - Query bus
-   */
-  constructor(queries) {
-    this.queries = queries;
-  }
-  /**
-   * Execute a GitHub users query.
-   *
-   * @see {@linkcode User}
-   * @see {@linkcode UsersQuery}
-   *
-   * @public
-   * @async
-   *
-   * @param {UsersQuery} query - Query to execute
-   * @return {Promise<User[]>} GitHub user objects array
-   */
-  async execute(query) {
-    return reduceAsync(query.logins, async (acc, login) => [
-      ...acc,
-      await this.queries.execute(new user_query_default({ login }))
-    ], []);
-  }
-};
-UsersHandler = __decorate16([
-  (0, import_cqrs9.QueryHandler)(users_query_default),
-  __metadata12("design:paramtypes", [typeof (_a9 = typeof import_cqrs9.QueryBus !== "undefined" && import_cqrs9.QueryBus) === "function" ? _a9 : Object])
-], UsersHandler);
-var users_handler_default = UsersHandler;
-
 // src/subdomains/users/users.module.ts
-var import_common5 = __toESM(require_common(), 1);
-var __decorate17 = function(decorators, target, key2, desc) {
+var import_common6 = __toESM(require_common(), 1);
+var __decorate23 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
     r = Reflect.decorate(decorators, target, key2, desc);
@@ -87967,13 +88707,13 @@ var __decorate17 = function(decorators, target, key2, desc) {
 };
 var UsersModule = class UsersModule2 {
 };
-UsersModule = __decorate17([
-  (0, import_common5.Module)({ providers: [user_handler_default, users_handler_default] })
+UsersModule = __decorate23([
+  (0, import_common6.Module)({ providers: [user_handler_default, users_handler_default] })
 ], UsersModule);
 var users_module_default = UsersModule;
 
 // src/runner.module.ts
-var __decorate18 = function(decorators, target, key2, desc) {
+var __decorate24 = function(decorators, target, key2, desc) {
   var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
     r = Reflect.decorate(decorators, target, key2, desc);
@@ -87983,12 +88723,12 @@ var __decorate18 = function(decorators, target, key2, desc) {
         r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
   return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
 };
-var __metadata13 = function(k, v) {
+var __metadata18 = function(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
     return Reflect.metadata(k, v);
 };
-var _a10;
-var _b5;
+var _a15;
+var _b9;
 var RunnerModule = class RunnerModule2 {
   config;
   commands;
@@ -88016,33 +88756,35 @@ var RunnerModule = class RunnerModule2 {
    */
   async onApplicationBootstrap() {
     const infrastructure = this.config.get("infrastructure");
-    const managers = [
-      new manage_command_default(infrastructure.labels)
+    const commands = [
+      new manage_command_default(infrastructure.environments),
+      new manage_command_default2(infrastructure.labels)
     ];
-    for (const manager of managers)
-      await this.commands.execute(manager);
+    for (const command of commands)
+      await this.commands.execute(command);
     return void 0;
   }
 };
-RunnerModule = __decorate18([
-  (0, import_common6.Global)(),
-  (0, import_common6.Module)({
+RunnerModule = __decorate24([
+  (0, import_common7.Global)(),
+  (0, import_common7.Module)({
     imports: [
       config_module_default.forRoot(),
-      import_cqrs10.CqrsModule.forRoot(),
+      import_cqrs15.CqrsModule.forRoot(),
+      environments_module_default,
       labels_module_default,
       octokit_module_default,
       teams_module_default,
       users_module_default
     ]
   }),
-  __metadata13("design:paramtypes", [typeof (_a10 = typeof import_config8.ConfigService !== "undefined" && import_config8.ConfigService) === "function" ? _a10 : Object, typeof (_b5 = typeof import_cqrs10.CommandBus !== "undefined" && import_cqrs10.CommandBus) === "function" ? _b5 : Object])
+  __metadata18("design:paramtypes", [typeof (_a15 = typeof import_config12.ConfigService !== "undefined" && import_config12.ConfigService) === "function" ? _a15 : Object, typeof (_b9 = typeof import_cqrs15.CommandBus !== "undefined" && import_cqrs15.CommandBus) === "function" ? _b9 : Object])
 ], RunnerModule);
 var runner_module_default = RunnerModule;
 
 // src/main.ts
 try {
-  await import_core8.NestFactory.createApplicationContext(runner_module_default, {
+  await import_core12.NestFactory.createApplicationContext(runner_module_default, {
     abortOnError: false,
     logger: ["error", "fatal", "warn"]
   });

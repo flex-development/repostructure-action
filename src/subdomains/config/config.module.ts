@@ -15,9 +15,9 @@ import {
   fallback,
   isNull,
   join,
+  pick,
   sift,
-  type EmptyString,
-  type Partial
+  type EmptyString
 } from '@flex-development/tutils'
 import { Module, type DynamicModule } from '@nestjs/common'
 import { ConfigModule as ConfigBaseModule } from '@nestjs/config'
@@ -124,7 +124,11 @@ class ConfigModule extends ConfigBaseModule {
         throw new ERR_UNKNOWN_FILE_EXTENSION(ext, path)
     }
 
-    return <Infrastructure>defaults(infrastructure, {
+    return defaults(pick(infrastructure, [
+      'environments',
+      'labels'
+    ]), {
+      environments: [],
       labels: []
     })
   }

@@ -3,16 +3,19 @@
  * @module repostructure/RunnerModule
  */
 
-import type { ObjectCurly } from '@flex-development/tutils'
 import { Global, Module, type OnApplicationBootstrap } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { CommandBus, CqrsModule } from '@nestjs/cqrs'
 import { ConfigModule, type Config } from './subdomains/config'
+import {
+  EnvironmentsModule,
+  ManageEnvironmentsCommand
+} from './subdomains/environments'
 import { LabelsModule, ManageLabelsCommand } from './subdomains/labels'
 import { OctokitModule } from './subdomains/octokit'
 import { TeamsModule } from './subdomains/teams'
 import { UsersModule } from './subdomains/users'
-import type { Infrastructure } from './types'
+import type { Infrastructure, InfrastructureCommand } from './types'
 
 /**
  * Action runner module.
@@ -25,6 +28,7 @@ import type { Infrastructure } from './types'
   imports: [
     ConfigModule.forRoot(),
     CqrsModule.forRoot(),
+    EnvironmentsModule,
     LabelsModule,
     OctokitModule,
     TeamsModule,
@@ -64,16 +68,17 @@ class RunnerModule implements OnApplicationBootstrap {
     const infrastructure: Infrastructure = this.config.get('infrastructure')
 
     /**
-     * Management commands to execute.
+     * Infrastructure management commands to execute.
      *
-     * @const {Record<keyof Infrastructure, ObjectCurly[]>[]} managers
+     * @const {InfrastructureCommand[]} commands
      */
-    const managers: Record<keyof Infrastructure, ObjectCurly[]>[] = [
+    const commands: InfrastructureCommand[] = [
+      new ManageEnvironmentsCommand(infrastructure.environments),
       new ManageLabelsCommand(infrastructure.labels)
     ]
 
     // execute management commands
-    for (const manager of managers) await this.commands.execute(manager)
+    for (const command of commands) await this.commands.execute(command)
 
     return void infrastructure
   }

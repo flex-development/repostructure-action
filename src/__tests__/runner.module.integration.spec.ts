@@ -4,6 +4,10 @@
  */
 
 import INPUT_CONFIG from '#fixtures/input-config.fixture'
+import {
+  ManageEnvironmentsCommand,
+  ManageEnvironmentsHandler
+} from '#src/environments/commands'
 import { ManageLabelsCommand, ManageLabelsHandler } from '#src/labels/commands'
 import type { Spy } from '#tests/interfaces'
 import env from '#tests/setup/env'
@@ -17,16 +21,23 @@ vi.mock('@flex-development/mlly', () => ({
 }))
 
 describe('integration:RunnerModule', () => {
+  let commands: [Spy, Constructor<any>][]
+  let environments: Spy<ManageEnvironmentsHandler['execute']>
   let labels: Spy<ManageLabelsHandler['execute']>
-  let managers: [Spy, Constructor<any>][]
 
   beforeEach(() => {
     env((): void => void vi.stubEnv('INPUT_CONFIG', INPUT_CONFIG))
 
+    environments = vi.spyOn(ManageEnvironmentsHandler.prototype, 'execute')
     labels = vi.spyOn(ManageLabelsHandler.prototype, 'execute')
+
+    environments = environments.mockName('ManageEnvironmentsHandler#execute')
     labels = labels.mockName('ManageLabelsHandler#execute')
 
-    managers = [[labels, ManageLabelsCommand]]
+    commands = [
+      [environments, ManageEnvironmentsCommand],
+      [labels, ManageLabelsCommand]
+    ]
   })
 
   it('should execute infrastructure management commands', async () => {
@@ -38,7 +49,7 @@ describe('integration:RunnerModule', () => {
     await (await builder.compile()).init()
 
     // Expect
-    managers.forEach(([spy, Command]) => {
+    commands.forEach(([spy, Command]) => {
       expect(spy.mock.calls[0]![0]).to.be.instanceof(Command)
     })
   })

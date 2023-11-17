@@ -17,7 +17,6 @@ import {
   UpdateLabelHandler
 } from '#src/labels/commands'
 import { LabelsHandler, LabelsQuery } from '#src/labels/queries'
-import type { Label } from '#src/labels/types'
 import { OctokitModule } from '#src/octokit'
 import type { Spy } from '#tests/interfaces'
 import env from '#tests/setup/env'
@@ -61,12 +60,6 @@ describe('integration:labels/LabelsModule', () => {
     manage = vi.spyOn(ManageLabelsHandler.prototype, 'execute')
     remove = vi.spyOn(DeleteLabelHandler.prototype, 'execute')
     update = vi.spyOn(UpdateLabelHandler.prototype, 'execute')
-
-    create = create.mockImplementation(async () => (<Label>{}))
-    list = list.mockImplementation(async () => [])
-    manage = manage.mockImplementation(async () => [])
-    remove = remove.mockImplementation(async () => void 0)
-    update = update.mockImplementation(async () => (<Label>{}))
 
     create = create.mockName('CreateLabelHandler#execute')
     list = list.mockName('LabelsHandler#execute')

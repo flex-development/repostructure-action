@@ -1,5 +1,42 @@
 {
   "$defs": {
+    "Environment": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "environment name",
+          "type": "string"
+        },
+        "prevent_self_review": {
+          "description": "prevent users from approving their own deployments",
+          "type": ["boolean", "null"]
+        },
+        "reviewers": {
+          "additionalProperties": false,
+          "description": "users and teams that can approve deployments",
+          "properties": {
+            "teams": {
+              "description": "team slugs",
+              "items": { "type": ["string"] },
+              "type": "array"
+            },
+            "users": {
+              "description": "user logins",
+              "items": { "type": ["string"] },
+              "type": "array"
+            }
+          },
+          "type": ["null", "object"]
+        },
+        "wait_timer": {
+          "description": "amount of time (in minutes) to delay a deployment",
+          "minimum": 0,
+          "type": ["integer", "null"]
+        }
+      },
+      "required": ["name"],
+      "type": "object"
+    },
     "Label": {
       "additionalProperties": false,
       "properties": {
@@ -23,6 +60,12 @@
   "$id": "https://github.com/flex-development/repostructure-action/blob/main/.schema.json",
   "description": "Repository infrastructure configuration",
   "properties": {
+    "environments": {
+      "default": [],
+      "description": "deployment environments",
+      "items": { "$ref": "#/$defs/Environment" },
+      "type": "array"
+    },
     "labels": {
       "default": [],
       "description": "repository labels",

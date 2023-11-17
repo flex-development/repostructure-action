@@ -48,9 +48,6 @@ describe('integration:users/UsersModule', () => {
     user = vi.spyOn(UserHandler.prototype, 'execute')
     users = vi.spyOn(UsersHandler.prototype, 'execute')
 
-    user = user.mockImplementation(async () => ({ id: '', login: '' }))
-    users = users.mockImplementation(async () => [])
-
     user = user.mockName('UserHandler#execute')
     users = users.mockName('UsersHandler#execute')
 

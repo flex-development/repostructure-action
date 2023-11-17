@@ -48,9 +48,6 @@ describe('integration:teams/TeamsModule', () => {
     team = vi.spyOn(TeamHandler.prototype, 'execute')
     teams = vi.spyOn(TeamsHandler.prototype, 'execute')
 
-    team = team.mockImplementation(async () => ({ id: '', slug: '' }))
-    teams = teams.mockImplementation(async () => [])
-
     team = team.mockName('TeamHandler#execute')
     teams = teams.mockName('TeamsHandler#execute')
 

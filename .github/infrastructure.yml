@@ -49,7 +49,7 @@ branches:
         strict: true
       restrictions: null
 environments:
-  - environment_name: release
+  - name: release
 labels:
   - name: flag:breaking-change
     description: contains changes that require major version bump
