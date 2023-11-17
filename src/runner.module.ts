@@ -10,6 +10,7 @@ import { CommandBus, CqrsModule } from '@nestjs/cqrs'
 import { ConfigModule, type Config } from './subdomains/config'
 import { LabelsModule, ManageLabelsCommand } from './subdomains/labels'
 import { OctokitModule } from './subdomains/octokit'
+import { TeamsModule } from './subdomains/teams'
 import { UsersModule } from './subdomains/users'
 import type { Infrastructure } from './types'
 
@@ -26,6 +27,7 @@ import type { Infrastructure } from './types'
     CqrsModule.forRoot(),
     LabelsModule,
     OctokitModule,
+    TeamsModule,
     UsersModule
   ]
 })
