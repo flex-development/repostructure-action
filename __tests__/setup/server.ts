@@ -148,6 +148,16 @@ const server: SetupServer = setupServer(
           }
         },
         /**
+         * Mock `deleteBranchProtectionRule` mutation resolver.
+         *
+         * @see https://docs.github.com/graphql/reference/mutations#deletebranchprotectionrule
+         *
+         * @return {{ clientMutationId: string }} Deleted branch rule payload
+         */
+        deleteBranchProtectionRule(): { clientMutationId: string } {
+          return { clientMutationId: CLIENT_MUTATION_ID }
+        },
+        /**
          * Mock `deleteEnvironment` mutation resolver.
          *
          * @see https://docs.github.com/graphql/reference/mutations#deleteenvironment
