@@ -3,5 +3,7 @@
  * @module repostructure/branches/queries
  */
 
-export { default as BranchesHandler } from './branches.handler'
-export { default as BranchesQuery } from './branches.query'
+export {
+  default as BranchProtectionsHandler
+} from './branch-protections.handler'
+export { default as BranchProtectionsQuery } from './branch-protections.query'

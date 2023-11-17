@@ -3,4 +3,4 @@
  * @module repostructure/branches/types
  */
 
-export type { default as Branch } from './branch'
+export type { default as BranchProtection } from './branch-protection'

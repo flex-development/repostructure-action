@@ -5,7 +5,7 @@
 
 import root from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
-import type Branch from '#src/branches/types/branch'
+import type BranchProtection from '#src/branches/types/branch-protection'
 import type Environment from '#src/environments/types/environment'
 import type CreateLabelInput from '#src/labels/commands/create.command'
 import type UpdateLabelInput from '#src/labels/commands/update.command'
@@ -29,7 +29,7 @@ import {
 } from '@flex-development/tutils'
 import type { Connection } from '@octokit/graphql'
 import type {
-  RepositoryBranchProtectionRulesArgs as BranchesArgs,
+  RepositoryBranchProtectionRulesArgs as BranchProtectionsArgs,
   CreateEnvironmentInput,
   RepositoryEnvironmentsArgs as EnvironmentsArgs,
   RepositoryLabelsArgs as LabelsArgs,
@@ -205,17 +205,19 @@ const server: SetupServer = setupServer(
           /**
            * Mock repository `branchProtectionRules` query resolver.
            *
-           * @param {BranchesArgs} args - Query arguments
-           * @return {Connection<Branch>} Protected branch connection object
+           * @param {BranchProtectionsArgs} args - Query arguments
+           * @return {Connection<BranchProtection>} Branch protection connection
            */
-          branchProtectionRules(args: BranchesArgs): Connection<Branch> {
+          branchProtectionRules(
+            args: BranchProtectionsArgs
+          ): Connection<BranchProtection> {
             return connection('branchProtectionRules', args.after)
           },
           /**
            * Mock repository `environments` query resolver.
            *
            * @param {EnvironmentsArgs} args - Query arguments
-           * @return {Connection<Environment>} Environment connection object
+           * @return {Connection<Environment>} Environment connection
            */
           environments(args: EnvironmentsArgs): Connection<Environment> {
             return connection('environments', args.after, 1)
@@ -230,7 +232,7 @@ const server: SetupServer = setupServer(
            * Mock repository `labels` query resolver.
            *
            * @param {LabelsArgs} args - Query arguments
-           * @return {Connection<Label>} Label connection object
+           * @return {Connection<Label>} Label connection
            */
           labels(args: LabelsArgs): Connection<Label> {
             return connection('labels', args.after)

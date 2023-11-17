@@ -1,15 +1,15 @@
 /**
- * @file Functional Tests - BranchesQuery
- * @module branches/queries/tests/functional/BranchesQuery
+ * @file Functional Tests - BranchProtectionsQuery
+ * @module branches/queries/tests/functional/BranchProtectionsQuery
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import { RepositoryQuery } from '#src/queries'
-import TestSubject from '../branches.query'
+import TestSubject from '../branch-protections.query'
 
 vi.mock('#src/queries/repository.query', () => ({ default: vi.fn() }))
 
-describe('functional:branches/queries/BranchesQuery', () => {
+describe('functional:branches/queries/BranchProtectionsQuery', () => {
   describe('constructor', () => {
     it('should extend RepositoryQuery', () => {
       // Arrange

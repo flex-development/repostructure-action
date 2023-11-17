@@ -1,16 +1,16 @@
 /**
- * @file Unit Tests - BranchesHandler
- * @module branches/queries/tests/unit/BranchesHandler
+ * @file Unit Tests - BranchProtectionsHandler
+ * @module branches/queries/tests/unit/BranchProtectionsHandler
  */
 
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import type { Branch } from '#src/branches/types'
+import type { BranchProtection } from '#src/branches/types'
 import { Test, type TestingModule } from '@nestjs/testing'
-import TestSubject from '../branches.handler'
-import BranchesQuery from '../branches.query'
+import TestSubject from '../branch-protections.handler'
+import BranchProtectionsQuery from '../branch-protections.query'
 
-describe('unit:branches/queries/BranchesHandler', () => {
+describe('unit:branches/queries/BranchProtectionsHandler', () => {
   let ref: TestingModule
   let subject: TestSubject
 
@@ -23,15 +23,15 @@ describe('unit:branches/queries/BranchesHandler', () => {
   })
 
   describe('#execute', () => {
-    let branches: Branch[]
+    let branches: BranchProtection[]
 
     beforeAll(() => {
       branches = data.data.repository.branchProtectionRules.nodes
     })
 
-    it('should return protected branch array', async () => {
+    it('should return branch protection rules array', async () => {
       // Arrange
-      const query: BranchesQuery = new BranchesQuery({
+      const query: BranchProtectionsQuery = new BranchProtectionsQuery({
         owner: data.data.organization.login,
         repo: data.data.repository.name
       })
