@@ -10,6 +10,7 @@ import { CommandBus, CqrsModule } from '@nestjs/cqrs'
 import { ConfigModule, type Config } from './subdomains/config'
 import { LabelsModule, ManageLabelsCommand } from './subdomains/labels'
 import { OctokitModule } from './subdomains/octokit'
+import { UsersModule } from './subdomains/users'
 import type { Infrastructure } from './types'
 
 /**
@@ -24,7 +25,8 @@ import type { Infrastructure } from './types'
     ConfigModule.forRoot(),
     CqrsModule.forRoot(),
     LabelsModule,
-    OctokitModule
+    OctokitModule,
+    UsersModule
   ]
 })
 class RunnerModule implements OnApplicationBootstrap {
