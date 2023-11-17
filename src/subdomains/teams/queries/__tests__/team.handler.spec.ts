@@ -12,7 +12,7 @@ import {
   type Nullable,
   type ObjectPlain
 } from '@flex-development/tutils'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import { GraphqlResponseError } from '@octokit/graphql'
 import TestSubject from '../team.handler'
 import TeamQuery from '../team.query'

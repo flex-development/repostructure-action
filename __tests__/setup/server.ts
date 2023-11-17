@@ -259,22 +259,9 @@ const server: SetupServer = setupServer(
             return id === args.input.environmentId
           })
 
-          // throw if environment was not found
-          if (!node) {
-            /**
-             * Error message.
-             *
-             * @const {string} message
-             */
-            const message: string =
-              `Could not resolve to a node with the global id of '${args.input.environmentId}'`
-
-            throw new GraphQLError(message, {
-              extensions: { type: 'NOT_FOUND' }
-            })
+          return {
+            environment: node ?? { id: args.input.environmentId, name: '' }
           }
-
-          return { environment: node }
         },
         /**
          * Mock `updateLabel` mutation resolver.

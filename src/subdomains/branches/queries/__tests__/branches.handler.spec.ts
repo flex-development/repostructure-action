@@ -6,7 +6,7 @@
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Branch } from '#src/branches/types'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import TestSubject from '../branches.handler'
 import BranchesQuery from '../branches.query'
 

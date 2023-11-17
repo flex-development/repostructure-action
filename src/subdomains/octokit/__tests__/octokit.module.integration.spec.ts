@@ -6,7 +6,7 @@
 import INPUT_CONFIG from '#fixtures/input-config.fixture'
 import { ConfigModule } from '#src/config'
 import env from '#tests/setup/env'
-import { Test, TestingModuleBuilder } from '@nestjs/testing'
+import { Test, type TestingModuleBuilder } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
 import TestSubject from '../octokit.module'
 

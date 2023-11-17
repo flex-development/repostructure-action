@@ -5,8 +5,10 @@
 
 import type { Config } from '#src/config'
 import type { Environment } from '#src/environments/types'
-import { TeamsQuery, type Team } from '#src/teams'
-import { UsersQuery, type User } from '#src/users'
+import { TeamsQuery } from '#src/teams/queries'
+import type { Team } from '#src/teams/types'
+import { UsersQuery } from '#src/users/queries'
+import type { User } from '#src/users/types'
 import { get, select } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { CommandHandler, QueryBus, type ICommandHandler } from '@nestjs/cqrs'

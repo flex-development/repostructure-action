@@ -6,12 +6,12 @@
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import { LabelsHandler } from '#src/labels/queries'
+import LabelsHandler from '#src/labels/queries/labels.handler'
 import type { Label } from '#src/labels/types'
 import type { Spy } from '#tests/interfaces'
 import { ConfigService } from '@nestjs/config'
 import { CqrsModule } from '@nestjs/cqrs'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import CreateLabelCommand from '../create.command'
 import CreateLabelHandler from '../create.handler'
 import DeleteLabelHandler from '../delete.handler'
@@ -20,7 +20,6 @@ import TestSubject from '../manage.handler'
 import UpdateLabelHandler from '../update.handler'
 
 describe('functional:labels/commands/ManageLabelsHandler', () => {
-  let index: number
   let ref: TestingModule
   let subject: TestSubject
 
@@ -47,7 +46,6 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
     }).compile()
 
     subject = (await ref.init()).get(TestSubject)
-    index = 10
   })
 
   describe('#execute', () => {
@@ -74,7 +72,7 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
       ]
 
       nodes = data.data.repository.labels.nodes
-      current = nodes.slice(0, index)
+      current = nodes.slice(0, 10)
     })
 
     beforeEach(() => {

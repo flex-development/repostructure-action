@@ -31,9 +31,5 @@ describe('unit:labels/commands/UpdateLabelCommand', () => {
     it('should set #id', () => {
       expect(subject).to.have.property('id', label.id)
     })
-
-    it('should set #name', () => {
-      expect(subject).to.have.property('name', label.name)
-    })
   })
 })

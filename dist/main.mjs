@@ -86915,10 +86915,55 @@ var ManageLabelsCommand = class {
    * @param {CreateLabelCommand[]} labels - Labels to manage
    */
   constructor(labels) {
-    this.labels = labels;
+    this.labels = select2(labels, null, (label) => new create_command_default(label));
   }
 };
 var manage_command_default = ManageLabelsCommand;
+
+// src/commands/manage-list.handler.ts
+var ManageListHandler = class {
+  /**
+   * Manage an infrastructure list.
+   *
+   * @protected
+   * @async
+   *
+   * @template Q - List query constructor type
+   * @template C - Create command constructor type
+   * @template D - Delete command constructor type
+   * @template U - Update command constructor type
+   *
+   * @param {keyof T} key - Key used to compare nodes
+   * @param {InstanceType<C>[]} list - Infrastructure list to manage
+   * @param {Q} Query - Query to execute to find existing nodes
+   * @param {D} Delete - Command to execute to remove stale nodes
+   * @param {C} Create - Command to execute to create new nodes
+   * @param {U} Update - Command to execute to update nodes
+   * @return {Promise<T[]>} Managed infrastructure list
+   */
+  async manage(key2, list, Query, Delete, Create, Update) {
+    const managed = [];
+    if (list.length) {
+      const current = await this.queries.execute(new Query({
+        owner: this.config.get("owner"),
+        repo: this.config.get("repo")
+      }));
+      for (const node of current) {
+        if (!includes_default3(list, node, 0, (n) => n[key2])) {
+          await this.commands.execute(new Delete(node));
+        }
+      }
+      for (const node of list) {
+        const curr = current.find((curr2) => node[key2] === curr2[key2]);
+        managed.push(
+          is_undefined_default4(curr) ? await this.commands.execute(new Create(node)) : await this.commands.execute(new Update({ ...node, id: curr.id }))
+        );
+      }
+    }
+    return managed;
+  }
+};
+var manage_list_handler_default = ManageListHandler;
 
 // src/subdomains/labels/queries/labels.handler.ts
 var import_cqrs3 = __toESM(require_cqrs(), 1);
@@ -87082,17 +87127,6 @@ var UpdateLabelCommand = class {
    */
   id;
   /**
-   * New label name.
-   *
-   * @default null
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nullable<string>?} name
-   */
-  name;
-  /**
    * Create a new label update command.
    *
    * @param {UpdateLabelCommand} params - Command parameters
@@ -87101,7 +87135,6 @@ var UpdateLabelCommand = class {
     this.color = get_default(params, "color", null);
     this.description = get_default(params, "description", null);
     this.id = params.id;
-    this.name = get_default(params, "name", null);
     this.color && (this.color = this.color.replace(/^#/, ""));
   }
 };
@@ -87125,7 +87158,7 @@ var __metadata7 = function(k, v) {
 var _a4;
 var _b3;
 var _c;
-var ManageLabelsHandler = class ManageLabelsHandler2 {
+var ManageLabelsHandler = class ManageLabelsHandler2 extends manage_list_handler_default {
   config;
   commands;
   queries;
@@ -87142,6 +87175,7 @@ var ManageLabelsHandler = class ManageLabelsHandler2 {
    * @param {QueryBus} queries - Query bus
    */
   constructor(config, commands, queries) {
+    super();
     this.config = config;
     this.commands = commands;
     this.queries = queries;
@@ -87159,37 +87193,7 @@ var ManageLabelsHandler = class ManageLabelsHandler2 {
    * @return {Promise<Label[]>} Managed repository labels
    */
   async execute(command) {
-    const labels = [];
-    if (command.labels.length) {
-      const current = await this.queries.execute(new labels_query_default({
-        owner: this.config.get("owner"),
-        repo: this.config.get("repo")
-      }));
-      for (const label of current) {
-        if (!includes_default3(command.labels, label, 0, (label2) => label2.name)) {
-          await this.commands.execute(new delete_command_default(label));
-        }
-      }
-      for (const label of command.labels) {
-        const existing = current.find(({ name }) => {
-          return label.name === name;
-        });
-        let upsert;
-        switch (true) {
-          case is_undefined_default4(existing):
-            upsert = await this.commands.execute(new create_command_default(label));
-            break;
-          default:
-            upsert = await this.commands.execute(new update_command_default({
-              ...label,
-              id: existing.id
-            }));
-            break;
-        }
-        labels.push(upsert);
-      }
-    }
-    return labels;
+    return this.manage("name", command.labels, labels_query_default, delete_command_default, create_command_default, update_command_default);
   }
 };
 ManageLabelsHandler = __decorate8([

@@ -6,7 +6,7 @@
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Label } from '#src/labels/types'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import TestSubject from '../labels.handler'
 import LabelsQuery from '../labels.query'
 

@@ -7,7 +7,7 @@ import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { User } from '#src/users/types'
 import { at } from '@flex-development/tutils'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import TestSubject from '../user.handler'
 import UserQuery from '../user.query'
 

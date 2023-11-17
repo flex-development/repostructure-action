@@ -27,11 +27,4 @@ describe('unit-d:labels/commands/UpdateLabelCommand', () => {
     expectTypeOf<RK>().extract<'id'>().toBeString()
     expectTypeOf<TestSubject>().toHaveProperty('id').toEqualTypeOf<string>()
   })
-
-  it('should match [readonly name?: Nullable<string>]', () => {
-    expectTypeOf<RK>().extract<'name'>().toBeString()
-    expectTypeOf<TestSubject>()
-      .toHaveProperty('name')
-      .toEqualTypeOf<Nilable<string>>()
-  })
 })

@@ -49,18 +49,6 @@ class UpdateLabelCommand {
   public readonly id: string
 
   /**
-   * New label name.
-   *
-   * @default null
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nullable<string>?} name
-   */
-  public readonly name?: Nullable<string>
-
-  /**
    * Create a new label update command.
    *
    * @param {UpdateLabelCommand} params - Command parameters
@@ -69,7 +57,6 @@ class UpdateLabelCommand {
     this.color = get(params, 'color', null)
     this.description = get(params, 'description', null)
     this.id = params.id
-    this.name = get(params, 'name', null)
 
     this.color && (this.color = this.color.replace(/^#/, ''))
   }

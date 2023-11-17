@@ -32,6 +32,10 @@ component_management:
       name: branches
       paths:
         - src/subdomains/branches/**/*.ts
+    - component_id: commands
+      name: commands
+      paths:
+        - src/commands/*.ts
     - component_id: config
       name: config
       paths:

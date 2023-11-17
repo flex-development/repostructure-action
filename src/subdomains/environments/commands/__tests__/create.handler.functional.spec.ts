@@ -13,7 +13,7 @@ import UsersHandler from '#src/users/queries/users.handler'
 import { get, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { CqrsModule } from '@nestjs/cqrs'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import { Octokit } from '@octokit/core'
 import CreateEnvironmentCommand from '../create.command'
 import TestSubject from '../create.handler'
@@ -51,14 +51,6 @@ describe('functional:environments/commands/CreateEnvironmentHandler', () => {
   })
 
   describe('#execute', () => {
-    beforeEach(() => {
-      vi
-        .spyOn(UpdateEnvironmentHandler.prototype, 'execute')
-        .mockImplementationOnce(async cmd => ({ id: cmd.id, name: '' }))
-
-      vi.spyOn(octokit, 'graphql')
-    })
-
     it('should create environment', async () => {
       // Arrange
       const command: CreateEnvironmentCommand = new CreateEnvironmentCommand({
@@ -67,6 +59,8 @@ describe('functional:environments/commands/CreateEnvironmentHandler', () => {
       })
 
       // Act
+      vi.spyOn(UpdateEnvironmentHandler.prototype, 'execute')
+      vi.spyOn(octokit, 'graphql')
       await subject.execute(command)
 
       // Expect

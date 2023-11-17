@@ -9,7 +9,7 @@ import type { Spy } from '#tests/interfaces'
 import env from '#tests/setup/env'
 import type { Constructor } from '@flex-development/tutils'
 import type { Type } from '@nestjs/common'
-import { Test, TestingModuleBuilder } from '@nestjs/testing'
+import { Test, type TestingModuleBuilder } from '@nestjs/testing'
 import TestSubject from '../runner.module'
 
 vi.mock('@flex-development/mlly', () => ({

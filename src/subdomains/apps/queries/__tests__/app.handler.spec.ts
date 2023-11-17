@@ -5,7 +5,7 @@
 
 import app from '#fixtures/api.github.com/apps/github-actions.json'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import TestSubject from '../app.handler'
 import AppQuery from '../app.query'
 

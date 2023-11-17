@@ -3,7 +3,8 @@
  * @module repostructure/labels/commands/ManageLabelsCommand
  */
 
-import type CreateLabelCommand from './create.command'
+import { select } from '@flex-development/tutils'
+import CreateLabelCommand from './create.command'
 
 /**
  * Label management command.
@@ -29,7 +30,7 @@ class ManageLabelsCommand {
    * @param {CreateLabelCommand[]} labels - Labels to manage
    */
   constructor(labels: CreateLabelCommand[]) {
-    this.labels = labels
+    this.labels = select(labels, null, label => new CreateLabelCommand(label))
   }
 }
 

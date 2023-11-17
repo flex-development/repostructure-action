@@ -6,7 +6,7 @@
 import INPUT_CONFIG from '#fixtures/input-config.fixture'
 import env from '#tests/setup/env'
 import { ConfigService } from '@nestjs/config'
-import { Test, TestingModuleBuilder } from '@nestjs/testing'
+import { Test, type TestingModuleBuilder } from '@nestjs/testing'
 import TestSubject from '../config.module'
 
 describe('integration:config/ConfigModule', () => {

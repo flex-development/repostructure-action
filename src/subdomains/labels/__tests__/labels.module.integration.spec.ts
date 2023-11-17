@@ -23,7 +23,7 @@ import type { Spy } from '#tests/interfaces'
 import env from '#tests/setup/env'
 import { at } from '@flex-development/tutils'
 import { CommandBus, CqrsModule, QueryBus } from '@nestjs/cqrs'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import TestSubject from '../labels.module'
 
 describe('integration:labels/LabelsModule', () => {
