@@ -10,7 +10,7 @@
  */
 class AppQuery {
   /**
-   * URL-friendly name of GitHub App.
+   * GitHub App slug.
    *
    * @public
    * @instance

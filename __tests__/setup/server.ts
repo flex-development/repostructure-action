@@ -3,6 +3,7 @@
  * @module tests/setup/server
  */
 
+import apps from '#fixtures/api.github.com/apps.json' assert { type: 'json' }
 import root from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import type BranchProtection from '#src/branches/types/branch-protection'
@@ -12,20 +13,17 @@ import type UpdateLabelInput from '#src/labels/commands/update.command'
 import type Label from '#src/labels/types/label'
 import type Team from '#src/teams/types/team'
 import type User from '#src/users/types/user'
+import type { OctokitData, OctokitParameters } from '#tests/types'
 import connection from '#tests/utils/connection'
-import * as mlly from '@flex-development/mlly'
-import pathe from '@flex-development/pathe'
 import {
   assign,
   includes,
   pick,
   select,
   shake,
-  template,
   type EmptyObject,
   type Nullable,
-  type Optional,
-  type TemplateData
+  type Optional
 } from '@flex-development/tutils'
 import type { Connection } from '@octokit/graphql'
 import type {
@@ -37,7 +35,6 @@ import type {
   OrganizationTeamArgs as TeamArgs,
   UpdateEnvironmentInput
 } from '@octokit/graphql-schema'
-import type { Endpoints } from '@octokit/types'
 import {
   GraphQLError,
   graphql as executeGraphql,
@@ -46,20 +43,6 @@ import {
 import { HttpResponse, graphql, http } from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import schema from './graphql/schema'
-
-/**
- * Get a relative path to a fixture file.
- *
- * @param {string} fmt - Fixture path template
- * @param {TemplateData} data - Fixture path template data
- * @return {string} Relative path to fixture
- */
-const fixture = (fmt: string, data: TemplateData): string => {
-  return template(
-    pathe.join('__fixtures__', 'api.github.com', pathe.addExt(fmt, '.json')),
-    data
-  )
-}
 
 /**
  * Mock server.
@@ -71,19 +54,21 @@ const fixture = (fmt: string, data: TemplateData): string => {
  */
 const server: SetupServer = setupServer(
   http.get<
-    Endpoints['GET /apps/{app_slug}']['parameters'],
+    OctokitParameters<'GET /apps/{app_slug}'>,
     EmptyObject,
-    Endpoints['GET /apps/{app_slug}']['response']['data']
-  >(/\/apps\/(?<app_slug>[\w-]+)$/, async ({ params }) => {
+    OctokitData<'GET /apps/{app_slug}'>
+  >(/\/apps\/(?<app_slug>[\w-]+)$/, ({ params }) => {
     /**
-     * Relative path to app data fixture.
+     * GitHub App data.
      *
-     * @const {string} data
+     * @const {Optional<typeof apps[number]>} app
      */
-    const data: string = fixture('apps/{app_slug}', params)
+    const app: Optional<typeof apps[number]> = apps.find(({ slug }) => {
+      return slug === params.app_slug
+    })
 
     // return error response if app was not found
-    if (!mlly.isFile(data)) {
+    if (!app) {
       return HttpResponse.json({
         documentation_url: 'https://docs.github.com/rest/apps/apps#get-an-app',
         message: 'Not Found'
@@ -93,7 +78,7 @@ const server: SetupServer = setupServer(
       })
     }
 
-    return HttpResponse.json(await import(data, { assert: { type: 'json' } }))
+    return HttpResponse.json(app)
   }),
   graphql.link(/\/graphql$/).operation<ExecutionResult>(async ({
     operationName,
