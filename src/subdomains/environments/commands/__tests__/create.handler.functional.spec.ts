@@ -6,10 +6,8 @@
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import TeamHandler from '#src/teams/queries/team.handler'
-import TeamsHandler from '#src/teams/queries/teams.handler'
-import UserHandler from '#src/users/queries/user.handler'
-import UsersHandler from '#src/users/queries/users.handler'
+import { TeamHandler, TeamsHandler } from '#src/teams/queries'
+import { UserHandler, UsersHandler } from '#src/users/queries'
 import { get, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { CqrsModule } from '@nestjs/cqrs'

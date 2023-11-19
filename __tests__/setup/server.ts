@@ -28,6 +28,7 @@ import {
 import type { Connection } from '@octokit/graphql'
 import type {
   RepositoryBranchProtectionRulesArgs as BranchProtectionsArgs,
+  CreateBranchProtectionRuleInput as CreateBranchProtectionInput,
   CreateEnvironmentInput,
   RepositoryEnvironmentsArgs as EnvironmentsArgs,
   RepositoryLabelsArgs as LabelsArgs,
@@ -89,6 +90,26 @@ const server: SetupServer = setupServer(
     const { data, errors } = await executeGraphql({
       operationName,
       rootValue: {
+        /**
+         * Mock `createBranchProtectionRule` mutation resolver.
+         *
+         * @see https://docs.github.com/graphql/reference/mutations#createbranchprotectionrule
+         *
+         * @param {Record<'input', CreateBranchProtectionInput>} args - Mutation
+         * args
+         * @return {{ branchProtectionRule: BranchProtection }} New branch
+         * protection rule payload
+         */
+        createBranchProtectionRule(
+          args: Record<'input', CreateBranchProtectionInput>
+        ): { branchProtectionRule: BranchProtection } {
+          return {
+            branchProtectionRule: {
+              id: faker.string.nanoid(),
+              pattern: args.input.pattern
+            }
+          }
+        },
         /**
          * Mock `createEnvironment` mutation resolver.
          *
