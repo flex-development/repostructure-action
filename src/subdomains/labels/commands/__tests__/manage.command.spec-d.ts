@@ -8,8 +8,11 @@ import type CreateLabelCommand from '../create.command'
 import type TestSubject from '../manage.command'
 
 describe('unit-d:labels/commands/ManageLabelsCommand', () => {
-  it('should match [readonly labels: CreateLabelCommand[]]', () => {
-    expectTypeOf<ReadonlyKeys<TestSubject>>().extract<'labels'>().toBeString()
+  it('should have all readonly keys', () => {
+    expectTypeOf<keyof TestSubject>().toEqualTypeOf<ReadonlyKeys<TestSubject>>()
+  })
+
+  it('should match [labels: CreateLabelCommand[]]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('labels')
       .toEqualTypeOf<CreateLabelCommand[]>()

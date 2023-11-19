@@ -6,7 +6,7 @@
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import LabelsHandler from '#src/labels/queries/labels.handler'
+import { LabelsHandler } from '#src/labels/queries'
 import type { Label } from '#src/labels/types'
 import type { Spy } from '#tests/interfaces'
 import { ConfigService } from '@nestjs/config'

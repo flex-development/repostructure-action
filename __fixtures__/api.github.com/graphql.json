@@ -19,6 +19,12 @@
       "branchProtectionRules": {
         "edges": [
           {
+            "cursor": "Y3Vyc29yOnYyOpHOAp_nIw==",
+            "node": {
+              "id": "BPR_kwDOJGP3084Cn-cj"
+            }
+          },
+          {
             "cursor": "Y3Vyc29yOnYyOpHOAhaUpA==",
             "node": {
               "id": "BPR_kwDOJGP3084CFpSk"
@@ -26,6 +32,10 @@
           }
         ],
         "nodes": [
+          {
+            "id": "BPR_kwDOJGP3084Cn-cj",
+            "pattern": "dependabot/*"
+          },
           {
             "id": "BPR_kwDOJGP3084CFpSk",
             "pattern": "main"

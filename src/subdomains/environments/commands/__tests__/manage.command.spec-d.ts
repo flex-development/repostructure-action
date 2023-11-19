@@ -8,10 +8,11 @@ import type CreateEnvironmentCommand from '../create.command'
 import type TestSubject from '../manage.command'
 
 describe('unit-d:environments/commands/ManageEnvironmentsCommand', () => {
-  it('should match [readonly environments: CreateEnvironmentCommand[]]', () => {
-    expectTypeOf<ReadonlyKeys<TestSubject>>()
-      .extract<'environments'>()
-      .toBeString()
+  it('should have all readonly keys', () => {
+    expectTypeOf<keyof TestSubject>().toEqualTypeOf<ReadonlyKeys<TestSubject>>()
+  })
+
+  it('should match [environments: CreateEnvironmentCommand[]]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('environments')
       .toEqualTypeOf<CreateEnvironmentCommand[]>()

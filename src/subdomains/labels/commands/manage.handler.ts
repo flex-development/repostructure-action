@@ -61,7 +61,7 @@ class ManageLabelsHandler
    */
   public async execute(command: ManageLabelsCommand): Promise<Label[]> {
     return this.manage(
-      'name',
+      ['name'],
       command.labels,
       LabelsQuery,
       DeleteLabelCommand,

@@ -87137,7 +87137,9 @@ var ManageListHandler = class {
    * @template D - Delete command constructor type
    * @template U - Update command constructor type
    *
-   * @param {keyof T} key - Key used to compare nodes
+   * @param {[keyof T, (keyof InstanceType<C>)?]} keys - Node comparison keys
+   * @param {keyof T} keys.0 - Primary key of current nodes
+   * @param {keyof InstanceType<C>} keys.1 - Primary key of `list` nodes
    * @param {InstanceType<C>[]} list - Infrastructure list to manage
    * @param {Q} Query - Query to execute to find existing nodes
    * @param {D} Delete - Command to execute to remove stale nodes
@@ -87145,20 +87147,22 @@ var ManageListHandler = class {
    * @param {U} Update - Command to execute to update nodes
    * @return {Promise<T[]>} Managed infrastructure list
    */
-  async manage(key2, list, Query, Delete, Create, Update) {
+  async manage(keys, list, Query, Delete, Create, Update) {
+    const [pk, mk = pk] = keys;
     const managed = [];
     if (list.length) {
       const current = await this.queries.execute(new Query({
         owner: this.config.get("owner"),
         repo: this.config.get("repo")
       }));
-      for (const node of current) {
-        if (!includes_default3(list, node, 0, (n) => n[key2])) {
-          await this.commands.execute(new Delete(node));
+      const mapped = select2(list, null, (n) => n[mk]);
+      for (const curr of current) {
+        if (!includes_default3(mapped, curr[pk])) {
+          await this.commands.execute(new Delete(curr));
         }
       }
       for (const node of list) {
-        const curr = current.find((curr2) => node[key2] === curr2[key2]);
+        const curr = current.find((curr2) => curr2[pk] === node[mk]);
         managed.push(
           is_undefined_default4(curr) ? await this.commands.execute(new Create(node)) : await this.commands.execute(new Update({ ...node, id: curr.id }))
         );
@@ -87366,7 +87370,7 @@ var ManageEnvironmentsHandler = class ManageEnvironmentsHandler2 extends manage_
    * @return {Promise<Environment[]>} Managed environments
    */
   async execute(command) {
-    return this.manage("name", command.environments, environments_query_default, delete_command_default, create_command_default, update_command_default);
+    return this.manage(["name"], command.environments, environments_query_default, delete_command_default, create_command_default, update_command_default);
   }
 };
 ManageEnvironmentsHandler = __decorate8([
@@ -88329,7 +88333,7 @@ var ManageLabelsHandler = class ManageLabelsHandler2 extends manage_list_handler
    * @return {Promise<Label[]>} Managed repository labels
    */
   async execute(command) {
-    return this.manage("name", command.labels, labels_query_default, delete_command_default2, create_command_default2, update_command_default2);
+    return this.manage(["name"], command.labels, labels_query_default, delete_command_default2, create_command_default2, update_command_default2);
   }
 };
 ManageLabelsHandler = __decorate18([

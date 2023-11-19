@@ -22,7 +22,7 @@ import UpdateEnvironmentCommand from './update.command'
  * @see {@linkcode ManageListHandler}
  *
  * @class
- * @extends {ManageListHandler<Environment>}
+ * @extends {ManageListHandler<ManageEnvironmentsCommand, Environment>}
  */
 @CommandHandler(ManageEnvironmentsCommand)
 class ManageEnvironmentsHandler
@@ -63,7 +63,7 @@ class ManageEnvironmentsHandler
     command: ManageEnvironmentsCommand
   ): Promise<Environment[]> {
     return this.manage(
-      'name',
+      ['name'],
       command.environments,
       EnvironmentsQuery,
       DeleteEnvironmentCommand,

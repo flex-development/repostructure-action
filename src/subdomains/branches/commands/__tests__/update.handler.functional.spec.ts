@@ -54,7 +54,7 @@ describe('functional:branches/commands/UpdateBranchProtectionHandler', () => {
     let rule: BranchProtection
 
     beforeAll(() => {
-      rule = at(data.data.repository.branchProtectionRules.nodes, 0)
+      rule = at(data.data.repository.branchProtectionRules.nodes, -1)
 
       command = new UpdateBranchProtectionCommand({
         commit_signatures: true,

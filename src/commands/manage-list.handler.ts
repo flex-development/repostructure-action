@@ -8,6 +8,7 @@ import type { RepositoryQuery } from '#src/queries'
 import {
   includes,
   isUndefined,
+  select,
   type Constructor,
   type ObjectCurly,
   type Optional
@@ -87,7 +88,9 @@ abstract class ManageListHandler<
    * @template D - Delete command constructor type
    * @template U - Update command constructor type
    *
-   * @param {keyof T} key - Key used to compare nodes
+   * @param {[keyof T, (keyof InstanceType<C>)?]} keys - Node comparison keys
+   * @param {keyof T} keys.0 - Primary key of current nodes
+   * @param {keyof InstanceType<C>} keys.1 - Primary key of `list` nodes
    * @param {InstanceType<C>[]} list - Infrastructure list to manage
    * @param {Q} Query - Query to execute to find existing nodes
    * @param {D} Delete - Command to execute to remove stale nodes
@@ -101,13 +104,15 @@ abstract class ManageListHandler<
     D extends Constructor<{ id: string }> = Constructor<{ id: string }>,
     U extends Constructor<{ id: string }> = Constructor<{ id: string }>
   >(
-    key: keyof T,
+    keys: [keyof T, (keyof InstanceType<C>)?],
     list: InstanceType<C>[],
     Query: Q,
     Delete: D,
     Create: C,
     Update: U
   ): Promise<T[]> {
+    const [pk, mk = pk] = keys
+
     /**
      * Managed infrastructure list.
      *
@@ -127,10 +132,17 @@ abstract class ManageListHandler<
         repo: this.config.get('repo')
       }))
 
+      /**
+       * Infrastructure list keys.
+       *
+       * @const {(keyof InstanceType<C>)[]} mapped
+       */
+      const mapped: (keyof InstanceType<C>)[] = select(list, null, n => n[mk])
+
       // delete stale list nodes
-      for (const node of current) {
-        if (!includes(list, node, 0, n => n[key])) {
-          await this.commands.execute(new Delete(node))
+      for (const curr of current) {
+        if (!includes(mapped, curr[pk])) {
+          await this.commands.execute(new Delete(curr))
         }
       }
 
@@ -141,7 +153,7 @@ abstract class ManageListHandler<
          *
          * @const {Optional<T>} curr
          */
-        const curr: Optional<T> = current.find(curr => node[key] === curr[key])
+        const curr: Optional<T> = current.find(curr => curr[pk] === node[mk])
 
         // push upserted node
         managed.push(
