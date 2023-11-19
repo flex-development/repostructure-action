@@ -87172,6 +87172,27 @@ var manage_list_handler_default = ManageListHandler;
 // src/subdomains/environments/queries/environments.handler.ts
 var import_cqrs3 = __toESM(require_cqrs(), 1);
 
+// src/queries/organization.query.ts
+var OrganizationQuery = class {
+  /**
+   * Organization name.
+   *
+   * @public
+   * @instance
+   * @member {string} org
+   */
+  org;
+  /**
+   * Create a new organization query.
+   *
+   * @param {OrganizationQuery} params - Query parameters
+   */
+  constructor(params) {
+    this.org = params.org;
+  }
+};
+var organization_query_default = OrganizationQuery;
+
 // src/queries/repository.query.ts
 var RepositoryQuery = class {
   /**
@@ -87358,15 +87379,7 @@ var manage_handler_default = ManageEnvironmentsHandler;
 var import_cqrs5 = __toESM(require_cqrs(), 1);
 
 // src/subdomains/teams/queries/team.query.ts
-var TeamQuery = class {
-  /**
-   * Organization name.
-   *
-   * @public
-   * @instance
-   * @member {string} org
-   */
-  org;
+var TeamQuery = class extends organization_query_default {
   /**
    * Team slug.
    *
@@ -87381,7 +87394,7 @@ var TeamQuery = class {
    * @param {TeamQuery} params - Query parameters
    */
   constructor(params) {
-    this.org = params.org;
+    super(params);
     this.team = params.team;
   }
 };
@@ -87482,15 +87495,7 @@ var team_handler_default = TeamHandler;
 var import_cqrs6 = __toESM(require_cqrs(), 1);
 
 // src/subdomains/teams/queries/teams.query.ts
-var TeamsQuery = class {
-  /**
-   * Organization name.
-   *
-   * @public
-   * @instance
-   * @member {string} org
-   */
-  org;
+var TeamsQuery = class extends organization_query_default {
   /**
    * Team slugs.
    *
@@ -87505,7 +87510,7 @@ var TeamsQuery = class {
    * @param {TeamsQuery} params - Query parameters
    */
   constructor(params) {
-    this.org = params.org;
+    super(params);
     this.teams = params.teams;
   }
 };
@@ -87669,18 +87674,20 @@ var UsersQuery = class {
   /**
    * User logins.
    *
+   * @default []
+   *
    * @public
    * @instance
-   * @member {string[]} logins
+   * @member {string[]} users
    */
-  logins;
+  users;
   /**
    * Create a new GitHub users query.
    *
    * @param {UsersQuery} params - Query parameters
    */
   constructor(params) {
-    this.logins = params.logins;
+    this.users = params.users;
   }
 };
 var users_query_default = UsersQuery;
@@ -87726,7 +87733,7 @@ var UsersHandler = class UsersHandler2 {
    * @return {Promise<User[]>} GitHub user objects array
    */
   async execute(query) {
-    return reduceAsync(query.logins, async (acc, login) => [
+    return reduceAsync(query.users, async (acc, login) => [
       ...acc,
       await this.queries.execute(new user_query_default({ login }))
     ], []);
@@ -87815,14 +87822,11 @@ var UpdateEnvironmentHandler = class UpdateEnvironmentHandler2 {
   async execute(command) {
     let reviewers = [];
     if (command.reviewers) {
+      const { teams = [], users = [] } = command.reviewers;
+      const org = this.config.get("owner");
       reviewers = [
-        ...await this.queries.execute(new users_query_default({
-          logins: get_default(command.reviewers, "users", [])
-        })),
-        ...await this.queries.execute(new teams_query_default({
-          org: this.config.get("owner"),
-          teams: get_default(command.reviewers, "teams", [])
-        }))
+        ...await this.queries.execute(new users_query_default({ users })),
+        ...await this.queries.execute(new teams_query_default({ org, teams }))
       ];
     }
     const { payload } = await this.octokit.graphql({

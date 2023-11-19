@@ -9,7 +9,7 @@ import { TeamsQuery } from '#src/teams/queries'
 import type { Team } from '#src/teams/types'
 import { UsersQuery } from '#src/users/queries'
 import type { User } from '#src/users/types'
-import { get, select } from '@flex-development/tutils'
+import { select } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { CommandHandler, QueryBus, type ICommandHandler } from '@nestjs/cqrs'
 import { Octokit } from '@octokit/core'
@@ -95,14 +95,18 @@ class UpdateEnvironmentHandler
 
     // get reviewers
     if (command.reviewers) {
+      const { teams = [], users = [] } = command.reviewers
+
+      /**
+       * Organization name.
+       *
+       * @const {string} org
+       */
+      const org: string = this.config.get<string>('owner')
+
       reviewers = [
-        ...await this.queries.execute(new UsersQuery({
-          logins: get(command.reviewers, 'users', [])
-        })),
-        ...await this.queries.execute(new TeamsQuery({
-          org: this.config.get<string>('owner'),
-          teams: get(command.reviewers, 'teams', [])
-        }))
+        ...await this.queries.execute(new UsersQuery({ users })),
+        ...await this.queries.execute(new TeamsQuery({ org, teams }))
       ]
     }
 

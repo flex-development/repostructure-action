@@ -58,7 +58,7 @@ describe('integration:users/UsersModule', () => {
     describe.each<[string, UserQuery | UsersQuery]>([
       ['UserQuery', new UserQuery({ login: get(data.data.users, '0.login') })],
       ['UsersQuery', new UsersQuery({
-        logins: select(data.data.users, null, user => user.login)
+        users: select(data.data.users, null, user => user.login)
       })]
     ])('%s', (key, query) => {
       it('should execute query', async () => {

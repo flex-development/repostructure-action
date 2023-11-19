@@ -12,11 +12,13 @@ class UsersQuery {
   /**
    * User logins.
    *
+   * @default []
+   *
    * @public
    * @instance
-   * @member {string[]} logins
+   * @member {string[]} users
    */
-  public logins: string[]
+  public users: string[]
 
   /**
    * Create a new GitHub users query.
@@ -24,7 +26,7 @@ class UsersQuery {
    * @param {UsersQuery} params - Query parameters
    */
   constructor(params: UsersQuery) {
-    this.logins = params.logins
+    this.users = params.users
   }
 }
 

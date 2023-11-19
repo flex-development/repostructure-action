@@ -9,16 +9,16 @@ import TestSubject from '../users.query'
 
 describe('unit:users/queries/UsersQuery', () => {
   describe('constructor', () => {
-    let logins: string[]
     let subject: TestSubject
+    let users: string[]
 
     beforeAll(() => {
-      logins = [get(data.data.users, '0.login')]
-      subject = new TestSubject({ logins })
+      users = [get(data.data.users, '0.login')]
+      subject = new TestSubject({ users: users })
     })
 
-    it('should set #logins', () => {
-      expect(subject).to.have.deep.property('logins', logins)
+    it('should set #users', () => {
+      expect(subject).to.have.deep.property('users', users)
     })
   })
 })

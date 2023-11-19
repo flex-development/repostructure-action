@@ -1,0 +1,149 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`functional:branches/commands/UpdateBranchProtectionHandler > #execute > should update branch protection rule 1`] = `
+{
+  "input": {
+    "allowsDeletions": false,
+    "allowsForcePushes": true,
+    "blocksCreations": true,
+    "branchProtectionRuleId": "BPR_kwDOJGP3084CFpSk",
+    "bypassForcePushActorIds": [
+      "A_kwHOAuezE84ABkgL",
+    ],
+    "bypassPullRequestActorIds": null,
+    "clientMutationId": "@flex-development/repostructure-action/1.0.0",
+    "dismissesStaleReviews": true,
+    "isAdminEnforced": true,
+    "lockAllowsFetchAndMerge": false,
+    "lockBranch": true,
+    "pushActorIds": [
+      "MDM6QXBwMjkxMTA=",
+      "A_kwHOAuezE84ABkgL",
+    ],
+    "requireLastPushApproval": false,
+    "requiredApprovingReviewCount": 1,
+    "requiredDeploymentEnvironments": null,
+    "requiredStatusChecks": [
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "add-to-project",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "auto-merge",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "auto-review",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "build",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "changelog",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/changes",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/patch",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/apps",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/branches",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/commands",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/config",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/environments",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/labels",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/octokit",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/queries",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/teams",
+      },
+      {
+        "appId": "MDM6QXBwMjU0",
+        "context": "codecov/project/users",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "commitlint",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "dependabot-rebuild",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "format",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "gitguardian",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "lint",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "spelling",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "test (20)",
+      },
+      {
+        "appId": "MDM6QXBwMTUzNjg=",
+        "context": "typescript (5.2.2)",
+      },
+    ],
+    "requiresCodeOwnerReviews": false,
+    "requiresCommitSignatures": true,
+    "requiresConversationResolution": true,
+    "requiresDeployments": null,
+    "requiresLinearHistory": true,
+    "requiresStrictStatusChecks": true,
+    "reviewDismissalActorIds": null,
+  },
+  "query": "mutation UpdateBranchProtection($input: UpdateBranchProtectionRuleInput!) {
+  payload: updateBranchProtectionRule(input: $input) {
+    rule: branchProtectionRule {
+      id
+      pattern
+    }
+  }
+}",
+}
+`;

@@ -10,7 +10,7 @@
  */
 class AppsQuery {
   /**
-   * GitHub App slugs.
+   * App slugs.
    *
    * @public
    * @instance

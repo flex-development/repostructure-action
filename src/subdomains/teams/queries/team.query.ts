@@ -3,21 +3,15 @@
  * @module repostructure/teams/queries/TeamQuery
  */
 
+import { OrganizationQuery } from '#src/queries'
+
 /**
  * Team query.
  *
  * @class
+ * @extends {OrganizationQuery}
  */
-class TeamQuery {
-  /**
-   * Organization name.
-   *
-   * @public
-   * @instance
-   * @member {string} org
-   */
-  public org: string
-
+class TeamQuery extends OrganizationQuery {
   /**
    * Team slug.
    *
@@ -33,7 +27,7 @@ class TeamQuery {
    * @param {TeamQuery} params - Query parameters
    */
   constructor(params: TeamQuery) {
-    this.org = params.org
+    super(params)
     this.team = params.team
   }
 }

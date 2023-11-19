@@ -1,5 +1,46 @@
 {
   "$defs": {
+    "BranchActors": {
+      "additionalProperties": false,
+      "properties": {
+        "apps": {
+          "description": "github app slugs",
+          "items": { "type": ["string"] },
+          "type": ["array", "null"],
+          "uniqueItems": true
+        },
+        "teams": {
+          "description": "team slugs",
+          "items": { "type": ["string"] },
+          "type": ["array", "null"],
+          "uniqueItems": true
+        },
+        "users": {
+          "description": "user logins",
+          "items": { "type": ["string"] },
+          "type": ["array", "null"],
+          "uniqueItems": true
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "Deployments": {
+      "additionalProperties": false,
+      "properties": {
+        "environments": {
+          "description": "environments that must be successfully deployed before branches can be merged into a protected branch",
+          "items": { "$ref": "#/$defs/Environment/properties/name" },
+          "type": "array"
+        },
+        "strict": {
+          "description": "require successful deployments",
+          "type": ["boolean", "null"]
+        }
+      },
+      "required": ["environments"],
+      "type": "object"
+    },
     "Environment": {
       "additionalProperties": false,
       "properties": {
@@ -12,20 +53,8 @@
           "type": ["boolean", "null"]
         },
         "reviewers": {
-          "additionalProperties": false,
+          "$ref": "#/$defs/Reviewers",
           "description": "users and teams that can approve deployments",
-          "properties": {
-            "teams": {
-              "description": "team slugs",
-              "items": { "type": ["string"] },
-              "type": "array"
-            },
-            "users": {
-              "description": "user logins",
-              "items": { "type": ["string"] },
-              "type": "array"
-            }
-          },
           "type": ["null", "object"]
         },
         "wait_timer": {
@@ -54,6 +83,92 @@
         }
       },
       "required": ["color", "name"],
+      "type": "object"
+    },
+    "PullRequests": {
+      "additionalProperties": false,
+      "properties": {
+        "approving_review_count": {
+          "description": "number of reviewers required for pull request approval",
+          "maximum": 6,
+          "minimum": 0,
+          "type": ["integer", "null"]
+        },
+        "bypass_restrictions": {
+          "$ref": "#/$defs/BranchActors",
+          "description": "users, teams, and apps allowed to bypass pull request requirements",
+          "type": ["null", "object"]
+        },
+        "code_owner_reviews": {
+          "description": "block merges until reviewed by a code owner",
+          "type": ["boolean", "null"]
+        },
+        "dismiss_stale_reviews": {
+          "description": "dismiss approving reviews when new commits are pushed",
+          "type": ["boolean", "null"]
+        },
+        "dismissal_restrictions": {
+          "$ref": "#/$defs/BranchActors",
+          "description": "users, teams, and apps allowed to dismiss pull request reviews",
+          "type": ["null", "object"]
+        },
+        "last_push_approval": {
+          "description": "require the most recent push to be approved by someone other than the most recent pusher",
+          "type": ["boolean", "null"]
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "Reviewers": {
+      "additionalProperties": false,
+      "properties": {
+        "teams": {
+          "description": "team slugs",
+          "items": { "type": ["string"] },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "users": {
+          "description": "user logins",
+          "items": { "type": ["string"] },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "StatusCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "app": {
+          "default": "github-actions",
+          "description": "slug of github app that must provide check",
+          "type": ["null", "string"]
+        },
+        "context": {
+          "description": "status check name",
+          "type": "string"
+        }
+      },
+      "required": ["context"],
+      "type": "object"
+    },
+    "StatusChecks": {
+      "additionalProperties": false,
+      "properties": {
+        "checks": {
+          "description": "required status checks list",
+          "items": { "$ref": "#/$defs/StatusCheck" },
+          "type": "array"
+        },
+        "strict": {
+          "description": "require branches to be up to date before merging",
+          "type": ["boolean", "null"]
+        }
+      },
+      "required": ["checks"],
       "type": "object"
     }
   },

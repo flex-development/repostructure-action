@@ -27,17 +27,17 @@ describe('unit:users/queries/UsersHandler', () => {
   })
 
   describe('#execute', () => {
-    let logins: string[]
     let users: User[]
 
     beforeAll(() => {
       users = data.data.users
-      logins = select(users, null, user => user.login)
     })
 
     it('should return github user objects array', async () => {
       // Arrange
-      const query: UsersQuery = new UsersQuery({ logins })
+      const query: UsersQuery = new UsersQuery({
+        users: select(users, null, user => user.login)
+      })
 
       // Act + Expect
       expect(await subject.execute(query)).to.have.deep.ordered.members(users)

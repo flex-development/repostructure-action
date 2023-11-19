@@ -9,19 +9,14 @@ import TestSubject from '../team.query'
 
 describe('unit:teams/queries/TeamQuery', () => {
   describe('constructor', () => {
-    let org: string
     let subject: TestSubject
     let team: string
 
     beforeAll(() => {
       subject = new TestSubject({
-        org: org = data.data.organization.login,
+        org: data.data.organization.login,
         team: team = get(data.data.organization.teams.nodes, '0.slug')
       })
-    })
-
-    it('should set #org', () => {
-      expect(subject).to.have.property('org', org)
     })
 
     it('should set #team', () => {

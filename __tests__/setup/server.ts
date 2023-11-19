@@ -33,6 +33,7 @@ import type {
   RepositoryLabelsArgs as LabelsArgs,
   QueryUserArgs,
   OrganizationTeamArgs as TeamArgs,
+  UpdateBranchProtectionRuleInput as UpdateBranchProtectionInput,
   UpdateEnvironmentInput
 } from '@octokit/graphql-schema'
 import {
@@ -231,6 +232,37 @@ const server: SetupServer = setupServer(
            */
           labels(args: LabelsArgs): Connection<Label> {
             return connection('labels', args.after)
+          }
+        },
+        /**
+         * Mock `updateBranchProtectionRule` mutation resolver.
+         *
+         * @see https://docs.github.com/graphql/reference/mutations#updatebranchprotectionrule
+         *
+         * @param {Record<'input', UpdateBranchProtectionInput>} args - Mutation
+         * args
+         * @return {{ branchProtectionRule: BranchProtection }} Updated branch
+         * protection payload
+         */
+        updateBranchProtectionRule(
+          args: Record<'input', UpdateBranchProtectionInput>
+        ): { branchProtectionRule: BranchProtection } {
+          const { nodes } = root.data.repository.branchProtectionRules
+
+          /**
+           * Branch protection rule to update.
+           *
+           * @const {Optional<BranchProtection>} node
+           */
+          const node: Optional<BranchProtection> = nodes.find(({ id }) => {
+            return id === args.input.branchProtectionRuleId
+          })
+
+          return {
+            branchProtectionRule: node ?? {
+              id: args.input.branchProtectionRuleId,
+              pattern: ''
+            }
           }
         },
         /**

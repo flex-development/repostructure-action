@@ -42,7 +42,7 @@ class UsersHandler implements IQueryHandler<UsersQuery, User[]> {
    * @return {Promise<User[]>} GitHub user objects array
    */
   public async execute(query: UsersQuery): Promise<User[]> {
-    return reduceAsync(query.logins, async (acc, login) => [
+    return reduceAsync(query.users, async (acc, login) => [
       ...acc,
       await this.queries.execute(new UserQuery({ login }))
     ], <User[]>[])

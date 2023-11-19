@@ -3,11 +3,12 @@
  * @module teams/queries/tests/unit-d/TeamsQuery
  */
 
+import type { OrganizationQuery } from '#src/queries'
 import type TestSubject from '../teams.query'
 
 describe('unit-d:teams/queries/TeamsQuery', () => {
-  it('should match [org: string]', () => {
-    expectTypeOf<TestSubject>().toHaveProperty('org').toEqualTypeOf<string>()
+  it('should extend OrganizationQuery', () => {
+    expectTypeOf<TestSubject>().toMatchTypeOf<OrganizationQuery>()
   })
 
   it('should match [teams: string[]]', () => {

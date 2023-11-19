@@ -6,9 +6,9 @@
 import type TestSubject from '../users.query'
 
 describe('unit-d:users/queries/UsersQuery', () => {
-  it('should match [logins: string[]]', () => {
+  it('should match [users: string[]]', () => {
     expectTypeOf<TestSubject>()
-      .toHaveProperty('logins')
+      .toHaveProperty('users')
       .toEqualTypeOf<string[]>()
   })
 })
