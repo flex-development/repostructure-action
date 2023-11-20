@@ -7,7 +7,7 @@ import type { Nullable } from '@flex-development/tutils'
 import type StatusCheck from './status-check'
 
 /**
- * Required status checks object.
+ * Required status checks configuration object.
  */
 type StatusChecks = {
   /**

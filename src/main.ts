@@ -13,5 +13,6 @@ try {
     logger: ['error', 'fatal', 'warn']
   })
 } catch (e) {
+  console.dir(e, { depth: 10 })
   core.setFailed(<Error>e)
 }

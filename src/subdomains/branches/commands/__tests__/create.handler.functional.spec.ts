@@ -9,7 +9,6 @@ import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import { AppHandler, AppsHandler } from '#src/apps/queries'
 import { TeamHandler, TeamsHandler } from '#src/teams/queries'
 import { UserHandler, UsersHandler } from '#src/users/queries'
-import type { Spy } from '#tests/interfaces'
 import { get, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { CqrsModule } from '@nestjs/cqrs'
@@ -55,8 +54,6 @@ describe('functional:branches/commands/CreateBranchProtectionHandler', () => {
 
   describe('#execute', () => {
     let command: CreateBranchProtectionCommand
-    let graphql: Spy<typeof octokit['graphql']>
-    let update: Spy<UpdateBranchProtectionHandler['execute']>
 
     beforeAll(() => {
       command = new CreateBranchProtectionCommand({
@@ -84,14 +81,14 @@ describe('functional:branches/commands/CreateBranchProtectionHandler', () => {
     })
 
     beforeEach(async () => {
-      graphql = vi.spyOn(octokit, 'graphql')
-      update = vi.spyOn(UpdateBranchProtectionHandler.prototype, 'execute')
+      vi.spyOn(UpdateBranchProtectionHandler.prototype, 'execute')
+      vi.spyOn(octokit, 'graphql')
 
       await subject.execute(command)
     })
 
-    it('should create branch protection rule', async () => {
-      expect(graphql).toHaveBeenCalledWith({
+    it('should create branch protection rule', () => {
+      expect(octokit.graphql).toHaveBeenNthCalledWith(1, {
         input: <CreateBranchProtectionRuleInput>{
           clientMutationId: CLIENT_MUTATION_ID,
           pattern: command.branch,
@@ -101,8 +98,8 @@ describe('functional:branches/commands/CreateBranchProtectionHandler', () => {
       })
     })
 
-    it('should update new branch protection rule', async () => {
-      expect(update).toHaveBeenCalledOnce()
+    it('should update new branch protection rule', () => {
+      expect(UpdateBranchProtectionHandler.prototype.execute).toHaveBeenCalled()
     })
   })
 })

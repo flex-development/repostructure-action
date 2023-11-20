@@ -219,7 +219,11 @@
   "javascript.validate.enable": true,
   "json.schemas": [
     {
-      "fileMatch": ["**/infrastructure.json"],
+      "fileMatch": [
+        "**/infrastructure.json",
+        "**/infrastructure.json5",
+        "**/infrastructure.jsonc"
+      ],
       "url": "./.schema.json"
     }
   ],
@@ -388,6 +392,7 @@
   "yaml.schemas": {
     "https://json.schemastore.org/github-issue-config": ".github/ISSUE_TEMPLATE/config.yml",
     "https://json.schemastore.org/github-workflow": ".github/workflows/*.yml",
+    "https://raw.githubusercontent.com/flex-development/repostructure-action/main/.schema.json": null,
     "./.schema.json": "**/infrastructure.yml"
   }
 }

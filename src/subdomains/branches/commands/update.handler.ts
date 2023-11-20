@@ -16,7 +16,10 @@ import type { Team } from '#src/teams/types'
 import { UsersQuery } from '#src/users/queries'
 import type { User } from '#src/users/types'
 import {
+  fallback,
+  isFalsy,
   isNIL,
+  isNull,
   reduceAsync,
   select,
   shake,
@@ -169,6 +172,29 @@ class UpdateBranchProtectionHandler
       } = {}
     } = shake<UpdateBranchProtectionCommand, NIL>(command, isNIL)
 
+    /**
+     * Node IDs of users, teams, and apps allowed to push to matching branches.
+     *
+     * @const {string[]} pushActorIds
+     */
+    const pushActorIds: string[] = fallback(
+      await this.actorIds(pushActors),
+      [],
+      isNull
+    )
+
+    /**
+     * Node IDs of users, teams, and apps allowed to dismiss pull request
+     * reviews.
+     *
+     * @const {string[]} reviewDismissalActorIds
+     */
+    const reviewDismissalActorIds: string[] = fallback(
+      await this.actorIds(reviewDismissalActors),
+      [],
+      isNull
+    )
+
     // update branch protection rule
     const {
       payload
@@ -185,7 +211,7 @@ class UpdateBranchProtectionHandler
         isAdminEnforced,
         lockAllowsFetchAndMerge,
         lockBranch,
-        pushActorIds: await this.actorIds(pushActors),
+        pushActorIds,
         requireLastPushApproval,
         requiredApprovingReviewCount,
         requiredDeploymentEnvironments,
@@ -201,12 +227,16 @@ class UpdateBranchProtectionHandler
 
           return [...acc, { appId, context }]
         }, <RequiredStatusCheckInput[]>[]),
+        requiresApprovingReviews: !isFalsy(requiredApprovingReviewCount),
         requiresCodeOwnerReviews,
         requiresCommitSignatures,
         requiresConversationResolution,
         requiresDeployments,
         requiresLinearHistory,
+        requiresStatusChecks: !!checks.length,
         requiresStrictStatusChecks,
+        restrictsPushes: !!pushActorIds.length,
+        restrictsReviewDismissals: !!reviewDismissalActorIds.length,
         reviewDismissalActorIds: await this.actorIds(reviewDismissalActors)
       },
       query: this.operation

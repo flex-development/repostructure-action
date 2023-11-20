@@ -1,15 +1,15 @@
 /**
- * @file Type Definitions - Deployments
- * @module repostructure/branches/types/Deployments
+ * @file Type Definitions - DeploymentProtection
+ * @module repostructure/branches/types/DeploymentProtection
  */
 
 import type { Environment } from '#src/environments/types'
 import type { Nullable } from '@flex-development/tutils'
 
 /**
- * Deployment requirements object.
+ * Deployment environment protections object.
  */
-type Deployments = {
+type DeploymentProtection = {
   /**
    * Environments that must be successfully deployed before branches can be
    * merged into a protected branch.
@@ -24,4 +24,4 @@ type Deployments = {
   strict?: Nullable<boolean>
 }
 
-export type { Deployments as default }
+export type { DeploymentProtection as default }

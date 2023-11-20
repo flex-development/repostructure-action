@@ -6,6 +6,11 @@
 import { Global, Module, type OnApplicationBootstrap } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { CommandBus, CqrsModule } from '@nestjs/cqrs'
+import { AppsModule } from './subdomains/apps'
+import {
+  BranchesModule,
+  ManageBranchProtectionsCommand
+} from './subdomains/branches'
 import { ConfigModule, type Config } from './subdomains/config'
 import {
   EnvironmentsModule,
@@ -26,6 +31,8 @@ import type { Infrastructure, InfrastructureCommand } from './types'
 @Global()
 @Module({
   imports: [
+    AppsModule,
+    BranchesModule,
     ConfigModule.forRoot(),
     CqrsModule.forRoot(),
     EnvironmentsModule,
@@ -74,7 +81,8 @@ class RunnerModule implements OnApplicationBootstrap {
      */
     const commands: InfrastructureCommand[] = [
       new ManageEnvironmentsCommand(infrastructure.environments),
-      new ManageLabelsCommand(infrastructure.labels)
+      new ManageLabelsCommand(infrastructure.labels),
+      new ManageBranchProtectionsCommand(infrastructure.branches)
     ]
 
     // execute management commands

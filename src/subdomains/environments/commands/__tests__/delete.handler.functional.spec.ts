@@ -34,6 +34,10 @@ describe('functional:environments/commands/DeleteEnvironmentHandler', () => {
   })
 
   describe('#execute', () => {
+    beforeEach(() => {
+      vi.spyOn(octokit, 'graphql')
+    })
+
     it('should delete environment', async () => {
       // Arrange
       const command: DeleteEnvironmentCommand = new DeleteEnvironmentCommand({
@@ -41,7 +45,6 @@ describe('functional:environments/commands/DeleteEnvironmentHandler', () => {
       })
 
       // Act
-      vi.spyOn(octokit, 'graphql')
       await subject.execute(command)
 
       // Expect

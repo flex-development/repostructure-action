@@ -15,9 +15,11 @@ vi.mock('yaml', async og => ({ parse: vi.fn((await og<typeof yaml>()).parse) }))
 
 describe('functional:config/ConfigModule', () => {
   describe('.infrastructure', () => {
+    let source: string
     let workspace: string
 
     beforeAll(() => {
+      source = '{}'
       workspace = import.meta.env.INPUT_WORKSPACE
     })
 
@@ -27,11 +29,9 @@ describe('functional:config/ConfigModule', () => {
       '.jsonc'
     ])('%s', ext => {
       let file: string
-      let source: string
 
       beforeAll(() => {
         file = pathe.join('.github', 'infrastructure' + ext)
-        source = '{}'
       })
 
       beforeEach(() => {
@@ -54,11 +54,9 @@ describe('functional:config/ConfigModule', () => {
       '.yml'
     ])('%s', ext => {
       let file: string
-      let source: string
 
       beforeAll(() => {
         file = pathe.join('.github', 'infrastructure' + ext)
-        source = ''
       })
 
       beforeEach(() => {
@@ -77,7 +75,7 @@ describe('functional:config/ConfigModule', () => {
           prettyErrors: true,
           schema: 'core',
           sortMapEntries: true,
-          version: 'next'
+          version: '1.2'
         })
       })
     })

@@ -1,13 +1,13 @@
 /**
- * @file Type Tests - PullRequests
- * @module branches/types/tests/unit-d/PullRequests
+ * @file Type Tests - PullRequestProtection
+ * @module branches/types/tests/unit-d/PullRequestProtection
  */
 
 import type { NaturalRange, Nilable } from '@flex-development/tutils'
 import type BranchActors from '../branch-actors'
-import type TestSubject from '../pull-requests'
+import type TestSubject from '../pr-protection'
 
-describe('unit-d:branches/types/PullRequests', () => {
+describe('unit-d:branches/types/PullRequestProtection', () => {
   it('should match [approving_review_count?: Nullable<NaturalRange<7>>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('approving_review_count')

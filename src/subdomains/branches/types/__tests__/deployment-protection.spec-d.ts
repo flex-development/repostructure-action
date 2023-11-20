@@ -1,13 +1,13 @@
 /**
- * @file Type Tests - Deployments
- * @module branches/types/tests/unit-d/Deployments
+ * @file Type Tests - DeploymentProtection
+ * @module branches/types/tests/unit-d/DeploymentProtection
  */
 
 import type { Environment } from '#src/environments/types'
 import type { Nilable } from '@flex-development/tutils'
-import type TestSubject from '../deployments'
+import type TestSubject from '../deployment-protection'
 
-describe('unit-d:branches/types/Deployments', () => {
+describe('unit-d:branches/types/DeploymentProtection', () => {
   it('should match [environments: Environment["name"][]]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('environments')

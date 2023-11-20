@@ -5,8 +5,8 @@
 
 import type {
   BranchActors,
-  Deployments,
-  PullRequests,
+  DeploymentProtection,
+  PullRequestProtection,
   StatusChecks
 } from '#src/branches/types'
 import type { Nilable, ReadonlyKeys } from '@flex-development/tutils'
@@ -41,10 +41,10 @@ describe('unit-d:branches/dto/BranchProtectionDTO', () => {
       .toEqualTypeOf<Nilable<boolean>>()
   })
 
-  it('should match [deployments?: Nilable<Deployments>]', () => {
+  it('should match [deployments?: Nilable<DeploymentProtection>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('deployments')
-      .toEqualTypeOf<Nilable<Deployments>>()
+      .toEqualTypeOf<Nilable<DeploymentProtection>>()
   })
 
   it('should match [enforce_admins?: Nilable<boolean>]', () => {
@@ -83,10 +83,10 @@ describe('unit-d:branches/dto/BranchProtectionDTO', () => {
       .toEqualTypeOf<Nilable<boolean>>()
   })
 
-  it('should match [pull_requests?: Nilable<PullRequests>]', () => {
+  it('should match [pull_requests?: Nilable<PullRequestProtection>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('pull_requests')
-      .toEqualTypeOf<Nilable<PullRequests>>()
+      .toEqualTypeOf<Nilable<PullRequestProtection>>()
   })
 
   it('should match [restrictions?: Nilable<BranchActors>]', () => {

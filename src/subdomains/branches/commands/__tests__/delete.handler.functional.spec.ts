@@ -35,6 +35,10 @@ describe('functional:branches/commands/DeleteBranchProtectionHandler', () => {
   })
 
   describe('#execute', () => {
+    beforeEach(() => {
+      vi.spyOn(octokit, 'graphql')
+    })
+
     it('should delete branch protection rule', async () => {
       // Arrange
       const command: DeleteBranchProtectionCommand =
@@ -43,7 +47,6 @@ describe('functional:branches/commands/DeleteBranchProtectionHandler', () => {
         })
 
       // Act
-      vi.spyOn(octokit, 'graphql')
       await subject.execute(command)
 
       // Expect

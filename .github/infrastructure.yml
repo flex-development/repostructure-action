@@ -2,52 +2,89 @@
 # https://github.com/flex-development/repostructure-action
 ---
 branches:
-  - name: main
-    protection:
-      allow_deletions: false
-      allow_force_pushes: true
-      allow_fork_syncing: false
-      block_creations: false
-      enforce_admins: false
-      lock_branch: false
-      required_conversation_resolution: true
-      required_linear_history: true
-      required_pull_request_reviews:
-        bypass_pull_request_allowances: {}
-        dismiss_stale_reviews: true
-        dismissal_restrictions: {}
-        require_code_owner_reviews: false
-        require_last_push_approval: false
-        required_approving_review_count: 1
-      required_status_checks:
-        checks:
-          - context: add-to-project
-          - context: auto-merge
-          - context: auto-review
-          - context: build
-          - context: changelog
-          - context: codecov/changes
-            app_id: 254
-          - context: codecov/patch
-            app_id: 254
-          - context: codecov/project
-            app_id: 254
-          - context: codecov/project/commands
-            app_id: 254
-          - context: codecov/project/providers
-            app_id: 254
-          - context: codecov/project/queries
-            app_id: 254
-          - context: commitlint
-          - context: dependabot-rebuild
-          - context: format
-          - context: gitguardian
-          - context: lint
-          - context: spelling
-          - context: test (20)
-          - context: typescript (5.2.2)
-        strict: true
-      restrictions: null
+  - branch: main
+    commit_signatures: true
+    conversation_resolution: true
+    creations_blocked: false
+    deletions: false
+    deployments: null
+    enforce_admins: false
+    force_pushers:
+      users:
+        - unicornware
+    force_pushes: true
+    fork_syncing: false
+    linear_history: true
+    lock_branch: true
+    pull_requests:
+      approving_review_count: 1
+      bypass_restrictions: null
+      dismiss_stale_reviews: true
+      dismissal_restrictions:
+        apps:
+          - dependabot
+          - flex-development
+      last_push_approval: false
+    restrictions: null
+    status_checks:
+      checks:
+        - context: add-to-project
+        - context: auto-merge
+        - context: auto-review
+        - context: build
+        - context: changelog
+        - context: codecov/changes
+          app: codecov
+        - context: codecov/patch
+          app: codecov
+        - context: codecov/project
+          app: codecov
+        - context: codecov/project/apps
+          app: codecov
+        - context: codecov/project/branches
+          app: codecov
+        - context: codecov/project/commands
+          app: codecov
+        - context: codecov/project/config
+          app: codecov
+        - context: codecov/project/environments
+          app: codecov
+        - context: codecov/project/labels
+          app: codecov
+        - context: codecov/project/octokit
+          app: codecov
+        - context: codecov/project/queries
+          app: codecov
+        - context: codecov/project/teams
+          app: codecov
+        - context: codecov/project/users
+          app: codecov
+        - context: commitlint
+        - context: dependabot-rebuild
+        - context: format
+        - context: gitguardian
+        - context: lint
+        - context: spelling
+        - context: test (20)
+        - context: typescript (5.2.2)
+      strict: true
+  - branch: release/*
+    commit_signatures: true
+    conversation_resolution: null
+    creations_blocked: true
+    deletions: true
+    deployments: null
+    enforce_admins: true
+    force_pushers: null
+    force_pushes: false
+    fork_syncing: false
+    linear_history: true
+    lock_branch: false
+    pull_requests: null
+    restrictions:
+      apps:
+        - flex-development
+    status_checks: null
 environments:
   - name: release
 labels:

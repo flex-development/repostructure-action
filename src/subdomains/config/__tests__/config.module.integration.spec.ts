@@ -16,18 +16,16 @@ describe('integration:config/ConfigModule', () => {
     })
   })
 
-  describe('.forRoot', () => {
-    it('should provide ConfigService', async () => {
-      // Arrange
-      const ref: TestingModuleBuilder = Test.createTestingModule({
-        imports: [TestSubject.forRoot()]
-      })
-
-      // Act
-      const result = (await ref.compile()).get(ConfigService)
-
-      // Expect
-      expect(result).to.be.instanceof(ConfigService)
+  it('should provide ConfigService', async () => {
+    // Arrange
+    const ref: TestingModuleBuilder = Test.createTestingModule({
+      imports: [TestSubject.forRoot()]
     })
+
+    // Act
+    const result = (await ref.compile()).get(ConfigService)
+
+    // Expect
+    expect(result).to.be.instanceof(ConfigService)
   })
 })

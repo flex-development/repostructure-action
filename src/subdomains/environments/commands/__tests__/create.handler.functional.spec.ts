@@ -49,20 +49,24 @@ describe('functional:environments/commands/CreateEnvironmentHandler', () => {
   })
 
   describe('#execute', () => {
-    it('should create environment', async () => {
-      // Arrange
-      const command: CreateEnvironmentCommand = new CreateEnvironmentCommand({
+    let command: CreateEnvironmentCommand
+
+    beforeAll(() => {
+      command = new CreateEnvironmentCommand({
         name: 'production',
         reviewers: { users: [get(data.data.users, '0.login')] }
       })
+    })
 
-      // Act
+    beforeEach(async () => {
       vi.spyOn(UpdateEnvironmentHandler.prototype, 'execute')
       vi.spyOn(octokit, 'graphql')
-      await subject.execute(command)
 
-      // Expect
-      expect(octokit.graphql).toHaveBeenCalledWith({
+      await subject.execute(command)
+    })
+
+    it('should create environment', () => {
+      expect(octokit.graphql).toHaveBeenNthCalledWith(1, {
         input: {
           clientMutationId: CLIENT_MUTATION_ID,
           name: command.name,
@@ -70,7 +74,10 @@ describe('functional:environments/commands/CreateEnvironmentHandler', () => {
         },
         query: get(subject, 'operation', <Optional<string>>undefined)
       })
-      expect(UpdateEnvironmentHandler.prototype.execute).toHaveBeenCalledOnce()
+    })
+
+    it('should update new environment', () => {
+      expect(UpdateEnvironmentHandler.prototype.execute).toHaveBeenCalled()
     })
   })
 })

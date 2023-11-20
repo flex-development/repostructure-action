@@ -5,8 +5,8 @@
 
 import type {
   BranchActors,
-  Deployments,
-  PullRequests,
+  DeploymentProtection,
+  PullRequestProtection,
   StatusChecks
 } from '#src/branches/types'
 import TestSubject from '../branch-protection.dto'
@@ -17,14 +17,14 @@ describe('unit:branches/dto/BranchProtectionDTO', () => {
     let conversation_resolution: boolean
     let creations_blocked: boolean
     let deletions: boolean
-    let deployments: Deployments
+    let deployments: DeploymentProtection
     let enforce_admins: boolean
     let force_pushers: BranchActors
     let force_pushes: boolean
     let fork_syncing: boolean
     let linear_history: boolean
     let lock_branch: boolean
-    let pull_requests: PullRequests
+    let pull_requests: PullRequestProtection
     let restrictions: BranchActors
     let status_checks: StatusChecks
     let subject: TestSubject

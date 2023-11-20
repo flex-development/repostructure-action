@@ -83,7 +83,7 @@ const connection = <T extends ObjectPlain>(
     nodes: cast(nodes.slice(i, j)),
     pageInfo: {
       endCursor: at(cursors, -1)?.cursor ?? cursor,
-      hasNextPage: !!cursors.length
+      hasNextPage: !!edges.slice(j, j + limit).length
     }
   }
 }

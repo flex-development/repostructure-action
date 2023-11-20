@@ -5,8 +5,8 @@
 
 import type {
   BranchActors,
-  Deployments,
-  PullRequests,
+  DeploymentProtection,
+  PullRequestProtection,
   StatusChecks
 } from '#src/branches/types'
 import type { Nilable } from '@flex-development/tutils'
@@ -63,16 +63,16 @@ class BranchProtectionDTO {
   public readonly deletions?: Nilable<boolean>
 
   /**
-   * Deployment requirements.
+   * Deployment environment protections.
    *
-   * @see {@linkcode Deployments}
+   * @see {@linkcode DeploymentProtection}
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<Deployments>?} deployments
+   * @member {Nilable<DeploymentProtection>?} deployments
    */
-  public readonly deployments?: Nilable<Deployments>
+  public readonly deployments?: Nilable<DeploymentProtection>
 
   /**
    * Enforce protection rule for administrators.
@@ -140,14 +140,14 @@ class BranchProtectionDTO {
   /**
    * Pull request protections.
    *
-   * @see {@linkcode PullRequests}
+   * @see {@linkcode PullRequestProtection}
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<PullRequests>?} pull_requests
+   * @member {Nilable<PullRequestProtection>?} pull_requests
    */
-  public readonly pull_requests?: Nilable<PullRequests>
+  public readonly pull_requests?: Nilable<PullRequestProtection>
 
   /**
    * Users, teams, and apps allowed to push to matching branches.

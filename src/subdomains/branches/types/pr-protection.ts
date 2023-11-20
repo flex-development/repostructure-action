@@ -1,6 +1,6 @@
 /**
- * @file Type Definitions - PullRequests
- * @module repostructure/branches/types/PullRequests
+ * @file Type Definitions - PullRequestProtection
+ * @module repostructure/branches/types/PullRequestProtection
  */
 
 import type { NaturalRange, Nullable } from '@flex-development/tutils'
@@ -9,9 +9,9 @@ import type BranchActors from './branch-actors'
 /**
  * Pull request protections object.
  */
-type PullRequests = {
+type PullRequestProtection = {
   /**
-   * Number of reviewers required for pull request approval.
+   * Number of approving reviews required to merge a pull request.
    *
    * @maximum 6
    * @minimum 0
@@ -51,4 +51,4 @@ type PullRequests = {
   last_push_approval?: Nullable<boolean>
 }
 
-export type { PullRequests as default }
+export type { PullRequestProtection as default }

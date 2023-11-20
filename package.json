@@ -17,9 +17,10 @@
   },
   "type": "module",
   "files": [
-    "action.yml",
+    ".schema.json",
     "CHANGELOG.md",
     "LICENSE.md",
+    "action.yml",
     "dist",
     "src"
   ],
@@ -95,6 +96,7 @@
     "@vates/toggle-scripts": "1.0.0",
     "@vitest/coverage-v8": "1.0.0-beta.3",
     "@vitest/expect": "1.0.0-beta.3",
+    "ajv": "8.12.0",
     "chai": "5.0.0-alpha.2",
     "cross-env": "7.0.3",
     "cspell": "7.3.8",

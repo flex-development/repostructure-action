@@ -4,6 +4,7 @@
  */
 
 import pkg from '#pkg' assert { type: 'json' }
+import schema from '#schema' assert { type: 'json' }
 import type { Infrastructure } from '#src/types'
 import * as core from '@actions/core'
 import * as github from '@actions/github'
@@ -11,17 +12,16 @@ import { ERR_UNKNOWN_FILE_EXTENSION } from '@flex-development/errnode'
 import * as mlly from '@flex-development/mlly'
 import * as pathe from '@flex-development/pathe'
 import {
-  defaults,
-  fallback,
-  isNull,
+  at,
   join,
-  pick,
   sift,
-  type EmptyString
+  type EmptyString,
+  type JsonValue
 } from '@flex-development/tutils'
 import { Module, type DynamicModule } from '@nestjs/common'
 import { ConfigModule as ConfigBaseModule } from '@nestjs/config'
 import { graphql as request } from '@octokit/graphql'
+import Ajv from 'ajv/dist/2020'
 import * as graphql from 'graphql'
 import gql from 'graphql-tag'
 import json5 from 'json5'
@@ -99,9 +99,9 @@ class ConfigModule extends ConfigBaseModule {
     /**
      * Repository infrastructure object.
      *
-     * @var {Partial<Infrastructure>} infrastructure
+     * @var {JsonValue} infrastructure
      */
-    let infrastructure!: Partial<Infrastructure>
+    let infrastructure!: JsonValue
 
     // get infrastructure object
     switch (ext) {
@@ -112,25 +112,53 @@ class ConfigModule extends ConfigBaseModule {
         break
       case '.yaml':
       case '.yml':
-        infrastructure = fallback(yaml.parse(source, {
+        infrastructure = yaml.parse(source, {
           logLevel: 'error',
           prettyErrors: true,
           schema: 'core',
           sortMapEntries: true,
-          version: 'next'
-        }), {}, isNull)
+          version: '1.2'
+        })
         break
       default:
         throw new ERR_UNKNOWN_FILE_EXTENSION(ext, path)
     }
 
-    return defaults(pick(infrastructure, [
-      'environments',
-      'labels'
-    ]), {
-      environments: [],
-      labels: []
+    /**
+     * JSON schema validator.
+     *
+     * @const {Ajv} validator
+     */
+    const validator: Ajv = new Ajv({
+      logger: {
+        error: core.error.bind(core),
+        log: core.info.bind(core),
+        warn: core.warning.bind(core)
+      },
+      removeAdditional: 'all',
+      schemaId: '$id',
+      schemas: [schema],
+      strict: true,
+      useDefaults: true,
+      verbose: true
     })
+
+    // throw on validation failure
+    if (!validator.validate<Infrastructure>(schema, infrastructure)) {
+      /**
+       * Validation error message.
+       *
+       * @const {string} message
+       */
+      const message: string = validator.errorsText(validator.errors, {
+        dataVar: 'config'
+      })
+
+      // throw validation error
+      throw new Error(message, { cause: at(validator.errors, 0) })
+    }
+
+    return infrastructure
   }
 
   /**
