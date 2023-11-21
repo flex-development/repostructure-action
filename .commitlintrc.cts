@@ -28,13 +28,15 @@ const config: UserConfig = {
         'inputs',
         'labels',
         'octokit',
+        'pull-requests',
         'queries',
         'runner',
         'security',
         'teams',
         'users'
       ])
-    ]
+    ],
+    'scope-max-length': [RuleConfigSeverity.Disabled]
   }
 }
 

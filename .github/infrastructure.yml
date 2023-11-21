@@ -53,7 +53,11 @@ branches:
           app: codecov
         - context: codecov/project/octokit
           app: codecov
+        - context: codecov/project/pull-requests
+          app: codecov
         - context: codecov/project/queries
+          app: codecov
+        - context: codecov/project/security
           app: codecov
         - context: codecov/project/teams
           app: codecov

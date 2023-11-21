@@ -52,6 +52,10 @@ component_management:
       name: octokit
       paths:
         - src/subdomains/octokit/**/*.ts
+    - component_id: pull-requests
+      name: pull-requests
+      paths:
+        - src/subdomains/pull-requests/**/*.ts
     - component_id: queries
       name: queries
       paths:
