@@ -6,6 +6,7 @@
 import type { CreateBranchProtectionCommand } from '#src/branches'
 import type { CreateEnvironmentCommand } from '#src/environments'
 import type { CreateLabelCommand } from '#src/labels'
+import type { ManagePullRequestsCommand } from '#src/pull-requests'
 import type { ManageSecurityCommand } from '#src/security'
 
 /**
@@ -32,6 +33,13 @@ type Infrastructure = {
    * @see {@linkcode CreateLabelCommand}
    */
   labels: CreateLabelCommand[]
+
+  /**
+   * Pull request settings.
+   *
+   * @see {@linkcode ManagePullRequestsCommand}
+   */
+  pull_requests: ManagePullRequestsCommand
 
   /**
    * Repository security options.

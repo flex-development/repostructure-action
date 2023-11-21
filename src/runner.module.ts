@@ -18,6 +18,10 @@ import {
 } from './subdomains/environments'
 import { LabelsModule, ManageLabelsCommand } from './subdomains/labels'
 import { OctokitModule } from './subdomains/octokit'
+import {
+  ManagePullRequestsCommand,
+  PullRequestsModule
+} from './subdomains/pull-requests'
 import { ManageSecurityCommand, SecurityModule } from './subdomains/security'
 import { TeamsModule } from './subdomains/teams'
 import { UsersModule } from './subdomains/users'
@@ -39,6 +43,7 @@ import type { Infrastructure, InfrastructureCommand } from './types'
     EnvironmentsModule,
     LabelsModule,
     OctokitModule,
+    PullRequestsModule,
     SecurityModule,
     TeamsModule,
     UsersModule
@@ -83,6 +88,7 @@ class RunnerModule implements OnApplicationBootstrap {
      */
     const commands: InfrastructureCommand[] = [
       new ManageSecurityCommand(infrastructure.security),
+      new ManagePullRequestsCommand(infrastructure.pull_requests),
       new ManageLabelsCommand(infrastructure.labels),
       new ManageEnvironmentsCommand(infrastructure.environments),
       new ManageBranchProtectionsCommand(infrastructure.branches)

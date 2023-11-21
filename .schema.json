@@ -2,300 +2,45 @@
   "$defs": {
     "BranchActors": {
       "additionalProperties": false,
-      "description": "branch actors object",
       "properties": {
         "apps": {
           "description": "github app slugs",
-          "items": { "minLength": 1, "type": "string" },
-          "type": ["array", "null"],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ],
           "uniqueItems": true
         },
         "teams": {
           "description": "team slugs",
-          "items": { "minLength": 1, "type": "string" },
-          "type": ["array", "null"],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ],
           "uniqueItems": true
         },
         "users": {
           "description": "user logins",
-          "items": { "minLength": 1, "type": "string" },
-          "type": ["array", "null"],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ],
           "uniqueItems": true
         }
       },
       "required": [],
-      "type": "object"
-    },
-    "BranchProtection": {
-      "additionalProperties": false,
-      "description": "branch protection object",
-      "properties": {
-        "branch": {
-          "description": "pattern used to determine protected branches",
-          "examples": ["main", "release/*"],
-          "minLength": 1,
-          "type": "string"
-        },
-        "commit_signatures": {
-          "description": "require signed commits",
-          "type": ["boolean", "null"]
-        },
-        "conversation_resolution": {
-          "description": "require all conversations on code to be resolved before a pull request can be merged into matching branches",
-          "type": ["boolean", "null"]
-        },
-        "creations_blocked": {
-          "description": "block pushes that create new matching branches, unless initiated by a user, team, or app with the ability to push",
-          "type": ["boolean", "null"]
-        },
-        "deletions": {
-          "description": "allow matching branches to be deleted",
-          "type": ["boolean", "null"]
-        },
-        "deployments": {
-          "description": "require deployments to succeed before branches can be merged into matching branches",
-          "oneOf": [
-            { "$ref": "#/$defs/DeploymentProtection" },
-            { "type": "null" }
-          ]
-        },
-        "enforce_admins": {
-          "description": "enforce protection rule for administrators",
-          "type": ["boolean", "null"]
-        },
-        "force_pushers": {
-          "description": "users, teams, and apps allowed to force push to matching branches",
-          "oneOf": [{ "$ref": "#/$defs/BranchActors" }, { "type": "null" }]
-        },
-        "force_pushes": {
-          "description": "allow force pushes to matching branches",
-          "type": ["boolean", "null"]
-        },
-        "fork_syncing": {
-          "description": "allow users to pull changes from upstream when matching branches are locked",
-          "type": ["boolean", "null"]
-        },
-        "linear_history": {
-          "description": "prevent merge commits from being pushed to matching branches",
-          "type": ["boolean", "null"]
-        },
-        "lock_branch": {
-          "description": "mark matching branches as read-only",
-          "type": ["boolean", "null"]
-        },
-        "pull_requests": {
-          "description": "pull request protections",
-          "oneOf": [
-            { "$ref": "#/$defs/PullRequestProtection" },
-            { "type": "null" }
-          ]
-        },
-        "restrictions": {
-          "description": "users, teams, and apps allowed to push to matching branches",
-          "oneOf": [{ "$ref": "#/$defs/BranchActors" }, { "type": "null" }]
-        },
-        "status_checks": {
-          "description": "required status checks",
-          "oneOf": [{ "$ref": "#/$defs/StatusChecks" }, { "type": "null" }]
-        }
-      },
-      "required": ["branch"],
-      "type": "object"
-    },
-    "DeploymentProtection": {
-      "additionalProperties": false,
-      "description": "deployment environment protections object",
-      "properties": {
-        "environments": {
-          "description": "environments that must be successfully deployed before branches can be merged into a protected branch",
-          "items": { "$ref": "#/$defs/Environment/properties/name" },
-          "type": "array",
-          "uniqueItems": true
-        },
-        "strict": {
-          "description": "require successful deployments",
-          "type": ["boolean", "null"]
-        }
-      },
-      "required": ["environments"],
-      "type": "object"
-    },
-    "Environment": {
-      "additionalProperties": false,
-      "description": "deployment environment object",
-      "properties": {
-        "name": {
-          "description": "environment name",
-          "minLength": 1,
-          "type": "string"
-        },
-        "prevent_self_review": {
-          "description": "prevent users from approving their own deployments",
-          "type": ["boolean", "null"]
-        },
-        "reviewers": {
-          "description": "users and teams that can approve deployments",
-          "oneOf": [
-            { "$ref": "#/$defs/EnvironmentReviewers" },
-            { "type": "null" }
-          ]
-        },
-        "wait_timer": {
-          "description": "amount of time (in minutes) to delay a deployment",
-          "minimum": 0,
-          "type": ["integer", "null"]
-        }
-      },
-      "required": ["name"],
-      "type": "object"
-    },
-    "EnvironmentReviewers": {
-      "additionalProperties": false,
-      "description": "users and teams that can approve environment deployments",
-      "properties": {
-        "teams": {
-          "description": "team slugs",
-          "items": { "minLength": 1, "type": "string" },
-          "type": "array",
-          "uniqueItems": true
-        },
-        "users": {
-          "description": "user logins",
-          "items": { "minLength": 1, "type": "string" },
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "required": [],
-      "type": "object"
-    },
-    "Label": {
-      "additionalProperties": false,
-      "description": "repository label object",
-      "properties": {
-        "color": {
-          "description": "label color",
-          "maxLength": 6,
-          "minLength": 6,
-          "pattern": "^[\\dA-Fa-f]{6}$",
-          "type": "string"
-        },
-        "description": {
-          "description": "label description",
-          "type": ["null", "string"]
-        },
-        "name": {
-          "description": "label name",
-          "minLength": 1,
-          "type": "string"
-        }
-      },
-      "required": ["color", "name"],
-      "type": "object"
-    },
-    "PullRequestProtection": {
-      "additionalProperties": false,
-      "description": "pull request protections object",
-      "properties": {
-        "approving_review_count": {
-          "description": "number of approving reviews required to merge a pull request",
-          "maximum": 6,
-          "minimum": 0,
-          "type": ["integer", "null"]
-        },
-        "bypass_restrictions": {
-          "description": "users, teams, and apps allowed to bypass pull request requirements",
-          "oneOf": [{ "$ref": "#/$defs/BranchActors" }, { "type": "null" }]
-        },
-        "code_owner_reviews": {
-          "description": "block merges until reviewed by a code owner",
-          "type": ["boolean", "null"]
-        },
-        "dismiss_stale_reviews": {
-          "description": "dismiss approving reviews when new commits are pushed",
-          "type": ["boolean", "null"]
-        },
-        "dismissal_restrictions": {
-          "description": "users, teams, and apps allowed to dismiss pull request reviews",
-          "oneOf": [{ "$ref": "#/$defs/BranchActors" }, { "type": "null" }]
-        },
-        "last_push_approval": {
-          "description": "require the most recent push to be approved by someone other than the most recent pusher",
-          "type": ["boolean", "null"]
-        }
-      },
-      "required": [],
-      "type": "object"
-    },
-    "Security": {
-      "additionalProperties": false,
-      "description": "repository security options",
-      "properties": {
-        "advanced_security": {
-          "description": "enable or disable github advanced security",
-          "type": ["boolean", "null"]
-        },
-        "automated_security_fixes": {
-          "description": "enable or disable automated security fixes",
-          "type": ["boolean", "null"]
-        },
-        "secret_scanning": {
-          "description": "enable or disable secret scanning",
-          "type": ["boolean", "null"]
-        },
-        "secret_scanning_push_protection": {
-          "description": "enable or disable secret scanning push protection",
-          "type": ["boolean", "null"]
-        },
-        "vulnerability_alerts": {
-          "description": "enable or disable vulnerability alerts",
-          "type": ["boolean", "null"]
-        },
-        "vulnerability_reporting": {
-          "description": "enable or disable private vulnerability reporting",
-          "type": ["boolean", "null"]
-        }
-      },
-      "required": [],
-      "type": "object"
-    },
-    "StatusCheck": {
-      "additionalProperties": false,
-      "description": "required status check",
-      "properties": {
-        "app": {
-          "default": "github-actions",
-          "description": "slug of github app that must provide check",
-          "examples": ["codecov"],
-          "minLength": 1,
-          "type": ["null", "string"]
-        },
-        "context": {
-          "examples": ["ci", "test (20)"],
-          "description": "status check name",
-          "minLength": 1,
-          "type": "string"
-        }
-      },
-      "required": ["context"],
-      "type": "object"
-    },
-    "StatusChecks": {
-      "additionalProperties": false,
-      "description": "required status checks configuration object",
-      "properties": {
-        "checks": {
-          "description": "required status checks list",
-          "items": { "$ref": "#/$defs/StatusCheck" },
-          "type": "array",
-          "uniqueItems": true
-        },
-        "strict": {
-          "description": "require branches to be up to date before merging",
-          "type": ["boolean", "null"]
-        }
-      },
-      "required": ["checks"],
       "type": "object"
     }
   },
@@ -305,26 +50,517 @@
   "properties": {
     "branches": {
       "default": [],
-      "description": "branch protection rules",
-      "items": { "$ref": "#/$defs/BranchProtection" },
+      "description": "branch protection rules\nhttps://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "branch": {
+            "description": "pattern used to determine protected branches",
+            "examples": [
+              "main",
+              "release/*"
+            ],
+            "minLength": 1,
+            "type": "string"
+          },
+          "commit_signatures": {
+            "description": "require signed commits",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "conversation_resolution": {
+            "description": "require all conversations on code to be resolved before a pull request can be merged into matching branches",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "creations_blocked": {
+            "description": "block pushes that create new matching branches, unless initiated by a user, team, or app with the ability to push",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "deletions": {
+            "description": "allow matching branches to be deleted",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "deployments": {
+            "additionalProperties": false,
+            "description": "require deployments to succeed before branches can be merged into matching branches",
+            "properties": {
+              "environments": {
+                "description": "environments that must be successfully deployed before branches can be merged into a protected branch",
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "strict": {
+                "default": true,
+                "description": "require successful deployments",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "environments"
+            ],
+            "type": [
+              "null",
+              "object"
+            ]
+          },
+          "enforce_admins": {
+            "description": "enforce protection rule for administrators",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "force_pushers": {
+            "description": "users, teams, and apps allowed to force push to matching branches",
+            "oneOf": [
+              {
+                "$ref": "#/$defs/BranchActors"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "force_pushes": {
+            "description": "allow force pushes to matching branches",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "fork_syncing": {
+            "description": "allow users to pull changes from upstream when matching branches are locked",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "linear_history": {
+            "description": "prevent merge commits from being pushed to matching branches",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "lock_branch": {
+            "description": "mark matching branches as read-only",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "pull_requests": {
+            "additionalProperties": false,
+            "description": "pull request protections",
+            "properties": {
+              "approving_review_count": {
+                "description": "number of approving reviews required to merge a pull request",
+                "maximum": 6,
+                "minimum": 0,
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "bypass_restrictions": {
+                "description": "users, teams, and apps allowed to bypass pull request requirements",
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/BranchActors"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "code_owner_reviews": {
+                "description": "block merges until reviewed by a code owner",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "dismiss_stale_reviews": {
+                "description": "dismiss approving reviews when new commits are pushed",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "dismissal_restrictions": {
+                "description": "users, teams, and apps allowed to dismiss pull request reviews",
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/BranchActors"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "last_push_approval": {
+                "description": "require the most recent push to be approved by someone other than the most recent pusher",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "required": [],
+            "type": [
+              "null",
+              "object"
+            ]
+          },
+          "restrictions": {
+            "description": "users, teams, and apps allowed to push to matching branches",
+            "oneOf": [
+              {
+                "$ref": "#/$defs/BranchActors"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status_checks": {
+            "additionalProperties": false,
+            "description": "required status checks",
+            "properties": {
+              "checks": {
+                "description": "required status checks list",
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "app": {
+                      "default": "github-actions",
+                      "description": "slug of github app that must provide check",
+                      "examples": [
+                        "codecov"
+                      ],
+                      "minLength": 1,
+                      "type": [
+                        "null",
+                        "string"
+                      ]
+                    },
+                    "context": {
+                      "description": "status check name",
+                      "examples": [
+                        "ci",
+                        "test (20)"
+                      ],
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "context"
+                  ],
+                  "type": "object"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "strict": {
+                "default": true,
+                "description": "require branches to be up to date before merging",
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "checks"
+            ],
+            "type": [
+              "null",
+              "object"
+            ]
+          }
+        },
+        "required": [
+          "branch"
+        ],
+        "type": "object"
+      },
       "type": "array"
     },
     "environments": {
       "default": [],
       "description": "deployment environments",
-      "items": { "$ref": "#/$defs/Environment" },
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "environment name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "prevent_self_review": {
+            "description": "prevent users from approving their own deployments",
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "reviewers": {
+            "additionalProperties": false,
+            "description": "users and teams that can approve deployments",
+            "properties": {
+              "teams": {
+                "description": "team slugs",
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "users": {
+                "description": "user logins",
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              }
+            },
+            "required": [],
+            "type": [
+              "null",
+              "object"
+            ]
+          },
+          "wait_timer": {
+            "description": "amount of time (in minutes) to delay a deployment",
+            "minimum": 0,
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
       "type": "array"
     },
     "labels": {
       "default": [],
       "description": "repository labels",
-      "items": { "$ref": "#/$defs/Label" },
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "description": "label color",
+            "maxLength": 6,
+            "minLength": 6,
+            "pattern": "^[\\dA-Fa-f]{6}$",
+            "type": "string"
+          },
+          "description": {
+            "description": "label description",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "name": {
+            "description": "label name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "color",
+          "name"
+        ],
+        "type": "object"
+      },
       "type": "array"
     },
-    "security": {
-      "$ref": "#/$defs/Security",
+    "pull_requests": {
+      "additionalProperties": false,
       "default": {},
-      "description": "repository security options"
+      "description": "pull request settings",
+      "properties": {
+        "auto_merge": {
+          "description": "auto-merge enabled?",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "delete_branch_on_merge": {
+          "description": "automatically delete head branches when pull requests are merged",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "merge": {
+          "description": "allow merging pull requests with merge commits",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "merge_message": {
+          "description": "default value for merge commit messages\n- BLANK: blank commit message\n- PR_BODY: pull request body\n- PR_TITLE: pull request title",
+          "oneOf": [
+            {
+              "enum": [
+                "BLANK",
+                "PR_BODY",
+                "PR_TITLE"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "merge_title": {
+          "description": "default value for merge commit titles\n- MERGE_MESSAGE: classic title (e.g., 'Merge pull request #123 from branch-name')\n- PR_TITLE: pull request title",
+          "oneOf": [
+            {
+              "enum": [
+                "MERGE_MESSAGE",
+                "PR_TITLE"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rebase": {
+          "description": "allow rebase-merging pull requests",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "squash": {
+          "description": "allow squash-merging pull requests",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "squash_message": {
+          "description": "default value for squash commit messages\n- BLANK: blank commit message\n- COMMIT_MESSAGES: branch's commit messages\n- PR_BODY: pull request body",
+          "oneOf": [
+            {
+              "enum": [
+                "BLANK",
+                "COMMIT_MESSAGES",
+                "PR_BODY"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "squash_title": {
+          "description": "default value for squash commit titles\n- COMMIT_OR_PR_TITLE: commit title (if only one commit) or pull request title (if more than one commit)\n- PR_TITLE: pull request title",
+          "oneOf": [
+            {
+              "enum": [
+                "COMMIT_OR_PR_TITLE",
+                "PR_TITLE"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "update_branch": {
+          "description": "always allow a pull request head branch that is behind its base branch to be updated even if not required to be up to date before merging",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "security": {
+      "additionalProperties": false,
+      "default": {},
+      "description": "repository security options",
+      "properties": {
+        "advanced_security": {
+          "description": "enable or disable github advanced security\nhttps://docs.github.com/github/getting-started-with-github/learning-about-github/about-github-advanced-security",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "automated_security_fixes": {
+          "description": "enable or disable automated security fixes\nhttps://docs.github.com/articles/configuring-automated-security-fixes",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "secret_scanning": {
+          "description": "enable or disable secret scanning\nhttps://docs.github.com/code-security/secret-security/about-secret-scanning",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "secret_scanning_push_protection": {
+          "description": "enable or disable secret scanning push protection\nhttps://docs.github.com/code-security/secret-scanning/protecting-pushes-with-secret-scanning",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "vulnerability_alerts": {
+          "description": "enable or disable vulnerability alerts\nhttps://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "vulnerability_reporting": {
+          "description": "enable or disable private vulnerability reporting\nhttps://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [],
+      "type": "object"
     }
   },
   "required": [],

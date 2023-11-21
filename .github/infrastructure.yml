@@ -91,6 +91,9 @@ branches:
     status_checks: null
 environments:
   - name: release
+    prevent_self_review: null
+    reviewers: null
+    wait_timer: null
 labels:
   - name: flag:breaking-change
     description: contains changes that require major version bump
@@ -194,15 +197,20 @@ labels:
   - name: type:task
     description: project tasks
     color: 0052cc
+pull_requests:
+  auto_merge: true
+  delete_branch_on_merge: true
+  merge: false
+  merge_message: BLANK
+  merge_title: PR_TITLE
+  rebase: true
+  squash: true
+  squash_message: BLANK
+  squash_title: PR_TITLE
+  update_branch: true
 repository:
-  allow_auto_merge: true
-  allow_merge_commit: false
-  allow_rebase_merge: true
-  allow_squash_merge: true
-  allow_update_branch: true
   archived: false
   default_branch: main
-  delete_branch_on_merge: true
   description: Repository infrastructure as code for GitHub Actions
   has_issues: true
   has_projects: true
@@ -210,8 +218,6 @@ repository:
   homepage: https://github.com/flex-development/repostructure-action
   is_template: false
   private: false
-  squash_merge_commit_message: BLANK
-  squash_merge_commit_title: PR_TITLE
   topics:
     - gitops
     - iac

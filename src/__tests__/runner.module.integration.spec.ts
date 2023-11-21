@@ -14,6 +14,14 @@ import {
   ManageEnvironmentsHandler
 } from '#src/environments'
 import { ManageLabelsCommand, ManageLabelsHandler } from '#src/labels'
+import {
+  ManagePullRequestsCommand,
+  ManagePullRequestsHandler,
+  MergeMessage,
+  MergeTitle,
+  SquashMessage,
+  SquashTitle
+} from '#src/pull-requests'
 import { ManageSecurityCommand, ManageSecurityHandler } from '#src/security'
 import type { Infrastructure, InfrastructureCommand } from '#src/types'
 import type { Spy } from '#tests/interfaces'
@@ -38,6 +46,7 @@ describe('integration:RunnerModule', () => {
   let environments: Spy<ManageEnvironmentsHandler['execute']>
   let infrastructure: Infrastructure
   let labels: Spy<ManageLabelsHandler['execute']>
+  let pull_requests: Spy<ManagePullRequestsHandler['execute']>
   let security: Spy<ManageSecurityHandler['execute']>
 
   beforeAll(() => {
@@ -132,6 +141,18 @@ describe('integration:RunnerModule', () => {
           name: 'scope:octokit'
         }
       ],
+      pull_requests: {
+        auto_merge: true,
+        delete_branch_on_merge: true,
+        merge: false,
+        merge_message: MergeMessage.BLANK,
+        merge_title: MergeTitle.PR_TITLE,
+        rebase: true,
+        squash: true,
+        squash_message: SquashMessage.BLANK,
+        squash_title: SquashTitle.PR_TITLE,
+        update_branch: true
+      },
       security: {
         advanced_security: null,
         automated_security_fixes: true,
@@ -153,17 +174,20 @@ describe('integration:RunnerModule', () => {
     branches = vi.spyOn(ManageBranchProtectionsHandler.prototype, 'execute')
     environments = vi.spyOn(ManageEnvironmentsHandler.prototype, 'execute')
     labels = vi.spyOn(ManageLabelsHandler.prototype, 'execute')
+    pull_requests = vi.spyOn(ManagePullRequestsHandler.prototype, 'execute')
     security = vi.spyOn(ManageSecurityHandler.prototype, 'execute')
 
     branches = branches.mockName('ManageBranchProtectionsHandler#execute')
     environments = environments.mockName('ManageEnvironmentsHandler#execute')
     labels = labels.mockName('ManageLabelsHandler#execute')
+    pull_requests = pull_requests.mockName('ManagePullRequestsHandler#execute')
     security = security.mockName('ManageSecurityHandler#execute')
 
     commands = [
       [branches, ManageBranchProtectionsCommand],
       [environments, ManageEnvironmentsCommand],
       [labels, ManageLabelsCommand],
+      [pull_requests, ManagePullRequestsCommand],
       [security, ManageSecurityCommand]
     ]
   })

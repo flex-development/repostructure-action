@@ -6,6 +6,7 @@
 import type { CreateBranchProtectionCommand } from '#src/branches'
 import type { CreateEnvironmentCommand } from '#src/environments'
 import type { CreateLabelCommand } from '#src/labels'
+import type { ManagePullRequestsCommand } from '#src/pull-requests'
 import type { ManageSecurityCommand } from '#src/security'
 import type TestSubject from '../infrastructure'
 
@@ -26,6 +27,12 @@ describe('unit-d:types/Infrastructure', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('labels')
       .toEqualTypeOf<CreateLabelCommand[]>()
+  })
+
+  it('should match [pull_requests: ManagePullRequestsCommand]', () => {
+    expectTypeOf<TestSubject>()
+      .toHaveProperty('pull_requests')
+      .toEqualTypeOf<ManagePullRequestsCommand>()
   })
 
   it('should match [security: ManageSecurityCommand]', () => {

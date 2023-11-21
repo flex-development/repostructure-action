@@ -6,6 +6,7 @@
 import type { ManageBranchProtectionsCommand } from '#src/branches'
 import type { ManageEnvironmentsCommand } from '#src/environments'
 import type { ManageLabelsCommand } from '#src/labels'
+import type { ManagePullRequestsCommand } from '#src/pull-requests'
 import type { ManageSecurityCommand } from '#src/security'
 import type TestSubject from '../infrastructure-command'
 
@@ -25,6 +26,12 @@ describe('unit-d:types/InfrastructureCommand', () => {
   it('should extract ManageLabelsCommand', () => {
     expectTypeOf<TestSubject>()
       .extract<ManageLabelsCommand>()
+      .not.toBeNever()
+  })
+
+  it('should extract ManagePullRequestsCommand', () => {
+    expectTypeOf<TestSubject>()
+      .extract<ManagePullRequestsCommand>()
       .not.toBeNever()
   })
 
