@@ -4,8 +4,8 @@
  */
 
 import type { Environment } from '#src/environments/types'
+import { Octokit } from '#src/octokit'
 import { QueryHandler, type IQueryHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import * as graphql from 'graphql'
 import gql from 'graphql-tag'
 import EnvironmentsQuery from './environments.query'

@@ -4,9 +4,9 @@
  */
 
 import type { Config } from '#src/config'
+import { Octokit } from '#src/octokit'
 import { ConfigService } from '@nestjs/config'
 import { CommandHandler, type ICommandHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import * as graphql from 'graphql'
 import gql from 'graphql-tag'
 import DeleteLabelCommand from './delete.command'

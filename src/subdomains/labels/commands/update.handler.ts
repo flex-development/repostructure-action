@@ -5,9 +5,9 @@
 
 import type { Config } from '#src/config'
 import type { Label } from '#src/labels/types'
+import { Octokit } from '#src/octokit'
 import { ConfigService } from '@nestjs/config'
 import { CommandHandler, type ICommandHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import * as graphql from 'graphql'
 import gql from 'graphql-tag'
 import UpdateLabelCommand from './update.command'

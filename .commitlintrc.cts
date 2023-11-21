@@ -30,6 +30,7 @@ const config: UserConfig = {
         'octokit',
         'queries',
         'runner',
+        'security',
         'teams',
         'users'
       ])

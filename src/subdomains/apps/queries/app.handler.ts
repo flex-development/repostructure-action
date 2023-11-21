@@ -4,8 +4,8 @@
  */
 
 import type { App } from '#src/apps/types'
+import { Octokit } from '#src/octokit'
 import { QueryHandler, type IQueryHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import AppQuery from './app.query'
 
 /**
@@ -20,27 +20,13 @@ import AppQuery from './app.query'
 @QueryHandler(AppQuery)
 class AppHandler implements IQueryHandler<AppQuery, App> {
   /**
-   * REST API endpoint.
-   *
-   * @see https://docs.github.com/rest/apps/apps#get-an-app
-   *
-   * @protected
-   * @readonly
-   * @instance
-   * @member {'GET /apps/{app_slug}'} endpoint
-   */
-  protected readonly endpoint: 'GET /apps/{app_slug}'
-
-  /**
    * Create a new GitHub App query handler.
    *
    * @see {@linkcode Octokit}
    *
    * @param {Octokit} octokit - Hydrated octokit client
    */
-  constructor(protected readonly octokit: Octokit) {
-    this.endpoint = 'GET /apps/{app_slug}'
-  }
+  constructor(protected readonly octokit: Octokit) {}
 
   /**
    * Execute a GitHub App query.
@@ -55,9 +41,14 @@ class AppHandler implements IQueryHandler<AppQuery, App> {
    * @return {Promise<App>} GitHub App object
    */
   public async execute(query: AppQuery): Promise<App> {
-    const { app: app_slug } = query
-    const { data } = await this.octokit.request(this.endpoint, { app_slug })
-    return { id: data.node_id, slug: data.slug! }
+    const {
+      data: {
+        node_id,
+        slug
+      }
+    } = await this.octokit.rest.apps.getBySlug({ app_slug: query.app })
+
+    return { id: node_id, slug: slug! }
   }
 }
 

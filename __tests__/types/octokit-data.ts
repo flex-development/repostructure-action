@@ -3,6 +3,7 @@
  * @module tests/types/OctokitData
  */
 
+import type { EmptyObject, IfNever } from '@flex-development/tutils'
 import type { Endpoints } from '@octokit/types'
 
 /**
@@ -11,7 +12,9 @@ import type { Endpoints } from '@octokit/types'
  * @template R - REST API endpoint
  */
 type OctokitData<R extends keyof Endpoints> =
-  | Endpoints[R]['response']['data']
-  | Record<'documentation_url' | 'message', string>
+  Endpoints[R]['response']['data'] extends infer J // dprint-ignore-next
+    ? | IfNever<J, EmptyObject, J>
+      | Record<'documentation_url' | 'message', string>
+    : never
 
 export type { OctokitData as default }

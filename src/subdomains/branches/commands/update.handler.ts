@@ -11,6 +11,7 @@ import type {
   StatusCheck
 } from '#src/branches/types'
 import type { Config } from '#src/config'
+import { Octokit } from '#src/octokit'
 import { TeamsQuery } from '#src/teams/queries'
 import type { Team } from '#src/teams/types'
 import { UsersQuery } from '#src/users/queries'
@@ -28,7 +29,6 @@ import {
 } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { CommandHandler, QueryBus, type ICommandHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import type {
   RequiredStatusCheckInput,
   UpdateBranchProtectionRuleInput

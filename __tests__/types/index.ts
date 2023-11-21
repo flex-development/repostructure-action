@@ -3,5 +3,6 @@
  * @module tests/types
  */
 
+export type { default as OctokitBody } from './octokit-body'
 export type { default as OctokitData } from './octokit-data'
 export type { default as OctokitParameters } from './octokit-parameters'

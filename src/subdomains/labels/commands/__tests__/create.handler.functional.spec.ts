@@ -6,10 +6,10 @@
 import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
+import { Octokit } from '#src/octokit'
 import { at, get, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { Test, type TestingModule } from '@nestjs/testing'
-import { Octokit } from '@octokit/core'
 import CreateLabelCommand from '../create.command'
 import TestSubject from '../create.handler'
 

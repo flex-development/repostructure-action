@@ -5,6 +5,7 @@
 
 import apps from '#fixtures/api.github.com/apps.json' assert { type: 'json' }
 import root from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import repos from '#fixtures/api.github.com/repos.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import type BranchProtection from '#src/branches/types/branch-protection'
 import type Environment from '#src/environments/types/environment'
@@ -13,7 +14,7 @@ import type UpdateLabelInput from '#src/labels/commands/update.command'
 import type Label from '#src/labels/types/label'
 import type Team from '#src/teams/types/team'
 import type User from '#src/users/types/user'
-import type { OctokitData, OctokitParameters } from '#tests/types'
+import type { OctokitBody, OctokitData, OctokitParameters } from '#tests/types'
 import connection from '#tests/utils/connection'
 import {
   assign,
@@ -42,7 +43,7 @@ import {
   graphql as executeGraphql,
   type ExecutionResult
 } from 'graphql'
-import { HttpResponse, graphql, http } from 'msw'
+import { HttpResponse, graphql, http, type StrictResponse } from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
 import schema from './graphql/schema'
 
@@ -55,6 +56,13 @@ import schema from './graphql/schema'
  * @const {SetupServer} server
  */
 const server: SetupServer = setupServer(
+  http.delete<
+    OctokitParameters<'GET /repos/{owner}/{repo}'>,
+    EmptyObject,
+    null
+  >(/(?:security-fixes|vulnerability-(?:alerts|reporting))$/, () => {
+    return <StrictResponse<null>>new HttpResponse(null, { status: 204 })
+  }),
   http.get<
     OctokitParameters<'GET /apps/{app_slug}'>,
     EmptyObject,
@@ -81,6 +89,41 @@ const server: SetupServer = setupServer(
     }
 
     return HttpResponse.json(app)
+  }),
+  http.patch<
+    OctokitParameters<'GET /repos/{owner}/{repo}'>,
+    OctokitBody<'PATCH', '/repos/{owner}/{repo}'>,
+    OctokitData<'PATCH /repos/{owner}/{repo}'>
+  >(/\/repos\/(?<owner>[\w-]+)\/(?<repo>[\w-]+)$/, ({ params }) => {
+    /**
+     * Repository to update.
+     *
+     * @const {Optional<typeof repos[number]>} repo
+     */
+    const repo: Optional<typeof repos[number]> = repos.find(r => {
+      return r.owner.login === params.owner && r.name === params.repo
+    })
+
+    // return error response if repo was not found
+    if (!repo) {
+      return HttpResponse.json({
+        documentation_url:
+          'https://docs.github.com/rest/repos/repos#get-a-repository',
+        message: 'Not Found'
+      }, {
+        status: 404,
+        statusText: 'Not Found'
+      })
+    }
+
+    return HttpResponse.json(repo)
+  }),
+  http.put<
+    OctokitParameters<'GET /repos/{owner}/{repo}'>,
+    EmptyObject,
+    null
+  >(/(?:security-fixes|vulnerability-(?:alerts|reporting))$/, () => {
+    return <StrictResponse<null>>new HttpResponse(null, { status: 204 })
   }),
   graphql.link(/\/graphql$/).operation<ExecutionResult>(async ({
     operationName,
