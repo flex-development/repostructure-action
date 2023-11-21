@@ -3,9 +3,9 @@
  * @module repostructure/users/queries/UserHandler
  */
 
+import { Octokit } from '#src/octokit'
 import type { User } from '#src/users/types'
 import { QueryHandler, type IQueryHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import * as graphql from 'graphql'
 import gql from 'graphql-tag'
 import UserQuery from './user.query'

@@ -4,8 +4,8 @@
  */
 
 import type { Label } from '#src/labels/types'
+import { Octokit } from '#src/octokit'
 import { QueryHandler, type IQueryHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import * as graphql from 'graphql'
 import gql from 'graphql-tag'
 import LabelsQuery from './labels.query'

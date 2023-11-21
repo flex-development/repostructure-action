@@ -4,8 +4,8 @@
  */
 
 import type { BranchProtection } from '#src/branches/types'
+import { Octokit } from '#src/octokit'
 import { QueryHandler, type IQueryHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import * as graphql from 'graphql'
 import gql from 'graphql-tag'
 import BranchProtectionsQuery from './branch-protections.query'
@@ -50,7 +50,7 @@ class BranchProtectionsHandler
       ) {
         payload: repository(name: $repo, owner: $owner) {
           id
-          protections: branchProtectionRules(after: $cursor, first: 100) {
+          rules: branchProtectionRules(after: $cursor, first: 100) {
             nodes {
               id
               pattern
@@ -82,12 +82,12 @@ class BranchProtectionsHandler
   ): Promise<BranchProtection[]> {
     const {
       payload
-    } = await this.octokit.graphql.paginate<'protections', BranchProtection>(
+    } = await this.octokit.graphql.paginate<'rules', BranchProtection>(
       this.operation,
       query
     )
 
-    return payload.protections.nodes
+    return payload.rules.nodes
   }
 }
 

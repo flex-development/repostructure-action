@@ -5,9 +5,9 @@
 
 import type { BranchProtection } from '#src/branches/types'
 import type { Config } from '#src/config'
+import { Octokit } from '#src/octokit'
 import { ConfigService } from '@nestjs/config'
 import { CommandBus, CommandHandler, type ICommandHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import type { CreateBranchProtectionRuleInput } from '@octokit/graphql-schema'
 import * as graphql from 'graphql'
 import gql from 'graphql-tag'

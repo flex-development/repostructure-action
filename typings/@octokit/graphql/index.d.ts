@@ -1,6 +1,43 @@
 declare module '@octokit/graphql' {
   import type { Nullable, ObjectCurly } from '@flex-development/tutils'
-  import type { RequestParameters } from '@octokit/types'
+  import type { EndpointInterface, RequestParameters } from '@octokit/types'
+
+  /**
+   * Octokit GraphQL API.
+   */
+  interface Api {
+    /**
+     * Execute a GraphQL request.
+     *
+     * The operation to perform must be specified in `options`.
+     *
+     * @see {@linkcode RequestParameters}
+     *
+     * @template T - Payload data type
+     *
+     * @param {RequestParameters & { query: string }} options - Request options
+     * @param {string} options.query - GraphQL operation
+     * @return {Promise<{ payload: T }>} Payload object
+     */
+    <T>(options: RequestParameters & { query: string }): Promise<{ payload: T }>
+
+    /**
+     * Get a new `graphql` api with `defaults` applied.
+     *
+     * @see {@linkcode RequestParameters}
+     *
+     * @param {RequestParameters} defaults - Default request options
+     * @return {graphql} graphql api
+     */
+    defaults(defaults: RequestParameters): graphql
+
+    /**
+     * Octokit endpoint API.
+     *
+     * @see https://github.com/octokit/endpoint.js
+     */
+    endpoint: EndpointInterface
+  }
 
   /**
    * GraphQL connection object.
@@ -39,19 +76,11 @@ declare module '@octokit/graphql' {
   }
 
   /**
-   * Execute a GraphQL request.
+   * Octokit GraphQL API client.
    *
-   * The operation to perform must be specified in `options`.
-   *
-   * @template T - Payload data type
-   *
-   * @param {RequestParameters & { query: string }} options - Request options
-   * @param {string} options.query - GraphQL operation
-   * @return {Promise<{ payload: T }>} Payload object
+   * @const {OctokitGraphqlApi} graphql
    */
-  const graphql: <T>(
-    options: RequestParameters & { query: string }
-  ) => Promise<{ payload: T }>
+  const graphql: Api
 
   export { GraphqlResponseError } from '@octokit/graphql/dist-types/error'
   export type {

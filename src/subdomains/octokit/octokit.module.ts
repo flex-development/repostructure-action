@@ -5,11 +5,9 @@
 
 import type { Config } from '#src/config'
 import * as core from '@actions/core'
-import * as github from '@actions/github'
 import { Global, Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { Octokit } from '@octokit/core'
-import { paginateGraphql } from '@octokit/plugin-paginate-graphql'
+import { Octokit } from './models'
 
 /**
  * Octokit module.
@@ -26,7 +24,8 @@ import { paginateGraphql } from '@octokit/plugin-paginate-graphql'
       inject: [ConfigService],
       provide: Octokit,
       useFactory(config: ConfigService<Config, true>): Octokit {
-        return github.getOctokit(config.get('token'), {
+        return new Octokit({
+          auth: config.get('token'),
           baseUrl: config.get<string>('api'),
           headers: {
             'X-GitHub-Api-Version': '2022-11-28',
@@ -41,7 +40,7 @@ import { paginateGraphql } from '@octokit/plugin-paginate-graphql'
           // https://docs.github.com/graphql/overview/schema-previews
           previews: ['bane'],
           request: { fetch }
-        }, paginateGraphql)
+        })
       }
     }
   ]

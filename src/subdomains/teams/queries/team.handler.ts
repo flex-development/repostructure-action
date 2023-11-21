@@ -3,10 +3,10 @@
  * @module repostructure/teams/queries/TeamHandler
  */
 
+import { Octokit } from '#src/octokit'
 import type { Team } from '#src/teams/types'
 import type { Nullable, Optional } from '@flex-development/tutils'
 import { QueryHandler, type IQueryHandler } from '@nestjs/cqrs'
-import { Octokit } from '@octokit/core'
 import {
   GraphqlResponseError,
   type GraphQlEndpointOptions,

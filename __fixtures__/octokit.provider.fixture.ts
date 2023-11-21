@@ -3,10 +3,8 @@
  * @module fixtures/OctokitProvider
  */
 
-import * as github from '@actions/github'
+import Octokit from '#src/octokit/models/octokit.model'
 import type { ValueProvider } from '@nestjs/common'
-import { Octokit } from '@octokit/core'
-import { paginateGraphql } from '@octokit/plugin-paginate-graphql'
 import INPUT_API from './input-api.fixture'
 import INPUT_TOKEN from './input-token.fixture'
 
@@ -17,7 +15,8 @@ import INPUT_TOKEN from './input-token.fixture'
  */
 const OctokitProvider: ValueProvider<Octokit> = {
   provide: Octokit,
-  useValue: github.getOctokit(INPUT_TOKEN, {
+  useValue: new Octokit({
+    auth: INPUT_TOKEN,
     baseUrl: INPUT_API,
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
@@ -27,7 +26,7 @@ const OctokitProvider: ValueProvider<Octokit> = {
     request: {
       fetch: async (info: RequestInfo, opts: RequestInit) => fetch(info, opts)
     }
-  }, paginateGraphql)
+  })
 }
 
 export default OctokitProvider

@@ -56,6 +56,10 @@ component_management:
       name: queries
       paths:
         - src/queries/*.ts
+    - component_id: security
+      name: security
+      paths:
+        - src/subdomains/security/**/*.ts
     - component_id: teams
       name: teams
       paths:
