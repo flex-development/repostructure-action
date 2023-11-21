@@ -6,6 +6,7 @@
 import type { CreateBranchProtectionCommand } from '#src/branches'
 import type { CreateEnvironmentCommand } from '#src/environments'
 import type { CreateLabelCommand } from '#src/labels'
+import type { ManageSecurityCommand } from '#src/security'
 import type TestSubject from '../infrastructure'
 
 describe('unit-d:types/Infrastructure', () => {
@@ -25,5 +26,11 @@ describe('unit-d:types/Infrastructure', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('labels')
       .toEqualTypeOf<CreateLabelCommand[]>()
+  })
+
+  it('should match [security: ManageSecurityCommand]', () => {
+    expectTypeOf<TestSubject>()
+      .toHaveProperty('security')
+      .toEqualTypeOf<ManageSecurityCommand>()
   })
 })

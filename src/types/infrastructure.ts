@@ -6,6 +6,7 @@
 import type { CreateBranchProtectionCommand } from '#src/branches'
 import type { CreateEnvironmentCommand } from '#src/environments'
 import type { CreateLabelCommand } from '#src/labels'
+import type { ManageSecurityCommand } from '#src/security'
 
 /**
  * Repository infrastructure object.
@@ -31,6 +32,13 @@ type Infrastructure = {
    * @see {@linkcode CreateLabelCommand}
    */
   labels: CreateLabelCommand[]
+
+  /**
+   * Repository security options.
+   *
+   * @see {@linkcode ManageSecurityCommand}
+   */
+  security: ManageSecurityCommand
 }
 
 export type { Infrastructure as default }

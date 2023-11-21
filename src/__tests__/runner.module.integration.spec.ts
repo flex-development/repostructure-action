@@ -12,8 +12,9 @@ import {
 import {
   ManageEnvironmentsCommand,
   ManageEnvironmentsHandler
-} from '#src/environments/commands'
-import { ManageLabelsCommand, ManageLabelsHandler } from '#src/labels/commands'
+} from '#src/environments'
+import { ManageLabelsCommand, ManageLabelsHandler } from '#src/labels'
+import { ManageSecurityCommand, ManageSecurityHandler } from '#src/security'
 import type { Infrastructure, InfrastructureCommand } from '#src/types'
 import type { Spy } from '#tests/interfaces'
 import env from '#tests/setup/env'
@@ -37,6 +38,7 @@ describe('integration:RunnerModule', () => {
   let environments: Spy<ManageEnvironmentsHandler['execute']>
   let infrastructure: Infrastructure
   let labels: Spy<ManageLabelsHandler['execute']>
+  let security: Spy<ManageSecurityHandler['execute']>
 
   beforeAll(() => {
     infrastructure = clone({
@@ -129,7 +131,15 @@ describe('integration:RunnerModule', () => {
           description: 'octokit integration',
           name: 'scope:octokit'
         }
-      ]
+      ],
+      security: {
+        advanced_security: null,
+        automated_security_fixes: true,
+        secret_scanning: true,
+        secret_scanning_push_protection: true,
+        vulnerability_alerts: true,
+        vulnerability_reporting: true
+      }
     })
 
     builder = Test.createTestingModule({ imports: [TestSubject] })
@@ -143,15 +153,18 @@ describe('integration:RunnerModule', () => {
     branches = vi.spyOn(ManageBranchProtectionsHandler.prototype, 'execute')
     environments = vi.spyOn(ManageEnvironmentsHandler.prototype, 'execute')
     labels = vi.spyOn(ManageLabelsHandler.prototype, 'execute')
+    security = vi.spyOn(ManageSecurityHandler.prototype, 'execute')
 
     branches = branches.mockName('ManageBranchProtectionsHandler#execute')
     environments = environments.mockName('ManageEnvironmentsHandler#execute')
     labels = labels.mockName('ManageLabelsHandler#execute')
+    security = security.mockName('ManageSecurityHandler#execute')
 
     commands = [
       [branches, ManageBranchProtectionsCommand],
       [environments, ManageEnvironmentsCommand],
-      [labels, ManageLabelsCommand]
+      [labels, ManageLabelsCommand],
+      [security, ManageSecurityCommand]
     ]
   })
 
@@ -161,7 +174,7 @@ describe('integration:RunnerModule', () => {
 
     // Expect
     commands.forEach(([spy, Command]) => {
-      expect(spy.mock.calls[0]![0]).to.be.instanceof(Command)
+      expect(spy.mock.lastCall![0]).to.be.instanceof(Command)
     })
   })
 })

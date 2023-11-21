@@ -197,7 +197,6 @@ repository:
   allow_squash_merge: true
   allow_update_branch: true
   archived: false
-  automated_security_fixes: true
   default_branch: main
   delete_branch_on_merge: true
   description: Repository infrastructure as code for GitHub Actions
@@ -207,11 +206,6 @@ repository:
   homepage: https://github.com/flex-development/repostructure-action
   is_template: false
   private: false
-  security_and_analysis:
-    secret_scanning:
-      status: enabled
-    secret_scanning_push_protection:
-      status: disabled
   squash_merge_commit_message: BLANK
   squash_merge_commit_title: PR_TITLE
   topics:
@@ -224,5 +218,11 @@ repository:
     - repository-settings
     - typescript
   visibility: public
-  vulnerability_alerts: true
   web_commit_signoff_required: true
+security:
+  advanced_security: null
+  automated_security_fixes: true
+  secret_scanning: true
+  secret_scanning_push_protection: true
+  vulnerability_alerts: true
+  vulnerability_reporting: true

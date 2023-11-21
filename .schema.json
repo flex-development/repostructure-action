@@ -227,6 +227,38 @@
       "required": [],
       "type": "object"
     },
+    "Security": {
+      "additionalProperties": false,
+      "description": "repository security options",
+      "properties": {
+        "advanced_security": {
+          "description": "enable or disable github advanced security",
+          "type": ["boolean", "null"]
+        },
+        "automated_security_fixes": {
+          "description": "enable or disable automated security fixes",
+          "type": ["boolean", "null"]
+        },
+        "secret_scanning": {
+          "description": "enable or disable secret scanning",
+          "type": ["boolean", "null"]
+        },
+        "secret_scanning_push_protection": {
+          "description": "enable or disable secret scanning push protection",
+          "type": ["boolean", "null"]
+        },
+        "vulnerability_alerts": {
+          "description": "enable or disable vulnerability alerts",
+          "type": ["boolean", "null"]
+        },
+        "vulnerability_reporting": {
+          "description": "enable or disable private vulnerability reporting",
+          "type": ["boolean", "null"]
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
     "StatusCheck": {
       "additionalProperties": false,
       "description": "required status check",
@@ -288,6 +320,11 @@
       "description": "repository labels",
       "items": { "$ref": "#/$defs/Label" },
       "type": "array"
+    },
+    "security": {
+      "$ref": "#/$defs/Security",
+      "default": {},
+      "description": "repository security options"
     }
   },
   "required": [],

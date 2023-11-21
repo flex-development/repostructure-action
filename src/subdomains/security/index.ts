@@ -4,3 +4,4 @@
  */
 
 export * from './commands'
+export { default as SecurityModule } from './security.module'
