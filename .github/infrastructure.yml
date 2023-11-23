@@ -70,7 +70,7 @@ branches:
         - context: lint
         - context: spelling
         - context: test (20)
-        - context: typescript (5.2.2)
+        - context: typescript (5.3.2)
       strict: true
   - branch: release/*
     commit_signatures: true
