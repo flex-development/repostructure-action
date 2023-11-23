@@ -95421,7 +95421,7 @@ var schema_default = {
       items: {
         additionalProperties: false,
         properties: {
-          name: {
+          environment: {
             description: "environment name",
             minLength: 1,
             type: "string"
@@ -95473,7 +95473,7 @@ var schema_default = {
           }
         },
         required: [
-          "name"
+          "environment"
         ],
         type: "object"
       },
@@ -98425,9 +98425,9 @@ var CreateEnvironmentCommand = class extends environment_dto_default {
    * @public
    * @readonly
    * @instance
-   * @member {Environment['name']} name
+   * @member {Environment['name']} environment
    */
-  name;
+  environment;
   /**
    * Create a new environment creation command.
    *
@@ -98435,7 +98435,7 @@ var CreateEnvironmentCommand = class extends environment_dto_default {
    */
   constructor(params) {
     super(params);
-    this.name = params.name;
+    this.environment = params.environment;
   }
 };
 var create_command_default2 = CreateEnvironmentCommand;
@@ -98545,7 +98545,7 @@ var CreateEnvironmentHandler = class CreateEnvironmentHandler2 {
     const { payload } = await this.octokit.graphql({
       input: {
         clientMutationId: this.config.get("id"),
-        name: command.name,
+        name: command.environment,
         repositoryId: this.config.get("node_id")
       },
       query: this.operation
@@ -98839,7 +98839,7 @@ var ManageEnvironmentsHandler = class ManageEnvironmentsHandler2 extends manage_
    * @return {Promise<Environment[]>} Managed environments
    */
   async execute(command) {
-    return this.manage(["name"], command.environments, environments_query_default, delete_command_default2, create_command_default2, update_command_default2);
+    return this.manage(["name", "environment"], command.environments, environments_query_default, delete_command_default2, create_command_default2, update_command_default2);
   }
 };
 ManageEnvironmentsHandler = __decorate22([

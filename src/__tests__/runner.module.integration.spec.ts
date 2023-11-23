@@ -127,9 +127,11 @@ describe('integration:RunnerModule', () => {
         }
       ],
       environments: [
-        at(api.graphql.repository.environments.nodes, -1),
         {
-          name: 'docs',
+          environment: at(api.graphql.repository.environments.nodes, -1)!.name
+        },
+        {
+          environment: 'docs',
           reviewers: { users: [get(api.graphql.users, '0.login')] }
         }
       ],

@@ -63,7 +63,7 @@ class ManageEnvironmentsHandler
     command: ManageEnvironmentsCommand
   ): Promise<Environment[]> {
     return this.manage(
-      ['name'],
+      ['name', 'environment'],
       command.environments,
       EnvironmentsQuery,
       DeleteEnvironmentCommand,

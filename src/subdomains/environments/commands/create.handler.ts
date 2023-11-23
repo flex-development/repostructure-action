@@ -88,7 +88,7 @@ class CreateEnvironmentHandler
     } = await this.octokit.graphql<{ environment: Environment }>({
       input: <CreateEnvironmentInput>{
         clientMutationId: this.config.get<string>('id'),
-        name: command.name,
+        name: command.environment,
         repositoryId: this.config.get<string>('node_id')
       },
       query: this.operation

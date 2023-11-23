@@ -67,7 +67,7 @@ describe('functional:environments/commands/ManageEnvironmentsHandler', () => {
     beforeAll(() => {
       incoming = [
         {
-          name: 'marketplace',
+          environment: 'marketplace',
           reviewers: {
             teams: [get(api.graphql.organization.teams.nodes, '0.slug')],
             users: [get(api.graphql.users, '0.login')]
@@ -76,7 +76,7 @@ describe('functional:environments/commands/ManageEnvironmentsHandler', () => {
       ]
 
       nodes = api.graphql.repository.environments.nodes
-      current = [at(nodes, -1)]
+      current = [{ environment: at(nodes, -1)!.name }]
     })
 
     beforeEach(() => {

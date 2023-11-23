@@ -7,15 +7,15 @@ import TestSubject from '../create.command'
 
 describe('unit:environments/commands/CreateEnvironmentCommand', () => {
   describe('constructor', () => {
-    let name: string
+    let environment: string
     let subject: TestSubject
 
     beforeAll(() => {
-      subject = new TestSubject({ name: name = 'production' })
+      subject = new TestSubject({ environment: environment = 'production' })
     })
 
-    it('should set #name', () => {
-      expect(subject).to.have.property('name', name)
+    it('should set #environment', () => {
+      expect(subject).to.have.property('environment', environment)
     })
   })
 })

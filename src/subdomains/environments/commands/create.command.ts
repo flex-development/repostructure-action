@@ -23,9 +23,9 @@ class CreateEnvironmentCommand extends EnvironmentDTO {
    * @public
    * @readonly
    * @instance
-   * @member {Environment['name']} name
+   * @member {Environment['name']} environment
    */
-  public readonly name: Environment['name']
+  public readonly environment: Environment['name']
 
   /**
    * Create a new environment creation command.
@@ -34,7 +34,7 @@ class CreateEnvironmentCommand extends EnvironmentDTO {
    */
   constructor(params: CreateEnvironmentCommand) {
     super(params)
-    this.name = params.name
+    this.environment = params.environment
   }
 }
 

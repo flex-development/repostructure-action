@@ -53,7 +53,7 @@ describe('functional:environments/commands/CreateEnvironmentHandler', () => {
 
     beforeAll(() => {
       command = new CreateEnvironmentCommand({
-        name: 'production',
+        environment: 'production',
         reviewers: { users: [get(api.graphql.users, '0.login')] }
       })
     })
@@ -69,7 +69,7 @@ describe('functional:environments/commands/CreateEnvironmentHandler', () => {
       expect(octokit.graphql).toHaveBeenNthCalledWith(1, {
         input: {
           clientMutationId: CLIENT_MUTATION_ID,
-          name: command.name,
+          name: command.environment,
           repositoryId: api.graphql.repository.id
         },
         query: get(subject, 'operation', <Optional<string>>undefined)

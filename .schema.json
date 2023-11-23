@@ -311,7 +311,7 @@
       "items": {
         "additionalProperties": false,
         "properties": {
-          "name": {
+          "environment": {
             "description": "environment name",
             "minLength": 1,
             "type": "string"
@@ -363,7 +363,7 @@
           }
         },
         "required": [
-          "name"
+          "environment"
         ],
         "type": "object"
       },

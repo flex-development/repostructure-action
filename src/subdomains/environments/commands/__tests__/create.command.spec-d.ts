@@ -17,9 +17,9 @@ describe('unit-d:environments/commands/CreateEnvironmentCommand', () => {
     expectTypeOf<keyof TestSubject>().toEqualTypeOf<ReadonlyKeys<TestSubject>>()
   })
 
-  it('should match [name: Environment["name"]]', () => {
+  it('should match [environment: Environment["name"]]', () => {
     expectTypeOf<TestSubject>()
-      .toHaveProperty('name')
+      .toHaveProperty('environment')
       .toEqualTypeOf<Environment['name']>()
   })
 })

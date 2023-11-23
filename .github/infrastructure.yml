@@ -90,7 +90,7 @@ branches:
         - flex-development
     status_checks: null
 environments:
-  - name: release
+  - environment: release
     prevent_self_review: false
     reviewers: null
     wait_timer: null
