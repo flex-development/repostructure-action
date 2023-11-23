@@ -3,8 +3,7 @@
  * @module branches/commands/tests/functional/UpdateBranchProtectionHandler
  */
 
-import apps from '#fixtures/api.github.com/apps.json' assert { type: 'json' }
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import { AppHandler, AppsHandler } from '#src/apps/queries'
@@ -48,7 +47,7 @@ describe('functional:branches/commands/UpdateBranchProtectionHandler', () => {
           provide: ConfigService,
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
-            owner: data.data.organization.login
+            owner: api.graphql.organization.login
           })
         }
       ]
@@ -59,23 +58,23 @@ describe('functional:branches/commands/UpdateBranchProtectionHandler', () => {
   })
 
   describe('#execute', () => {
-    let codecov: typeof apps[number]
+    let codecov: typeof api['apps']['codecov']
     let command: UpdateBranchProtectionCommand
-    let dependabot: typeof apps[number]
+    let dependabot: typeof api['apps']['dependabot']
     let dependabot_review: Team
-    let flex_development: typeof apps[number]
-    let github_actions: typeof apps[number]
+    let flex_development: typeof api['apps']['flex-development']
+    let github_actions: typeof api['apps']['github-actions']
     let rule: BranchProtection
     let unicornware: User
 
     beforeAll(() => {
-      codecov = apps.find(app => app.slug === 'codecov')!
-      dependabot = apps.find(app => app.slug === 'dependabot')!
-      dependabot_review = at(data.data.organization.teams.nodes, 0)
-      flex_development = apps.find(app => app.slug === 'flex-development')!
-      github_actions = apps.find(app => app.slug === 'github-actions')!
-      rule = at(data.data.repository.branchProtectionRules.nodes, -1)
-      unicornware = at(data.data.users, 0)
+      codecov = api.apps.codecov
+      dependabot = api.apps.dependabot
+      dependabot_review = at(api.graphql.organization.teams.nodes, 0)
+      flex_development = api.apps['flex-development']
+      github_actions = api.apps['github-actions']
+      rule = at(api.graphql.repository.branchProtectionRules.nodes, -1)
+      unicornware = at(api.graphql.users, 0)
 
       command = new UpdateBranchProtectionCommand({
         commit_signatures: true,

@@ -3,7 +3,7 @@
  * @module labels/commands/tests/functional/ManageLabelsHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import { LabelsHandler } from '#src/labels/queries'
@@ -37,9 +37,9 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
           provide: ConfigService,
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
-            node_id: data.data.repository.id,
-            owner: data.data.organization.login,
-            repo: data.data.repository.name
+            node_id: api.graphql.repository.id,
+            owner: api.graphql.organization.login,
+            repo: api.graphql.repository.name
           })
         }
       ]
@@ -71,7 +71,7 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
         }
       ]
 
-      nodes = data.data.repository.labels.nodes
+      nodes = api.graphql.repository.labels.nodes
       current = nodes.slice(0, 10)
     })
 

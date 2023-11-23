@@ -3,7 +3,7 @@
  * @module environments/commands/tests/functional/CreateEnvironmentHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import { Octokit } from '#src/octokit'
@@ -37,8 +37,8 @@ describe('functional:environments/commands/CreateEnvironmentHandler', () => {
           provide: ConfigService,
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
-            node_id: data.data.repository.id,
-            owner: data.data.organization.login
+            node_id: api.graphql.repository.id,
+            owner: api.graphql.organization.login
           })
         }
       ]
@@ -54,7 +54,7 @@ describe('functional:environments/commands/CreateEnvironmentHandler', () => {
     beforeAll(() => {
       command = new CreateEnvironmentCommand({
         name: 'production',
-        reviewers: { users: [get(data.data.users, '0.login')] }
+        reviewers: { users: [get(api.graphql.users, '0.login')] }
       })
     })
 
@@ -70,7 +70,7 @@ describe('functional:environments/commands/CreateEnvironmentHandler', () => {
         input: {
           clientMutationId: CLIENT_MUTATION_ID,
           name: command.name,
-          repositoryId: data.data.repository.id
+          repositoryId: api.graphql.repository.id
         },
         query: get(subject, 'operation', <Optional<string>>undefined)
       })

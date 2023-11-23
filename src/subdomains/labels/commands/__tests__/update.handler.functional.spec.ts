@@ -3,7 +3,7 @@
  * @module labels/commands/tests/functional/UpdateLabelHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import { Octokit } from '#src/octokit'
@@ -38,7 +38,7 @@ describe('functional:labels/commands/UpdateLabelHandler', () => {
     let params: UpdateLabelCommand
 
     beforeAll(() => {
-      params = at(data.data.repository.labels.nodes, 0)
+      params = at(api.graphql.repository.labels.nodes, 0)
     })
 
     it('should update repository label', async () => {

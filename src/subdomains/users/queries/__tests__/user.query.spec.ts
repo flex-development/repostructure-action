@@ -3,7 +3,7 @@
  * @module users/queries/tests/unit/UserQuery
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import { get } from '@flex-development/tutils'
 import TestSubject from '../user.query'
 
@@ -13,7 +13,7 @@ describe('unit:users/queries/UserQuery', () => {
     let subject: TestSubject
 
     beforeAll(() => {
-      login = get(data.data.users, '0.login')
+      login = get(api.graphql.users, '0.login')
       subject = new TestSubject({ login })
     })
 

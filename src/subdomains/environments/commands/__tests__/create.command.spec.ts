@@ -3,7 +3,7 @@
  * @module environments/commands/tests/unit/CreateEnvironmentCommand
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import type { Reviewers } from '#src/environments/types'
 import { get } from '@flex-development/tutils'
 import TestSubject from '../create.command'
@@ -17,7 +17,7 @@ describe('unit:environments/commands/CreateEnvironmentCommand', () => {
     beforeAll(() => {
       subject = new TestSubject({
         name: name = 'production',
-        reviewers: reviewers = { users: [get(data.data.users, '0.login')] }
+        reviewers: reviewers = { users: [get(api.graphql.users, '0.login')] }
       })
     })
 

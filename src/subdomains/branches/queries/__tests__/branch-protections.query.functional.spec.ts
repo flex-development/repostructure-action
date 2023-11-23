@@ -3,7 +3,7 @@
  * @module branches/queries/tests/functional/BranchProtectionsQuery
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import { RepositoryQuery } from '#src/queries'
 import TestSubject from '../branch-protections.query'
 
@@ -14,8 +14,8 @@ describe('functional:branches/queries/BranchProtectionsQuery', () => {
     it('should extend RepositoryQuery', () => {
       // Arrange
       const params: Record<'owner' | 'repo', string> = {
-        owner: data.data.organization.login,
-        repo: data.data.repository.name
+        owner: api.graphql.organization.login,
+        repo: api.graphql.repository.name
       }
 
       // Act

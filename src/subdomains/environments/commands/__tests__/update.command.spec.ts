@@ -3,7 +3,7 @@
  * @module environments/commands/tests/unit/UpdateEnvironmentCommand
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import type { Reviewers } from '#src/environments/types'
 import { get } from '@flex-development/tutils'
 import TestSubject from '../update.command'
@@ -19,8 +19,8 @@ describe('unit:environments/commands/UpdateEnvironmentCommand', () => {
       subject = new TestSubject({
         id: id = faker.string.nanoid(),
         reviewers: reviewers = {
-          teams: [get(data.data.organization.teams.nodes, '0.slug')],
-          users: [get(data.data.users, '0.login')]
+          teams: [get(api.graphql.organization.teams.nodes, '0.slug')],
+          users: [get(api.graphql.users, '0.login')]
         },
         wait_timer: wait_timer = 0
       })

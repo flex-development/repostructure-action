@@ -3,9 +3,9 @@
  * @module apps/queries/tests/unit/AppsHandler
  */
 
-import apps from '#fixtures/api.github.com/apps.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import { select } from '@flex-development/tutils'
+import { select, values } from '@flex-development/tutils'
 import { CqrsModule } from '@nestjs/cqrs'
 import { Test, type TestingModule } from '@nestjs/testing'
 import AppHandler from '../app.handler'
@@ -26,20 +26,22 @@ describe('unit:apps/queries/AppsHandler', () => {
   })
 
   describe('#execute', () => {
-    let slugs: typeof apps[number]['slug'][]
+    let apps: typeof api['apps'][keyof typeof api['apps']][]
 
     beforeAll(() => {
-      slugs = select(apps, null, app => app.slug)
+      apps = values(api.apps)
     })
 
     it('should return github app objects array', async () => {
       // Act
-      const result = await subject.execute(new AppsQuery({ apps: slugs }))
+      const result = await subject.execute(new AppsQuery({
+        apps: select(apps, null, app => app.slug)
+      }))
 
       // Expect
-      expect(result).to.have.deep.ordered.members(select(apps, null, app => ({
-        id: app.node_id,
-        slug: app.slug
+      expect(result).to.have.deep.ordered.members(select(apps, null, a => ({
+        id: a.node_id,
+        slug: a.slug
       })))
     })
   })

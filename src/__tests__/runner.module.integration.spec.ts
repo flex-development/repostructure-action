@@ -3,7 +3,7 @@
  * @module tests/integration/RunnerModule
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import INPUT_CONFIG from '#fixtures/input-config.fixture'
 import {
   ManageBranchProtectionsCommand,
@@ -70,11 +70,11 @@ describe('integration:RunnerModule', () => {
             bypass_restrictions: null,
             dismiss_stale_reviews: true,
             dismissal_restrictions: {
-              apps: ['dependabot', data.data.organization.login]
+              apps: ['dependabot', api.graphql.organization.login]
             },
             last_push_approval: false
           },
-          restrictions: { apps: [data.data.organization.login] },
+          restrictions: { apps: [api.graphql.organization.login] },
           status_checks: {
             checks: [
               { context: 'add-to-project' },
@@ -110,31 +110,30 @@ describe('integration:RunnerModule', () => {
         {
           branch: 'release/*',
           commit_signatures: true,
+          conversation_resolution: false,
           creations_blocked: true,
-          deletions: false,
+          deletions: true,
+          deployments: null,
+          enforce_admins: true,
+          force_pushers: null,
           force_pushes: false,
+          fork_syncing: false,
           linear_history: true,
-          pull_requests: {
-            approving_review_count: 1,
-            bypass_restrictions: null,
-            code_owner_reviews: false,
-            dismiss_stale_reviews: true,
-            dismissal_restrictions: null,
-            last_push_approval: false
-          },
-          restrictions: { apps: [data.data.organization.login] },
+          lock_branch: false,
+          pull_requests: null,
+          restrictions: { apps: [api.graphql.organization.login] },
           status_checks: null
         }
       ],
       environments: [
-        at(data.data.repository.environments.nodes, -1),
+        at(api.graphql.repository.environments.nodes, -1),
         {
           name: 'docs',
-          reviewers: { users: [get(data.data.users, '0.login')] }
+          reviewers: { users: [get(api.graphql.users, '0.login')] }
         }
       ],
       labels: [
-        ...data.data.repository.labels.nodes.slice(5),
+        ...api.graphql.repository.labels.nodes.slice(5),
         {
           color: faker.color.rgb({ casing: 'lower', prefix: '' }),
           description: 'octokit integration',

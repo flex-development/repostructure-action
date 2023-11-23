@@ -3,7 +3,7 @@
  * @module users/queries/tests/unit/UserHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { User } from '#src/users/types'
 import { at } from '@flex-development/tutils'
@@ -27,7 +27,7 @@ describe('unit:users/queries/UserHandler', () => {
     let user: User
 
     beforeAll(() => {
-      user = at(data.data.users, 0)
+      user = at(api.graphql.users, 0)
     })
 
     it('should return github user object', async () => {

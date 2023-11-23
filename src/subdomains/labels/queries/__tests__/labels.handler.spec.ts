@@ -3,7 +3,7 @@
  * @module labels/queries/tests/unit/LabelsHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Label } from '#src/labels/types'
 import { Test, type TestingModule } from '@nestjs/testing'
@@ -26,14 +26,14 @@ describe('unit:labels/queries/LabelsHandler', () => {
     let labels: Label[]
 
     beforeAll(() => {
-      labels = data.data.repository.labels.nodes
+      labels = api.graphql.repository.labels.nodes
     })
 
     it('should return repository labels array', async () => {
       // Arrange
       const query: LabelsQuery = new LabelsQuery({
-        owner: data.data.organization.login,
-        repo: data.data.repository.name
+        owner: api.graphql.organization.login,
+        repo: api.graphql.repository.name
       })
 
       // Act

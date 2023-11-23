@@ -3,7 +3,7 @@
  * @module tests/utils/connection
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import {
   at,
   cast,
@@ -16,10 +16,10 @@ import type { Connection } from '@octokit/graphql'
 import { GraphQLError } from 'graphql'
 
 /**
- * Mock data keys.
+ * GraphQL connection names.
  */
 type ConnectionKey = Exclude<
-  keyof typeof data.data.repository,
+  keyof typeof api.graphql.repository,
   'id' | 'name' | 'nameWithOwner'
 >
 
@@ -28,7 +28,7 @@ type ConnectionKey = Exclude<
  *
  * @template T - Node type
  *
- * @param {ConnectionKey} key - Mock data key
+ * @param {ConnectionKey} key - GraphQL connection name
  * @param {Nilable<string>?} [cursor=null] - Cursor of last node
  * @param {number?} [limit=10] - Node limit per page
  * @return {Connection<T>} Connection object
@@ -39,7 +39,7 @@ const connection = <T extends ObjectPlain>(
   cursor: Nilable<string> = null,
   limit: number = 10
 ): Connection<T> => {
-  const { edges, nodes } = data.data.repository[key]
+  const { edges, nodes } = api.graphql.repository[key]
 
   /**
    * Index of current edge.

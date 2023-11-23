@@ -3,7 +3,7 @@
  * @module environments/commands/tests/functional/UpdateEnvironmentHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Environment } from '#src/environments/types'
@@ -40,7 +40,7 @@ describe('functional:environments/commands/UpdateEnvironmentHandler', () => {
           provide: ConfigService,
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
-            owner: data.data.organization.login
+            owner: api.graphql.organization.login
           })
         }
       ]
@@ -57,9 +57,9 @@ describe('functional:environments/commands/UpdateEnvironmentHandler', () => {
     let unicornware: User
 
     beforeAll(() => {
-      environment = at(data.data.repository.environments.nodes, -1)
-      dependabot_review = at(data.data.organization.teams.nodes, 0)
-      unicornware = at(data.data.users, 0)
+      environment = at(api.graphql.repository.environments.nodes, -1)
+      dependabot_review = at(api.graphql.organization.teams.nodes, 0)
+      unicornware = at(api.graphql.users, 0)
 
       command = new UpdateEnvironmentCommand({
         id: environment.id,

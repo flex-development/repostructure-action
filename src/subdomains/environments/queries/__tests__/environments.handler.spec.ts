@@ -3,7 +3,7 @@
  * @module environments/queries/tests/unit/EnvironmentsHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Environment } from '#src/environments/types'
 import { Test, type TestingModule } from '@nestjs/testing'
@@ -26,14 +26,14 @@ describe('unit:environments/queries/EnvironmentsHandler', () => {
     let environments: Environment[]
 
     beforeAll(() => {
-      environments = data.data.repository.environments.nodes
+      environments = api.graphql.repository.environments.nodes
     })
 
     it('should return environments array', async () => {
       // Arrange
       const query: EnvironmentsQuery = new EnvironmentsQuery({
-        owner: data.data.organization.login,
-        repo: data.data.repository.name
+        owner: api.graphql.organization.login,
+        repo: api.graphql.repository.name
       })
 
       // Act

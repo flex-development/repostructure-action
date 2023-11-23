@@ -3,7 +3,7 @@
  * @module teams/queries/tests/unit/TeamsHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Team } from '#src/teams/types'
 import { select } from '@flex-development/tutils'
@@ -32,8 +32,8 @@ describe('unit:teams/queries/TeamsHandler', () => {
     let teams: Team[]
 
     beforeAll(() => {
-      org = data.data.organization.login
-      teams = data.data.organization.teams.nodes
+      org = api.graphql.organization.login
+      teams = api.graphql.organization.teams.nodes
       slugs = select(teams, null, team => team.slug)
     })
 

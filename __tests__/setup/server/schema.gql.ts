@@ -1,6 +1,6 @@
 /**
- * @file Test Setup - schema
- * @module tests/setup/graphql/schema
+ * @file Test Server - schema
+ * @module tests/setup/server/schema
  * @see https://mswjs.io/docs/recipes/mock-graphql-schema
  */
 

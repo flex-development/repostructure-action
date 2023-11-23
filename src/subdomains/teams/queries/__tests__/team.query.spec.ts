@@ -3,7 +3,7 @@
  * @module teams/queries/tests/unit/TeamQuery
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import { get } from '@flex-development/tutils'
 import TestSubject from '../team.query'
 
@@ -14,8 +14,8 @@ describe('unit:teams/queries/TeamQuery', () => {
 
     beforeAll(() => {
       subject = new TestSubject({
-        org: data.data.organization.login,
-        team: team = get(data.data.organization.teams.nodes, '0.slug')
+        org: api.graphql.organization.login,
+        team: team = get(api.graphql.organization.teams.nodes, '0.slug')
       })
     })
 

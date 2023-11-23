@@ -3,7 +3,7 @@
  * @module branches/commands/tests/functional/ManageBranchProtectionsHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import { AppHandler, AppsHandler } from '#src/apps/queries'
@@ -47,9 +47,9 @@ describe('functional:branches/commands/ManageBranchProtectionsHandler', () => {
           provide: ConfigService,
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
-            node_id: data.data.repository.id,
-            owner: data.data.organization.login,
-            repo: data.data.repository.name
+            node_id: api.graphql.repository.id,
+            owner: api.graphql.organization.login,
+            repo: api.graphql.repository.name
           })
         }
       ]
@@ -70,7 +70,7 @@ describe('functional:branches/commands/ManageBranchProtectionsHandler', () => {
 
     beforeAll(() => {
       incoming = [{ branch: 'release/*' }]
-      nodes = data.data.repository.branchProtectionRules.nodes
+      nodes = api.graphql.repository.branchProtectionRules.nodes
       current = [at(select(nodes, null, n => ({ branch: n.pattern })), -1)]
 
       command = new ManageBranchProtectionsCommand([

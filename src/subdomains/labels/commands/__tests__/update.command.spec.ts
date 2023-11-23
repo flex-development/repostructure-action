@@ -3,7 +3,7 @@
  * @module labels/commands/tests/unit/UpdateLabelCommand
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import type { Label } from '#src/labels/types'
 import { at } from '@flex-development/tutils'
 import TestSubject from '../update.command'
@@ -14,7 +14,7 @@ describe('unit:labels/commands/UpdateLabelCommand', () => {
     let subject: TestSubject
 
     beforeAll(() => {
-      const { nodes } = data.data.repository.labels
+      const { nodes } = api.graphql.repository.labels
 
       label = at(nodes, -1)
       subject = new TestSubject({ ...label, color: '#' + label.color })

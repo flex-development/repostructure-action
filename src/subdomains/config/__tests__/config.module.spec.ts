@@ -3,7 +3,7 @@
  * @module config/tests/unit/ConfigModule
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import INPUT_CONFIG from '#fixtures/input-config.fixture'
 import schema from '#schema' assert { type: 'json' }
@@ -98,9 +98,9 @@ describe('unit:config/ConfigModule', () => {
           environments: expect.any(Array),
           labels: expect.any(Array)
         },
-        node_id: data.data.repository.id,
-        owner: data.data.organization.login,
-        repo: data.data.repository.name,
+        node_id: api.graphql.repository.id,
+        owner: api.graphql.organization.login,
+        repo: api.graphql.repository.name,
         token: import.meta.env.INPUT_TOKEN
       })
     })

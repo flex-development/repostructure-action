@@ -3,8 +3,8 @@
  * @module apps/queries/tests/unit/AppsQuery
  */
 
-import apps from '#fixtures/api.github.com/apps.json'
-import { select } from '@flex-development/tutils'
+import api from '#fixtures/api.github.json' assert { type: 'json' }
+import { select, values } from '@flex-development/tutils'
 import TestSubject from '../apps.query'
 
 describe('unit:apps/queries/AppsQuery', () => {
@@ -14,7 +14,7 @@ describe('unit:apps/queries/AppsQuery', () => {
 
     beforeAll(() => {
       subject = new TestSubject({
-        apps: slugs = select(apps, null, app => app.slug)
+        apps: slugs = select(values(api.apps), null, app => app.slug)
       })
     })
 

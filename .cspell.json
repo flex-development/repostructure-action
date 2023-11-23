@@ -28,7 +28,7 @@
     ".husky/_/",
     ".vscode/settings.json",
     ".yarn/",
-    "__fixtures__/api.github.com/",
+    "__fixtures__/api.github.json",
     "dist/",
     "github.schema.gql",
     "patches/",

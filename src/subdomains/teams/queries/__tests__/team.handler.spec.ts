@@ -3,7 +3,7 @@
  * @module teams/queries/tests/unit/TeamHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Team } from '#src/teams/types'
 import {
@@ -34,8 +34,8 @@ describe('unit:teams/queries/TeamHandler', () => {
     let team: Team
 
     beforeAll(() => {
-      org = data.data.organization.login
-      team = at(data.data.organization.teams.nodes, 0)
+      org = api.graphql.organization.login
+      team = at(api.graphql.organization.teams.nodes, 0)
     })
 
     it('should return team object', async () => {

@@ -1,11 +1,9 @@
 /**
- * @file Test Setup - server
+ * @file Test Server
  * @module tests/setup/server
  */
 
-import apps from '#fixtures/api.github.com/apps.json' assert { type: 'json' }
-import root from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
-import repos from '#fixtures/api.github.com/repos.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import type BranchProtection from '#src/branches/types/branch-protection'
 import type Environment from '#src/environments/types/environment'
@@ -14,15 +12,15 @@ import type UpdateLabelInput from '#src/labels/commands/update.command'
 import type Label from '#src/labels/types/label'
 import type Team from '#src/teams/types/team'
 import type User from '#src/users/types/user'
-import type { OctokitBody, OctokitData, OctokitParameters } from '#tests/types'
 import connection from '#tests/utils/connection'
+import resource from '#tests/utils/resource'
+import * as mlly from '@flex-development/mlly'
 import {
   assign,
   includes,
   pick,
   select,
   shake,
-  type EmptyObject,
   type Nullable,
   type Optional
 } from '@flex-development/tutils'
@@ -43,9 +41,10 @@ import {
   graphql as executeGraphql,
   type ExecutionResult
 } from 'graphql'
-import { HttpResponse, graphql, http, type StrictResponse } from 'msw'
+import { HttpResponse, type StrictResponse } from 'msw'
 import { setupServer, type SetupServer } from 'msw/node'
-import schema from './graphql/schema'
+import { graphql, http } from './octokit'
+import schema from './schema.gql'
 
 /**
  * Mock server.
@@ -56,76 +55,31 @@ import schema from './graphql/schema'
  * @const {SetupServer} server
  */
 const server: SetupServer = setupServer(
-  http.delete<
-    OctokitParameters<'GET /repos/{owner}/{repo}'>,
-    EmptyObject,
-    null
-  >(/(?:security-fixes|vulnerability-(?:alerts|reporting))$/, () => {
+  http.delete('/repos/{owner}/{repo}/automated-security-fixes', () => {
     return <StrictResponse<null>>new HttpResponse(null, { status: 204 })
   }),
-  http.get<
-    OctokitParameters<'GET /apps/{app_slug}'>,
-    EmptyObject,
-    OctokitData<'GET /apps/{app_slug}'>
-  >(/\/apps\/(?<app_slug>[\w-]+)$/, ({ params }) => {
-    /**
-     * GitHub App data.
-     *
-     * @const {Optional<typeof apps[number]>} app
-     */
-    const app: Optional<typeof apps[number]> = apps.find(({ slug }) => {
-      return slug === params.app_slug
-    })
-
-    // return error response if app was not found
-    if (!app) {
-      return HttpResponse.json({
-        documentation_url: 'https://docs.github.com/rest/apps/apps#get-an-app',
-        message: 'Not Found'
-      }, {
-        status: 404,
-        statusText: 'Not Found'
-      })
-    }
-
-    return HttpResponse.json(app)
-  }),
-  http.patch<
-    OctokitParameters<'GET /repos/{owner}/{repo}'>,
-    OctokitBody<'PATCH', '/repos/{owner}/{repo}'>,
-    OctokitData<'PATCH /repos/{owner}/{repo}'>
-  >(/\/repos\/(?<owner>[\w-]+)\/(?<repo>[\w-]+)$/, ({ params }) => {
-    /**
-     * Repository to update.
-     *
-     * @const {Optional<typeof repos[number]>} repo
-     */
-    const repo: Optional<typeof repos[number]> = repos.find(r => {
-      return r.owner.login === params.owner && r.name === params.repo
-    })
-
-    // return error response if repo was not found
-    if (!repo) {
-      return HttpResponse.json({
-        documentation_url:
-          'https://docs.github.com/rest/repos/repos#get-a-repository',
-        message: 'Not Found'
-      }, {
-        status: 404,
-        statusText: 'Not Found'
-      })
-    }
-
-    return HttpResponse.json(repo)
-  }),
-  http.put<
-    OctokitParameters<'GET /repos/{owner}/{repo}'>,
-    EmptyObject,
-    null
-  >(/(?:security-fixes|vulnerability-(?:alerts|reporting))$/, () => {
+  http.delete('/repos/{owner}/{repo}/private-vulnerability-reporting', () => {
     return <StrictResponse<null>>new HttpResponse(null, { status: 204 })
   }),
-  graphql.link(/\/graphql$/).operation<ExecutionResult>(async ({
+  http.delete('/repos/{owner}/{repo}/vulnerability-alerts', () => {
+    return <StrictResponse<null>>new HttpResponse(null, { status: 204 })
+  }),
+  http.get('/apps/{app_slug}', ({ request }) => {
+    return resource(mlly.toURL(request.url))
+  }),
+  http.patch('/repos/{owner}/{repo}', ({ request }) => {
+    return resource(mlly.toURL(request.url))
+  }),
+  http.put('/repos/{owner}/{repo}/automated-security-fixes', () => {
+    return <StrictResponse<null>>new HttpResponse(null, { status: 204 })
+  }),
+  http.put('/repos/{owner}/{repo}/private-vulnerability-reporting', () => {
+    return <StrictResponse<null>>new HttpResponse(null, { status: 204 })
+  }),
+  http.put('/repos/{owner}/{repo}/vulnerability-alerts', () => {
+    return <StrictResponse<null>>new HttpResponse(null, { status: 204 })
+  }),
+  graphql.operation<ExecutionResult>(async ({
     operationName,
     query,
     variables
@@ -181,7 +135,7 @@ const server: SetupServer = setupServer(
          * @throws {GraphQLError} If label name is not unique
          */
         createLabel(args: Record<'input', CreateLabelInput>): { label: Label } {
-          const { nodes } = root.data.repository.labels
+          const { nodes } = api.graphql.repository.labels
 
           // throw if label name is not unique
           if (includes(nodes, args.input.name, 0, node => node!.name)) {
@@ -238,13 +192,13 @@ const server: SetupServer = setupServer(
            *
            * @const {string} id
            */
-          id: root.data.organization.id,
+          id: api.graphql.organization.id,
           /**
            * Organization login.
            *
            * @const {string} login
            */
-          login: root.data.organization.login,
+          login: api.graphql.organization.login,
           /**
            * Mock organization `team` query resolver.
            *
@@ -252,7 +206,7 @@ const server: SetupServer = setupServer(
            * @return {Nullable<Team>} Team object or `null`
            */
           team(args: TeamArgs): Nullable<Team> {
-            const { nodes } = root.data.organization.teams
+            const { nodes } = api.graphql.organization.teams
             return nodes.find(node => node.slug === args.slug) ?? null
           }
         },
@@ -287,7 +241,7 @@ const server: SetupServer = setupServer(
            *
            * @const {string} id
            */
-          id: root.data.repository.id,
+          id: api.graphql.repository.id,
           /**
            * Mock repository `labels` query resolver.
            *
@@ -311,7 +265,7 @@ const server: SetupServer = setupServer(
         updateBranchProtectionRule(
           args: Record<'input', UpdateBranchProtectionInput>
         ): { branchProtectionRule: BranchProtection } {
-          const { nodes } = root.data.repository.branchProtectionRules
+          const { nodes } = api.graphql.repository.branchProtectionRules
 
           /**
            * Branch protection rule to update.
@@ -341,7 +295,7 @@ const server: SetupServer = setupServer(
         updateEnvironment(
           args: Record<'input', UpdateEnvironmentInput>
         ): { environment: Environment } {
-          const { nodes } = root.data.repository.environments
+          const { nodes } = api.graphql.repository.environments
 
           /**
            * Environment to update.
@@ -366,7 +320,7 @@ const server: SetupServer = setupServer(
          * @throws {GraphQLError} If label to update is not found
          */
         updateLabel(args: Record<'input', UpdateLabelInput>): { label: Label } {
-          const { nodes } = root.data.repository.labels
+          const { nodes } = api.graphql.repository.labels
 
           /**
            * Label to update.
@@ -409,7 +363,7 @@ const server: SetupServer = setupServer(
            *
            * @const {Optional<User>} user
            */
-          const user: Optional<User> = root.data.users.find(user => {
+          const user: Optional<User> = api.graphql.users.find(user => {
             return user.login === args.login
           })
 

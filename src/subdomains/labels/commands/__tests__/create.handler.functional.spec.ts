@@ -3,7 +3,7 @@
  * @module labels/commands/tests/functional/CreateLabelHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import { Octokit } from '#src/octokit'
@@ -27,7 +27,7 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
           provide: ConfigService,
           useValue: new ConfigService({
             id: CLIENT_MUTATION_ID,
-            node_id: data.data.repository.id
+            node_id: api.graphql.repository.id
           })
         }
       ]
@@ -41,14 +41,14 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
     let params: CreateLabelCommand
 
     beforeAll(() => {
-      params = at(data.data.repository.labels.nodes, 0)
+      params = at(api.graphql.repository.labels.nodes, 0)
     })
 
     it('should create repository label', async () => {
       // Arrange
       const clientMutationId: string = CLIENT_MUTATION_ID
       const command: CreateLabelCommand = new CreateLabelCommand(params)
-      const repositoryId: string = expect.any(String)
+      const repositoryId: string = api.graphql.repository.id
 
       // Act
       vi.spyOn(octokit, 'graphql')

@@ -3,7 +3,7 @@
  * @module branches/queries/tests/unit/BranchProtectionsHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { BranchProtection } from '#src/branches/types'
 import { Test, type TestingModule } from '@nestjs/testing'
@@ -26,14 +26,14 @@ describe('unit:branches/queries/BranchProtectionsHandler', () => {
     let branches: BranchProtection[]
 
     beforeAll(() => {
-      branches = data.data.repository.branchProtectionRules.nodes
+      branches = api.graphql.repository.branchProtectionRules.nodes
     })
 
     it('should return branch protection rules array', async () => {
       // Arrange
       const query: BranchProtectionsQuery = new BranchProtectionsQuery({
-        owner: data.data.organization.login,
-        repo: data.data.repository.name
+        owner: api.graphql.organization.login,
+        repo: api.graphql.repository.name
       })
 
       // Act

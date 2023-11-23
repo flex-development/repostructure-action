@@ -3,7 +3,7 @@
  * @module pull-requests/commands/tests/functional/ManagePullRequestsHandler
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import type { Config } from '#src/config'
 import { Octokit } from '#src/octokit'
@@ -34,8 +34,8 @@ describe('functional:pull-requests/commands/ManagePullRequestsHandler', () => {
         {
           provide: ConfigService,
           useValue: new ConfigService({
-            owner: data.data.organization.login,
-            repo: data.data.repository.name
+            owner: api.graphql.organization.login,
+            repo: api.graphql.repository.name
           })
         }
       ]

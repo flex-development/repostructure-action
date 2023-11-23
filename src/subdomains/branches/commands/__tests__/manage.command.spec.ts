@@ -3,7 +3,7 @@
  * @module branches/commands/tests/unit/ManageBranchProtectionsCommand
  */
 
-import data from '#fixtures/api.github.com/graphql.json' assert { type: 'json' }
+import api from '#fixtures/api.github.json' assert { type: 'json' }
 import { select } from '@flex-development/tutils'
 import CreateBranchProtectionCommand from '../create.command'
 import TestSubject from '../manage.command'
@@ -14,7 +14,7 @@ describe('unit:branches/commands/ManageBranchProtectionsCommand', () => {
 
     beforeAll(() => {
       subject = new TestSubject(select(
-        data.data.repository.branchProtectionRules.nodes,
+        api.graphql.repository.branchProtectionRules.nodes,
         null,
         branch => ({ branch: branch.pattern })
       ))
