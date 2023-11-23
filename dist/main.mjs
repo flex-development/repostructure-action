@@ -99765,12 +99765,12 @@ var ManagePullRequestsHandler = class ManagePullRequestsHandler2 {
       allow_squash_merge: squash,
       allow_update_branch: update_branch,
       delete_branch_on_merge,
-      merge_message,
-      merge_title,
+      merge_commit_message: merge_message,
+      merge_commit_title: merge_title,
       owner: this.config.get("owner"),
       repo: this.config.get("repo"),
-      squash_merge_message: squash_message,
-      squash_merge_title: squash_title
+      squash_merge_commit_message: squash_message,
+      squash_merge_commit_title: squash_title
     });
   }
 };

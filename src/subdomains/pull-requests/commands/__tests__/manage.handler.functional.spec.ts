@@ -81,12 +81,12 @@ describe('functional:pull-requests/commands/ManagePullRequestsHandler', () => {
         allow_squash_merge: command.squash,
         allow_update_branch: command.update_branch,
         delete_branch_on_merge: command.delete_branch_on_merge,
-        merge_message: command.merge_message,
-        merge_title: command.merge_title,
+        merge_commit_message: command.merge_message,
+        merge_commit_title: command.merge_title,
         owner: config.get<string>('owner'),
         repo: config.get<string>('repo'),
-        squash_merge_message: command.squash_message,
-        squash_merge_title: command.squash_title
+        squash_merge_commit_message: command.squash_message,
+        squash_merge_commit_title: command.squash_title
       })
     })
   })
