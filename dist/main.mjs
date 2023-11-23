@@ -20490,16 +20490,16 @@ var require_shared_utils = __commonJS({
     exports.isFunction = isFunction4;
     var isString5 = (val) => typeof val === "string";
     exports.isString = isString5;
-    var isNumber2 = (val) => typeof val === "number";
-    exports.isNumber = isNumber2;
+    var isNumber = (val) => typeof val === "number";
+    exports.isNumber = isNumber;
     var isConstructor = (val) => val === "constructor";
     exports.isConstructor = isConstructor;
     var isNil = (val) => (0, exports.isUndefined)(val) || val === null;
     exports.isNil = isNil;
     var isEmpty = (array) => !(array && array.length > 0);
     exports.isEmpty = isEmpty;
-    var isSymbol2 = (val) => typeof val === "symbol";
-    exports.isSymbol = isSymbol2;
+    var isSymbol = (val) => typeof val === "symbol";
+    exports.isSymbol = isSymbol;
   }
 });
 
@@ -45233,10 +45233,10 @@ var require_isSymbol = __commonJS({
     var baseGetTag = require_baseGetTag();
     var isObjectLike4 = require_isObjectLike();
     var symbolTag = "[object Symbol]";
-    function isSymbol2(value) {
+    function isSymbol(value) {
       return typeof value == "symbol" || isObjectLike4(value) && baseGetTag(value) == symbolTag;
     }
-    module.exports = isSymbol2;
+    module.exports = isSymbol;
   }
 });
 
@@ -45244,7 +45244,7 @@ var require_isSymbol = __commonJS({
 var require_isKey = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/_isKey.js"(exports, module) {
     var isArray4 = require_isArray();
-    var isSymbol2 = require_isSymbol();
+    var isSymbol = require_isSymbol();
     var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
     var reIsPlainProp = /^\w*$/;
     function isKey(value, object) {
@@ -45252,7 +45252,7 @@ var require_isKey = __commonJS({
         return false;
       }
       var type = typeof value;
-      if (type == "number" || type == "symbol" || type == "boolean" || value == null || isSymbol2(value)) {
+      if (type == "number" || type == "symbol" || type == "boolean" || value == null || isSymbol(value)) {
         return true;
       }
       return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object(object);
@@ -45832,7 +45832,7 @@ var require_baseToString = __commonJS({
     var Symbol2 = require_Symbol();
     var arrayMap = require_arrayMap();
     var isArray4 = require_isArray();
-    var isSymbol2 = require_isSymbol();
+    var isSymbol = require_isSymbol();
     var INFINITY = 1 / 0;
     var symbolProto = Symbol2 ? Symbol2.prototype : void 0;
     var symbolToString = symbolProto ? symbolProto.toString : void 0;
@@ -45843,7 +45843,7 @@ var require_baseToString = __commonJS({
       if (isArray4(value)) {
         return arrayMap(value, baseToString) + "";
       }
-      if (isSymbol2(value)) {
+      if (isSymbol(value)) {
         return symbolToString ? symbolToString.call(value) : "";
       }
       var result = value + "";
@@ -45884,10 +45884,10 @@ var require_castPath = __commonJS({
 // node_modules/@nestjs/config/node_modules/lodash/_toKey.js
 var require_toKey = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/_toKey.js"(exports, module) {
-    var isSymbol2 = require_isSymbol();
+    var isSymbol = require_isSymbol();
     var INFINITY = 1 / 0;
     function toKey(value) {
-      if (typeof value == "string" || isSymbol2(value)) {
+      if (typeof value == "string" || isSymbol(value)) {
         return value;
       }
       var result = value + "";
@@ -45918,11 +45918,11 @@ var require_baseGet = __commonJS({
 var require_get = __commonJS({
   "node_modules/@nestjs/config/node_modules/lodash/get.js"(exports, module) {
     var baseGet = require_baseGet();
-    function get3(object, path, defaultValue) {
+    function get2(object, path, defaultValue) {
       var result = object == null ? void 0 : baseGet(object, path);
       return result === void 0 ? defaultValue : result;
     }
-    module.exports = get3;
+    module.exports = get2;
   }
 });
 
@@ -73681,8 +73681,8 @@ var require_util15 = __commonJS({
     })(Type = exports.Type || (exports.Type = {}));
     function getErrorPath(dataProp, dataPropType, jsPropertySyntax) {
       if (dataProp instanceof codegen_1.Name) {
-        const isNumber2 = dataPropType === Type.Num;
-        return jsPropertySyntax ? isNumber2 ? (0, codegen_1._)`"[" + ${dataProp} + "]"` : (0, codegen_1._)`"['" + ${dataProp} + "']"` : isNumber2 ? (0, codegen_1._)`"/" + ${dataProp}` : (0, codegen_1._)`"/" + ${dataProp}.replace(/~/g, "~0").replace(/\\//g, "~1")`;
+        const isNumber = dataPropType === Type.Num;
+        return jsPropertySyntax ? isNumber ? (0, codegen_1._)`"[" + ${dataProp} + "]"` : (0, codegen_1._)`"['" + ${dataProp} + "']"` : isNumber ? (0, codegen_1._)`"/" + ${dataProp}` : (0, codegen_1._)`"/" + ${dataProp}.replace(/~/g, "~0").replace(/\\//g, "~1")`;
       }
       return jsPropertySyntax ? (0, codegen_1.getProperty)(dataProp).toString() : "/" + escapeJsonPointer(dataProp);
     }
@@ -80810,7 +80810,7 @@ var require_foldFlowLines = __commonJS({
         else
           end = lineWidth - indentAtStart;
       }
-      let split2 = void 0;
+      let split = void 0;
       let prev = void 0;
       let overflow = false;
       let i = -1;
@@ -80843,18 +80843,18 @@ var require_foldFlowLines = __commonJS({
           if (mode === FOLD_BLOCK)
             i = consumeMoreIndentedLines(text, i);
           end = i + endStep;
-          split2 = void 0;
+          split = void 0;
         } else {
           if (ch === " " && prev && prev !== " " && prev !== "\n" && prev !== "	") {
             const next = text[i + 1];
             if (next && next !== " " && next !== "\n" && next !== "	")
-              split2 = i;
+              split = i;
           }
           if (i >= end) {
-            if (split2) {
-              folds.push(split2);
-              end = split2 + endStep;
-              split2 = void 0;
+            if (split) {
+              folds.push(split);
+              end = split + endStep;
+              split = void 0;
             } else if (mode === FOLD_QUOTED) {
               while (prev === " " || prev === "	") {
                 prev = ch;
@@ -80867,7 +80867,7 @@ var require_foldFlowLines = __commonJS({
               folds.push(j);
               escapedFolds[j] = true;
               end = j + endStep;
-              split2 = void 0;
+              split = void 0;
             } else {
               overflow = true;
             }
@@ -84295,13 +84295,13 @@ var require_resolve_block_scalar = __commonJS({
       return { mode, indent: indent2, chomp, comment, length };
     }
     function splitLines(source2) {
-      const split2 = source2.split(/\n( *)/);
-      const first = split2[0];
+      const split = source2.split(/\n( *)/);
+      const first = split[0];
       const m = first.match(/^( *)/);
       const line0 = m?.[1] ? [m[1], first.slice(m[1].length)] : ["", first];
       const lines = [line0];
-      for (let i = 1; i < split2.length; i += 2)
-        lines.push([split2[i], split2[i + 1]]);
+      for (let i = 1; i < split.length; i += 2)
+        lines.push([split[i], split[i + 1]]);
       return lines;
     }
     exports.resolveBlockScalar = resolveBlockScalar;
@@ -90344,10 +90344,6 @@ var reduce = (arr, reducer, initial = cast_default(arr[0])) => arr.reduce(reduce
 var isString = (value) => typeof value == "string";
 var is_string_default = isString;
 
-// node_modules/@flex-development/tutils/dist/utils/trim.mjs
-var trim = (str) => str.trim();
-var trim_default = trim;
-
 // node_modules/@flex-development/tutils/dist/utils/is-array.mjs
 var isArray = (value) => Array.isArray(value);
 var is_array_default = isArray;
@@ -90383,14 +90379,6 @@ var is_map_default = isMap;
 // node_modules/@flex-development/tutils/dist/utils/is-boolean.mjs
 var isBoolean = (value) => typeof value == "boolean";
 var is_boolean_default = isBoolean;
-
-// node_modules/@flex-development/tutils/dist/utils/is-number.mjs
-var isNumber = (value) => typeof value == "number";
-var is_number_default = isNumber;
-
-// node_modules/@flex-development/tutils/dist/utils/is-symbol.mjs
-var isSymbol = (value) => typeof value == "symbol";
-var is_symbol_default = isSymbol;
 
 // node_modules/@flex-development/tutils/dist/utils/is-reg-exp.mjs
 var isRegExp = (value) => is_object_default(value) && value.constructor === RegExp;
@@ -90447,33 +90435,6 @@ var is_uint8_clamped_array_default = isUint8ClampedArray;
 // node_modules/@flex-development/tutils/dist/utils/is-typed-array.mjs
 var isTypedArray = (value) => is_big_int64_array_default(value) || is_big_uint64_array_default(value) || is_float32_array_default(value) || is_float64_array_default(value) || is_int8_array_default(value) || is_int16_array_default(value) || is_int32_array_default(value) || is_uint8_array_default(value) || is_uint8_clamped_array_default(value) || is_uint16_array_default(value) || is_uint32_array_default(value);
 var is_typed_array_default = isTypedArray;
-
-// node_modules/@flex-development/tutils/dist/utils/is-nan.mjs
-var isNaN2 = (value) => is_number_default(value) && value !== +value;
-var is_nan_default = isNaN2;
-
-// node_modules/@flex-development/tutils/dist/utils/is-numeric.mjs
-var isNumeric = (value) => is_string_default(value) && is_number_default(value = +value) && !is_nan_default(value);
-var is_numeric_default = isNumeric;
-
-// node_modules/@flex-development/tutils/dist/utils/split.mjs
-var split = (str, separator, limit) => cast_default(is_nil_default(str) ? [] : str.split(separator, limit ?? void 0));
-var split_default = split;
-
-// node_modules/@flex-development/tutils/dist/utils/get.mjs
-var get2 = (target, path, fallback2) => {
-  let ret = is_symbol_default(path) ? void 0 : target;
-  if (has_own_default(target, path) || is_symbol_default(path))
-    ret = target[cast_default(path)];
-  else
-    for (const key2 of select(split_default(path.toString(), /[.[\]]/g), null, trim_default)) {
-      if (is_nil_default(ret))
-        break;
-      ret = is_numeric_default(key2) && (is_array_default(ret) || is_string_default(ret)) ? at_default(cast_default(ret), +key2) : cast_default(ret)[key2];
-    }
-  return cast_default(fallback_default(ret, fallback2));
-};
-var get_default = get2;
 
 // node_modules/@flex-development/tutils/dist/utils/join.mjs
 var join = (arr, separator, mapper) => cast_default(select(arr, null, cast_default(mapper)).join(separator ?? void 0));
@@ -90660,107 +90621,129 @@ var BranchProtectionDTO = class {
   /**
    * Require signed commits.
    *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nilable<boolean>?} commit_signatures
-   */
-  commit_signatures;
-  /**
-   * Require all conversations on code to be resolved before a pull request can
-   * be merged into matching branches.
+   * @default null
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} conversation_resolution
+   * @member {Nullable<boolean>?} commit_signatures
+   */
+  commit_signatures;
+  /**
+   * Require all conversations on code to be resolved before a pull request can
+   * be merged.
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<boolean>?} conversation_resolution
    */
   conversation_resolution;
   /**
    * Block pushes that create new matching branches, unless initiated by a user,
    * team, or app with the ability to push.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} creations_blocked
+   * @member {Nullable<boolean>?} creations_blocked
    */
   creations_blocked;
   /**
    * Allow matching branches to be deleted.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} deletions
+   * @member {Nullable<boolean>?} deletions
    */
   deletions;
   /**
-   * Deployment environment protections.
+   * Require deployments to succeed before branches can be merged.
    *
    * @see {@linkcode DeploymentProtection}
+   *
+   * @default null
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<DeploymentProtection>?} deployments
+   * @member {Nullable<DeploymentProtection>?} deployments
    */
   deployments;
   /**
    * Enforce protection rule for administrators.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} enforce_admins
+   * @member {Nullable<boolean>?} enforce_admins
    */
   enforce_admins;
   /**
-   * Users, teams, and apps allowed to force push to matching branches.
+   * Users, teams, and apps allowed to force push.
+   *
+   * @default null
    *
    * @see {@linkcode BranchActors}
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<BranchActors>?} force_pushers
+   * @member {Nullable<BranchActors>?} force_pushers
    */
   force_pushers;
   /**
-   * Allow force pushes to matching branches.
+   * Allow force pushes.
+   *
+   * @default null
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} force_pushes
+   * @member {Nullable<boolean>?} force_pushes
    */
   force_pushes;
   /**
    * Allow users to pull changes from upstream when matching branches are
    * locked.
    *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nilable<boolean>?} fork_syncing
-   */
-  fork_syncing;
-  /**
-   * Prevent merge commits from being pushed to matching branches.
+   * @default null
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} linear_history
+   * @member {Nullable<boolean>?} fork_syncing
+   */
+  fork_syncing;
+  /**
+   * Prevent merge commits from being pushed.
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<boolean>?} linear_history
    */
   linear_history;
   /**
    * Mark matching branches as read-only.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} lock_branch
+   * @member {Nullable<boolean>?} lock_branch
    */
   lock_branch;
   /**
@@ -90768,21 +90751,25 @@ var BranchProtectionDTO = class {
    *
    * @see {@linkcode PullRequestProtection}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<PullRequestProtection>?} pull_requests
+   * @member {Nullable<PullRequestProtection>?} pull_requests
    */
   pull_requests;
   /**
-   * Users, teams, and apps allowed to push to matching branches.
+   * Users, teams, and apps allowed to push.
    *
    * @see {@linkcode BranchActors}
+   *
+   * @default null
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<BranchActors>?} restrictions
+   * @member {Nullable<BranchActors>?} restrictions
    */
   restrictions;
   /**
@@ -90790,10 +90777,12 @@ var BranchProtectionDTO = class {
    *
    * @see {@linkcode StatusChecks}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<StatusChecks>?} status_checks
+   * @member {Nullable<StatusChecks>?} status_checks
    */
   status_checks;
   /**
@@ -90802,20 +90791,20 @@ var BranchProtectionDTO = class {
    * @param {BranchProtectionDTO} [data={}] - Branch protection data
    */
   constructor({
-    commit_signatures,
-    conversation_resolution,
-    creations_blocked,
-    deletions,
-    deployments,
-    enforce_admins,
-    force_pushers,
-    force_pushes,
-    fork_syncing,
-    linear_history,
-    lock_branch,
-    pull_requests,
-    restrictions,
-    status_checks
+    commit_signatures = null,
+    conversation_resolution = null,
+    creations_blocked = null,
+    deletions = null,
+    deployments = null,
+    enforce_admins = null,
+    force_pushers = null,
+    force_pushes = null,
+    fork_syncing = null,
+    linear_history = null,
+    lock_branch = null,
+    pull_requests = null,
+    restrictions = null,
+    status_checks = null
   } = {}) {
     this.commit_signatures = commit_signatures;
     this.conversation_resolution = conversation_resolution;
@@ -90840,6 +90829,8 @@ var CreateBranchProtectionCommand = class extends branch_protection_dto_default 
   /**
    * Glob-like pattern used to determine protected branches.
    *
+   * @see {@linkcode BranchProtection.pattern}
+   *
    * @example
    *  'main'
    * @example
@@ -90848,7 +90839,7 @@ var CreateBranchProtectionCommand = class extends branch_protection_dto_default 
    * @public
    * @readonly
    * @instance
-   * @member {string} branch
+   * @member {BranchProtection['pattern']} branch
    */
   branch;
   /**
@@ -94057,10 +94048,12 @@ var UpdateBranchProtectionCommand = class extends branch_protection_dto_default 
   /**
    * Node ID of branch protection rule to update.
    *
+   * @see {@linkcode BranchProtection.id}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} id
+   * @member {BranchProtection['id']} id
    */
   id;
   /**
@@ -94140,6 +94133,7 @@ var CreateBranchProtectionHandler = class CreateBranchProtectionHandler2 {
   /**
    * Execute a branch protection rule creation command.
    *
+   * @see {@linkcode BranchProtection}
    * @see {@linkcode CreateBranchProtectionCommand}
    *
    * @public
@@ -94174,10 +94168,12 @@ var DeleteBranchProtectionCommand = class {
   /**
    * Node ID of branch protection rule to delete.
    *
+   * @see {@linkcode BranchProtection.id}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} id
+   * @member {BranchProtection['id']} id
    */
   id;
   /**
@@ -94563,9 +94559,11 @@ var TeamQuery = class extends organization_query_default {
   /**
    * Team slug.
    *
+   * @see {@linkcode Team.slug}
+   *
    * @public
    * @instance
-   * @member {string} team
+   * @member {Team['slug']} team
    */
   team;
   /**
@@ -94679,9 +94677,11 @@ var TeamsQuery = class extends organization_query_default {
   /**
    * Team slugs.
    *
+   * @see {@linkcode Team.slug}
+   *
    * @public
    * @instance
-   * @member {string[]} teams
+   * @member {Team['slug'][]} teams
    */
   teams;
   /**
@@ -94757,9 +94757,11 @@ var UserQuery = class {
   /**
    * User login.
    *
+   * @see {@linkcode User.login}
+   *
    * @public
    * @instance
-   * @member {string} login
+   * @member {User['login']} login
    */
   login;
   /**
@@ -94854,11 +94856,13 @@ var UsersQuery = class {
   /**
    * User logins.
    *
+   * @see {@linkcode User.login}
+   *
    * @default []
    *
    * @public
    * @instance
-   * @member {string[]} users
+   * @member {User['login'][]} users
    */
   users;
   /**
@@ -94952,7 +94956,7 @@ var UpdateBranchProtectionHandler = class UpdateBranchProtectionHandler2 {
   /**
    * GraphQL mutation.
    *
-   * @see https://docs.github.com/graphql/reference/mutations#createbranchprotectionrule
+   * @see https://docs.github.com/graphql/reference/mutations#updatebranchprotectionrule
    *
    * @protected
    * @readonly
@@ -95013,6 +95017,7 @@ var UpdateBranchProtectionHandler = class UpdateBranchProtectionHandler2 {
   /**
    * Execute a branch protection rule update command.
    *
+   * @see {@linkcode BranchProtection}
    * @see {@linkcode UpdateBranchProtectionCommand}
    *
    * @public
@@ -95176,7 +95181,7 @@ var schema_default = {
             ]
           },
           conversation_resolution: {
-            description: "require all conversations on code to be resolved before a pull request can be merged into matching branches",
+            description: "require all conversations on code to be resolved before a pull request can be merged",
             type: [
               "boolean",
               "null"
@@ -95234,7 +95239,7 @@ var schema_default = {
             ]
           },
           force_pushers: {
-            description: "users, teams, and apps allowed to force push to matching branches",
+            description: "users, teams, and apps allowed to force push",
             oneOf: [
               {
                 $ref: "#/$defs/BranchActors"
@@ -95245,7 +95250,7 @@ var schema_default = {
             ]
           },
           force_pushes: {
-            description: "allow force pushes to matching branches",
+            description: "allow force pushes",
             type: [
               "boolean",
               "null"
@@ -95259,7 +95264,7 @@ var schema_default = {
             ]
           },
           linear_history: {
-            description: "prevent merge commits from being pushed to matching branches",
+            description: "prevent merge commits from being pushed",
             type: [
               "boolean",
               "null"
@@ -95336,7 +95341,7 @@ var schema_default = {
             ]
           },
           restrictions: {
-            description: "users, teams, and apps allowed to push to matching branches",
+            description: "users, teams, and apps allowed to push",
             oneOf: [
               {
                 $ref: "#/$defs/BranchActors"
@@ -95458,7 +95463,8 @@ var schema_default = {
             ]
           },
           wait_timer: {
-            description: "amount of time (in minutes) to delay a deployment",
+            description: "amount of time (in minutes) to delay deployments",
+            maximum: 43200,
             minimum: 0,
             type: [
               "integer",
@@ -96599,8 +96605,8 @@ var isString3 = (value) => typeof value == "string";
 var is_string_default3 = isString3;
 
 // node_modules/@flex-development/mlly/node_modules/@flex-development/tutils/dist/utils/trim.mjs
-var trim2 = (str) => str.trim();
-var trim_default2 = trim2;
+var trim = (str) => str.trim();
+var trim_default = trim;
 
 // node_modules/@flex-development/mlly/node_modules/@flex-development/tutils/dist/utils/is-object-curly.mjs
 var isObjectCurly = (value) => !is_array_default3(value) && is_object_like_default2(value);
@@ -96756,12 +96762,12 @@ var isEmptyString = (value) => equal_default3("", value);
 var is_empty_string_default = isEmptyString;
 
 // node_modules/@flex-development/pathe/node_modules/@flex-development/tutils/dist/utils/trim.mjs
-var trim3 = (str) => str.trim();
-var trim_default3 = trim3;
+var trim2 = (str) => str.trim();
+var trim_default2 = trim2;
 
 // node_modules/@flex-development/pathe/node_modules/@flex-development/tutils/dist/utils/is-nan.mjs
-var isNaN3 = (value) => equal_default3(Number.NaN, value);
-var is_nan_default2 = isNaN3;
+var isNaN2 = (value) => equal_default3(Number.NaN, value);
+var is_nan_default = isNaN2;
 
 // node_modules/@flex-development/pathe/node_modules/@flex-development/tutils/dist/utils/dot.mjs
 var DOT2 = ".";
@@ -96786,7 +96792,7 @@ var is_false_default = isFalse;
 
 // node_modules/@flex-development/pathe/node_modules/@flex-development/tutils/dist/utils/is-falsy.mjs
 var isFalsy2 = (value) => {
-  return is_empty_value_default(value) || is_false_default(value) || is_nan_default2(value) || includes_default3([0, 0n], value);
+  return is_empty_value_default(value) || is_false_default(value) || is_nan_default(value) || includes_default3([0, 0n], value);
 };
 var is_falsy_default2 = isFalsy2;
 
@@ -96883,7 +96889,7 @@ var extname_default = extname;
 // node_modules/@flex-development/pathe/dist/internal/normalize-string.mjs
 var normalizeString = (path, allow_above_root = !is_absolute_default(path)) => {
   validate_string_default2(path, "path");
-  if (is_empty_string_default(trim_default3(path)))
+  if (is_empty_string_default(trim_default2(path)))
     return path;
   path = ensure_posix_default(path);
   if (!includes_default3(path, dot_default2) && !includes_default3(path, sep_default))
@@ -97065,7 +97071,7 @@ var parseDataURL = (url) => {
   const [, , mime = "", base64, data = ""] = match;
   return {
     base64: !!base64,
-    data: trim_default2(data),
+    data: trim_default(data),
     href: url.href,
     mime,
     pathname: url.pathname,
@@ -98353,19 +98359,10 @@ ConfigModule = ConfigModule_1 = __decorate18([
 ], ConfigModule);
 var config_module_default = ConfigModule;
 
-// src/subdomains/environments/commands/create.command.ts
-var CreateEnvironmentCommand = class {
+// src/subdomains/environments/dto/environment.dto.ts
+var EnvironmentDTO = class {
   /**
-   * Environment name.
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {string} name
-   */
-  name;
-  /**
-   * Prevent users from approving their own deployments to this environment.
+   * Prevent users from approving their own deployments.
    *
    * @default null
    *
@@ -98376,7 +98373,7 @@ var CreateEnvironmentCommand = class {
    */
   prevent_self_review;
   /**
-   * Users and teams that can approve deployments to this environment.
+   * Users and teams that can approve deployments.
    *
    * @see {@linkcode Reviewers}
    *
@@ -98389,8 +98386,7 @@ var CreateEnvironmentCommand = class {
    */
   reviewers;
   /**
-   * Amount of time (in minutes) to delay a deployment to this environment after
-   * a deployment is initially triggered.
+   * Amount of time (in minutes) to delay deployments.
    *
    * The time must be an integer between `0` and `43_200` (`30` days).
    *
@@ -98403,15 +98399,43 @@ var CreateEnvironmentCommand = class {
    */
   wait_timer;
   /**
+   * Create a new environment data transfer object.
+   *
+   * @param {EnvironmentDTO} data - Environment data
+   */
+  constructor({
+    prevent_self_review = null,
+    reviewers = null,
+    wait_timer = null
+  }) {
+    this.prevent_self_review = prevent_self_review;
+    this.reviewers = reviewers;
+    this.wait_timer = wait_timer;
+  }
+};
+var environment_dto_default = EnvironmentDTO;
+
+// src/subdomains/environments/commands/create.command.ts
+var CreateEnvironmentCommand = class extends environment_dto_default {
+  /**
+   * Environment name.
+   *
+   * @see {@linkcode Environment.name}
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Environment['name']} name
+   */
+  name;
+  /**
    * Create a new environment creation command.
    *
    * @param {CreateEnvironmentCommand} params - Command parameters
    */
   constructor(params) {
+    super(params);
     this.name = params.name;
-    this.prevent_self_review = get_default(params, "prevent_self_review", null);
-    this.reviewers = get_default(params, "reviewers", null);
-    this.wait_timer = get_default(params, "wait_timer", null);
   }
 };
 var create_command_default2 = CreateEnvironmentCommand;
@@ -98421,64 +98445,26 @@ var import_config8 = __toESM(require_config2(), 1);
 var import_cqrs12 = __toESM(require_cqrs(), 1);
 
 // src/subdomains/environments/commands/update.command.ts
-var UpdateEnvironmentCommand = class {
+var UpdateEnvironmentCommand = class extends environment_dto_default {
   /**
    * Node ID of environment to update.
    *
+   * @see {@linkcode Environment.id}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} id
+   * @member {Environment["id"]} id
    */
   id;
-  /**
-   * Prevent users from approving their own deployments to this environment.
-   *
-   * @default null
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nullable<boolean>?} prevent_self_review
-   */
-  prevent_self_review;
-  /**
-   * Users and teams that can approve deployments to this environment.
-   *
-   * @see {@linkcode Reviewers}
-   *
-   * @default null
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nullable<Partial<Reviewers>>?} reviewers
-   */
-  reviewers;
-  /**
-   * Amount of time (in minutes) to delay a deployment to this environment after
-   * a deployment is initially triggered.
-   *
-   * The time must be an integer between `0` and `43_200` (`30` days).
-   *
-   * @default null
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nullable<number>?} wait_timer
-   */
-  wait_timer;
   /**
    * Create a new environment update command.
    *
    * @param {UpdateEnvironmentCommand} params - Command parameters
    */
   constructor(params) {
+    super(params);
     this.id = params.id;
-    this.prevent_self_review = get_default(params, "prevent_self_review", null);
-    this.reviewers = get_default(params, "reviewers", null);
-    this.wait_timer = get_default(params, "wait_timer", null);
   }
 };
 var update_command_default2 = UpdateEnvironmentCommand;
@@ -98581,10 +98567,12 @@ var DeleteEnvironmentCommand = class {
   /**
    * Node ID of environment to delete.
    *
+   * @see {@linkcode Environment.id}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} id
+   * @member {Environment["id"]} id
    */
   id;
   /**
@@ -98990,8 +98978,32 @@ EnvironmentsModule = __decorate24([
 ], EnvironmentsModule);
 var environments_module_default = EnvironmentsModule;
 
+// src/subdomains/labels/dto/label.dto.ts
+var LabelDTO = class {
+  /**
+   * A brief description of the label, such as its purpose.
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<string>?} description
+   */
+  description;
+  /**
+   * Create a new label data transfer object.
+   *
+   * @param {LabelDTO} data - Label data
+   */
+  constructor({ description = null }) {
+    this.description = description;
+  }
+};
+var label_dto_default = LabelDTO;
+
 // src/subdomains/labels/commands/create.command.ts
-var CreateLabelCommand = class {
+var CreateLabelCommand = class extends label_dto_default {
   /**
    * A `6` character hex code, without the leading #, identifying the updated
    * color of the label.
@@ -99003,21 +99015,14 @@ var CreateLabelCommand = class {
    */
   color;
   /**
-   * A brief description of the label, such as its purpose.
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nullable<string>?} description
-   */
-  description;
-  /**
    * Label name.
    *
+   * @see {@linkcode Label.name}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} name
+   * @member {Label['name']} name
    */
   name;
   /**
@@ -99026,8 +99031,8 @@ var CreateLabelCommand = class {
    * @param {CreateLabelCommand} params - Command parameters
    */
   constructor(params) {
+    super(params);
     this.color = params.color.replace(/^#/, "");
-    this.description = get_default(params, "description", null);
     this.name = params.name;
   }
 };
@@ -99083,8 +99088,6 @@ var CreateLabelHandler = class CreateLabelHandler2 {
       mutation CreateLabel($input: CreateLabelInput!) {
         payload: createLabel(input: $input) {
           label {
-            color
-            description
             id
             name
            }
@@ -99127,10 +99130,12 @@ var DeleteLabelCommand = class {
   /**
    * Node ID of label to delete.
    *
+   * @see {@linkcode Label.id}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} id
+   * @member {Label['id']} id
    */
   id;
   /**
@@ -99302,8 +99307,6 @@ var LabelsHandler = class LabelsHandler2 {
             orderBy: { direction: ASC, field: NAME }
           ) {
             nodes {
-              color
-              description
               id
               name
             }
@@ -99344,7 +99347,7 @@ var import_config14 = __toESM(require_config2(), 1);
 var import_cqrs20 = __toESM(require_cqrs(), 1);
 
 // src/subdomains/labels/commands/update.command.ts
-var UpdateLabelCommand = class {
+var UpdateLabelCommand = class extends label_dto_default {
   /**
    * A `6` character hex code, without the leading #, identifying the updated
    * color of the label.
@@ -99358,23 +99361,14 @@ var UpdateLabelCommand = class {
    */
   color;
   /**
-   * A brief description of the label, such as its purpose.
-   *
-   * @default null
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nullable<string>?} description
-   */
-  description;
-  /**
    * Node ID of label to update.
    *
+   * @see {@linkcode Label.id}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} id
+   * @member {Label['id']} id
    */
   id;
   /**
@@ -99382,11 +99376,11 @@ var UpdateLabelCommand = class {
    *
    * @param {UpdateLabelCommand} params - Command parameters
    */
-  constructor(params) {
-    this.color = get_default(params, "color", null);
-    this.description = get_default(params, "description", null);
-    this.id = params.id;
+  constructor({ color = null, id, ...rest }) {
+    super(rest);
+    this.color = color;
     this.color && (this.color = this.color.replace(/^#/, ""));
+    this.id = id;
   }
 };
 var update_command_default3 = UpdateLabelCommand;
@@ -99503,8 +99497,6 @@ var UpdateLabelHandler = class UpdateLabelHandler2 {
       mutation UpdateLabel($input: UpdateLabelInput!) {
         payload: updateLabel(input: $input) {
           label {
-            color
-            description
             id
             name
            }
@@ -99570,28 +99562,34 @@ var ManagePullRequestsCommand = class {
   /**
    * Auto-merge enabled?
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} auto_merge
+   * @member {Nullable<boolean>?} auto_merge
    */
   auto_merge;
   /**
    * Automatically delete head branches when pull requests are merged.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} delete_branch_on_merge
+   * @member {Nullable<boolean>?} delete_branch_on_merge
    */
   delete_branch_on_merge;
   /**
    * Allow merging pull requests with merge commits.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} merge
+   * @member {Nullable<boolean>?} merge
    */
   merge;
   /**
@@ -99599,10 +99597,12 @@ var ManagePullRequestsCommand = class {
    *
    * @see {@linkcode MergeMessage}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<MergeMessage>?} merge_message
+   * @member {Nullable<MergeMessage>?} merge_message
    */
   merge_message;
   /**
@@ -99610,28 +99610,34 @@ var ManagePullRequestsCommand = class {
    *
    * @see {@linkcode MergeTitle}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<MergeTitle>?} merge_title
+   * @member {Nullable<MergeTitle>?} merge_title
    */
   merge_title;
   /**
    * Allow rebase-merging pull requests.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} rebase
+   * @member {Nullable<boolean>?} rebase
    */
   rebase;
   /**
    * Allow squash-merging pull requests.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} squash
+   * @member {Nullable<boolean>?} squash
    */
   squash;
   /**
@@ -99639,10 +99645,12 @@ var ManagePullRequestsCommand = class {
    *
    * @see {@linkcode SquashMessage}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<SquashMessage>?} squash_message
+   * @member {Nullable<SquashMessage>?} squash_message
    */
   squash_message;
   /**
@@ -99650,20 +99658,24 @@ var ManagePullRequestsCommand = class {
    *
    * @see {@linkcode SquashTitle}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<SquashTitle>?} squash_title
+   * @member {Nullable<SquashTitle>?} squash_title
    */
   squash_title;
   /**
    * Always allow a pull request head branch that is behind its base branch to
    * be updated even if not required to be up to date before merging.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} update_branch
+   * @member {Nullable<boolean>?} update_branch
    */
   update_branch;
   /**
@@ -99671,17 +99683,28 @@ var ManagePullRequestsCommand = class {
    *
    * @param {ManagePullRequestsCommand} params - Command parameters
    */
-  constructor(params) {
-    this.auto_merge = params.auto_merge;
-    this.delete_branch_on_merge = params.delete_branch_on_merge;
-    this.merge = params.merge;
-    this.merge_message = params.merge_message;
-    this.merge_title = params.merge_title;
-    this.rebase = params.rebase;
-    this.squash = params.squash;
-    this.squash_message = params.squash_message;
-    this.squash_title = params.squash_title;
-    this.update_branch = params.update_branch;
+  constructor({
+    auto_merge = null,
+    delete_branch_on_merge = null,
+    merge: merge3 = null,
+    merge_message = null,
+    merge_title = null,
+    rebase = null,
+    squash = null,
+    squash_message = null,
+    squash_title = null,
+    update_branch = null
+  }) {
+    this.auto_merge = auto_merge;
+    this.delete_branch_on_merge = delete_branch_on_merge;
+    this.merge = merge3;
+    this.merge_message = merge_message;
+    this.merge_title = merge_title;
+    this.rebase = rebase;
+    this.squash = squash;
+    this.squash_message = squash_message;
+    this.squash_title = squash_title;
+    this.update_branch = update_branch;
   }
 };
 var manage_command_default4 = ManagePullRequestsCommand;

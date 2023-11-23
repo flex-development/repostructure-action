@@ -3,6 +3,8 @@
  * @module repostructure/environments/commands/DeleteEnvironmentCommand
  */
 
+import type { Environment } from '#src/environments/types'
+
 /**
  * Environment deletion command.
  *
@@ -14,12 +16,14 @@ class DeleteEnvironmentCommand {
   /**
    * Node ID of environment to delete.
    *
+   * @see {@linkcode Environment.id}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} id
+   * @member {Environment["id"]} id
    */
-  public readonly id: string
+  public readonly id: Environment['id']
 
   /**
    * Create a new environment deletion command.

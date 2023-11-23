@@ -22,7 +22,7 @@ import UpdateBranchProtectionCommand from './update.command'
  * @see {@linkcode ManageListHandler}
  *
  * @class
- * @extends {ManageListHandler<BranchProtection, BranchProtection>}
+ * @extends {ManageListHandler<ManageBranchProtectionsCommand,BranchProtection>}
  */
 @CommandHandler(ManageBranchProtectionsCommand)
 class ManageBranchProtectionsHandler

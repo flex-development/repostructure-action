@@ -118,9 +118,9 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.fixAll.sortJSON": false,
-    "source.organizeImports": true
+    "source.fixAll": "always",
+    "source.fixAll.sortJSON": "never",
+    "source.organizeImports": "always"
   },
   "editor.defaultFormatter": "dprint.dprint",
   "editor.detectIndentation": false,

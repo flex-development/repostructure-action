@@ -14,7 +14,7 @@ type DeploymentProtection = {
    * Environments that must be successfully deployed before branches can be
    * merged into a protected branch.
    *
-   * @see {@linkcode Environment}
+   * @see {@linkcode Environment.name}
    */
   environments: Environment['name'][]
 

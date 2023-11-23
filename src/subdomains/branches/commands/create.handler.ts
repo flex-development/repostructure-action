@@ -17,6 +17,7 @@ import UpdateBranchProtectionCommand from './update.command'
 /**
  * Branch protection rule creation command handler.
  *
+ * @see {@linkcode BranchProtection}
  * @see {@linkcode CreateBranchProtectionCommand}
  *
  * @class
@@ -71,6 +72,7 @@ class CreateBranchProtectionHandler
   /**
    * Execute a branch protection rule creation command.
    *
+   * @see {@linkcode BranchProtection}
    * @see {@linkcode CreateBranchProtectionCommand}
    *
    * @public

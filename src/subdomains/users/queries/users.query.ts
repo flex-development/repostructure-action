@@ -3,6 +3,8 @@
  * @module repostructure/users/queries/UsersQuery
  */
 
+import type { User } from '#src/users/types'
+
 /**
  * GitHub users query.
  *
@@ -12,13 +14,15 @@ class UsersQuery {
   /**
    * User logins.
    *
+   * @see {@linkcode User.login}
+   *
    * @default []
    *
    * @public
    * @instance
-   * @member {string[]} users
+   * @member {User['login'][]} users
    */
-  public users: string[]
+  public users: User['login'][]
 
   /**
    * Create a new GitHub users query.

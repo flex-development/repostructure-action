@@ -49,8 +49,6 @@ class ManagePullRequestsHandler
    * @return {Promise<void>} Nothing when complete
    */
   public async execute(command: ManagePullRequestsCommand): Promise<void> {
-    type Params = Endpoints['PATCH /repos/{owner}/{repo}']['parameters']
-
     const {
       auto_merge,
       delete_branch_on_merge,
@@ -64,20 +62,22 @@ class ManagePullRequestsHandler
       update_branch
     } = shake<ManagePullRequestsCommand, NIL>(command, isNIL)
 
-    return void await this.octokit.rest.repos.update(<Params>{
-      allow_auto_merge: auto_merge,
-      allow_merge_commit: merge,
-      allow_rebase_merge: rebase,
-      allow_squash_merge: squash,
-      allow_update_branch: update_branch,
-      delete_branch_on_merge,
-      merge_message,
-      merge_title,
-      owner: this.config.get<string>('owner'),
-      repo: this.config.get<string>('repo'),
-      squash_merge_message: squash_message,
-      squash_merge_title: squash_title
-    })
+    return void await this.octokit.rest.repos.update(
+      <Endpoints['PATCH /repos/{owner}/{repo}']['parameters']>{
+        allow_auto_merge: auto_merge,
+        allow_merge_commit: merge,
+        allow_rebase_merge: rebase,
+        allow_squash_merge: squash,
+        allow_update_branch: update_branch,
+        delete_branch_on_merge,
+        merge_message,
+        merge_title,
+        owner: this.config.get<string>('owner'),
+        repo: this.config.get<string>('repo'),
+        squash_merge_message: squash_message,
+        squash_merge_title: squash_title
+      }
+    )
   }
 }
 

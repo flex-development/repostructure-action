@@ -3,6 +3,8 @@
  * @module repostructure/branches/commands/DeleteBranchProtectionCommand
  */
 
+import type { BranchProtection } from '#src/branches/types'
+
 /**
  * Branch protection rule deletion command.
  *
@@ -14,12 +16,14 @@ class DeleteBranchProtectionCommand {
   /**
    * Node ID of branch protection rule to delete.
    *
+   * @see {@linkcode BranchProtection.id}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} id
+   * @member {BranchProtection['id']} id
    */
-  public readonly id: string
+  public readonly id: BranchProtection['id']
 
   /**
    * Create a new branch protection rule deletion command.

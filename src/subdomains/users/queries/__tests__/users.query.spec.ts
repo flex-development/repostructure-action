@@ -14,7 +14,7 @@ describe('unit:users/queries/UsersQuery', () => {
 
     beforeAll(() => {
       users = [get(api.graphql.users, '0.login')]
-      subject = new TestSubject({ users: users })
+      subject = new TestSubject({ users })
     })
 
     it('should set #users', () => {

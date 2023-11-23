@@ -4,6 +4,7 @@
  */
 
 import type { BranchProtectionDTO } from '#src/branches/dto'
+import type { BranchProtection } from '#src/branches/types'
 import type { ReadonlyKeys } from '@flex-development/tutils'
 import type TestSubject from '../update.command'
 
@@ -16,7 +17,9 @@ describe('unit-d:branches/commands/UpdateBranchProtectionCommand', () => {
     expectTypeOf<keyof TestSubject>().toEqualTypeOf<ReadonlyKeys<TestSubject>>()
   })
 
-  it('should match [id: string]', () => {
-    expectTypeOf<TestSubject>().toHaveProperty('id').toEqualTypeOf<string>()
+  it('should match [id: BranchProtection["id"]]', () => {
+    expectTypeOf<TestSubject>()
+      .toHaveProperty('id')
+      .toEqualTypeOf<BranchProtection['id']>()
   })
 })

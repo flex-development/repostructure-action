@@ -7,8 +7,8 @@ import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import { LabelsHandler } from '#src/labels/queries'
-import type { Label } from '#src/labels/types'
 import type { Spy } from '#tests/interfaces'
+import { select } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { CqrsModule } from '@nestjs/cqrs'
 import { Test, type TestingModule } from '@nestjs/testing'
@@ -53,26 +53,29 @@ describe('functional:labels/commands/ManageLabelsHandler', () => {
     let create: Spy<CreateLabelHandler['execute']>
     let incoming: CreateLabelCommand[]
     let list: Spy<LabelsHandler['execute']>
-    let nodes: Label[]
+    let nodes: typeof api['graphql']['repository']['labels']['nodes']
     let remove: Spy<DeleteLabelHandler['execute']>
     let update: Spy<UpdateLabelHandler['execute']>
 
     beforeAll(() => {
       incoming = [
         {
-          color: faker.color.rgb({ casing: 'lower', prefix: '' }),
+          color: faker.color.rgb({ casing: 'lower' }),
           description: 'repository labels',
           name: 'scope:labels'
         },
         {
-          color: faker.color.rgb({ casing: 'lower', prefix: '' }),
+          color: faker.color.rgb({ casing: 'lower' }),
           description: 'octokit integration',
           name: 'scope:octokit'
         }
       ]
 
       nodes = api.graphql.repository.labels.nodes
-      current = nodes.slice(0, 10)
+      current = select(nodes.slice(0, 10), null, node => ({
+        color: faker.color.rgb(),
+        name: node.name
+      }))
     })
 
     beforeEach(() => {

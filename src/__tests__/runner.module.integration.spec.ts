@@ -31,6 +31,7 @@ import {
   clone,
   constant,
   get,
+  select,
   type Constructor
 } from '@flex-development/tutils'
 import { Test, type TestingModuleBuilder } from '@nestjs/testing'
@@ -133,10 +134,12 @@ describe('integration:RunnerModule', () => {
         }
       ],
       labels: [
-        ...api.graphql.repository.labels.nodes.slice(5),
+        ...select(api.graphql.repository.labels.nodes.slice(5), null, node => ({
+          color: faker.color.rgb({ casing: 'lower', prefix: '' }),
+          name: node.name
+        })),
         {
           color: faker.color.rgb({ casing: 'lower', prefix: '' }),
-          description: 'octokit integration',
           name: 'scope:octokit'
         }
       ],

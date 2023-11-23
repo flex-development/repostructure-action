@@ -40,6 +40,7 @@ import UpdateBranchProtectionCommand from './update.command'
 /**
  * Branch protection rule update command handler.
  *
+ * @see {@linkcode BranchProtection}
  * @see {@linkcode UpdateBranchProtectionCommand}
  *
  * @class
@@ -51,7 +52,7 @@ class UpdateBranchProtectionHandler
   /**
    * GraphQL mutation.
    *
-   * @see https://docs.github.com/graphql/reference/mutations#createbranchprotectionrule
+   * @see https://docs.github.com/graphql/reference/mutations#updatebranchprotectionrule
    *
    * @protected
    * @readonly
@@ -130,6 +131,7 @@ class UpdateBranchProtectionHandler
   /**
    * Execute a branch protection rule update command.
    *
+   * @see {@linkcode BranchProtection}
    * @see {@linkcode UpdateBranchProtectionCommand}
    *
    * @public

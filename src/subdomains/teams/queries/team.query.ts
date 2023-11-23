@@ -4,6 +4,7 @@
  */
 
 import { OrganizationQuery } from '#src/queries'
+import type { Team } from '#src/teams/types'
 
 /**
  * Team query.
@@ -15,11 +16,13 @@ class TeamQuery extends OrganizationQuery {
   /**
    * Team slug.
    *
+   * @see {@linkcode Team.slug}
+   *
    * @public
    * @instance
-   * @member {string} team
+   * @member {Team['slug']} team
    */
-  public team: string
+  public team: Team['slug']
 
   /**
    * Create a new team query.

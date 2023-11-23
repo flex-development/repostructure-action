@@ -17,61 +17,61 @@ describe('unit-d:pull-requests/commands/ManagePullRequestsCommand', () => {
     expectTypeOf<keyof TestSubject>().toEqualTypeOf<ReadonlyKeys<TestSubject>>()
   })
 
-  it('should match [auto_merge?: Nilable<boolean>]', () => {
+  it('should match [auto_merge?: Nullable<boolean>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('auto_merge')
       .toEqualTypeOf<Nilable<boolean>>()
   })
 
-  it('should match [delete_branch_on_merge?: Nilable<boolean>]', () => {
+  it('should match [delete_branch_on_merge?: Nullable<boolean>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('delete_branch_on_merge')
       .toEqualTypeOf<Nilable<boolean>>()
   })
 
-  it('should match [merge?: Nilable<boolean>]', () => {
+  it('should match [merge?: Nullable<boolean>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('merge')
       .toEqualTypeOf<Nilable<boolean>>()
   })
 
-  it('should match [merge_message?: Nilable<MergeMessage>]', () => {
+  it('should match [merge_message?: Nullable<MergeMessage>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('merge_message')
       .toEqualTypeOf<Nilable<MergeMessage>>()
   })
 
-  it('should match [merge_title?: Nilable<MergeTitle>]', () => {
+  it('should match [merge_title?: Nullable<MergeTitle>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('merge_title')
       .toEqualTypeOf<Nilable<MergeTitle>>()
   })
 
-  it('should match [rebase?: Nilable<boolean>]', () => {
+  it('should match [rebase?: Nullable<boolean>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('rebase')
       .toEqualTypeOf<Nilable<boolean>>()
   })
 
-  it('should match [squash?: Nilable<boolean>]', () => {
+  it('should match [squash?: Nullable<boolean>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('squash')
       .toEqualTypeOf<Nilable<boolean>>()
   })
 
-  it('should match [squash_message?: Nilable<SquashMessage>]', () => {
+  it('should match [squash_message?: Nullable<SquashMessage>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('squash_message')
       .toEqualTypeOf<Nilable<SquashMessage>>()
   })
 
-  it('should match [squash_title?: Nilable<SquashTitle>]', () => {
+  it('should match [squash_title?: Nullable<SquashTitle>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('squash_title')
       .toEqualTypeOf<Nilable<SquashTitle>>()
   })
 
-  it('should match [update_branch?: Nilable<boolean>]', () => {
+  it('should match [update_branch?: Nullable<boolean>]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('update_branch')
       .toEqualTypeOf<Nilable<boolean>>()

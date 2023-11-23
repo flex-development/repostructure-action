@@ -74,7 +74,7 @@ branches:
       strict: true
   - branch: release/*
     commit_signatures: true
-    conversation_resolution: null
+    conversation_resolution: false
     creations_blocked: true
     deletions: true
     deployments: null
@@ -91,7 +91,7 @@ branches:
     status_checks: null
 environments:
   - name: release
-    prevent_self_review: null
+    prevent_self_review: false
     reviewers: null
     wait_timer: null
 labels:

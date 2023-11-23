@@ -3,6 +3,7 @@
  * @module repostructure/branches/types/StatusCheck
  */
 
+import type { App } from '#src/apps/types'
 import type { Nullable } from '@flex-development/tutils'
 
 /**
@@ -12,9 +13,11 @@ type StatusCheck = {
   /**
    * Slug of GitHub App that must provide check.
    *
+   * @see {@linkcode App.slug}
+   *
    * @default 'github-actions'
    */
-  app?: Nullable<string>
+  app?: Nullable<App['slug']>
 
   /**
    * Status check name.

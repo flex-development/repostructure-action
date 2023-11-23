@@ -4,6 +4,7 @@
  */
 
 import { BranchProtectionDTO } from '#src/branches/dto'
+import type { BranchProtection } from '#src/branches/types'
 
 /**
  * Branch protection rule update command.
@@ -17,12 +18,14 @@ class UpdateBranchProtectionCommand extends BranchProtectionDTO {
   /**
    * Node ID of branch protection rule to update.
    *
+   * @see {@linkcode BranchProtection.id}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} id
+   * @member {BranchProtection['id']} id
    */
-  public readonly id: string
+  public readonly id: BranchProtection['id']
 
   /**
    * Update a new branch protection rule update command.

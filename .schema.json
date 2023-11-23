@@ -71,7 +71,7 @@
             ]
           },
           "conversation_resolution": {
-            "description": "require all conversations on code to be resolved before a pull request can be merged into matching branches",
+            "description": "require all conversations on code to be resolved before a pull request can be merged",
             "type": [
               "boolean",
               "null"
@@ -129,7 +129,7 @@
             ]
           },
           "force_pushers": {
-            "description": "users, teams, and apps allowed to force push to matching branches",
+            "description": "users, teams, and apps allowed to force push",
             "oneOf": [
               {
                 "$ref": "#/$defs/BranchActors"
@@ -140,7 +140,7 @@
             ]
           },
           "force_pushes": {
-            "description": "allow force pushes to matching branches",
+            "description": "allow force pushes",
             "type": [
               "boolean",
               "null"
@@ -154,7 +154,7 @@
             ]
           },
           "linear_history": {
-            "description": "prevent merge commits from being pushed to matching branches",
+            "description": "prevent merge commits from being pushed",
             "type": [
               "boolean",
               "null"
@@ -231,7 +231,7 @@
             ]
           },
           "restrictions": {
-            "description": "users, teams, and apps allowed to push to matching branches",
+            "description": "users, teams, and apps allowed to push",
             "oneOf": [
               {
                 "$ref": "#/$defs/BranchActors"
@@ -353,7 +353,8 @@
             ]
           },
           "wait_timer": {
-            "description": "amount of time (in minutes) to delay a deployment",
+            "description": "amount of time (in minutes) to delay deployments",
+            "maximum": 43200,
             "minimum": 0,
             "type": [
               "integer",

@@ -3,16 +3,18 @@
  * @module repostructure/labels/commands/CreateLabelCommand
  */
 
-import { get, type Nullable } from '@flex-development/tutils'
+import { LabelDTO } from '#src/labels/dto'
+import type { Label } from '#src/labels/types'
 
 /**
  * Label creation command.
  *
- * @see https://docs.github.com/graphql/reference/input-objects#createlabelinput
+ * @see {@linkcode LabelDTO}
  *
  * @class
+ * @extends {LabelDTO}
  */
-class CreateLabelCommand {
+class CreateLabelCommand extends LabelDTO {
   /**
    * A `6` character hex code, without the leading #, identifying the updated
    * color of the label.
@@ -25,24 +27,16 @@ class CreateLabelCommand {
   public readonly color: string
 
   /**
-   * A brief description of the label, such as its purpose.
-   *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nullable<string>?} description
-   */
-  public readonly description?: Nullable<string>
-
-  /**
    * Label name.
    *
+   * @see {@linkcode Label.name}
+   *
    * @public
    * @readonly
    * @instance
-   * @member {string} name
+   * @member {Label['name']} name
    */
-  public readonly name: string
+  public readonly name: Label['name']
 
   /**
    * Create a new label creation command.
@@ -50,8 +44,8 @@ class CreateLabelCommand {
    * @param {CreateLabelCommand} params - Command parameters
    */
   constructor(params: CreateLabelCommand) {
+    super(params)
     this.color = params.color.replace(/^#/, '')
-    this.description = get(params, 'description', null)
     this.name = params.name
   }
 }

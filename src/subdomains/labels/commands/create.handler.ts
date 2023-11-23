@@ -53,8 +53,6 @@ class CreateLabelHandler implements ICommandHandler<CreateLabelCommand, Label> {
       mutation CreateLabel($input: CreateLabelInput!) {
         payload: createLabel(input: $input) {
           label {
-            color
-            description
             id
             name
            }

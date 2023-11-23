@@ -9,7 +9,7 @@ import type {
   PullRequestProtection,
   StatusChecks
 } from '#src/branches/types'
-import type { Nilable } from '@flex-development/tutils'
+import type { Nullable } from '@flex-development/tutils'
 
 /**
  * Branch protection rule data transfer object.
@@ -23,155 +23,183 @@ class BranchProtectionDTO {
   /**
    * Require signed commits.
    *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nilable<boolean>?} commit_signatures
-   */
-  public readonly commit_signatures?: Nilable<boolean>
-
-  /**
-   * Require all conversations on code to be resolved before a pull request can
-   * be merged into matching branches.
+   * @default null
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} conversation_resolution
+   * @member {Nullable<boolean>?} commit_signatures
    */
-  public readonly conversation_resolution?: Nilable<boolean>
+  public readonly commit_signatures?: Nullable<boolean>
+
+  /**
+   * Require all conversations on code to be resolved before a pull request can
+   * be merged.
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<boolean>?} conversation_resolution
+   */
+  public readonly conversation_resolution?: Nullable<boolean>
 
   /**
    * Block pushes that create new matching branches, unless initiated by a user,
    * team, or app with the ability to push.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} creations_blocked
+   * @member {Nullable<boolean>?} creations_blocked
    */
-  public readonly creations_blocked?: Nilable<boolean>
+  public readonly creations_blocked?: Nullable<boolean>
 
   /**
    * Allow matching branches to be deleted.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} deletions
+   * @member {Nullable<boolean>?} deletions
    */
-  public readonly deletions?: Nilable<boolean>
+  public readonly deletions?: Nullable<boolean>
 
   /**
-   * Deployment environment protections.
+   * Require deployments to succeed before branches can be merged.
    *
    * @see {@linkcode DeploymentProtection}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<DeploymentProtection>?} deployments
+   * @member {Nullable<DeploymentProtection>?} deployments
    */
-  public readonly deployments?: Nilable<DeploymentProtection>
+  public readonly deployments?: Nullable<DeploymentProtection>
 
   /**
    * Enforce protection rule for administrators.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} enforce_admins
+   * @member {Nullable<boolean>?} enforce_admins
    */
-  public readonly enforce_admins?: Nilable<boolean>
+  public readonly enforce_admins?: Nullable<boolean>
 
   /**
-   * Users, teams, and apps allowed to force push to matching branches.
+   * Users, teams, and apps allowed to force push.
+   *
+   * @default null
    *
    * @see {@linkcode BranchActors}
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<BranchActors>?} force_pushers
+   * @member {Nullable<BranchActors>?} force_pushers
    */
-  public readonly force_pushers?: Nilable<BranchActors>
+  public readonly force_pushers?: Nullable<BranchActors>
 
   /**
-   * Allow force pushes to matching branches.
+   * Allow force pushes.
+   *
+   * @default null
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} force_pushes
+   * @member {Nullable<boolean>?} force_pushes
    */
-  public readonly force_pushes?: Nilable<boolean>
+  public readonly force_pushes?: Nullable<boolean>
 
   /**
    * Allow users to pull changes from upstream when matching branches are
    * locked.
    *
-   * @public
-   * @readonly
-   * @instance
-   * @member {Nilable<boolean>?} fork_syncing
-   */
-  public readonly fork_syncing?: Nilable<boolean>
-
-  /**
-   * Prevent merge commits from being pushed to matching branches.
+   * @default null
    *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} linear_history
+   * @member {Nullable<boolean>?} fork_syncing
    */
-  public readonly linear_history?: Nilable<boolean>
+  public readonly fork_syncing?: Nullable<boolean>
+
+  /**
+   * Prevent merge commits from being pushed.
+   *
+   * @default null
+   *
+   * @public
+   * @readonly
+   * @instance
+   * @member {Nullable<boolean>?} linear_history
+   */
+  public readonly linear_history?: Nullable<boolean>
 
   /**
    * Mark matching branches as read-only.
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<boolean>?} lock_branch
+   * @member {Nullable<boolean>?} lock_branch
    */
-  public readonly lock_branch?: Nilable<boolean>
+  public readonly lock_branch?: Nullable<boolean>
 
   /**
    * Pull request protections.
    *
    * @see {@linkcode PullRequestProtection}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<PullRequestProtection>?} pull_requests
+   * @member {Nullable<PullRequestProtection>?} pull_requests
    */
-  public readonly pull_requests?: Nilable<PullRequestProtection>
+  public readonly pull_requests?: Nullable<PullRequestProtection>
 
   /**
-   * Users, teams, and apps allowed to push to matching branches.
+   * Users, teams, and apps allowed to push.
    *
    * @see {@linkcode BranchActors}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<BranchActors>?} restrictions
+   * @member {Nullable<BranchActors>?} restrictions
    */
-  public readonly restrictions?: Nilable<BranchActors>
+  public readonly restrictions?: Nullable<BranchActors>
 
   /**
    * Required status checks.
    *
    * @see {@linkcode StatusChecks}
    *
+   * @default null
+   *
    * @public
    * @readonly
    * @instance
-   * @member {Nilable<StatusChecks>?} status_checks
+   * @member {Nullable<StatusChecks>?} status_checks
    */
-  public readonly status_checks?: Nilable<StatusChecks>
+  public readonly status_checks?: Nullable<StatusChecks>
 
   /**
    * Create a new branch protection rule data transfer object.
@@ -179,20 +207,20 @@ class BranchProtectionDTO {
    * @param {BranchProtectionDTO} [data={}] - Branch protection data
    */
   constructor({
-    commit_signatures,
-    conversation_resolution,
-    creations_blocked,
-    deletions,
-    deployments,
-    enforce_admins,
-    force_pushers,
-    force_pushes,
-    fork_syncing,
-    linear_history,
-    lock_branch,
-    pull_requests,
-    restrictions,
-    status_checks
+    commit_signatures = null,
+    conversation_resolution = null,
+    creations_blocked = null,
+    deletions = null,
+    deployments = null,
+    enforce_admins = null,
+    force_pushers = null,
+    force_pushes = null,
+    fork_syncing = null,
+    linear_history = null,
+    lock_branch = null,
+    pull_requests = null,
+    restrictions = null,
+    status_checks = null
   }: BranchProtectionDTO = {}) {
     this.commit_signatures = commit_signatures
     this.conversation_resolution = conversation_resolution

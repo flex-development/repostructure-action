@@ -11,11 +11,11 @@ describe('unit-d:branches/types/BranchProtection', () => {
     expectTypeOf<keyof TestSubject>().toEqualTypeOf<ReadonlyKeys<TestSubject>>()
   })
 
-  it('should match [readonly id: string]', () => {
+  it('should match [id: string]', () => {
     expectTypeOf<TestSubject>().toHaveProperty('id').toEqualTypeOf<string>()
   })
 
-  it('should match [readonly pattern: string]', () => {
+  it('should match [pattern: string]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('pattern')
       .toEqualTypeOf<string>()

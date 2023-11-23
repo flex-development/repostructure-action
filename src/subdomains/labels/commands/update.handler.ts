@@ -53,8 +53,6 @@ class UpdateLabelHandler implements ICommandHandler<UpdateLabelCommand, Label> {
       mutation UpdateLabel($input: UpdateLabelInput!) {
         payload: updateLabel(input: $input) {
           label {
-            color
-            description
             id
             name
            }

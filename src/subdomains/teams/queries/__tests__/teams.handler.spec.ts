@@ -27,22 +27,25 @@ describe('unit:teams/queries/TeamsHandler', () => {
   })
 
   describe('#execute', () => {
-    let org: string
-    let slugs: string[]
     let teams: Team[]
 
     beforeAll(() => {
-      org = api.graphql.organization.login
       teams = api.graphql.organization.teams.nodes
-      slugs = select(teams, null, team => team.slug)
     })
 
     it('should return team objects array', async () => {
       // Arrange
-      const query: TeamsQuery = new TeamsQuery({ org, teams: slugs })
+      const query: TeamsQuery = new TeamsQuery({
+        org: api.graphql.organization.login,
+        teams: select(teams, null, team => team.slug)
+      })
 
-      // Act + Expect
-      expect(await subject.execute(query)).to.have.deep.ordered.members(teams)
+      // Act
+      const result = await subject.execute(query)
+
+      // Expect
+      expect(result).to.be.an('array').that.is.not.empty
+      expect(result).to.have.deep.ordered.members(teams)
     })
   })
 })

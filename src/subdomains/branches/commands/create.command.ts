@@ -4,6 +4,7 @@
  */
 
 import { BranchProtectionDTO } from '#src/branches/dto'
+import type { BranchProtection } from '#src/branches/types'
 
 /**
  * Branch protection rule creation command.
@@ -17,6 +18,8 @@ class CreateBranchProtectionCommand extends BranchProtectionDTO {
   /**
    * Glob-like pattern used to determine protected branches.
    *
+   * @see {@linkcode BranchProtection.pattern}
+   *
    * @example
    *  'main'
    * @example
@@ -25,9 +28,9 @@ class CreateBranchProtectionCommand extends BranchProtectionDTO {
    * @public
    * @readonly
    * @instance
-   * @member {string} branch
+   * @member {BranchProtection['pattern']} branch
    */
-  public readonly branch: string
+  public readonly branch: BranchProtection['pattern']
 
   /**
    * Create a new branch protection rule creation command.

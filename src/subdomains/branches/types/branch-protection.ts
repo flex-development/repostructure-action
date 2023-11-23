@@ -15,7 +15,7 @@ type BranchProtection = {
   readonly id: string
 
   /**
-   * Branch pattern.
+   * Glob-like pattern used to determine protected branches.
    */
   readonly pattern: string
 }

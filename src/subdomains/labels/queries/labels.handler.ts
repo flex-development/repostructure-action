@@ -51,8 +51,6 @@ class LabelsHandler implements IQueryHandler<LabelsQuery, Label[]> {
             orderBy: { direction: ASC, field: NAME }
           ) {
             nodes {
-              color
-              description
               id
               name
             }

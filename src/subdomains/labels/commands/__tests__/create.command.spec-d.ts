@@ -3,26 +3,27 @@
  * @module labels/commands/tests/unit-d/CreateLabelCommand
  */
 
-import type { Nilable, ReadonlyKeys } from '@flex-development/tutils'
+import type { LabelDTO } from '#src/labels/dto'
+import type { Label } from '#src/labels/types'
+import type { ReadonlyKeys } from '@flex-development/tutils'
 import type TestSubject from '../create.command'
 
 describe('unit-d:labels/commands/CreateLabelCommand', () => {
-  type RK = ReadonlyKeys<TestSubject>
+  it('should extend LabelDTO', () => {
+    expectTypeOf<TestSubject>().toMatchTypeOf<LabelDTO>()
+  })
 
-  it('should match [readonly color: string]', () => {
-    expectTypeOf<RK>().extract<'color'>().toBeString()
+  it('should have all readonly keys', () => {
+    expectTypeOf<keyof TestSubject>().toEqualTypeOf<ReadonlyKeys<TestSubject>>()
+  })
+
+  it('should match [color: string]', () => {
     expectTypeOf<TestSubject>().toHaveProperty('color').toEqualTypeOf<string>()
   })
 
-  it('should match [readonly description?: Nullable<string>]', () => {
-    expectTypeOf<RK>().extract<'description'>().toBeString()
+  it('should match [name: Label["name"]]', () => {
     expectTypeOf<TestSubject>()
-      .toHaveProperty('description')
-      .toEqualTypeOf<Nilable<string>>()
-  })
-
-  it('should match [readonly name: string]', () => {
-    expectTypeOf<RK>().extract<'name'>().toBeString()
-    expectTypeOf<TestSubject>().toHaveProperty('name').toEqualTypeOf<string>()
+      .toHaveProperty('name')
+      .toEqualTypeOf<Label['name']>()
   })
 })

@@ -5,7 +5,6 @@
 
 import api from '#fixtures/api.github.json' assert { type: 'json' }
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
-import type { User } from '#src/users/types'
 import { select } from '@flex-development/tutils'
 import { CqrsModule } from '@nestjs/cqrs'
 import { Test, type TestingModule } from '@nestjs/testing'
@@ -27,20 +26,18 @@ describe('unit:users/queries/UsersHandler', () => {
   })
 
   describe('#execute', () => {
-    let users: User[]
-
-    beforeAll(() => {
-      users = api.graphql.users
-    })
-
     it('should return github user objects array', async () => {
       // Arrange
       const query: UsersQuery = new UsersQuery({
-        users: select(users, null, user => user.login)
+        users: select(api.graphql.users, null, user => user.login)
       })
 
-      // Act + Expect
-      expect(await subject.execute(query)).to.have.deep.ordered.members(users)
+      // Act
+      const result = await subject.execute(query)
+
+      // Expect
+      expect(result).to.be.an('array').that.is.not.empty
+      expect(result).to.have.deep.ordered.members(api.graphql.users)
     })
   })
 })

@@ -7,7 +7,7 @@ import api from '#fixtures/api.github.json' assert { type: 'json' }
 import CLIENT_MUTATION_ID from '#fixtures/client-mutation-id.fixture'
 import OctokitProvider from '#fixtures/octokit.provider.fixture'
 import { Octokit } from '#src/octokit'
-import { at, get, type Optional } from '@flex-development/tutils'
+import { get, type Optional } from '@flex-development/tutils'
 import { ConfigService } from '@nestjs/config'
 import { Test, type TestingModule } from '@nestjs/testing'
 import CreateLabelCommand from '../create.command'
@@ -41,7 +41,10 @@ describe('functional:labels/commands/CreateLabelHandler', () => {
     let params: CreateLabelCommand
 
     beforeAll(() => {
-      params = at(api.graphql.repository.labels.nodes, 0)
+      params = {
+        color: faker.color.rgb(),
+        name: get(api.graphql.repository.labels.nodes, '0.name')
+      }
     })
 
     it('should create repository label', async () => {

@@ -7,15 +7,15 @@ import type { ReadonlyKeys } from '@flex-development/tutils'
 import type TestSubject from '../user'
 
 describe('unit-d:users/types/User', () => {
-  type RK = ReadonlyKeys<TestSubject>
+  it('should have all readonly keys', () => {
+    expectTypeOf<keyof TestSubject>().toEqualTypeOf<ReadonlyKeys<TestSubject>>()
+  })
 
-  it('should match [readonly id: string]', () => {
-    expectTypeOf<RK>().extract<'id'>().toBeString()
+  it('should match [id: string]', () => {
     expectTypeOf<TestSubject>().toHaveProperty('id').toEqualTypeOf<string>()
   })
 
-  it('should match [readonly login: string]', () => {
-    expectTypeOf<RK>().extract<'login'>().toBeString()
+  it('should match [login: string]', () => {
     expectTypeOf<TestSubject>().toHaveProperty('login').toEqualTypeOf<string>()
   })
 })

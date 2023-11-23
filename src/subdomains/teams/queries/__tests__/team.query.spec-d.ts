@@ -4,6 +4,7 @@
  */
 
 import type { OrganizationQuery } from '#src/queries'
+import type { Team } from '#src/teams/types'
 import TestSubject from '../team.query'
 
 describe('unit-d:teams/queries/TeamQuery', () => {
@@ -11,7 +12,9 @@ describe('unit-d:teams/queries/TeamQuery', () => {
     expectTypeOf<TestSubject>().toMatchTypeOf<OrganizationQuery>()
   })
 
-  it('should match [team: string]', () => {
-    expectTypeOf<TestSubject>().toHaveProperty('team').toEqualTypeOf<string>()
+  it('should match [team: Team["slug"]]', () => {
+    expectTypeOf<TestSubject>()
+      .toHaveProperty('team')
+      .toEqualTypeOf<Team['slug']>()
   })
 })

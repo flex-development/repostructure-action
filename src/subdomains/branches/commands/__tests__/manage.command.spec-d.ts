@@ -12,7 +12,7 @@ describe('unit-d:branches/commands/ManageBranchProtectionsCommand', () => {
     expectTypeOf<keyof TestSubject>().toEqualTypeOf<ReadonlyKeys<TestSubject>>()
   })
 
-  it('should match [readonly branches: CreateBranchProtectionCommand[]]', () => {
+  it('should match [branches: CreateBranchProtectionCommand[]]', () => {
     expectTypeOf<TestSubject>()
       .toHaveProperty('branches')
       .toEqualTypeOf<CreateBranchProtectionCommand[]>()
