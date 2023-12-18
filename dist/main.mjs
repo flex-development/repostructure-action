@@ -23738,7 +23738,7 @@ var require_configurable_module_builder = __commonJS({
             const providers = [
               {
                 provide: self2.options.optionsInjectionToken,
-                useValue: this.omitExtras(options, self2.extras)
+                useFactory: () => this.omitExtras(options, self2.extras)
               }
             ];
             if (self2.options.alwaysTransient) {
@@ -37617,8 +37617,8 @@ var require_unknown_module_exception = __commonJS({
     exports.UnknownModuleException = void 0;
     var runtime_exception_1 = require_runtime_exception();
     var UnknownModuleException = class extends runtime_exception_1.RuntimeException {
-      constructor() {
-        super("Nest could not select the given module (it does not exist in current context)");
+      constructor(moduleName) {
+        super(`Nest could not select the given module (${moduleName ? `"${moduleName}"` : "it"} does not exist in current context).`);
       }
     };
     exports.UnknownModuleException = UnknownModuleException;
@@ -39302,16 +39302,21 @@ var require_module_token_factory = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ModuleTokenFactory = void 0;
+    var common_1 = require_common();
     var random_string_generator_util_1 = require_random_string_generator_util();
     var shared_utils_1 = require_shared_utils();
     var crypto_1 = __require("crypto");
     var fast_safe_stringify_1 = require_fast_safe_stringify();
+    var perf_hooks_1 = __require("perf_hooks");
     var CLASS_STR = "class ";
     var CLASS_STR_LEN = CLASS_STR.length;
-    var ModuleTokenFactory = class {
+    var ModuleTokenFactory = class _ModuleTokenFactory {
       constructor() {
         this.moduleTokenCache = /* @__PURE__ */ new Map();
         this.moduleIdsCache = /* @__PURE__ */ new WeakMap();
+        this.logger = new common_1.Logger(_ModuleTokenFactory.name, {
+          timestamp: true
+        });
       }
       create(metatype, dynamicModuleMetadata) {
         const moduleId = this.getModuleId(metatype);
@@ -39323,7 +39328,13 @@ var require_module_token_factory = __commonJS({
           module: this.getModuleName(metatype),
           dynamic: dynamicModuleMetadata
         };
+        const start = perf_hooks_1.performance.now();
         const opaqueTokenString = this.getStringifiedOpaqueToken(opaqueToken);
+        const timeSpentInMs = perf_hooks_1.performance.now() - start;
+        if (timeSpentInMs > 10) {
+          const formattedTimeSpent = timeSpentInMs.toFixed(2);
+          this.logger.warn(`The module "${opaqueToken.module}" is taking ${formattedTimeSpent}ms to serialize, this may be caused by larger objects statically assigned to the module. More details: https://github.com/nestjs/nest/issues/12738`);
+        }
         return this.hashString(opaqueTokenString);
       }
       getStaticModuleToken(moduleId, moduleName) {
@@ -41971,7 +41982,7 @@ var require_nest_application_context = __commonJS({
         const token2 = moduleTokenFactory.create(type, dynamicMetadata);
         const selectedModule = modulesContainer.get(token2);
         if (!selectedModule) {
-          throw new exceptions_1.UnknownModuleException();
+          throw new exceptions_1.UnknownModuleException(type.name);
         }
         return new _NestApplicationContext(this.container, this.appOptions, selectedModule, scope);
       }
@@ -43567,15 +43578,15 @@ var require_internal_core_module_factory = __commonJS({
         return internal_core_module_1.InternalCoreModule.register([
           {
             provide: external_context_creator_1.ExternalContextCreator,
-            useValue: external_context_creator_1.ExternalContextCreator.fromContainer(container)
+            useFactory: () => external_context_creator_1.ExternalContextCreator.fromContainer(container)
           },
           {
             provide: modules_container_1.ModulesContainer,
-            useValue: container.getModules()
+            useFactory: () => container.getModules()
           },
           {
             provide: http_adapter_host_1.HttpAdapterHost,
-            useValue: httpAdapterHost
+            useFactory: () => httpAdapterHost
           },
           {
             provide: lazy_module_loader_1.LazyModuleLoader,
@@ -43583,7 +43594,7 @@ var require_internal_core_module_factory = __commonJS({
           },
           {
             provide: serialized_graph_1.SerializedGraph,
-            useValue: container.serializedGraph
+            useFactory: () => container.serializedGraph
           }
         ]);
       }
@@ -44644,7 +44655,7 @@ var require_repl = __commonJS({
     var repl_context_1 = require_repl_context();
     var repl_logger_1 = require_repl_logger();
     var repl_native_commands_1 = require_repl_native_commands();
-    async function repl(module2) {
+    async function repl(module2, replOptions = {}) {
       const app = await nest_factory_1.NestFactory.createApplicationContext(module2, {
         abortOnError: false,
         logger: new repl_logger_1.ReplLogger()
@@ -44655,7 +44666,8 @@ var require_repl = __commonJS({
       const _repl = await Promise.resolve().then(() => __require("repl"));
       const replServer = _repl.start({
         prompt: cli_colors_util_1.clc.green("> "),
-        ignoreUndefined: true
+        ignoreUndefined: true,
+        ...replOptions
       });
       (0, assign_to_object_util_1.assignToObject)(replServer.context, replContext.globalScope);
       (0, repl_native_commands_1.defineDefaultCommandsOnRepl)(replServer);
