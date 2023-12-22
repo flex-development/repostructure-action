@@ -102,7 +102,7 @@
     "ajv": "8.12.0",
     "chai": "5.0.0-alpha.2",
     "cross-env": "7.0.3",
-    "cspell": "7.3.8",
+    "cspell": "8.2.3",
     "dprint": "0.42.5",
     "editorconfig": "2.0.0",
     "esbuild": "0.19.5",
