@@ -1624,11 +1624,11 @@ __metadata:
     "@flex-development/tsconfig-utils": "npm:2.0.2"
     "@flex-development/tutils": "npm:6.0.0-alpha.25"
     "@graphql-eslint/eslint-plugin": "npm:4.0.0-alpha-20230810160036-304c2c0"
-    "@nestjs/common": "npm:10.2.8"
+    "@nestjs/common": "npm:10.3.2"
     "@nestjs/config": "npm:3.1.1"
-    "@nestjs/core": "npm:10.2.8"
-    "@nestjs/cqrs": "npm:10.2.6"
-    "@nestjs/testing": "npm:10.2.8"
+    "@nestjs/core": "npm:10.3.2"
+    "@nestjs/cqrs": "npm:10.2.7"
+    "@nestjs/testing": "npm:10.3.2"
     "@octokit/core": "npm:5.0.1"
     "@octokit/graphql": "npm:7.0.2"
     "@octokit/graphql-schema": "npm:14.40.1"
@@ -2465,9 +2465,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/common@npm:10.2.8":
-  version: 10.2.8
-  resolution: "@nestjs/common@npm:10.2.8"
+"@nestjs/common@npm:10.3.2":
+  version: 10.3.2
+  resolution: "@nestjs/common@npm:10.3.2"
   dependencies:
     iterare: "npm:1.2.1"
     tslib: "npm:2.6.2"
@@ -2475,14 +2475,14 @@ __metadata:
   peerDependencies:
     class-transformer: "*"
     class-validator: "*"
-    reflect-metadata: ^0.1.12
+    reflect-metadata: ^0.1.12 || ^0.2.0
     rxjs: ^7.1.0
   peerDependenciesMeta:
     class-transformer:
       optional: true
     class-validator:
       optional: true
-  checksum: 790ca53c06acea6e3c93f82e5bee8bca0f47ef2aeae41902e41fc68b1d674be7563e6c6ef23070d629935baa6bf6f7b36c668a0205d200cdcfa82c4c1047714a
+  checksum: f5ed8a3a8f10738bfd284e4b08c15701a3a904c6c3cc75967ef944e94abdf3e416b171e104e04bc6008219324dc96921010683d2cccb22f0282fa7711cdcb1f1
   languageName: node
   linkType: hard
 
@@ -2501,9 +2501,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/core@npm:10.2.8":
-  version: 10.2.8
-  resolution: "@nestjs/core@npm:10.2.8"
+"@nestjs/core@npm:10.3.2":
+  version: 10.3.2
+  resolution: "@nestjs/core@npm:10.3.2"
   dependencies:
     "@nuxtjs/opencollective": "npm:0.3.2"
     fast-safe-stringify: "npm:2.1.1"
@@ -2516,7 +2516,7 @@ __metadata:
     "@nestjs/microservices": ^10.0.0
     "@nestjs/platform-express": ^10.0.0
     "@nestjs/websockets": ^10.0.0
-    reflect-metadata: ^0.1.12
+    reflect-metadata: ^0.1.12 || ^0.2.0
     rxjs: ^7.1.0
   peerDependenciesMeta:
     "@nestjs/microservices":
@@ -2525,7 +2525,7 @@ __metadata:
       optional: true
     "@nestjs/websockets":
       optional: true
-  checksum: 800ebadd7c4d3b0267784c6d9cfa784fd11b442fa3aab191399d0c2372c79fa0f9534dc724ade7aad9f62861b02f73d203de238d7633f3ac600d9a00e8525e75
+  checksum: 093102f6a10fc84eb081250b5a8cfb4bb4a56a8ecb7026b3c289dff5e1b094eddcea6516c5ad5b74f96d2f762f90cd41b8b4aaa3aa0d251ed117a1b56dfcf26a
   languageName: node
   linkType: hard
 
@@ -2543,9 +2543,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/testing@npm:10.2.8":
-  version: 10.2.8
-  resolution: "@nestjs/testing@npm:10.2.8"
+"@nestjs/cqrs@npm:10.2.7":
+  version: 10.2.7
+  resolution: "@nestjs/cqrs@npm:10.2.7"
+  dependencies:
+    uuid: "npm:9.0.1"
+  peerDependencies:
+    "@nestjs/common": ^9.0.0 || ^10.0.0
+    "@nestjs/core": ^9.0.0 || ^10.0.0
+    reflect-metadata: ^0.1.13 || ^0.2.0
+    rxjs: ^7.2.0
+  checksum: a3ad7c8ee0794a21fbf60fefacc18caefa14febe3162275521d5fae9048d49ad0237abfa1faa2905d645ba0db29cd2e329ec4ae45ace8ed02e02ae2054a52a8f
+  languageName: node
+  linkType: hard
+
+"@nestjs/testing@npm:10.3.2":
+  version: 10.3.2
+  resolution: "@nestjs/testing@npm:10.3.2"
   dependencies:
     tslib: "npm:2.6.2"
   peerDependencies:
@@ -2558,7 +2572,7 @@ __metadata:
       optional: true
     "@nestjs/platform-express":
       optional: true
-  checksum: ea7e413acdc87635cf1159cd211e6d6bd891c9a220729f77cf3c0fe302eebbb436f480413542852f2aa003266ab86c72f002005415ad3fdafb285664b30f9ed2
+  checksum: cf2589f517ea42209ff4dae8ed87d53d88f6c6b586f7e8a485cbdb937c51c82846c740149024731c8142c62a15d96630350801b6ec6e4eb544a22d0fabf63bb9
   languageName: node
   linkType: hard
 
@@ -10128,6 +10142,15 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 23857699a616d1b48224bc2b8440eae6e57d25463c3a0200e514ba8279dfa3bde7e92ea056122237839cfa32045e57d8f8f4a30e581d720fd72935572853ae2e
+  languageName: node
+  linkType: hard
+
+"uuid@npm:9.0.1":
+  version: 9.0.1
+  resolution: "uuid@npm:9.0.1"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 9d0b6adb72b736e36f2b1b53da0d559125ba3e39d913b6072f6f033e0c87835b414f0836b45bcfaf2bdf698f92297fea1c3cc19b0b258bc182c9c43cc0fab9f2
   languageName: node
   linkType: hard
 
