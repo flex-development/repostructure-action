@@ -19561,8 +19561,8 @@ var require_http_adapter = __commonJS({
       all(...args) {
         return this.instance.all(...args);
       }
-      search(port, hostname, callback) {
-        return this.instance.search(port, hostname, callback);
+      search(...args) {
+        return this.instance.search(...args);
       }
       options(...args) {
         return this.instance.options(...args);
@@ -21052,6 +21052,7 @@ var require_route_paramtypes_enum = __commonJS({
       RouteParamtypes2[RouteParamtypes2["FILES"] = 9] = "FILES";
       RouteParamtypes2[RouteParamtypes2["HOST"] = 10] = "HOST";
       RouteParamtypes2[RouteParamtypes2["IP"] = 11] = "IP";
+      RouteParamtypes2[RouteParamtypes2["RAW_BODY"] = 12] = "RAW_BODY";
     })(RouteParamtypes || (exports.RouteParamtypes = RouteParamtypes = {}));
   }
 });
@@ -21061,7 +21062,7 @@ var require_route_params_decorator = __commonJS({
   "node_modules/@nestjs/common/decorators/http/route-params.decorator.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Res = exports.Req = exports.HostParam = exports.Param = exports.Body = exports.Query = exports.Headers = exports.UploadedFiles = exports.UploadedFile = exports.Session = exports.Ip = exports.Next = exports.Response = exports.Request = exports.assignMetadata = void 0;
+    exports.Res = exports.Req = exports.HostParam = exports.Param = exports.RawBody = exports.Body = exports.Query = exports.Headers = exports.UploadedFiles = exports.UploadedFile = exports.Session = exports.Ip = exports.Next = exports.Response = exports.Request = exports.assignMetadata = void 0;
     var constants_1 = require_constants6();
     var route_paramtypes_enum_1 = require_route_paramtypes_enum();
     var shared_utils_1 = require_shared_utils();
@@ -21117,6 +21118,10 @@ var require_route_params_decorator = __commonJS({
       return createPipesRouteParamDecorator(route_paramtypes_enum_1.RouteParamtypes.BODY)(property, ...pipes);
     }
     exports.Body = Body;
+    function RawBody(...pipes) {
+      return createPipesRouteParamDecorator(route_paramtypes_enum_1.RouteParamtypes.RAW_BODY)(void 0, ...pipes);
+    }
+    exports.RawBody = RawBody;
     function Param(property, ...pipes) {
       return createPipesRouteParamDecorator(route_paramtypes_enum_1.RouteParamtypes.PARAM)(property, ...pipes);
     }
@@ -21421,7 +21426,6 @@ var require_http_exception = __commonJS({
        * Instantiate a plain HTTP Exception.
        *
        * @example
-       * throw new HttpException()
        * throw new HttpException('message', HttpStatus.BAD_REQUEST)
        * throw new HttpException('custom message', HttpStatus.BAD_REQUEST, {
        *  cause: new Error('Cause Error'),
@@ -22729,7 +22733,7 @@ ${JSON.stringify(message, (key2, value) => typeof value === "bigint" ? value.toS
         if (!(0, shared_utils_1.isString)(stack2) && !(0, shared_utils_1.isUndefined)(stack2)) {
           return false;
         }
-        return /^(.)+\n\s+at .+:\d+:\d+$/.test(stack2);
+        return /^(.)+\n\s+at .+:\d+:\d+/.test(stack2);
       }
       getColorByLogLevel(level) {
         switch (level) {
@@ -37281,12 +37285,12 @@ var require_context_utils = __commonJS({
         return (0, shared_utils_1.isFunction)(factory) ? (...args) => factory(data, contextFactory(args)) : () => null;
       }
       getContextFactory(contextType, instance, callback) {
-        const contextFactory = (args) => {
-          const ctx = new execution_context_host_1.ExecutionContextHost(args, instance && instance.constructor, callback);
+        const type = instance && instance.constructor;
+        return (args) => {
+          const ctx = new execution_context_host_1.ExecutionContextHost(args, type, callback);
           ctx.setType(contextType);
           return ctx;
         };
-        return contextFactory;
       }
     };
     exports.ContextUtils = ContextUtils;
@@ -37617,8 +37621,8 @@ var require_unknown_module_exception = __commonJS({
     exports.UnknownModuleException = void 0;
     var runtime_exception_1 = require_runtime_exception();
     var UnknownModuleException = class extends runtime_exception_1.RuntimeException {
-      constructor() {
-        super("Nest could not select the given module (it does not exist in current context)");
+      constructor(moduleName) {
+        super(`Nest could not select the given module (${moduleName ? `"${moduleName}"` : "it"} does not exist in current context).`);
       }
     };
     exports.UnknownModuleException = UnknownModuleException;
@@ -39302,16 +39306,21 @@ var require_module_token_factory = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ModuleTokenFactory = void 0;
+    var common_1 = require_common();
     var random_string_generator_util_1 = require_random_string_generator_util();
     var shared_utils_1 = require_shared_utils();
     var crypto_1 = __require("crypto");
     var fast_safe_stringify_1 = require_fast_safe_stringify();
+    var perf_hooks_1 = __require("perf_hooks");
     var CLASS_STR = "class ";
     var CLASS_STR_LEN = CLASS_STR.length;
-    var ModuleTokenFactory = class {
+    var ModuleTokenFactory = class _ModuleTokenFactory {
       constructor() {
         this.moduleTokenCache = /* @__PURE__ */ new Map();
         this.moduleIdsCache = /* @__PURE__ */ new WeakMap();
+        this.logger = new common_1.Logger(_ModuleTokenFactory.name, {
+          timestamp: true
+        });
       }
       create(metatype, dynamicModuleMetadata) {
         const moduleId = this.getModuleId(metatype);
@@ -39323,7 +39332,13 @@ var require_module_token_factory = __commonJS({
           module: this.getModuleName(metatype),
           dynamic: dynamicModuleMetadata
         };
+        const start = perf_hooks_1.performance.now();
         const opaqueTokenString = this.getStringifiedOpaqueToken(opaqueToken);
+        const timeSpentInMs = perf_hooks_1.performance.now() - start;
+        if (timeSpentInMs > 10) {
+          const formattedTimeSpent = timeSpentInMs.toFixed(2);
+          this.logger.warn(`The module "${opaqueToken.module}" is taking ${formattedTimeSpent}ms to serialize, this may be caused by larger objects statically assigned to the module. More details: https://github.com/nestjs/nest/issues/12738`);
+        }
         return this.hashString(opaqueTokenString);
       }
       getStaticModuleToken(moduleId, moduleName) {
@@ -40830,10 +40845,15 @@ var require_builder = __commonJS({
         return this.excludedRoutes;
       }
       exclude(...routes) {
-        this.excludedRoutes = this.getRoutesFlatList(routes).map((route) => ({
-          ...route,
-          path: this.routeInfoPathExtractor.extractPathFrom(route)
-        }));
+        this.excludedRoutes = this.getRoutesFlatList(routes).reduce((excludedRoutes, route) => {
+          for (const routePath of this.routeInfoPathExtractor.extractPathFrom(route)) {
+            excludedRoutes.push({
+              ...route,
+              path: routePath
+            });
+          }
+          return excludedRoutes;
+        }, []);
         return this;
       }
       forRoutes(...routes) {
@@ -41229,36 +41249,49 @@ var require_route_info_path_extractor = __commonJS({
         this.versioningConfig = this.applicationConfig.getVersioning();
       }
       extractPathsFrom({ path, method, version }) {
-        const versionPath = this.extractVersionPathFrom(version);
+        const versionPaths = this.extractVersionPathFrom(version);
         if (this.isAWildcard(path)) {
+          const entries2 = versionPaths.length > 0 ? versionPaths.map((versionPath) => [
+            this.prefixPath + versionPath + "$",
+            this.prefixPath + versionPath + (0, shared_utils_1.addLeadingSlash)(path)
+          ]).flat() : this.prefixPath ? [this.prefixPath + "$", this.prefixPath + (0, shared_utils_1.addLeadingSlash)(path)] : [(0, shared_utils_1.addLeadingSlash)(path)];
           return Array.isArray(this.excludedGlobalPrefixRoutes) ? [
-            this.prefixPath + versionPath + (0, shared_utils_1.addLeadingSlash)(path),
-            ...this.excludedGlobalPrefixRoutes.map((route) => versionPath + (0, shared_utils_1.addLeadingSlash)(route.path))
-          ] : [this.prefixPath + versionPath + (0, shared_utils_1.addLeadingSlash)(path)];
+            ...entries2,
+            ...this.excludedGlobalPrefixRoutes.map((route) => versionPaths + (0, shared_utils_1.addLeadingSlash)(route.path))
+          ] : entries2;
         }
-        return [this.extractNonWildcardPathFrom({ path, method, version })];
+        return this.extractNonWildcardPathsFrom({ path, method, version });
       }
       extractPathFrom(route) {
         if (this.isAWildcard(route.path) && !route.version) {
-          return (0, shared_utils_1.addLeadingSlash)(route.path);
+          return [(0, shared_utils_1.addLeadingSlash)(route.path)];
         }
-        return this.extractNonWildcardPathFrom(route);
+        return this.extractNonWildcardPathsFrom(route);
       }
       isAWildcard(path) {
         return ["*", "/*", "/*/", "(.*)", "/(.*)"].includes(path);
       }
-      extractNonWildcardPathFrom({ path, method, version }) {
-        const versionPath = this.extractVersionPathFrom(version);
+      extractNonWildcardPathsFrom({ path, method, version }) {
+        const versionPaths = this.extractVersionPathFrom(version);
         if (Array.isArray(this.excludedGlobalPrefixRoutes) && (0, utils_1.isRouteExcluded)(this.excludedGlobalPrefixRoutes, path, method)) {
-          return versionPath + (0, shared_utils_1.addLeadingSlash)(path);
+          if (!versionPaths.length) {
+            return [(0, shared_utils_1.addLeadingSlash)(path)];
+          }
+          return versionPaths.map((versionPath) => versionPath + (0, shared_utils_1.addLeadingSlash)(path));
         }
-        return this.prefixPath + versionPath + (0, shared_utils_1.addLeadingSlash)(path);
+        if (!versionPaths.length) {
+          return [this.prefixPath + (0, shared_utils_1.addLeadingSlash)(path)];
+        }
+        return versionPaths.map((versionPath) => this.prefixPath + versionPath + (0, shared_utils_1.addLeadingSlash)(path));
       }
-      extractVersionPathFrom(version) {
-        if (!version || this.versioningConfig?.type !== common_1.VersioningType.URI)
-          return "";
+      extractVersionPathFrom(versionValue) {
+        if (!versionValue || this.versioningConfig?.type !== common_1.VersioningType.URI)
+          return [];
         const versionPrefix = this.routePathFactory.getVersionPrefix(this.versioningConfig);
-        return (0, shared_utils_1.addLeadingSlash)(versionPrefix + version.toString());
+        if (Array.isArray(versionValue)) {
+          return versionValue.map((version) => (0, shared_utils_1.addLeadingSlash)(versionPrefix + version.toString()));
+        }
+        return [(0, shared_utils_1.addLeadingSlash)(versionPrefix + versionValue.toString())];
       }
     };
     exports.RouteInfoPathExtractor = RouteInfoPathExtractor;
@@ -41674,7 +41707,9 @@ var require_middleware_module = __commonJS({
           }
           return next();
         };
-        paths.forEach((path) => router(path, middlewareFunction));
+        const pathsToApplyMiddleware = [];
+        paths.some((path) => path.match(/^\/?$/)) ? pathsToApplyMiddleware.push("/") : pathsToApplyMiddleware.push(...paths);
+        pathsToApplyMiddleware.forEach((path) => router(path, middlewareFunction));
       }
       getContextId(request3, isTreeDurable) {
         const contextId = context_id_factory_1.ContextIdFactory.getByRequest(request3);
@@ -41971,7 +42006,7 @@ var require_nest_application_context = __commonJS({
         const token2 = moduleTokenFactory.create(type, dynamicMetadata);
         const selectedModule = modulesContainer.get(token2);
         if (!selectedModule) {
-          throw new exceptions_1.UnknownModuleException();
+          throw new exceptions_1.UnknownModuleException(type.name);
         }
         return new _NestApplicationContext(this.container, this.appOptions, selectedModule, scope);
       }
@@ -42246,29 +42281,25 @@ var require_router_method_factory = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.RouterMethodFactory = void 0;
     var request_method_enum_1 = require_request_method_enum();
+    var REQUEST_METHOD_MAP = {
+      [request_method_enum_1.RequestMethod.GET]: "get",
+      [request_method_enum_1.RequestMethod.POST]: "post",
+      [request_method_enum_1.RequestMethod.PUT]: "put",
+      [request_method_enum_1.RequestMethod.DELETE]: "delete",
+      [request_method_enum_1.RequestMethod.PATCH]: "patch",
+      [request_method_enum_1.RequestMethod.ALL]: "all",
+      [request_method_enum_1.RequestMethod.OPTIONS]: "options",
+      [request_method_enum_1.RequestMethod.HEAD]: "head",
+      [request_method_enum_1.RequestMethod.SEARCH]: "search"
+    };
     var RouterMethodFactory = class {
       get(target, requestMethod) {
-        switch (requestMethod) {
-          case request_method_enum_1.RequestMethod.POST:
-            return target.post;
-          case request_method_enum_1.RequestMethod.ALL:
-            return target.all;
-          case request_method_enum_1.RequestMethod.DELETE:
-            return target.delete;
-          case request_method_enum_1.RequestMethod.PUT:
-            return target.put;
-          case request_method_enum_1.RequestMethod.PATCH:
-            return target.patch;
-          case request_method_enum_1.RequestMethod.OPTIONS:
-            return target.options;
-          case request_method_enum_1.RequestMethod.HEAD:
-            return target.head;
-          case request_method_enum_1.RequestMethod.GET:
-            return target.get;
-          default: {
-            return target.use;
-          }
+        const methodName = REQUEST_METHOD_MAP[requestMethod];
+        const method = target[methodName];
+        if (!method) {
+          return target.use;
         }
+        return method;
       }
     };
     exports.RouterMethodFactory = RouterMethodFactory;
@@ -42293,6 +42324,8 @@ var require_route_params_factory = __commonJS({
             return res;
           case route_paramtypes_enum_1.RouteParamtypes.BODY:
             return data && req.body ? req.body[data] : req.body;
+          case route_paramtypes_enum_1.RouteParamtypes.RAW_BODY:
+            return req.rawBody;
           case route_paramtypes_enum_1.RouteParamtypes.PARAM:
             return data ? req.params[data] : req.params;
           case route_paramtypes_enum_1.RouteParamtypes.HOST:
@@ -42438,7 +42471,7 @@ var require_router_response_controller = __commonJS({
         }
       }
       setHeaders(response, headers) {
-        headers.forEach(({ name, value }) => this.applicationRef.setHeader(response, name, value));
+        headers.forEach(({ name, value }) => this.applicationRef.setHeader(response, name, typeof value === "function" ? value() : value));
       }
       setStatus(response, statusCode) {
         this.applicationRef.status(response, statusCode);
@@ -42606,7 +42639,7 @@ var require_router_execution_context = __commonJS({
         return value;
       }
       isPipeable(type) {
-        return type === route_paramtypes_enum_1.RouteParamtypes.BODY || type === route_paramtypes_enum_1.RouteParamtypes.QUERY || type === route_paramtypes_enum_1.RouteParamtypes.PARAM || type === route_paramtypes_enum_1.RouteParamtypes.FILE || type === route_paramtypes_enum_1.RouteParamtypes.FILES || (0, shared_utils_1.isString)(type);
+        return type === route_paramtypes_enum_1.RouteParamtypes.BODY || type === route_paramtypes_enum_1.RouteParamtypes.RAW_BODY || type === route_paramtypes_enum_1.RouteParamtypes.QUERY || type === route_paramtypes_enum_1.RouteParamtypes.PARAM || type === route_paramtypes_enum_1.RouteParamtypes.FILE || type === route_paramtypes_enum_1.RouteParamtypes.FILES || (0, shared_utils_1.isString)(type);
       }
       createGuardsFn(guards, instance, callback, contextType) {
         const canActivateFn = async (args) => {
@@ -43567,15 +43600,15 @@ var require_internal_core_module_factory = __commonJS({
         return internal_core_module_1.InternalCoreModule.register([
           {
             provide: external_context_creator_1.ExternalContextCreator,
-            useValue: external_context_creator_1.ExternalContextCreator.fromContainer(container)
+            useFactory: () => external_context_creator_1.ExternalContextCreator.fromContainer(container)
           },
           {
             provide: modules_container_1.ModulesContainer,
-            useValue: container.getModules()
+            useFactory: () => container.getModules()
           },
           {
             provide: http_adapter_host_1.HttpAdapterHost,
-            useValue: httpAdapterHost
+            useFactory: () => httpAdapterHost
           },
           {
             provide: lazy_module_loader_1.LazyModuleLoader,
@@ -43583,7 +43616,7 @@ var require_internal_core_module_factory = __commonJS({
           },
           {
             provide: serialized_graph_1.SerializedGraph,
-            useValue: container.serializedGraph
+            useFactory: () => container.serializedGraph
           }
         ]);
       }
@@ -44644,7 +44677,7 @@ var require_repl = __commonJS({
     var repl_context_1 = require_repl_context();
     var repl_logger_1 = require_repl_logger();
     var repl_native_commands_1 = require_repl_native_commands();
-    async function repl(module2) {
+    async function repl(module2, replOptions = {}) {
       const app = await nest_factory_1.NestFactory.createApplicationContext(module2, {
         abortOnError: false,
         logger: new repl_logger_1.ReplLogger()
@@ -44655,7 +44688,8 @@ var require_repl = __commonJS({
       const _repl = await Promise.resolve().then(() => __require("repl"));
       const replServer = _repl.start({
         prompt: cli_colors_util_1.clc.green("> "),
-        ignoreUndefined: true
+        ignoreUndefined: true,
+        ...replOptions
       });
       (0, assign_to_object_util_1.assignToObject)(replServer.context, replContext.globalScope);
       (0, repl_native_commands_1.defineDefaultCommandsOnRepl)(replServer);
@@ -44769,7 +44803,7 @@ var require_package = __commonJS({
   "node_modules/@nestjs/config/node_modules/dotenv/package.json"(exports, module) {
     module.exports = {
       name: "dotenv",
-      version: "16.3.1",
+      version: "16.4.5",
       description: "Loads environment variables from .env file",
       main: "lib/main.js",
       types: "lib/main.d.ts",
@@ -44793,6 +44827,7 @@ var require_package = __commonJS({
         "lint-readme": "standard-markdown",
         pretest: "npm run lint && npm run dts-check",
         test: "tap tests/*.js --100 -Rspec",
+        "test:coverage": "tap --coverage-report=lcov",
         prerelease: "npm test",
         release: "standard-version"
       },
@@ -44800,7 +44835,7 @@ var require_package = __commonJS({
         type: "git",
         url: "git://github.com/motdotla/dotenv.git"
       },
-      funding: "https://github.com/motdotla/dotenv?sponsor=1",
+      funding: "https://dotenvx.com",
       keywords: [
         "dotenv",
         "env",
@@ -44867,7 +44902,9 @@ var require_main2 = __commonJS({
       const vaultPath = _vaultPath(options);
       const result = DotenvModule.configDotenv({ path: vaultPath });
       if (!result.parsed) {
-        throw new Error(`MISSING_DATA: Cannot parse ${vaultPath} for an unknown reason`);
+        const err = new Error(`MISSING_DATA: Cannot parse ${vaultPath} for an unknown reason`);
+        err.code = "MISSING_DATA";
+        throw err;
       }
       const keys = _dotenvKey(options).split(",");
       const length = keys.length;
@@ -44910,31 +44947,52 @@ var require_main2 = __commonJS({
         uri = new URL(dotenvKey);
       } catch (error3) {
         if (error3.code === "ERR_INVALID_URL") {
-          throw new Error("INVALID_DOTENV_KEY: Wrong format. Must be in valid uri format like dotenv://:key_1234@dotenv.org/vault/.env.vault?environment=development");
+          const err = new Error("INVALID_DOTENV_KEY: Wrong format. Must be in valid uri format like dotenv://:key_1234@dotenvx.com/vault/.env.vault?environment=development");
+          err.code = "INVALID_DOTENV_KEY";
+          throw err;
         }
         throw error3;
       }
       const key2 = uri.password;
       if (!key2) {
-        throw new Error("INVALID_DOTENV_KEY: Missing key part");
+        const err = new Error("INVALID_DOTENV_KEY: Missing key part");
+        err.code = "INVALID_DOTENV_KEY";
+        throw err;
       }
       const environment = uri.searchParams.get("environment");
       if (!environment) {
-        throw new Error("INVALID_DOTENV_KEY: Missing environment part");
+        const err = new Error("INVALID_DOTENV_KEY: Missing environment part");
+        err.code = "INVALID_DOTENV_KEY";
+        throw err;
       }
       const environmentKey = `DOTENV_VAULT_${environment.toUpperCase()}`;
       const ciphertext = result.parsed[environmentKey];
       if (!ciphertext) {
-        throw new Error(`NOT_FOUND_DOTENV_ENVIRONMENT: Cannot locate environment ${environmentKey} in your .env.vault file.`);
+        const err = new Error(`NOT_FOUND_DOTENV_ENVIRONMENT: Cannot locate environment ${environmentKey} in your .env.vault file.`);
+        err.code = "NOT_FOUND_DOTENV_ENVIRONMENT";
+        throw err;
       }
       return { ciphertext, key: key2 };
     }
     function _vaultPath(options) {
-      let dotenvPath = path.resolve(process.cwd(), ".env");
+      let possibleVaultPath = null;
       if (options && options.path && options.path.length > 0) {
-        dotenvPath = options.path;
+        if (Array.isArray(options.path)) {
+          for (const filepath of options.path) {
+            if (fs2.existsSync(filepath)) {
+              possibleVaultPath = filepath.endsWith(".vault") ? filepath : `${filepath}.vault`;
+            }
+          }
+        } else {
+          possibleVaultPath = options.path.endsWith(".vault") ? options.path : `${options.path}.vault`;
+        }
+      } else {
+        possibleVaultPath = path.resolve(process.cwd(), ".env.vault");
       }
-      return dotenvPath.endsWith(".vault") ? dotenvPath : `${dotenvPath}.vault`;
+      if (fs2.existsSync(possibleVaultPath)) {
+        return possibleVaultPath;
+      }
+      return null;
     }
     function _resolveHome(envPath) {
       return envPath[0] === "~" ? path.join(os2.homedir(), envPath.slice(1)) : envPath;
@@ -44950,38 +45008,57 @@ var require_main2 = __commonJS({
       return { parsed };
     }
     function configDotenv(options) {
-      let dotenvPath = path.resolve(process.cwd(), ".env");
+      const dotenvPath = path.resolve(process.cwd(), ".env");
       let encoding = "utf8";
       const debug2 = Boolean(options && options.debug);
-      if (options) {
-        if (options.path != null) {
-          dotenvPath = _resolveHome(options.path);
-        }
-        if (options.encoding != null) {
-          encoding = options.encoding;
+      if (options && options.encoding) {
+        encoding = options.encoding;
+      } else {
+        if (debug2) {
+          _debug("No encoding is specified. UTF-8 is used by default");
         }
       }
-      try {
-        const parsed = DotenvModule.parse(fs2.readFileSync(dotenvPath, { encoding }));
-        let processEnv = process.env;
-        if (options && options.processEnv != null) {
-          processEnv = options.processEnv;
+      let optionPaths = [dotenvPath];
+      if (options && options.path) {
+        if (!Array.isArray(options.path)) {
+          optionPaths = [_resolveHome(options.path)];
+        } else {
+          optionPaths = [];
+          for (const filepath of options.path) {
+            optionPaths.push(_resolveHome(filepath));
+          }
         }
-        DotenvModule.populate(processEnv, parsed, options);
-        return { parsed };
-      } catch (e) {
-        if (debug2) {
-          _debug(`Failed to load ${dotenvPath} ${e.message}`);
+      }
+      let lastError;
+      const parsedAll = {};
+      for (const path2 of optionPaths) {
+        try {
+          const parsed = DotenvModule.parse(fs2.readFileSync(path2, { encoding }));
+          DotenvModule.populate(parsedAll, parsed, options);
+        } catch (e) {
+          if (debug2) {
+            _debug(`Failed to load ${path2} ${e.message}`);
+          }
+          lastError = e;
         }
-        return { error: e };
+      }
+      let processEnv = process.env;
+      if (options && options.processEnv != null) {
+        processEnv = options.processEnv;
+      }
+      DotenvModule.populate(processEnv, parsedAll, options);
+      if (lastError) {
+        return { parsed: parsedAll, error: lastError };
+      } else {
+        return { parsed: parsedAll };
       }
     }
     function config(options) {
-      const vaultPath = _vaultPath(options);
       if (_dotenvKey(options).length === 0) {
         return DotenvModule.configDotenv(options);
       }
-      if (!fs2.existsSync(vaultPath)) {
+      const vaultPath = _vaultPath(options);
+      if (!vaultPath) {
         _warn(`You set DOTENV_KEY but you are missing a .env.vault file at ${vaultPath}. Did you forget to build it?`);
         return DotenvModule.configDotenv(options);
       }
@@ -44990,9 +45067,9 @@ var require_main2 = __commonJS({
     function decrypt(encrypted, keyStr) {
       const key2 = Buffer.from(keyStr.slice(-64), "hex");
       let ciphertext = Buffer.from(encrypted, "base64");
-      const nonce = ciphertext.slice(0, 12);
-      const authTag = ciphertext.slice(-16);
-      ciphertext = ciphertext.slice(12, -16);
+      const nonce = ciphertext.subarray(0, 12);
+      const authTag = ciphertext.subarray(-16);
+      ciphertext = ciphertext.subarray(12, -16);
       try {
         const aesgcm = crypto2.createDecipheriv("aes-256-gcm", key2, nonce);
         aesgcm.setAuthTag(authTag);
@@ -45002,14 +45079,14 @@ var require_main2 = __commonJS({
         const invalidKeyLength = error3.message === "Invalid key length";
         const decryptionFailed = error3.message === "Unsupported state or unable to authenticate data";
         if (isRange || invalidKeyLength) {
-          const msg2 = "INVALID_DOTENV_KEY: It must be 64 characters long (or more)";
-          throw new Error(msg2);
+          const err = new Error("INVALID_DOTENV_KEY: It must be 64 characters long (or more)");
+          err.code = "INVALID_DOTENV_KEY";
+          throw err;
         } else if (decryptionFailed) {
-          const msg2 = "DECRYPTION_FAILED: Please check your DOTENV_KEY";
-          throw new Error(msg2);
+          const err = new Error("DECRYPTION_FAILED: Please check your DOTENV_KEY");
+          err.code = "DECRYPTION_FAILED";
+          throw err;
         } else {
-          console.error("Error: ", error3.code);
-          console.error("Error: ", error3.message);
           throw error3;
         }
       }
@@ -45018,7 +45095,9 @@ var require_main2 = __commonJS({
       const debug2 = Boolean(options && options.debug);
       const override = Boolean(options && options.override);
       if (typeof parsed !== "object") {
-        throw new Error("OBJECT_REQUIRED: Please check the processEnv argument being passed to populate");
+        const err = new Error("OBJECT_REQUIRED: Please check the processEnv argument being passed to populate");
+        err.code = "OBJECT_REQUIRED";
+        throw err;
       }
       for (const key2 of Object.keys(parsed)) {
         if (Object.prototype.hasOwnProperty.call(processEnv, key2)) {
@@ -46137,6 +46216,26 @@ var require_set = __commonJS({
 var require_config_service = __commonJS({
   "node_modules/@nestjs/config/dist/config.service.js"(exports) {
     "use strict";
+    var __createBinding4 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
+      }
+      Object.defineProperty(o, k2, desc);
+    } : function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      o[k2] = m[k];
+    });
+    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+      Object.defineProperty(o, "default", { enumerable: true, value: v });
+    } : function(o, v) {
+      o["default"] = v;
+    });
     var __decorate38 = exports && exports.__decorate || function(decorators, target, key2, desc) {
       var c2 = arguments.length, r = c2 < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key2) : desc, d;
       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
@@ -46146,6 +46245,18 @@ var require_config_service = __commonJS({
           if (d = decorators[i])
             r = (c2 < 3 ? d(r) : c2 > 3 ? d(target, key2, r) : d(target, key2)) || r;
       return c2 > 3 && r && Object.defineProperty(target, key2, r), r;
+    };
+    var __importStar4 = exports && exports.__importStar || function(mod) {
+      if (mod && mod.__esModule)
+        return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod)
+          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
+            __createBinding4(result, mod, k);
+      }
+      __setModuleDefault(result, mod);
+      return result;
     };
     var __metadata28 = exports && exports.__metadata || function(k, v) {
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
@@ -46163,11 +46274,14 @@ var require_config_service = __commonJS({
     exports.ConfigService = void 0;
     var common_1 = require_common();
     var shared_utils_1 = require_shared_utils();
+    var dotenv = __importStar4(require_main2());
+    var fs_1 = __importDefault4(__require("fs"));
     var get_1 = __importDefault4(require_get());
     var has_1 = __importDefault4(require_has());
     var set_1 = __importDefault4(require_set());
+    var rxjs_1 = require_cjs();
     var config_constants_1 = require_config_constants();
-    var ConfigService17 = exports.ConfigService = class ConfigService {
+    var ConfigService17 = class ConfigService {
       set isCacheEnabled(value) {
         this._isCacheEnabled = value;
       }
@@ -46177,7 +46291,16 @@ var require_config_service = __commonJS({
       constructor(internalConfig = {}) {
         this.internalConfig = internalConfig;
         this.cache = {};
+        this._changes$ = new rxjs_1.Subject();
         this._isCacheEnabled = false;
+        this.envFilePaths = [];
+      }
+      /**
+       * Returns a stream of configuration changes.
+       * Each event contains the attribute path, the old value and the new value.
+       */
+      get changes$() {
+        return this._changes$.asObservable();
       }
       /**
        * Get a configuration value (either custom configuration or process environment variable)
@@ -46217,6 +46340,34 @@ var require_config_service = __commonJS({
         }
         return value;
       }
+      /**
+       * Sets a configuration value based on property path.
+       * @param propertyPath
+       * @param value
+       */
+      set(propertyPath, value) {
+        const oldValue = this.get(propertyPath);
+        (0, set_1.default)(this.internalConfig, propertyPath, value);
+        if (typeof propertyPath === "string") {
+          process.env[propertyPath] = String(value);
+          this.updateInterpolatedEnv(propertyPath, String(value));
+        }
+        if (this.isCacheEnabled) {
+          this.setInCacheIfDefined(propertyPath, value);
+        }
+        this._changes$.next({
+          path: propertyPath,
+          oldValue,
+          newValue: value
+        });
+      }
+      /**
+       * Sets env file paths from `config.module.ts` to parse.
+       * @param paths
+       */
+      setEnvFilePaths(paths) {
+        this.envFilePaths = paths;
+      }
       getFromCache(propertyPath, defaultValue) {
         const cachedValue = (0, get_1.default)(this.cache, propertyPath);
         return (0, shared_utils_1.isUndefined)(cachedValue) ? defaultValue : cachedValue;
@@ -46247,7 +46398,22 @@ var require_config_service = __commonJS({
       isGetOptionsObject(options) {
         return options && options?.infer && Object.keys(options).length === 1;
       }
+      updateInterpolatedEnv(propertyPath, value) {
+        let config = {};
+        for (const envFilePath of this.envFilePaths) {
+          if (fs_1.default.existsSync(envFilePath)) {
+            config = Object.assign(dotenv.parse(fs_1.default.readFileSync(envFilePath)), config);
+          }
+        }
+        const regex = new RegExp(`\\$\\{?${propertyPath}\\}?`, "g");
+        for (const [k, v] of Object.entries(config)) {
+          if (regex.test(v)) {
+            process.env[k] = v.replace(regex, value);
+          }
+        }
+      }
     };
+    exports.ConfigService = ConfigService17;
     exports.ConfigService = ConfigService17 = __decorate38([
       (0, common_1.Injectable)(),
       __param4(0, (0, common_1.Optional)()),
@@ -46276,8 +46442,9 @@ var require_config_host_module = __commonJS({
     var common_1 = require_common();
     var config_constants_1 = require_config_constants();
     var config_service_1 = require_config_service();
-    var ConfigHostModule = exports.ConfigHostModule = class ConfigHostModule {
+    var ConfigHostModule = class ConfigHostModule {
     };
+    exports.ConfigHostModule = ConfigHostModule;
     exports.ConfigHostModule = ConfigHostModule = __decorate38([
       (0, common_1.Global)(),
       (0, common_1.Module)({
@@ -46372,7 +46539,7 @@ var require_stringify2 = __commonJS({
       byteToHex.push((i + 256).toString(16).slice(1));
     }
     function unsafeStringify(arr, offset = 0) {
-      return (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+      return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
     }
     function stringify3(arr, offset = 0) {
       const uuid = unsafeStringify(arr, offset);
@@ -46944,7 +47111,7 @@ var require_config_module = __commonJS({
     var create_config_factory_util_1 = require_create_config_factory_util();
     var get_registration_token_util_1 = require_get_registration_token_util();
     var merge_configs_util_1 = require_merge_configs_util();
-    var ConfigModule3 = exports.ConfigModule = ConfigModule_12 = class ConfigModule {
+    var ConfigModule3 = ConfigModule_12 = class ConfigModule {
       /**
        * This promise resolves when "dotenv" completes loading environment variables.
        * When "ignoreEnvFile" is set to true, then it will resolve immediately after the
@@ -46959,8 +47126,9 @@ var require_config_module = __commonJS({
        * @param options
        */
       static forRoot(options = {}) {
+        const envFilePaths = Array.isArray(options.envFilePath) ? options.envFilePath : [options.envFilePath || (0, path_1.resolve)(process.cwd(), ".env")];
         let validatedEnvConfig = void 0;
-        let config = options.ignoreEnvFile ? {} : this.loadEnvFile(options);
+        let config = options.ignoreEnvFile ? {} : this.loadEnvFile(envFilePaths, options);
         if (!options.ignoreEnvVars) {
           config = {
             ...config,
@@ -46991,6 +47159,7 @@ var require_config_module = __commonJS({
             if (options.cache) {
               configService.isCacheEnabled = true;
             }
+            configService.setEnvFilePaths(envFilePaths);
             return configService;
           },
           inject: [config_constants_1.CONFIGURATION_SERVICE_TOKEN, ...configProviderTokens]
@@ -47050,8 +47219,7 @@ var require_config_module = __commonJS({
           exports: [config_service_1.ConfigService, configProvider.provide]
         };
       }
-      static loadEnvFile(options) {
-        const envFilePaths = Array.isArray(options.envFilePath) ? options.envFilePath : [options.envFilePath || (0, path_1.resolve)(process.cwd(), ".env")];
+      static loadEnvFile(envFilePaths, options) {
         let config = {};
         for (const envFilePath of envFilePaths) {
           if (fs2.existsSync(envFilePath)) {
@@ -47096,6 +47264,7 @@ var require_config_module = __commonJS({
         };
       }
     };
+    exports.ConfigModule = ConfigModule3;
     ConfigModule3._envVariablesLoaded = new Promise((resolve2) => ConfigModule_12.environmentVariablesLoadedSignal = resolve2);
     exports.ConfigModule = ConfigModule3 = ConfigModule_12 = __decorate38([
       (0, common_1.Module)({
@@ -47125,13 +47294,11 @@ var require_conditional_module = __commonJS({
        * @publicApi
        */
       static async registerWhen(module2, condition, options) {
-        let configResolved = false;
         const { timeout = 5e3 } = options ?? {};
-        setTimeout(() => {
-          if (!configResolved) {
-            throw new Error(`Nest was not able to resolve the config variables within ${timeout} milliseconds. Bause of this, the ConditionalModule was not able to determine if ${module2.toString()} should be registered or not`);
-          }
+        const timer = setTimeout(() => {
+          throw new Error(`Nest was not able to resolve the config variables within ${timeout} milliseconds. Bause of this, the ConditionalModule was not able to determine if ${module2.toString()} should be registered or not`);
         }, timeout);
+        timer.unref();
         const returnModule = { module: _ConditionalModule, imports: [], exports: [] };
         if (typeof condition === "string") {
           const key2 = condition;
@@ -47140,7 +47307,7 @@ var require_conditional_module = __commonJS({
           };
         }
         await config_module_1.ConfigModule.envVariablesLoaded;
-        configResolved = true;
+        clearTimeout(timer);
         const evaluation = condition(process.env);
         if (evaluation) {
           returnModule.imports.push(module2);
@@ -47280,6 +47447,14 @@ var require_utils10 = __commonJS({
   }
 });
 
+// node_modules/@nestjs/config/dist/interfaces/config-change-event.interface.js
+var require_config_change_event_interface = __commonJS({
+  "node_modules/@nestjs/config/dist/interfaces/config-change-event.interface.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
 // node_modules/@nestjs/config/dist/interfaces/config-factory.interface.js
 var require_config_factory_interface = __commonJS({
   "node_modules/@nestjs/config/dist/interfaces/config-factory.interface.js"(exports) {
@@ -47321,6 +47496,7 @@ var require_interfaces4 = __commonJS({
           __createBinding4(exports2, m, p);
     };
     Object.defineProperty(exports, "__esModule", { value: true });
+    __exportStar4(require_config_change_event_interface(), exports);
     __exportStar4(require_config_factory_interface(), exports);
     __exportStar4(require_config_module_options_interface(), exports);
   }
@@ -48469,7 +48645,7 @@ var require_stringify3 = __commonJS({
       byteToHex.push((i + 256).toString(16).slice(1));
     }
     function unsafeStringify(arr, offset = 0) {
-      return (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+      return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
     }
     function stringify3(arr, offset = 0) {
       const uuid = unsafeStringify(arr, offset);
